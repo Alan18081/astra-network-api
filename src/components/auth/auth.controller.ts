@@ -4,7 +4,7 @@ import {LoginDto} from './dto/login.dto';
 import {UsersService} from '../users/services/users.service';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {JwtResponse} from './interfaces/jwt-response';
-import {AuthService} from './auth.service';
+import {AuthService} from './services/auth.service';
 import {HashService} from '../core/services/hash.service';
 import {ExchangeTokenDto} from './dto/exchangeToken.dto';
 import {AuthGuard} from '@nestjs/passport';

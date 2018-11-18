@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32cdf1fc-6fcd-4a04-b19a-2ee81bbfde37" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/products/products.module.ts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/components/auth/auth.service.ts" afterPath="$PROJECT_DIR$/src/components/auth/services/auth.service.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/auth/auth.controller.ts" afterPath="$PROJECT_DIR$/src/components/auth/auth.controller.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/auth/auth.module.ts" afterPath="$PROJECT_DIR$/src/components/auth/auth.module.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/auth/strategies/http.strategy.ts" afterPath="$PROJECT_DIR$/src/components/auth/strategies/http.strategy.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/auth/strategies/jwt.strategy.ts" afterPath="$PROJECT_DIR$/src/components/auth/strategies/jwt.strategy.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,11 +35,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="28">
               <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="products.module.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/products/products.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -122,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/MessageServer/src/messageHandler.service.ts" />
         <option value="$PROJECT_DIR$/config/messageHandler.service.ts" />
         <option value="$PROJECT_DIR$/API/src/index.ts" />
         <option value="$PROJECT_DIR$/API/src/server/decorators.ts" />
@@ -173,6 +187,7 @@
         <option value="$PROJECT_DIR$/src/components/auth/auth.controller.ts" />
         <option value="$PROJECT_DIR$/src/components/auth/strategies/google.strategy.ts" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/components/products/products.module.ts" />
       </list>
     </option>
   </component>
@@ -233,6 +248,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="astra-store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="astra-store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="astra-store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="astra-store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -251,19 +298,19 @@
     <property name="node.js.selected.package.tslint" value="C:\Users\user\WebstormProjects\astra-store\node_modules\tslint" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\WebstormProjects\astra-store\src\components\auth\services" />
+      <recent name="C:\Users\user\WebstormProjects\astra-store\src\components" />
+      <recent name="C:\Users\user\WebstormProjects\astra-store\src\components\users\services" />
+      <recent name="C:\Users\user\WebstormProjects\astra-store\src\components\users\entities" />
+      <recent name="C:\Users\user\WebstormProjects\astra-store\src" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\WebstormProjects\astra-store\src\components\users\dto" />
       <recent name="C:\Users\user\WebstormProjects\astra-store\UsersService" />
       <recent name="C:\Users\user\WebstormProjects\astra-store\UsersService\src" />
       <recent name="C:\Users\user\WebstormProjects\astra-store\ProductService\src\helpers" />
       <recent name="C:\Users\user\WebstormProjects\astra-store\ProductService" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\user\WebstormProjects\astra-store\src\components" />
-      <recent name="C:\Users\user\WebstormProjects\astra-store\src\components\users\services" />
-      <recent name="C:\Users\user\WebstormProjects\astra-store\src\components\users\entities" />
-      <recent name="C:\Users\user\WebstormProjects\astra-store\src" />
-      <recent name="C:\Users\user\WebstormProjects\astra-store" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -386,13 +433,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/typeorm/driver/postgres/PostgresConnectionOptions.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -620,7 +660,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/auth/auth.service.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/auth/services/auth.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="41" column="8" lean-forward="false" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
@@ -771,6 +811,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
           <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/products/products.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
           <folding />
         </state>
       </provider>

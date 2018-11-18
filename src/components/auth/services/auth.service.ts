@@ -1,15 +1,15 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt';
-import {JwtPayload} from './interfaces/jwt-payload.interface';
-import {User} from '../users/entities/user.entity';
-import {UsersService} from '../users/services/users.service';
-import {JwtResponse} from './interfaces/jwt-response';
-import {HashService} from '../core/services/hash.service';
-import {JWT_EXPIRES} from '../../config/index';
+import {JwtPayload} from '../interfaces/jwt-payload.interface';
+import {User} from '../../users/entities/user.entity';
+import {UsersService} from '../../users/services/users.service';
+import {JwtResponse} from '../interfaces/jwt-response';
+import {HashService} from '../../core/services/hash.service';
+import {JWT_EXPIRES} from '../../../config/index';
 import {InjectRepository} from '@nestjs/typeorm';
-import {RefreshToken} from './entities/RefreshToken.entity';
+import {RefreshToken} from '../entities/RefreshToken.entity';
 import {Repository} from 'typeorm';
-import {Messages} from '../../helpers/enums/messages.enum';
+import {Messages} from '../../../helpers/enums/messages.enum';
 
 @Injectable()
 export class AuthService {
