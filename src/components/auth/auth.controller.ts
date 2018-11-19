@@ -1,5 +1,6 @@
-import {Body, Controller, Get, Post, UnauthorizedException, UseGuards} from '@nestjs/common';
-import {ApiOperation} from '@nestjs/swagger';
+import {Body, Controller, Get, Post, UnauthorizedException, UseGuards, Res, HttpCode, Query} from '@nestjs/common';
+import { Response } from 'express';
+import {ApiOperation, ApiUseTags} from '@nestjs/swagger';
 import {LoginDto} from './dto/login.dto';
 import {UsersService} from '../users/services/users.service';
 import {Messages} from '../../helpers/enums/messages.enum';
@@ -9,8 +10,10 @@ import {HashService} from '../core/services/hash.service';
 import {ExchangeTokenDto} from './dto/exchangeToken.dto';
 import {AuthGuard} from '@nestjs/passport';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
+import {User} from '../users/entities/user.entity';
 
 @Controller('auth')
+@ApiUseTags('Auth')
 export class AuthController {
 
   constructor(
@@ -50,7 +53,28 @@ export class AuthController {
 
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
-  googleLoginCallback(@ReqUser() user: any) {
-    console.log(user);
+  @ApiOperation({ title: 'Callback for google authentication' })
+  async googleLoginCallback(@ReqUser() user: User | null, @Res() res: Response): Promise<void> {
+    if (user) {
+      res.redirect(`/auth/google/success?userId=${user.id}`);
+    } else {
+      res.redirect('/auth/google/fail');
+    }
+  }
+
+  @Get('google/success')
+  @ApiOperation({ title: 'Google success authentication' })
+  async googleSuccess(@Query('userId') userId: string | number): Promise<JwtResponse | void> {
+    const user = await this.usersService.findOne(+userId);
+    if (user) {
+      return await this.authService.singIn(user);
+
+    }
+  }
+
+  @Get('google/fail')
+  @ApiOperation({ title: 'Google failed authentication' })
+  async googleFail(): Promise<UnauthorizedException> {
+    return new UnauthorizedException(Messages.FAILED_GOOGLE_AUTH);
   }
 }

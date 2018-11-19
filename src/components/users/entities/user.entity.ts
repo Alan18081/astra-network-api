@@ -1,6 +1,6 @@
-import {Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
-import {Min, Max, IsEmail} from 'class-validator';
+import {Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {UserRole} from './user-role.entity';
+import {Product} from '../../products/product.entity';
 
 @Entity()
 export class User {
@@ -13,20 +13,23 @@ export class User {
   @Column({ type: 'varchar' })
   lastName: string;
 
-  @Column()
-  @Min(0)
-  @Max(100)
+  @Column({ nullable: true })
   age: number;
 
   @Column()
   @Index()
-  @IsEmail()
   email: string;
 
-  @Column({ select: false })
+  @Column({ select: false, nullable: true })
   password: string;
 
   @ManyToOne(type => UserRole)
   @JoinColumn()
   role: UserRole;
+
+  @OneToMany(type => Product, product => product.seller)
+  products: Product[];
+
+  @Column({ nullable: true })
+  googleId: string;
 }

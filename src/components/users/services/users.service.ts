@@ -8,6 +8,7 @@ import {HashService} from '../../core/services/hash.service';
 import {FindUsersListDto} from '../dto/find-users-list.dto';
 import {Roles} from '../../../helpers/enums/roles.enum';
 import {Messages} from '../../../helpers/enums/messages.enum';
+import {GoogleUserData} from '../interfaces/google-user-data.interface';
 
 @Injectable()
 export class UsersService implements BaseService<User> {
@@ -55,6 +56,10 @@ export class UsersService implements BaseService<User> {
     return await query.getOne();
   }
 
+  async findOneByGoogleId(id: string): Promise<User | undefined> {
+    return await this.usersRepository.findOne({ googleId: id });
+  }
+
   async create(payload: CreateUserDto): Promise<User | undefined> {
     const passwordHash = await this.hashService.generateHash(payload.password);
 
@@ -67,6 +72,15 @@ export class UsersService implements BaseService<User> {
     await this.usersRepository.save(newUser);
 
     return this.usersRepository.findOne(newUser.id);
+  }
+
+  async createByGoogle(payload: GoogleUserData): Promise<User | undefined> {
+    const newUser = {
+      ...new User(),
+      ...payload,
+    };
+
+    return await this.usersRepository.save(newUser);
   }
 
   async update(id: number, payload: Partial<User>): Promise<User | undefined> {

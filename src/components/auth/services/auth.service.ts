@@ -4,19 +4,18 @@ import {JwtPayload} from '../interfaces/jwt-payload.interface';
 import {User} from '../../users/entities/user.entity';
 import {UsersService} from '../../users/services/users.service';
 import {JwtResponse} from '../interfaces/jwt-response';
-import {HashService} from '../../core/services/hash.service';
 import {JWT_EXPIRES} from '../../../config/index';
 import {InjectRepository} from '@nestjs/typeorm';
 import {RefreshToken} from '../entities/RefreshToken.entity';
 import {Repository} from 'typeorm';
 import {Messages} from '../../../helpers/enums/messages.enum';
+import * as uid from 'uid-safe';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
-    private readonly hashService: HashService,
     @InjectRepository(RefreshToken)
     private readonly refreshTokensRepository: Repository<RefreshToken>,
   ) {}
@@ -24,13 +23,24 @@ export class AuthService {
   async singIn(user: User): Promise<JwtResponse> {
     const jwtPayload: JwtPayload = { email: user.email, id: user.id };
     const accessToken = this.jwtService.sign(jwtPayload);
-    const refreshToken = await this.hashService.generateHash(JSON.stringify(jwtPayload));
 
-    const refreshTokenRecord = new RefreshToken();
-    refreshTokenRecord.token = refreshToken;
-    refreshTokenRecord.user = user;
+    const refreshTokenRecord = await this.refreshTokensRepository.findOne({ user });
 
-    await this.refreshTokensRepository.save(refreshTokenRecord);
+    if (refreshTokenRecord) {
+      return {
+        accessToken,
+        refreshToken: refreshTokenRecord.token,
+        expiresIn: JWT_EXPIRES,
+      };
+    }
+
+    const refreshToken = uid.sync(30);
+
+    const newRefreshTokenRecord = new RefreshToken();
+    newRefreshTokenRecord.token = refreshToken;
+    newRefreshTokenRecord.user = user;
+
+    await this.refreshTokensRepository.save(newRefreshTokenRecord);
 
     return {
       accessToken,

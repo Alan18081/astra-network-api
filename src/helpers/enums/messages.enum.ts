@@ -4,4 +4,5 @@ export enum Messages {
   INVALID_TOKEN = 'Invalid access token',
   INVALID_PASSWORD = 'Invalid password',
   REFRESH_TOKEN_NOT_FOUND = 'Refresh token not found',
+  FAILED_GOOGLE_AUTH = 'Failed to login by google',
 }
