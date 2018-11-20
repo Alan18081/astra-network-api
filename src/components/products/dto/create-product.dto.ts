@@ -12,9 +12,9 @@ export class CreateProductDto {
   @ApiModelProperty()
   description: string;
 
-  @IsInstance(File)
+  @IsInt()
   @ApiModelProperty()
-  mainImage: File;
+  mainImage: number;
 
   @IsInt()
   @Min(0)

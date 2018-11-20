@@ -5,9 +5,9 @@ import {Product} from './product.entity';
 import {Repository} from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ProductImages } from './interfaces/product-images.interface';
-import { CreateProductData } from './interfaces/product-data.type';
 import { FindProductDto } from './dto/find-product.dto';
 import { FindProductsListDto } from './dto/find-products-list.dto';
+import { File } from '../files/file.entity';
 
 @Injectable()
 export class ProductsService implements BaseService<Product> {
@@ -25,10 +25,11 @@ export class ProductsService implements BaseService<Product> {
     return this.productsRepository.findOne(id);
   }
 
-  async createOne(payload: CreateProductData): Promise<Product> {
+  async createOne(payload: CreateProductDto): Promise<Product> {
     const newProduct = {
       ...new Product(),
       ...payload,
+      mainImage: { id: payload.mainImage } as File,
     };
 
     return await this.productsRepository.save(newProduct);

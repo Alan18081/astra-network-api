@@ -36,7 +36,7 @@ export class FilesService {
       url,
     };
 
-    return newFile;
+    return await this.filesRepository.save(newFile);
   }
 
   async uploadFilesList(files: any[]): Promise<File[]> {
@@ -44,12 +44,12 @@ export class FilesService {
       files.map(file => this.cloudinary.v2.uploader.upload(join(FILES_UPLOAD_FOLDER, file.filename))),
     );
 
-    return uploadedFiles.map(({ url }) => {
-      return {
+    return await Promise.all(uploadedFiles.map(({ url }) => {
+      return this.filesRepository.save({
         ...new File(),
         url,
-      };
-    });
+      });
+    }));
   }
 
 }

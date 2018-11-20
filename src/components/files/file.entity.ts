@@ -11,7 +11,7 @@ export class File {
   url: string;
 
   @ManyToOne(type => Product)
-  // @JoinColumn()
+  @JoinColumn()
   product: Product;
 
 }

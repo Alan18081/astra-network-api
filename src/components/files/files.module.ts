@@ -2,6 +2,7 @@ import { Module, MulterModule } from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {FilesService} from './files.service';
 import { File } from './file.entity';
+import { FilesController } from './files.controller';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { File } from './file.entity';
     }),
   ],
   exports: [FilesService, MulterModule],
-  controllers: [],
+  controllers: [FilesController],
   providers: [FilesService],
 })
 export class FilesModule {}

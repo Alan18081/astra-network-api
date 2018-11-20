@@ -28,19 +28,8 @@ export class ProductsController {
   ) {}
 
   @Post()
-  @UseInterceptors(FileFieldsInterceptor([
-    { name: 'mainImage', maxCount: 1 },
-    { name: 'images' },
-  ]))
-  async create(@UploadedFiles() files: any, @Body() payload: CreateProductDto): Promise<Product> {
-    const mainImage = await this.filesService.uploadFile(files.mainImage[0]);
-    const productsData: CreateProductData = {...payload, mainImage};
-
-    if (files.images) {
-      productsData.images = await Promise.all<File>(files.images.map(file => this.filesService.uploadFile(file)));
-    }
-
-    return await this.productsService.createOne(productsData);
+  async create(@Body() payload: CreateProductDto): Promise<Product> {
+    return await this.productsService.createOne(payload);
   }
 
   @Put(':id')

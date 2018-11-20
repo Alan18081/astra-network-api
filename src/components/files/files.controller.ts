@@ -21,7 +21,7 @@ export class FilesController {
     private readonly filesService: FilesService,
   ) {}
 
-  @Post()
+  @Post('')
   @UseInterceptors(FileInterceptor('file'))
   @ApiOperation({ title: 'Upload one file' })
   async uploadFile(@UploadedFile() file: any): Promise<File> {
