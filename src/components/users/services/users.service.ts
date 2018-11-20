@@ -60,7 +60,7 @@ export class UsersService implements BaseService<User> {
     return await this.usersRepository.findOne({ googleId: id });
   }
 
-  async create(payload: CreateUserDto): Promise<User | undefined> {
+  async createOne(payload: CreateUserDto): Promise<User> {
     const passwordHash = await this.hashService.generateHash(payload.password);
 
     const newUser = {
@@ -69,12 +69,10 @@ export class UsersService implements BaseService<User> {
       password: passwordHash,
     };
 
-    await this.usersRepository.save(newUser);
-
-    return this.usersRepository.findOne(newUser.id);
+    return await this.usersRepository.save(newUser);
   }
 
-  async createByGoogle(payload: GoogleUserData): Promise<User | undefined> {
+  async createByGoogle(payload: GoogleUserData): Promise<User> {
     const newUser = {
       ...new User(),
       ...payload,
@@ -83,7 +81,7 @@ export class UsersService implements BaseService<User> {
     return await this.usersRepository.save(newUser);
   }
 
-  async update(id: number, payload: Partial<User>): Promise<User | undefined> {
+  async updateOne(id: number, payload: Partial<User>): Promise<User | undefined> {
     await this.usersRepository.update(
       { id },
       payload,
@@ -92,7 +90,7 @@ export class UsersService implements BaseService<User> {
     return await this.usersRepository.findOne(id);
   }
 
-  async delete(id: number): Promise<void> {
+  async deleteOne(id: number): Promise<void> {
     await this.usersRepository.delete({ id });
   }
 }

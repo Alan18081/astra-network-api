@@ -1,5 +1,6 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import {User} from '../users/entities/user.entity';
+import {File} from '../files/file.entity';
 
 @Entity()
 export class Product {
@@ -10,14 +11,17 @@ export class Product {
   @Column('varchar')
   title: string;
 
-  @Column('text')
+  @Column({ type: 'text', nullable: true })
   description: string;
 
   @ManyToOne(type => User, user => user.products)
   seller: User;
 
-  @Column('varchar')
-  image: string;
+  @OneToOne(type => File)
+  mainImage: File;
+
+  @OneToMany(type => File, image => image.product)
+  images: File[];
 
   @Column()
   quantity: number;

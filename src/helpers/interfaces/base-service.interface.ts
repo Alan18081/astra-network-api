@@ -1,7 +1,7 @@
 export interface BaseService<T> {
-  findMany(payload: object): Promise<T[]>;
-  findOne(id: number): Promise<T | undefined>;
-  create(payload: Partial<T>): Promise<T | undefined>;
-  update(id: number, payload: Partial<T>): Promise<T | undefined>;
-  delete(id: number): Promise<void>;
+  findMany(query: object): Promise<T[]>;
+  findOne(id: number, query: object): Promise<T | undefined>;
+  createOne(payload: Partial<T>): Promise<T | undefined>;
+  updateOne(id: number, payload: Partial<T>): Promise<T | undefined>;
+  deleteOne(id: number): Promise<void>;
 }

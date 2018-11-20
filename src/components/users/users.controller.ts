@@ -39,7 +39,7 @@ export class UsersController {
       throw new BadRequestException(Messages.USER_ALREADY_EXISTS);
     }
 
-    return await this.usersService.create(payload);
+    return await this.usersService.createOne(payload);
   }
 
   @Put('me')
@@ -47,7 +47,7 @@ export class UsersController {
   @ApiBearerAuth()
   @ApiOperation({ title: 'Update your profile' })
   async updateProfile(@Body() payload: UpdateUserDto, @ReqUser() user: User) {
-    return await this.usersService.update(user.id, payload);
+    return await this.usersService.updateOne(user.id, payload);
   }
 
   @Delete(':id')
@@ -55,6 +55,6 @@ export class UsersController {
   @ApiBearerAuth()
   @ApiOperation({ title: 'Delete user by id' })
   async deleteUser(@Param('id') id: number): Promise<void> {
-    await this.usersService.delete(id);
+    await this.usersService.deleteOne(id);
   }
 }
