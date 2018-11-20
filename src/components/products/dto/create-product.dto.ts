@@ -1,6 +1,5 @@
-import { IsNumber, IsOptional, IsString, Min, IsInstance, IsInt } from 'class-validator';
+import { IsNumber, IsOptional, IsString, Min, IsInt } from 'class-validator';
 import {ApiModelProperty} from '@nestjs/swagger';
-import { File } from '../../files/file.entity';
 
 export class CreateProductDto {
   @IsString()
@@ -12,9 +11,9 @@ export class CreateProductDto {
   @ApiModelProperty()
   description: string;
 
-  @IsInt()
+  @IsNumber()
   @ApiModelProperty()
-  mainImage: number;
+  mainImageId: number;
 
   @IsInt()
   @Min(0)

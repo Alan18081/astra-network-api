@@ -10,6 +10,8 @@ import { promisify } from 'util';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {File} from './file.entity';
+import {NotFoundException} from '@nestjs/common';
+import {Messages} from '../../helpers/enums/messages.enum';
 
 cloudinary.v2.uploader.upload = promisify(cloudinary.v2.uploader.upload);
 
@@ -28,12 +30,16 @@ export class FilesService {
     });
   }
 
-  async uploadFile(file: any): Promise<File> {
-    const { url } = await this.cloudinary.v2.uploader.upload(join(FILES_UPLOAD_FOLDER, file.filename));
+  async findOne(id: number): Promise<File | undefined> {
+    return await this.filesRepository.findOne(id);
+  }
 
+  async uploadFile(file: any): Promise<File> {
+    const { url, public_id } = await this.cloudinary.v2.uploader.upload(join(FILES_UPLOAD_FOLDER, file.filename));
     const newFile = {
       ...new File(),
       url,
+      publicId: public_id,
     };
 
     return await this.filesRepository.save(newFile);
@@ -44,12 +50,24 @@ export class FilesService {
       files.map(file => this.cloudinary.v2.uploader.upload(join(FILES_UPLOAD_FOLDER, file.filename))),
     );
 
-    return await Promise.all(uploadedFiles.map(({ url }) => {
-      return this.filesRepository.save({
+    return await this.filesRepository.save(uploadedFiles.map(({ url, public_id }) => {
+      return {
         ...new File(),
         url,
-      });
+        publicId: public_id,
+      };
     }));
+  }
+
+  async deleteOne(id: number): Promise<void> {
+    const file = await this.filesRepository.findOne(id);
+    if (!file) {
+      throw new NotFoundException(Messages.FILE_NOT_FOUND);
+    }
+
+    await this.cloudinary.v2.uploader.destroy(file.publicId);
+
+    await this.filesRepository.delete({ id });
   }
 
 }

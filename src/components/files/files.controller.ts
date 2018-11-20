@@ -28,7 +28,7 @@ export class FilesController {
     return await this.filesService.uploadFile(file);
   }
 
-  @Post()
+  @Post('list')
   @UseInterceptors(FilesInterceptor('files'))
   @ApiOperation({ title: 'Upload one file' })
   async uploadFilesList(@UploadedFile() files: any[]): Promise<File[]> {
