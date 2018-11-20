@@ -5,9 +5,13 @@ import {Product} from './product.entity';
 import {Repository} from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ProductImages } from './interfaces/product-images.interface';
-import { CreateProductData } from './interfaces/product-data.type';
 import { FindProductDto } from './dto/find-product.dto';
 import { FindProductsListDto } from './dto/find-products-list.dto';
+import { File } from '../files/file.entity';
+import {UpdateProductDto} from './dto/update-product.dto';
+import {FilesService} from '../files/files.service';
+import {CreateProductData} from './interfaces/product-data.type';
+import {User} from '../users/entities/user.entity';
 
 @Injectable()
 export class ProductsService implements BaseService<Product> {
@@ -25,16 +29,18 @@ export class ProductsService implements BaseService<Product> {
     return this.productsRepository.findOne(id);
   }
 
-  async createOne(payload: CreateProductData): Promise<Product> {
+  async createOne(payload: CreateProductData, user: User): Promise<Product> {
+    const { mainImageId, ...data } = payload;
     const newProduct = {
       ...new Product(),
-      ...payload,
+      ...data,
+      seller: user,
     };
 
     return await this.productsRepository.save(newProduct);
   }
 
-  async updateOne(id: number, payload: Partial<CreateProductDto & ProductImages>): Promise<Product | undefined> {
+  async updateOne(id: number, payload: UpdateProductDto): Promise<Product | undefined> {
     await this.productsRepository.update(id, payload);
 
     return await this.productsRepository.findOne(id, {

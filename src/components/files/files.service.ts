@@ -1,5 +1,7 @@
 import * as cloudinary from 'cloudinary';
 import { join } from 'path';
+import { promisify } from 'util';
+import { unlink } from 'fs';
 import {
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
@@ -10,8 +12,12 @@ import { promisify } from 'util';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {File} from './file.entity';
+import {NotFoundException} from '@nestjs/common';
+import {Messages} from '../../helpers/enums/messages.enum';
 
 cloudinary.v2.uploader.upload = promisify(cloudinary.v2.uploader.upload);
+
+unlink = promisify(unlink);
 
 export class FilesService {
 
@@ -28,15 +34,21 @@ export class FilesService {
     });
   }
 
-  async uploadFile(file: any): Promise<File> {
-    const { url } = await this.cloudinary.v2.uploader.upload(join(FILES_UPLOAD_FOLDER, file.filename));
+  async findOne(id: number): Promise<File | undefined> {
+    return await this.filesRepository.findOne(id);
+  }
 
+  async uploadFile(file: any): Promise<File> {
+    const path = join(FILES_UPLOAD_FOLDER, file.filename);
+    const { url, public_id } = await this.cloudinary.v2.uploader.upload(path);
+    await unlink(path);
     const newFile = {
       ...new File(),
       url,
+      publicId: public_id,
     };
 
-    return newFile;
+    return await this.filesRepository.save(newFile);
   }
 
   async uploadFilesList(files: any[]): Promise<File[]> {
@@ -44,12 +56,24 @@ export class FilesService {
       files.map(file => this.cloudinary.v2.uploader.upload(join(FILES_UPLOAD_FOLDER, file.filename))),
     );
 
-    return uploadedFiles.map(({ url }) => {
+    return await this.filesRepository.save(uploadedFiles.map(({ url, public_id }) => {
       return {
         ...new File(),
         url,
+        publicId: public_id,
       };
-    });
+    }));
+  }
+
+  async deleteOne(id: number): Promise<void> {
+    const file = await this.filesRepository.findOne(id);
+    if (!file) {
+      throw new NotFoundException(Messages.FILE_NOT_FOUND);
+    }
+
+    await this.cloudinary.v2.uploader.destroy(file.publicId);
+
+    await this.filesRepository.delete({ id });
   }
 
 }

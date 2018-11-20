@@ -1,5 +1,5 @@
 import {IsNumber, IsOptional, IsString, Min} from 'class-validator';
-import {ApiModelProperty} from '@nestjs/swagger';
+import {ApiModelProperty, ApiModelPropertyOptional} from '@nestjs/swagger';
 
 export class UpdateProductDto {
 
@@ -9,18 +9,18 @@ export class UpdateProductDto {
 
   @IsString()
   @IsOptional()
-  @ApiModelProperty()
+  @ApiModelPropertyOptional()
   description?: string;
 
   @IsNumber()
   @Min(0)
   @IsOptional()
-  @ApiModelProperty()
-  quantity: number;
+  @ApiModelPropertyOptional()
+  quantity?: number;
 
   @IsNumber()
   @Min(0)
   @IsOptional()
-  @ApiModelProperty()
-  price: number;
+  @ApiModelPropertyOptional()
+  price?: number;
 }

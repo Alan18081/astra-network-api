@@ -10,8 +10,10 @@ export class File {
   @Column()
   url: string;
 
+  @Column()
+  publicId: string;
+
   @ManyToOne(type => Product)
-  // @JoinColumn()
   product: Product;
 
 }
