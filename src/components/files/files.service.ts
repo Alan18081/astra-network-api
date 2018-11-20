@@ -1,5 +1,7 @@
 import * as cloudinary from 'cloudinary';
 import { join } from 'path';
+import { promisify } from 'util';
+import { unlink } from 'fs';
 import {
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
@@ -14,6 +16,8 @@ import {NotFoundException} from '@nestjs/common';
 import {Messages} from '../../helpers/enums/messages.enum';
 
 cloudinary.v2.uploader.upload = promisify(cloudinary.v2.uploader.upload);
+
+unlink = promisify(unlink);
 
 export class FilesService {
 
@@ -35,7 +39,9 @@ export class FilesService {
   }
 
   async uploadFile(file: any): Promise<File> {
-    const { url, public_id } = await this.cloudinary.v2.uploader.upload(join(FILES_UPLOAD_FOLDER, file.filename));
+    const path = join(FILES_UPLOAD_FOLDER, file.filename);
+    const { url, public_id } = await this.cloudinary.v2.uploader.upload(path);
+    await unlink(path);
     const newFile = {
       ...new File(),
       url,

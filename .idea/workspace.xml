@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32cdf1fc-6fcd-4a04-b19a-2ee81bbfde37" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/comments/comment.entity.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/comments/comments.module.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/files/file.entity.ts" afterPath="$PROJECT_DIR$/src/components/files/file.entity.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/files/files.controller.ts" afterPath="$PROJECT_DIR$/src/components/files/files.controller.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/files/files.service.ts" afterPath="$PROJECT_DIR$/src/components/files/files.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/products/dto/create-product.dto.ts" afterPath="$PROJECT_DIR$/src/components/products/dto/create-product.dto.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/products/dto/update-product.dto.ts" afterPath="$PROJECT_DIR$/src/components/products/dto/update-product.dto.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/products/product.entity.ts" afterPath="$PROJECT_DIR$/src/components/products/product.entity.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/products/products.controller.ts" afterPath="$PROJECT_DIR$/src/components/products/products.controller.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/products/products.service.ts" afterPath="$PROJECT_DIR$/src/components/products/products.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/index.ts" afterPath="$PROJECT_DIR$/src/config/index.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/enums/messages.enum.ts" afterPath="$PROJECT_DIR$/src/helpers/enums/messages.enum.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helpers/interfaces/base-service.interface.ts" afterPath="$PROJECT_DIR$/src/helpers/interfaces/base-service.interface.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -92,12 +80,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comment.entity.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="files.controller.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/files/files.controller.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="118">
+              <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#142#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="comment.entity.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/comments/comment.entity.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
               <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="files.service.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/files/files.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="42" column="77" lean-forward="false" selection-start-line="42" selection-start-column="77" selection-end-line="42" selection-end-column="77" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -169,8 +181,8 @@
         <option value="$PROJECT_DIR$/src/components/products/products.service.ts" />
         <option value="$PROJECT_DIR$/src/components/products/products.controller.ts" />
         <option value="$PROJECT_DIR$/src/components/files/file.entity.ts" />
-        <option value="$PROJECT_DIR$/src/components/files/files.service.ts" />
         <option value="$PROJECT_DIR$/src/components/comments/comment.entity.ts" />
+        <option value="$PROJECT_DIR$/src/components/files/files.service.ts" />
       </list>
     </option>
   </component>
@@ -265,6 +277,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="astra-store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="astra-store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="files" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -769,14 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/files/files.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="57" column="7" lean-forward="true" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/helpers/enums/messages.enum.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -790,16 +816,6 @@
         <state relative-caret-position="644">
           <caret line="36" column="19" lean-forward="true" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/files/files.controller.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#142#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -829,6 +845,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/comments/comment.entity.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/comments/comments.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -837,11 +861,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/comments/comment.entity.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/files/files.controller.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="118">
+          <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#142#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/files/files.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="42" column="77" lean-forward="false" selection-start-line="42" selection-start-column="77" selection-end-line="42" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
