@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32cdf1fc-6fcd-4a04-b19a-2ee81bbfde37" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/files/file.entity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/files/files.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/products/dto/create-product-files.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/products/dto/find-product.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/products/dto/find-products-list.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/products/dto/update-product.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/products/interfaces/product-data.type.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/products/interfaces/product-images.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/guards/is-product-owner.guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/strategies/jwt.strategy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/strategies/jwt.strategy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/files.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/files.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/products/dto/create-product.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products/dto/create-product.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/products/interfaces/create-product.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/products/product.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products/product.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/products/products.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products/products.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/products/products.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products/products.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/services/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/services/users.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/interfaces/base-service.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/interfaces/base-service.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -67,12 +43,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="ts" value="4168" />
+          <entry key="ts" value="4179" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="TypeScript" value="4168" />
+          <entry key="TypeScript" value="4179" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -104,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/products/dto/create-product.dto.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="496">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
               <folding>
                 <element signature="e#0#105#0" expanded="true" />
               </folding>
@@ -335,14 +311,6 @@
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="products" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="products" type="462c0819:PsiDirectoryNode" />
-              <item name="dto" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -417,18 +385,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542708452955</updated>
-      <workItem from="1542708454881" duration="16625000" />
+      <workItem from="1542708454881" duration="16810000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16625000" />
+    <option name="totallyTimeSpent" value="16810000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17929563" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17929563" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
@@ -843,7 +811,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/products/dto/create-product.dto.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
           <folding>
             <element signature="e#0#105#0" expanded="true" />
           </folding>
