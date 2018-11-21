@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, UnauthorizedException, UseGuards, Res, HttpCode, Query} from '@nestjs/common';
+import {Body, Controller, Get, Post, UnauthorizedException, UseGuards, Res, HttpCode, Query, Put} from '@nestjs/common';
 import { Response } from 'express';
 import {ApiOperation, ApiUseTags} from '@nestjs/swagger';
 import {LoginDto} from './dto/login.dto';
@@ -76,5 +76,13 @@ export class AuthController {
   @ApiOperation({ title: 'Google failed authentication' })
   async googleFail(): Promise<UnauthorizedException> {
     return new UnauthorizedException(Messages.FAILED_GOOGLE_AUTH);
+  }
+
+  @Put('changePassword')
+  @ApiOperation({ title: 'Create new password' })
+  async changePassword(@ReqUser() user: User, @Body() payload): Promise<void> {
+
+
+    return this.authService.changePassword();
   }
 }
