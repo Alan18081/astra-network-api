@@ -8,6 +8,11 @@ export class FindProductsListDto {
   @ApiModelPropertyOptional()
   includeImages?: boolean;
 
+  @IsBooleanString()
+  @IsOptional()
+  @ApiModelPropertyOptional()
+  includeComments?: boolean;
+
   @IsNumberString()
   @IsOptional()
   @ApiModelPropertyOptional()

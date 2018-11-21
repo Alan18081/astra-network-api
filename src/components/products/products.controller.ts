@@ -17,6 +17,8 @@ import { CreateProductData, UpdateProductData } from './interfaces/product-data.
 import {Messages} from '../../helpers/enums/messages.enum';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
 import {User} from '../users/entities/user.entity';
+import { CreateCommentDto } from '../comments/dto/create-comment.dto';
+import { CommentsService } from '../comments/comments.service';
 
 @Controller('products')
 @UseGuards(AuthGuard('jwt'))
@@ -25,6 +27,7 @@ export class ProductsController {
 
   constructor(
     private readonly productsService: ProductsService,
+    private readonly commentsService: CommentsService,
     private readonly filesService: FilesService,
   ) {}
 
@@ -45,6 +48,24 @@ export class ProductsController {
   @ApiOperation({ title: 'Update existing product by id' })
   async updateOne(@Param('id') id: number, @Body() payload: UpdateProductDto): Promise<Product | undefined> {
     return await this.productsService.updateOne(id, payload);
+  }
+
+  @Put(':productId/comments')
+  @ApiOperation({ title: 'Create comment for product' })
+  async createProductComment(
+    @Param('productId') productId: number,
+    @Body() payload: CreateCommentDto,
+    @ReqUser() user: User,
+  ): Promise<Product | undefined> {
+    const product = await this.productsService.findOne(payload.productId, {});
+
+    if (!product) {
+      throw new NotFoundException(Messages.PRODUCT_NOT_FOUND);
+    }
+
+    await this.commentsService.createOne(payload, user);
+
+    return await this.productsService.findOne(productId, { includeComments: true });
   }
 
   @Delete(':id')

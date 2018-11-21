@@ -1,14 +1,13 @@
 import * as cloudinary from 'cloudinary';
 import { join } from 'path';
 import { promisify } from 'util';
-import { unlink } from 'fs';
+import * as fs from 'fs';
 import {
   CLOUDINARY_API_KEY,
   CLOUDINARY_API_SECRET,
   CLOUDINARY_CLOUD_NAME,
   FILES_UPLOAD_FOLDER,
 } from '../../config';
-import { promisify } from 'util';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {File} from './file.entity';
@@ -17,7 +16,7 @@ import {Messages} from '../../helpers/enums/messages.enum';
 
 cloudinary.v2.uploader.upload = promisify(cloudinary.v2.uploader.upload);
 
-unlink = promisify(unlink);
+const unlink = promisify(fs.unlink);
 
 export class FilesService {
 

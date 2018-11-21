@@ -6,4 +6,5 @@ export enum Messages {
   REFRESH_TOKEN_NOT_FOUND = 'Refresh token not found',
   FAILED_GOOGLE_AUTH = 'Failed to login by google',
   FILE_NOT_FOUND = 'File is not found',
+  PRODUCT_NOT_FOUND = 'Product not found',
 }
