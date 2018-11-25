@@ -20,7 +20,7 @@ export class User {
   @Index()
   email: string;
 
-  @Column({ select: false, nullable: true })
+  @Column({ nullable: true })
   password: string;
 
   @ManyToOne(type => UserRole)

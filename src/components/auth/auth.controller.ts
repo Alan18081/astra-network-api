@@ -1,6 +1,9 @@
-import {Body, Controller, Get, Post, UnauthorizedException, UseGuards, Res, HttpCode, Query, Put} from '@nestjs/common';
+import {
+  Body, Controller, Get, Post, UnauthorizedException, UseGuards, Res, Query, Put,
+  BadRequestException
+} from '@nestjs/common';
 import { Response } from 'express';
-import {ApiOperation, ApiUseTags} from '@nestjs/swagger';
+import {ApiBearerAuth, ApiOperation, ApiUseTags} from '@nestjs/swagger';
 import {LoginDto} from './dto/login.dto';
 import {UsersService} from '../users/services/users.service';
 import {Messages} from '../../helpers/enums/messages.enum';
@@ -11,6 +14,7 @@ import {ExchangeTokenDto} from './dto/exchangeToken.dto';
 import {AuthGuard} from '@nestjs/passport';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
 import {User} from '../users/entities/user.entity';
+import {ChangePasswordDto} from './dto/change-password.dto';
 
 @Controller('auth')
 @ApiUseTags('Auth')
@@ -79,10 +83,18 @@ export class AuthController {
   }
 
   @Put('changePassword')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
   @ApiOperation({ title: 'Create new password' })
-  async changePassword(@ReqUser() user: User, @Body() payload): Promise<void> {
+  async changePassword(@ReqUser() user: User, @Body() payload: ChangePasswordDto): Promise<void> {
+    const isValid = await this.hashService.compareHash(payload.oldPassword, user.password);
 
+    if(!isValid) {
+      throw new BadRequestException(Messages.INVALID_PASSWORD);
+    }
 
-    return this.authService.changePassword();
+    const newPassword = await this.hashService.generateHash(payload.newPassword);
+
+    return await this.usersService.updateOne(user.id, { password: newPassword });
   }
 }

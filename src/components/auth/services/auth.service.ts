@@ -49,7 +49,7 @@ export class AuthService {
     };
   }
 
-  async validateUser(payload: JwtPayload): Promise<any> {
+  async validateUser(payload: JwtPayload): Promise<User | undefined> {
     return await this.usersService.findOneByEmail(payload.email);
   }
 
