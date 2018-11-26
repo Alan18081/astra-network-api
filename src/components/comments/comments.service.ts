@@ -29,6 +29,6 @@ export class CommentsService {
   }
 
   async deleteOne(id: number): Promise<void> {
-    
+
   }
 }
