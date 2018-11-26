@@ -2,13 +2,14 @@ import {Injectable, NotFoundException} from '@nestjs/common';
 import {BaseService} from '../../../helpers/interfaces/base-service.interface';
 import {User} from '../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, SelectQueryBuilder } from 'typeorm';
 import {CreateUserDto} from '../dto/create-user.dto';
 import {HashService} from '../../core/services/hash.service';
 import {FindUsersListDto} from '../dto/find-users-list.dto';
 import {Roles} from '../../../helpers/enums/roles.enum';
 import {Messages} from '../../../helpers/enums/messages.enum';
 import {GoogleUserData} from '../interfaces/google-user-data.interface';
+import { PaginatedResult } from '../interfaces/paginated-result.interface';
 
 @Injectable()
 export class UsersService implements BaseService<User> {
@@ -19,22 +20,40 @@ export class UsersService implements BaseService<User> {
   ) {}
 
   async findMany(payload: FindUsersListDto): Promise<User[]> {
-    const query = this.usersRepository.createQueryBuilder('user');
-
-    if (payload.ageFrom) {
-      query.where('age > :ageFrom', { ageFrom: payload.ageFrom});
-    }
-
-    if (payload.ageTo) {
-      query.where('age < :ageTo', { ageTo: payload.ageTo });
-    }
-
-    if (payload.onlySellers) {
-      query.where('roleId = :roleId', { roleId: Roles.BUYER });
-    }
-
-    return await query.getMany();
+    const queryBuilder = this.prepareBuilder(this.usersRepository.createQueryBuilder('user'), payload);
+    return await queryBuilder.getMany();
   }
+
+  prepareBuilder(queryBuilder: SelectQueryBuilder<User>, query: FindUsersListDto): SelectQueryBuilder<User> {
+    if (query.ageFrom) {
+      queryBuilder.where('age > :ageFrom', { ageFrom: payload.ageFrom});
+    }
+
+    if (query.ageTo) {
+      queryBuilder.where('age < :ageTo', { ageTo: payload.ageTo });
+    }
+
+    if (query.onlySellers) {
+      queryBuilder.where('roleId = :roleId', { roleId: Roles.BUYER });
+    }
+
+    return queryBuilder;
+  }
+
+  async findManyWithPagination(payload: FindUsersListDto): Promise<PaginatedResult<User>> {
+    const skip = (payload.page - 1) * payload.limit;
+    const queryBuilder = this.prepareBuilder(this.usersRepository.createQueryBuilder('user'), payload);
+    const totalCount = await queryBuilder.getCount();
+    const data = await queryBuilder.skip(skip).take(payload.limit).getMany();
+
+    return {
+      page: payload.page,
+      itemsPerPage: payload.limit,
+      totalCount,
+      data
+    }
+  }
+
 
   async findOne(id: number): Promise<User | undefined> {
     const user =  await this.usersRepository.findOne(id);

@@ -26,6 +26,8 @@ export class CommentsService {
 
   async updateOne(id: number, payload: UpdateCommentDto): Promise<Comment | undefined> {
     await this.commentsRepository.update(id, { ...payload });
+
+    return await this.commentsRepository.findOne(id);
   }
 
   async deleteOne(id: number): Promise<void> {

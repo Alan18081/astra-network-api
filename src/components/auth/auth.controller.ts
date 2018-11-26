@@ -15,6 +15,7 @@ import {AuthGuard} from '@nestjs/passport';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
 import {User} from '../users/entities/user.entity';
 import {ChangePasswordDto} from './dto/change-password.dto';
+import { VerifyEmailDto } from './dto/verify-email.dto';
 
 @Controller('auth')
 @ApiUseTags('Auth')
@@ -89,12 +90,20 @@ export class AuthController {
   async changePassword(@ReqUser() user: User, @Body() payload: ChangePasswordDto): Promise<void> {
     const isValid = await this.hashService.compareHash(payload.oldPassword, user.password);
 
-    if(!isValid) {
+    if (!isValid) {
       throw new BadRequestException(Messages.INVALID_PASSWORD);
     }
 
     const newPassword = await this.hashService.generateHash(payload.newPassword);
 
     return await this.usersService.updateOne(user.id, { password: newPassword });
+  }
+
+  @Post('verifyEmail')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  @ApiOperation({ title: 'Verify your email' })
+  async verifyEmail(@Body() body: VerifyEmailDto) {
+
   }
 }

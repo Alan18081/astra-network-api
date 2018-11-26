@@ -1,6 +1,6 @@
 import {
   Body,
-  Controller, Delete,
+  Controller, Delete, ForbiddenException,
   NotFoundException, Param,
   Post, Put,
   UseGuards,
@@ -12,13 +12,14 @@ import {CreateProductDto} from './dto/create-product.dto';
 import {AuthGuard} from '@nestjs/passport';
 import {ProductsService} from './products.service';
 import {FilesService} from '../files/files.service';
-import { UpdateProductDto } from './dto/update-product.dto';
+import { Up   dateProductDto } from './dto/update-product.dto';
 import { CreateProductData, UpdateProductData } from './interfaces/product-data.type';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
 import {User} from '../users/entities/user.entity';
 import { CreateCommentDto } from '../comments/dto/create-comment.dto';
 import { CommentsService } from '../comments/comments.service';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Controller('products')
 @UseGuards(AuthGuard('jwt'))
@@ -58,13 +59,31 @@ export class ProductsController {
     @Body() payload: CreateCommentDto,
     @ReqUser() user: User,
   ): Promise<Product | undefined> {
-    const product = await this.productsService.findOne(payload.productId, {});
+    const product = await this.productsService.findOne(productId, {});
 
     if (!product) {
       throw new NotFoundException(Messages.PRODUCT_NOT_FOUND);
     }
 
     await this.commentsService.createOne(payload, user);
+
+    return await this.productsService.findOne(productId, { includeComments: true });
+  }
+
+  @Delete(':productId/comments/:commentId')
+  @ApiOperation({ title: 'Delete comment', description: 'It can be done only by seller of product' })
+  async updateProductComment(
+    @Param('productId') productId: number,
+    @Param('commentId') commentId: number,
+    @ReqUser() user: User,
+  ): Promise<Product | undefined> {
+    const product = await this.productsService.findOne(productId, {});
+
+    if (!product || product.seller.id !== user.id) {
+      throw new ForbiddenException(Messages.INVALID_RIGHTS_TO_DELETE_COMMENT);
+    }
+
+    await this.commentsService.deleteOne(commentId);
 
     return await this.productsService.findOne(productId, { includeComments: true });
   }

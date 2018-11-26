@@ -8,6 +8,7 @@ import {FindUsersListDto} from './dto/find-users-list.dto';
 import {UpdateUserDto} from './dto/update-user.dto';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
 import {User} from './entities/user.entity';
+import { PaginatedResult } from './interfaces/paginated-result.interface';
 
 @Controller('users')
 export class UsersController {
@@ -19,7 +20,11 @@ export class UsersController {
   @Get()
   @UseGuards(AuthGuard('jwt'))
   @ApiOperation({ title: 'Fetch list of users' })
-  async findMany(@Query() query: FindUsersListDto): Promise<User[]> {
+  async findMany(@Query() query: FindUsersListDto): Promise<User[] | PaginatedResult<User>> {
+    if (query.page && query.limit) {
+      return await this.usersService.findManyWithPagination(query);
+    }
+
     return await this.usersService.findMany(query);
   }
 

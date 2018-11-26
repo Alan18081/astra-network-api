@@ -10,7 +10,7 @@ import {FilesModule} from '../files/files.module';
     TypeOrmModule.forFeature([Product]),
     FilesModule,
   ],
-  exports: [],
+  exports: [ProductsService],
   controllers: [ProductsController],
   providers: [ProductsService],
 })
