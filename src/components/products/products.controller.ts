@@ -6,7 +6,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import {File} from '../files/file.entity';
-import {ApiOperation, ApiUseTags} from '@nestjs/swagger';
+import {ApiBearerAuth, ApiOperation, ApiUseTags} from '@nestjs/swagger';
 import {Product} from './product.entity';
 import {CreateProductDto} from './dto/create-product.dto';
 import {AuthGuard} from '@nestjs/passport';
@@ -23,6 +23,7 @@ import { CommentsService } from '../comments/comments.service';
 @Controller('products')
 @UseGuards(AuthGuard('jwt'))
 @ApiUseTags('Products')
+@ApiBearerAuth()
 export class ProductsController {
 
   constructor(
