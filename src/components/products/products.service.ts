@@ -11,7 +11,7 @@ import { File } from '../files/file.entity';
 import {UpdateProductDto} from './dto/update-product.dto';
 import {FilesService} from '../files/files.service';
 import {CreateProductData} from './interfaces/product-data.type';
-import {User} from '../users/entities/user.entity';
+import {User} from '../users/user.entity';
 
 @Injectable()
 export class ProductsService implements BaseService<Product> {

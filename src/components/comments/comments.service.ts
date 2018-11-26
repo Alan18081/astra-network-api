@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Comment } from './comment.entity';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { Repository } from 'typeorm';
-import { User } from '../users/entities/user.entity';
+import { User } from '../users/user.entity';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 
 @Injectable()
@@ -26,9 +26,11 @@ export class CommentsService {
 
   async updateOne(id: number, payload: UpdateCommentDto): Promise<Comment | undefined> {
     await this.commentsRepository.update(id, { ...payload });
+
+    return await this.commentsRepository.findOne(id);
   }
 
   async deleteOne(id: number): Promise<void> {
-    
+
   }
 }

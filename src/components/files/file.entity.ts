@@ -1,11 +1,9 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { Product } from '../products/product.entity';
+import { BaseEntity } from '../core/base.entity';
 
 @Entity()
-export class File {
-
-  @PrimaryGeneratedColumn()
-  id: number;
+export class File extends BaseEntity {
 
   @Column()
   url: string;
