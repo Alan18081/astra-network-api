@@ -90,8 +90,12 @@ export class AuthService {
     );
   }
 
-  async resetPassword(user: User): Promise<void> {
-    await this.userHashesService.createOne(user.id, HashTypes.RESET_PASSWORD);
+  async resetPassword({ firstName, lastName, email, id }: User): Promise<void> {
+    await this.userHashesService.createOne(id, HashTypes.RESET_PASSWORD);
+    const content = this.emailTemplatesService.getTemplate(TemplateTypes.EMAIL_VERIFICATION, {
+      firstName,
+      lastName,
+    });
     await this.emailSendingService.sendSystemEmail(
       email,
       this.emailTemplatesService.createSubject(EmailTitles.RESET_PASSWORD),

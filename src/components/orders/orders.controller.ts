@@ -24,8 +24,8 @@ export class OrdersController {
 
   @Post('')
   @ApiOperation({ title: 'Create new order' })
-  async createOne(@Body() body: CreateOrderDto): Promise<Order> {
-    return await this.ordersService.createOne(body);
+  async createOne(@Body() body: CreateOrderDto): Promise<void> {
+    // return await this.ordersService.createOne(body);
   }
 
 }

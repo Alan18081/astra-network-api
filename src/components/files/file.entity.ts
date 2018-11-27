@@ -8,7 +8,7 @@ export class File extends BaseEntity {
   @Column()
   url: string;
 
-  @Column()
+  @Column({ nullable: true })
   publicId: string;
 
   @ManyToOne(type => Product)

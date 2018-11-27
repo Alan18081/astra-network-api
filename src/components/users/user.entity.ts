@@ -2,6 +2,7 @@ import {Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGenerate
 import {UserRole} from './entities/user-role.entity';
 import {Product} from '../products/product.entity';
 import {BaseEntity} from '../core/base.entity';
+import {Message} from '../messages/message.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -37,4 +38,7 @@ export class User extends BaseEntity {
 
   @Column({ type: 'boolean', default: false })
   phoneVerified: boolean;
+
+  @OneToMany(type => Message, message => message.author)
+  messages: Message[];
 }

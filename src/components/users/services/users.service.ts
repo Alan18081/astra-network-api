@@ -26,11 +26,11 @@ export class UsersService implements BaseService<User> {
 
   prepareBuilder(queryBuilder: SelectQueryBuilder<User>, query: FindUsersListDto): SelectQueryBuilder<User> {
     if (query.ageFrom) {
-      queryBuilder.where('age > :ageFrom', { ageFrom: payload.ageFrom});
+      queryBuilder.where('age > :ageFrom', { ageFrom: query.ageFrom});
     }
 
     if (query.ageTo) {
-      queryBuilder.where('age < :ageTo', { ageTo: payload.ageTo });
+      queryBuilder.where('age < :ageTo', { ageTo: query.ageTo });
     }
 
     if (query.onlySellers) {
@@ -50,8 +50,8 @@ export class UsersService implements BaseService<User> {
       page: payload.page,
       itemsPerPage: payload.limit,
       totalCount,
-      data
-    }
+      data,
+    };
   }
 
 

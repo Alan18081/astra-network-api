@@ -5,14 +5,12 @@ import {
   Post, Put,
   UseGuards,
 } from '@nestjs/common';
-import {File} from '../files/file.entity';
 import {ApiBearerAuth, ApiOperation, ApiUseTags} from '@nestjs/swagger';
 import {Product} from './product.entity';
 import {CreateProductDto} from './dto/create-product.dto';
 import {AuthGuard} from '@nestjs/passport';
 import {ProductsService} from './products.service';
 import {FilesService} from '../files/files.service';
-import { UpdateProductDto } from './dto/update-product.dto';
 import { CreateProductData, UpdateProductData } from './interfaces/product-data.type';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {ReqUser} from '../../helpers/decorators/user.decorator';

@@ -10,6 +10,7 @@ import {RefreshToken} from './entities/RefreshToken.entity';
 import {JwtStrategy} from './strategies/jwt.strategy';
 import {GoogleStrategy} from './strategies/google.strategy';
 import { CoreModule } from '../core/core.module';
+import {UserHashesModule} from '../user-hashes/user-hashes.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { CoreModule } from '../core/core.module';
     }),
     UsersModule,
     CoreModule,
+    UserHashesModule,
     TypeOrmModule.forFeature([RefreshToken]),
   ],
   exports: [],

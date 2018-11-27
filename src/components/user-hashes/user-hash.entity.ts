@@ -1,5 +1,5 @@
 import { Column, Entity } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm/browser';
+import { PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UserHash {
