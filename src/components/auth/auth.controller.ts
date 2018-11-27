@@ -1,6 +1,6 @@
 import {
   Body, Controller, Get, Post, UnauthorizedException, UseGuards, Res, Query, Put,
-  BadRequestException
+  BadRequestException,
 } from '@nestjs/common';
 import { Response } from 'express';
 import {ApiBearerAuth, ApiOperation, ApiUseTags} from '@nestjs/swagger';
@@ -8,14 +8,14 @@ import {LoginDto} from './dto/login.dto';
 import {UsersService} from '../users/services/users.service';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {JwtResponse} from './interfaces/jwt-response';
-import {AuthService} from './services/auth.service';
+import {AuthService} from './auth.service';
 import {HashService} from '../core/services/hash.service';
 import {ExchangeTokenDto} from './dto/exchangeToken.dto';
 import {AuthGuard} from '@nestjs/passport';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
-import {User} from '../users/entities/user.entity';
+import {User} from '../users/user.entity';
 import {ChangePasswordDto} from './dto/change-password.dto';
-import { VerifyEmailDto } from './dto/verify-email.dto';
+import { VerifyEmailDto } from '../email-verification/dto/verify-email.dto';
 
 @Controller('auth')
 @ApiUseTags('Auth')

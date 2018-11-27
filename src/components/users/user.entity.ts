@@ -1,11 +1,10 @@
 import {Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {UserRole} from './user-role.entity';
-import {Product} from '../../products/product.entity';
+import {UserRole} from './entities/user-role.entity';
+import {Product} from '../products/product.entity';
+import {BaseEntity} from '../core/base.entity';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class User extends BaseEntity {
 
   @Column({ type: 'varchar' })
   firstName: string;
@@ -32,4 +31,10 @@ export class User {
 
   @Column({ nullable: true })
   googleId: string;
+
+  @Column({ type: 'boolean', default: false })
+  emailVerified: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  phoneVerified: boolean;
 }

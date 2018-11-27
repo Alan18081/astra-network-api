@@ -4,7 +4,7 @@ import {PassportModule} from '@nestjs/passport';
 import {JwtModule} from '@nestjs/jwt';
 import {JWT_EXPIRES, JWT_SECRET} from '../../config/index';
 import {AuthController} from './auth.controller';
-import {AuthService} from './services/auth.service';
+import {AuthService} from './auth.service';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {RefreshToken} from './entities/RefreshToken.entity';
 import {JwtStrategy} from './strategies/jwt.strategy';

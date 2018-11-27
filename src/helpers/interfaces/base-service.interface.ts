@@ -1,4 +1,4 @@
-import {User} from '../../components/users/entities/user.entity';
+import {User} from '../../components/users/user.entity';
 
 export interface BaseService<T> {
   findMany(query: object): Promise<T[]>;

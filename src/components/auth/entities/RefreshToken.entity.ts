@@ -1,5 +1,5 @@
 import {Column, Entity, Index, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
-import {User} from '../../users/entities/user.entity';
+import {User} from '../../users/user.entity';
 
 @Entity()
 export class RefreshToken {

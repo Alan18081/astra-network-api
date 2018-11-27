@@ -8,7 +8,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import {User} from '../users/entities/user.entity';
+import {User} from '../users/user.entity';
 import {File} from '../files/file.entity';
 import { Order } from '../orders/order.entity';
 import { BaseEntity } from '../core/base.entity';

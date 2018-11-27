@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="32cdf1fc-6fcd-4a04-b19a-2ee81bbfde37" name="Default" comment="" />
+=======
+    <list default="true" id="32cdf1fc-6fcd-4a04-b19a-2ee81bbfde37" name="Default" comment="">
+<<<<<<< HEAD
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/auth/dto/change-password.dto.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/products/products.controller.ts" afterPath="$PROJECT_DIR$/src/components/products/products.controller.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/index.ts" afterPath="$PROJECT_DIR$/src/config/index.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/auth/services/auth.service.ts" afterPath="$PROJECT_DIR$/src/components/auth/services/auth.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/users/entities/user.entity.ts" afterPath="$PROJECT_DIR$/src/components/users/entities/user.entity.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/auth/auth.controller.ts" afterPath="$PROJECT_DIR$/src/components/auth/auth.controller.ts" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/components/auth/dto/verify-email.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/core/base.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/core/dto/pagination.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/core/services/stripe.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/orders/dto/create-order.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/orders/order.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/orders/orders.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/orders/orders.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/orders/orders.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/products/product-owner.guard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/users/interfaces/paginated-result.interface.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/card-validators/card-cvv.validator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helpers/card-validators/card-expires-in.validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/comments/comment.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/comments/comment.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/comments/comments.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/comments/comments.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/files/file.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/file.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/products/product.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products/product.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/products/products.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products/products.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/products/products.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/products/products.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/dto/find-users-list.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/dto/find-users-list.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/services/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/services/users.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/enums/messages.enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/enums/messages.enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
+    </list>
+>>>>>>> a4938a0b41b5072cf42594ca3e0102f06a62c7c5
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -91,6 +135,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/auth/dto/verify-email.dto.ts">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="280">
+              <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+              <folding />
+=======
             <state relative-caret-position="140">
               <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
             </state>
@@ -135,6 +184,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
               <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
             </state>
           </provider>
         </entry>
@@ -236,6 +286,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+      <pane id="Scope" />
+=======
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -285,7 +339,11 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+      <pane id="Scratches" />
+=======
       <pane id="Scope" />
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -366,6 +424,39 @@
     <option name="totallyTimeSpent" value="44861000" />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24743778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.94745487" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.94745487" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24743778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+=======
     <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1814301" />
@@ -388,6 +479,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24743778" />
@@ -732,32 +824,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/class-validator/decorator/ValidationOptions.d.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="188">
+          <caret line="159" column="4" lean-forward="false" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="4" />
+=======
         <state relative-caret-position="84">
           <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/class-validator/decorator/decorators.d.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="140">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+=======
         <state relative-caret-position="299">
           <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/helpers/card-validators/card-cvv.validator.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="84">
+          <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+=======
         <state relative-caret-position="168">
           <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
           <folding>
             <element signature="e#0#84#0" expanded="true" />
           </folding>
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/helpers/card-validators/card-expires-in.validator.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="188">
+          <caret line="1360" column="5" lean-forward="false" selection-start-line="1360" selection-start-column="5" selection-end-line="1360" selection-end-column="5" />
+=======
         <state relative-caret-position="140">
           <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
@@ -773,45 +885,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/config/index.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="339">
+          <caret line="68" column="3" lean-forward="false" selection-start-line="68" selection-start-column="3" selection-end-line="68" selection-end-column="3" />
+=======
         <state relative-caret-position="398">
           <caret line="24" column="68" selection-start-line="24" selection-start-column="68" selection-end-line="24" selection-end-column="68" />
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/cart-products/dto/create-cart-product.dto.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="28">
+<<<<<<< HEAD
+          <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+=======
           <caret line="1" selection-start-line="1" selection-end-line="2" />
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/cart-products/cart-products.module.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="196">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+=======
         <state relative-caret-position="224">
           <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/orders/orders.controller.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="367">
+          <caret line="23" column="33" lean-forward="false" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+=======
         <state relative-caret-position="340">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="e#0#79#0" expanded="true" />
           </folding>
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/core/services/stripe.service.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="224">
+          <caret line="8" column="42" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+=======
         <state relative-caret-position="308">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
@@ -828,16 +964,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/users/users.controller.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="252">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+=======
         <state relative-caret-position="676">
           <caret line="63" column="3" selection-start-line="63" selection-start-column="3" selection-end-line="63" selection-end-column="3" />
           <folding>
             <element signature="e#0#118#0" expanded="true" />
           </folding>
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/auth/dto/verify-email.dto.ts">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="280">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding />
+=======
         <state relative-caret-position="140">
           <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
@@ -850,6 +996,7 @@
           <folding>
             <element signature="e#0#137#0" expanded="true" />
           </folding>
+>>>>>>> ecb8eb1defb748f02267a812d934c0bf4b0e4a23
         </state>
       </provider>
     </entry>

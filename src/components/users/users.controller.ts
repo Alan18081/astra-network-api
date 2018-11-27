@@ -7,7 +7,7 @@ import {AuthGuard} from '@nestjs/passport';
 import {FindUsersListDto} from './dto/find-users-list.dto';
 import {UpdateUserDto} from './dto/update-user.dto';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
-import {User} from './entities/user.entity';
+import {User} from './user.entity';
 import { PaginatedResult } from './interfaces/paginated-result.interface';
 
 @Controller('users')
