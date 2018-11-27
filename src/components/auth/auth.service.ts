@@ -4,16 +4,18 @@ import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { User } from '../users/user.entity';
 import { UsersService } from '../users/services/users.service';
 import { JwtResponse } from './interfaces/jwt-response';
-import { JWT_EXPIRES } from '../../config/index';
+import { JWT_EXPIRES } from '../../config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RefreshToken } from './entities/RefreshToken.entity';
 import { Repository } from 'typeorm';
 import { Messages } from '../../helpers/enums/messages.enum';
 import * as uid from 'uid-safe';
-import { EmailVerification } from '../email-verification/email-verification.entity';
 import { UserHashesService } from '../user-hashes/user-hashes.service';
 import { HashTypes } from '../../helpers/enums/hash-types.enum';
 import { EmailSendingService } from '../core/services/email-sending.service';
+import { EmailTemplatesService } from '../core/services/email-templates.service';
+import { TemplateTypes } from '../../helpers/enums/template-types.enum';
+import { EmailTitles } from '../../helpers/enums/email-titles.enum';
 
 @Injectable()
 export class AuthService {
@@ -22,6 +24,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly userHashesService: UserHashesService,
     private readonly emailSendingService: EmailSendingService,
+    private readonly emailTemplatesService: EmailTemplatesService,
     @InjectRepository(RefreshToken)
     private readonly refreshTokensRepository: Repository<RefreshToken>,
   ) {}
@@ -74,9 +77,25 @@ export class AuthService {
     return await this.singIn(tokenRecord.user);
   }
 
-  async verifyEmail(userId: number, email: string): Promise<void> {
-    const userHash = await this.userHashesService.createOne(userId, HashTypes.EMAIL_VERIFICATION));
-    await this.emailSendingService.sendSystemEmail(email);
+  async verifyEmail({ firstName, lastName, email, id }: User): Promise<void> {
+    await this.userHashesService.createOne(id, HashTypes.EMAIL_VERIFICATION);
+    const content = this.emailTemplatesService.getTemplate(TemplateTypes.EMAIL_VERIFICATION, {
+      firstName,
+      lastName,
+    });
+    await this.emailSendingService.sendSystemEmail(
+      email,
+      this.emailTemplatesService.createSubject(EmailTitles.EMAIL_VERIFICATION),
+      content
+    );
   }
+
+  async resetPassword(user: User): Promise<void> {
+    await this.userHashesService.createOne(user.id, HashTypes.RESET_PASSWORD);
+    await this.emailSendingService.sendSystemEmail(
+      email,
+      this.emailTemplatesService.createSubject(EmailTitles.RESET_PASSWORD),
+      content
+    );
   }
 }

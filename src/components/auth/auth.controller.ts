@@ -1,6 +1,6 @@
 import {
   Body, Controller, Get, Post, UnauthorizedException, UseGuards, Res, Query, Put,
-  BadRequestException,
+  BadRequestException, HttpCode, HttpStatus, NotFoundException,
 } from '@nestjs/common';
 import { Response } from 'express';
 import {ApiBearerAuth, ApiOperation, ApiUseTags} from '@nestjs/swagger';
@@ -15,7 +15,7 @@ import {AuthGuard} from '@nestjs/passport';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
 import {User} from '../users/user.entity';
 import {ChangePasswordDto} from './dto/change-password.dto';
-import { VerifyEmailDto } from '../email-verification/dto/verify-email.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 
 @Controller('auth')
 @ApiUseTags('Auth')
@@ -96,14 +96,28 @@ export class AuthController {
 
     const newPassword = await this.hashService.generateHash(payload.newPassword);
 
-    return await this.usersService.updateOne(user.id, { password: newPassword });
+    await this.usersService.updateOne(user.id, { password: newPassword });
   }
 
-  @Post('verifyEmail')
+  @Get('verifyEmail')
+  @HttpCode(HttpStatus.ACCEPTED)
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()
   @ApiOperation({ title: 'Verify your email' })
-  async verifyEmail(@Body() body: VerifyEmailDto) {
+  async verifyEmail(@ReqUser() user: User): Promise<void> {
+
+  }
+
+  @Post('resetPassword')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiOperation({ title: 'Reset password' })
+  async resetPassword(@Body() body: ResetPasswordDto): Promise<void> {
+    const user = await this.usersService.findOneByEmail(body.email);
+    if (!user) {
+      throw new NotFoundException(Messages.USER_NOT_FOUND);
+    }
+
+    await this.authService.resetPassword(user);
 
   }
 }

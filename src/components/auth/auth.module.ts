@@ -9,6 +9,7 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import {RefreshToken} from './entities/RefreshToken.entity';
 import {JwtStrategy} from './strategies/jwt.strategy';
 import {GoogleStrategy} from './strategies/google.strategy';
+import { CoreModule } from '../core/core.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import {GoogleStrategy} from './strategies/google.strategy';
       },
     }),
     UsersModule,
+    CoreModule,
     TypeOrmModule.forFeature([RefreshToken]),
   ],
   exports: [],
