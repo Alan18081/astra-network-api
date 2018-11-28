@@ -1,6 +1,6 @@
 import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {User} from '../users/user.entity';
-// import {Chat} from '../chats/chat.entity';
+import { Chat } from '../chats/chat.entity';
 
 @Entity()
 export class Message {
@@ -13,11 +13,11 @@ export class Message {
   @Column()
   createdAt: string;
 
-  @ManyToOne(type => User, user => user.messages)
+  @ManyToOne(type => User)
   @JoinColumn()
   author: User;
 
-  // @ManyToOne(type => Chat, chat => chat.messages)
-  // @JoinColumn('chatId')
-  // chat: Chat;
+  @ManyToOne(type => Chat, chat => chat.messages)
+  @JoinColumn()
+  chat: Chat;
 }

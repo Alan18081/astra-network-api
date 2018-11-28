@@ -1,8 +1,9 @@
-import {Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import {UserRole} from './entities/user-role.entity';
 import {Product} from '../products/product.entity';
 import {BaseEntity} from '../core/base.entity';
 import {Message} from '../messages/message.entity';
+import { Chat } from '../chats/chat.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -39,6 +40,6 @@ export class User extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   phoneVerified: boolean;
 
-  @OneToMany(type => Message, message => message.author)
-  messages: Message[];
+  @ManyToMany(type => Chat, chat => chat.users)
+  chats: Chat[];
 }

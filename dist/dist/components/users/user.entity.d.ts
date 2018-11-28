@@ -1,7 +1,7 @@
 import { UserRole } from './entities/user-role.entity';
 import { Product } from '../products/product.entity';
 import { BaseEntity } from '../core/base.entity';
-import { Message } from '../messages/message.entity';
+import { Chat } from '../chats/chat.entity';
 export declare class User extends BaseEntity {
     firstName: string;
     lastName: string;
@@ -13,5 +13,5 @@ export declare class User extends BaseEntity {
     googleId: string;
     emailVerified: boolean;
     phoneVerified: boolean;
-    messages: Message[];
+    chats: Chat[];
 }

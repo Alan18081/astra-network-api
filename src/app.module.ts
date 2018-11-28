@@ -7,6 +7,7 @@ import {AuthModule} from './components/auth/auth.module';
 import { FilesModule } from './components/files/files.module';
 import { OrdersModule } from './components/orders/orders.module';
 import {MessagesModule} from './components/messages/messages.module';
+import { ChatsModule } from './components/chats/chats.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import {MessagesModule} from './components/messages/messages.module';
     FilesModule,
     OrdersModule,
     MessagesModule,
+    ChatsModule,
   ],
   controllers: [],
   providers: [],
