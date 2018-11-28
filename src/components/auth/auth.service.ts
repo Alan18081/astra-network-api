@@ -86,8 +86,12 @@ export class AuthService {
     await this.emailSendingService.sendSystemEmail(
       email,
       this.emailTemplatesService.createSubject(EmailTitles.EMAIL_VERIFICATION),
-      content
+      content,
     );
+  }
+
+  decodeToken(token: string): JwtPayload {
+    return this.jwtService.decode(token);
   }
 
   async resetPassword({ firstName, lastName, email, id }: User): Promise<void> {

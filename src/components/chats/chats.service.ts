@@ -1,14 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptions, FindOptionsRelation, Repository, SelectQueryBuilder } from 'typeorm';
+import { FindOptions, FindOptionsRelation, Repository } from 'typeorm';
 import { Chat } from './chat.entity';
-import { CreateChatDto } from './dto/create-chat.dto';
-import { UpdateChatDto } from './dto/update-chat.dto';
+import { CreateChatDto } from './dto/http/create-chat.dto';
+import { UpdateChatDto } from './dto/http/update-chat.dto';
 import { FindUsersListDto } from '../users/dto/find-users-list.dto';
 import { PaginatedResult } from '../users/interfaces/paginated-result.interface';
 import { User } from '../users/user.entity';
-import { FindOneChatDto } from './dto/find-one-chat.dto';
-import { FindChatsListDto } from './dto/find-chats-list.dto';
+import { FindOneChatDto } from './dto/http/find-one-chat.dto';
+import { FindChatsListDto } from './dto/http/find-chats-list.dto';
+import {WsException} from '@nestjs/websockets';
+import {Messages} from '../../helpers/enums/messages.enum';
+import {UsersService} from '../users/services/users.service';
 
 @Injectable()
 export class ChatsService {
@@ -16,59 +19,88 @@ export class ChatsService {
   constructor(
     @InjectRepository(Chat)
     private readonly chatsRepository: Repository<Chat>,
+    private readonly usersService: UsersService,
   ) {}
 
   async findMany(query: FindChatsListDto): Promise<Chat[]> {
-    const builder = this.buildQuery(query);
-    return await builder.getMany();
+    const options: FindOptions<Chat> = {
+      where: {},
+      relations: [],
+    };
+
+    if (query.userId) {
+      options.where = {
+       users: {
+         id: query.userId,
+       },
+      };
+    }
+
+    options.relations = this.getRelations(query);
+    return await this.chatsRepository.find(options);
   }
 
   async findManyByIds(query: FindChatsListDto): Promise<Chat[]> {
-    const builder = this.buildQuery(query);
-    return await builder.getMany();
+    const relations = this.getRelations(query);
+    return await this.chatsRepository.findByIds(query.ids, { relations });
   }
 
-  // buildQuery(query: FindChatsListDto): SelectQueryBuilder<Chat> {
-  //   const builder = this.chatsRepository.createQueryBuilder('chat');
-  //
-  //   if (query.userId) {
-  //     builder.innerJoin('user', 'users', 'user.id = :userId', {id: query.userId});
-  //   }
-  //
-  //   if (query.includeMessages) {
-  //     builder.innerJoin('messages', 'message');
-  //   }
-  //
-  //   if (query.includeUsers) {
-  //     builder.innerJoin('users', 'user');
-  //   }
-  //
-  //   return builder;
-  // }
-  buildQuery(query: FindChatsListDto): FindOptions<Chat> {
-    // const builder = this.chatsRepository.createQueryBuilder('chat');
-    // const relations =
+  async addNewUser(chatId: number, userId: number): Promise<Chat> {
+    const [chat, user] = await Promise.all([
+      this.chatsRepository.findOne(chatId),
+      this.usersService.findOne(userId),
+    ]);
+
+    if (!user) {
+      throw new WsException(Messages.USER_NOT_FOUND);
+    }
+
+    if (!chat) {
+      throw new WsException(Messages.CHAT_NOT_FOUND);
+    }
+
+    const foundUser = chat.users.find(({ id }: User) => id === userId);
+    if (!foundUser) {
+      chat.users.push(user);
+    }
+
+    return await this.chatsRepository.save(chat);
+  }
+
+  private getRelations(query: FindChatsListDto): FindOptionsRelation<Chat> {
+    const relations: FindOptionsRelation<Chat> = [];
 
     if (query.includeMessages) {
-      options.relations.push('messages');
+      relations.push('messages');
     }
 
     if (query.includeUsers) {
-
+      relations.push('users');
     }
 
-    return {};
+    return relations;
   }
-  //
-  // async findManyByIds(query: FindChatsListDto): Promise<Chat[]> {
-  //
-  // }
 
   async findManyWithPagination(query: FindChatsListDto): Promise<PaginatedResult<Chat>> {
-    const skip = (query.page - 1) * query.limit;
-    const queryBuilder = this.buildQuery(query);
-    const totalCount = await queryBuilder.getCount();
-    const data = await queryBuilder.skip(skip).take(query.limit).getMany();
+    const options: FindOptions<Chat> = {
+      where: {},
+      relations: [],
+      skip: (query.page - 1) * query.limit,
+      take: query.limit,
+    };
+
+    if (query.userId) {
+      options.where = {
+        users: {
+          id: query.userId,
+        },
+      };
+    }
+    options.relations = this.getRelations(query);
+
+    const [data, totalCount] = await this.chatsRepository.findAndCount(
+        options,
+      );
 
     return {
       page: query.page,
@@ -110,5 +142,17 @@ export class ChatsService {
     return await this.chatsRepository.findOne(id);
   }
 
+  async deleteOne(id: number, userId: number): Promise<void> {
+    const chat = await this.chatsRepository.findOne(id, { relations: ['users'] });
 
+    if (chat) {
+      chat.users = chat.users.filter((user: User) => user.id !== userId);
+      if (chat.users.length === 0) {
+        await this.chatsRepository.delete({ id });
+      } else {
+        await this.chatsRepository.save(chat);
+      }
+    }
+
+  }
 }

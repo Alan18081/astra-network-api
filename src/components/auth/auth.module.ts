@@ -26,7 +26,7 @@ import {UserHashesModule} from '../user-hashes/user-hashes.module';
     UserHashesModule,
     TypeOrmModule.forFeature([RefreshToken]),
   ],
-  exports: [],
+  exports: [AuthService],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, GoogleStrategy],
 })

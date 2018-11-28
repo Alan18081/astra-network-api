@@ -14,4 +14,5 @@ export declare class User extends BaseEntity {
     emailVerified: boolean;
     phoneVerified: boolean;
     chats: Chat[];
+    online: boolean;
 }

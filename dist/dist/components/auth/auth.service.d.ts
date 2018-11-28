@@ -20,5 +20,6 @@ export declare class AuthService {
     validateUser(payload: JwtPayload): Promise<User | undefined>;
     exchangeToken(token: string): Promise<JwtResponse>;
     verifyEmail({ firstName, lastName, email, id }: User): Promise<void>;
+    decodeToken(token: string): JwtPayload;
     resetPassword({ firstName, lastName, email, id }: User): Promise<void>;
 }

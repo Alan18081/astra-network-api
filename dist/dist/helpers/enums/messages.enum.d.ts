@@ -8,5 +8,7 @@ export declare enum Messages {
     FILE_NOT_FOUND = "File is not found",
     PRODUCT_NOT_FOUND = "Product not found",
     INVALID_RIGHTS_TO_DELETE_COMMENT = "Only owner of product can remove comments",
-    EMAIL_VERIFICATION_HASH_NOT_FOUND = "Email verification not found"
+    EMAIL_VERIFICATION_HASH_NOT_FOUND = "Email verification not found",
+    CHAT_NOT_FOUND = "Chat not found",
+    AUTH_TOKEN_NOT_FOUND = "Authorization token not found"
 }

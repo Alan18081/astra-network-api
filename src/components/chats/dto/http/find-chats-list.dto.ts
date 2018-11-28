@@ -1,5 +1,5 @@
 import { ArrayNotEmpty, IsBooleanString, IsNumberString, IsOptional } from 'class-validator';
-import { PaginationDto } from '../../core/dto/pagination.dto';
+import { PaginationDto } from '../../../core/dto/pagination.dto';
 
 export class FindChatsListDto extends PaginationDto {
 
