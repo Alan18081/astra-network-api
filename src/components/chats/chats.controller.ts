@@ -8,6 +8,7 @@ import { Chat } from './chat.entity';
 import { CreateChatDto } from './dto/http/create-chat.dto';
 import { FindChatsListDto } from './dto/http/find-chats-list.dto';
 import {UpdateChatDto} from './dto/http/update-chat.dto';
+import { FindOneChatDto } from './dto/http/find-one-chat.dto';
 
 @Controller('chats')
 @UseGuards(AuthGuard('jwt'))
@@ -27,6 +28,12 @@ export class ChatsController {
     } else {
       return await this.chatsService.findMany(query);
     }
+  }
+
+  @Get(':id')
+  @ApiOperation({ title: 'Get chat by id' })
+  async findOne(@Param('id') id: number, @Query() query: FindOneChatDto): Promise<Chat | undefined> {
+    return await this.chatsService.findOne(+id, query);
   }
 
   @Post()

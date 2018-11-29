@@ -16,6 +16,7 @@ import { EmailSendingService } from '../core/services/email-sending.service';
 import { EmailTemplatesService } from '../core/services/email-templates.service';
 import { TemplateTypes } from '../../helpers/enums/template-types.enum';
 import { EmailTitles } from '../../helpers/enums/email-titles.enum';
+import { WsException } from '@nestjs/websockets';
 
 @Injectable()
 export class AuthService {
@@ -90,8 +91,16 @@ export class AuthService {
     );
   }
 
-  decodeToken(token: string): JwtPayload {
-    return this.jwtService.decode(token);
+  decodeToken(token: string): string | { [key: string]: any } | null {
+    const res = this.jwtService.decode(token, {});
+
+    if(!res || typeof res !== 'object') {
+      throw new WsException(Messages.INVALID_TOKEN);
+    }
+    delete res.iat;
+    delete res.exp;
+
+    return res;
   }
 
   async resetPassword({ firstName, lastName, email, id }: User): Promise<void> {

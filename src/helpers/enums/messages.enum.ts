@@ -11,4 +11,7 @@ export enum Messages {
   EMAIL_VERIFICATION_HASH_NOT_FOUND = 'Email verification not found',
   CHAT_NOT_FOUND = 'Chat not found',
   AUTH_TOKEN_NOT_FOUND = 'Authorization token not found',
+
+  MESSAGE_NOT_FOUND = 'Message not found',
+  NOT_USERS_MESSAGE = 'It is not your message. You cannot change it',
 }

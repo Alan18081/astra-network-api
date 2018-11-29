@@ -2,7 +2,6 @@ import {Module} from '@nestjs/common';
 import {MessagesService} from './messages.service';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {Message} from './message.entity';
-import {MessagesGateway} from './messages.gateway';
 
 @Module({
   imports: [
@@ -10,6 +9,6 @@ import {MessagesGateway} from './messages.gateway';
   ],
   controllers: [],
   exports: [MessagesService],
-  providers: [MessagesService, MessagesGateway],
+  providers: [MessagesService],
 })
 export class MessagesModule {}

@@ -1,78 +1,113 @@
 import {
-  SubscribeMessage, WebSocketGateway, WebSocketServer, OnGatewayConnection, WsResponse, WsException,
+  SubscribeMessage,
+  WebSocketGateway,
+  WebSocketServer,
+  OnGatewayConnection,
+  WsResponse,
+  WsException,
+  BaseWsExceptionFilter, OnGatewayDisconnect,
 } from '@nestjs/websockets';
 
-import {AddMessageDto} from './dto/http/add-message.dto';
 import * as chatsActions from './chats.actions';
 import * as messagesActions from '../messages/messages.actions';
-import {from, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {UpdateMessageDto} from './dto/http/update-message.dto';
-import {RemoveMessageDto} from './dto/http/remove-message.dto';
 import { MessagesService } from '../messages/messages.service';
 import {ChatsService} from './chats.service';
-import {UnauthorizedException, UseGuards, UsePipes, ValidationPipe} from '@nestjs/common';
+import { UseFilters, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import {AddNewUserDto} from './dto/sockets/add-new-user.dto';
-import {AuthSocketGuard} from './auth-socket.guard';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {AuthService} from '../auth/auth.service';
-import {JwtResponse} from '../auth/interfaces/jwt-response';
+import { JwtPayload } from '../auth/interfaces/jwt-payload.interface';
+import { AddMessageDto } from '../messages/dto/add-message.dto';
+import { RemoveUserDto } from './dto/sockets/remove-user.dto';
+import { UserInterceptor } from './user.interceptor';
+import { ClientsStoreService } from './clients-store.service';
+import { UpdateMessageDto } from '../messages/dto/update-message.dto';
+import { RemoveMessageDto } from '../messages/dto/remove-message.dto';
 
 @WebSocketGateway({ namespace: 'messages' })
 @UsePipes(new ValidationPipe())
-export class ChatsGateway implements OnGatewayConnection {
+@UseFilters(new BaseWsExceptionFilter())
+export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer() server;
 
   constructor(
     private readonly chatsService: ChatsService,
     private readonly messagesService: MessagesService,
     private readonly authService: AuthService,
+    private readonly clientsStoreService: ClientsStoreService,
   ) {}
 
-  handleConnection(client: any) {
-    const token = client.handshake.query;
+  private emitMessageToChat(chatId: number, action: WsResponse): void {
+    this.server.to(chatId).emit(action.event, action.data);
+  }
+
+  async handleConnection(client: any) {
+    const { token } = client.handshake.query;
 
     if (!token) {
       throw new WsException(Messages.AUTH_TOKEN_NOT_FOUND);
     }
 
-    const data: JwtResponse = this.authService.decodeToken(token);
-    console.log(data);
+    const data = this.authService.decodeToken(token) as JwtPayload;
+    const user = await this.authService.validateUser(data);
+
+    if (!user) {
+      throw new WsException(Messages.USER_NOT_FOUND);
+    }
+
+    this.clientsStoreService.addSocket({
+      id: client.id,
+      socket: client,
+      user,
+    });
+  }
+
+  async handleDisconnect(client: any) {
+    this.clientsStoreService.removeSocket(client.id);
   }
 
   @SubscribeMessage(chatsActions.ADD_NEW_USER)
-  onAttendUser(client: any, { chatId, userId }: AddNewUserDto): void {
-    client.join(chatId);
-    console.log('Attending new user');
-    this.chatsService.addNewUser(chatId, userId);
+  @UseInterceptors(UserInterceptor)
+  async onAddUser(client: any, { chatId }: AddNewUserDto): Promise<void> {
+    const chat = await this.chatsService.addNewUserToChat(chatId, client.user.id);
+    const action = new chatsActions.UpdatedChat(chat);
+
+    this.emitMessageToChat(chatId, action);
+  }
+
+  @SubscribeMessage(chatsActions.REMOVE_USER)
+  @UseInterceptors(UserInterceptor)
+  async onRemoveUser(client: any, { chatId, userId }: RemoveUserDto): Promise<void> {
+    client.leave(chatId);
+    const chat = await this.chatsService.removeUserFromChat(chatId, userId);
+    const action = new chatsActions.UpdatedChat(chat);
+
+    this.emitMessageToChat(chatId, action);
   }
 
   @SubscribeMessage(messagesActions.ADD_MESSAGE)
+  @UseInterceptors(UserInterceptor)
   async onAddMessage(client: any, payload: AddMessageDto): Promise<void> {
-    const message = await this.messagesService.addMessage(payload);
+    const message = await this.messagesService.addMessage(client.user.id, payload.chatId, payload.text);
+
     if (message) {
       const action = new messagesActions.AddMessage(message);
-      this.server.to(payload.chatId).emit(action.event, action.data);
+      this.emitMessageToChat(payload.chatId, action);
     }
   }
 
-  emitMessage(group: string | number, action: WsResponse): void {
-    this.server.to(group).emit(action.event, action.data);
+  @SubscribeMessage(messagesActions.UPDATE_MESSAGE)
+  @UseInterceptors(UserInterceptor)
+  async onUpdateMessage(client: any, payload: UpdateMessageDto): Promise<void> {
+    const message = await this.messagesService.findOne(id, {});
+    if (!message) {
+      throw new WsException(Messages.MESSAGE_NOT_FOUND);
+    }
   }
 
-  // @SubscribeMessage(actions.UPDATE_MESSAGE)
-  // async onUpdateMessage(client, payload: UpdateMessageDto): Observable<actions.UpdateMessage> {
-  //   return from(this.messagesService.updateMessage(payload))
-  //     .pipe(
-  //       map((message: Message | undefined) => new actions.UpdateMessage(message))
-  //     );
-  // }
-  //
-  // @SubscribeMessage(actions.REMOVE_MESSAGE)
-  // onRemoveMessage(client: any, payload: RemoveMessageDto): Observable<actions.RemoveMessage> {
-  //   return from(this.messagesService.removeMessage(payload.id))
-  //     .pipe(
-  //       map((message: Message) => new actions.RemoveMessage(message))
-  //     );
-  // }
+  @SubscribeMessage(messagesActions.REMOVE_MESSAGE)
+  @UseInterceptors(UserInterceptor)
+  onRemoveMessage(client: any, payload: RemoveMessageDto): Promise<void> {
+
+  }
 }

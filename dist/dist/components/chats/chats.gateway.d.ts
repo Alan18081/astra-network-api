@@ -10,7 +10,7 @@ export declare class ChatsGateway implements OnGatewayConnection {
     private readonly authService;
     server: any;
     constructor(chatsService: ChatsService, messagesService: MessagesService, authService: AuthService);
-    handleConnection(client: any): void;
+    handleConnection(client: any): Promise<void>;
     onAttendUser(client: any, { chatId, userId }: AddNewUserDto): void;
     onAddMessage(client: any, payload: AddMessageDto): Promise<void>;
     emitMessage(group: string | number, action: WsResponse): void;

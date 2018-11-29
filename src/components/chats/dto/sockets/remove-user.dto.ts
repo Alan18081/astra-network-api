@@ -1,6 +1,9 @@
 import {IsNumber} from 'class-validator';
 
-export class AddNewUserDto {
+export class RemoveUserDto {
+
+  @IsNumber()
+  userId: number;
 
   @IsNumber()
   chatId: number;

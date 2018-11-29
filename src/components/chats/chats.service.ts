@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { uniqBy } from 'lodash';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOptions, FindOptionsRelation, Repository } from 'typeorm';
 import { Chat } from './chat.entity';
@@ -45,9 +46,10 @@ export class ChatsService {
     return await this.chatsRepository.findByIds(query.ids, { relations });
   }
 
-  async addNewUser(chatId: number, userId: number): Promise<Chat> {
+  async addNewUserToChat(chatId: number, userId: number): Promise<Chat> {
+
     const [chat, user] = await Promise.all([
-      this.chatsRepository.findOne(chatId),
+      this.findOne(chatId, { includeUsers: true }),
       this.usersService.findOne(userId),
     ]);
 
@@ -67,7 +69,26 @@ export class ChatsService {
     return await this.chatsRepository.save(chat);
   }
 
-  private getRelations(query: FindChatsListDto): FindOptionsRelation<Chat> {
+  async removeUserFromChat(chatId: number, userId: number): Promise<Chat> {
+    const [chat, user] = await Promise.all([
+      this.findOne(chatId, { includeUsers: true }),
+      this.usersService.findOne(userId),
+    ]);
+
+    if (!user) {
+      throw new WsException(Messages.USER_NOT_FOUND);
+    }
+
+    if (!chat) {
+      throw new WsException(Messages.CHAT_NOT_FOUND);
+    }
+
+    chat.users = chat.users.filter(({ id }: User) => id !== userId);
+
+    return await this.chatsRepository.save(chat);
+  }
+
+  private getRelations(query: FindChatsListDto | FindOneChatDto): FindOptionsRelation<Chat> {
     const relations: FindOptionsRelation<Chat> = [];
 
     if (query.includeMessages) {
@@ -110,21 +131,15 @@ export class ChatsService {
     };
   }
 
-
   async findOne(id: number, query: FindOneChatDto): Promise<Chat | undefined> {
-    const relations: FindOptionsRelation<Chat> = [];
-
-    if (query.includeMessages) {
-      relations.push('messages');
-    }
-
-    if (query.includeUsers) {
-      relations.push('users');
-    }
+    const relations: FindOptionsRelation<Chat> = this.getRelations(query);
 
     return await this.chatsRepository.findOne({
-      id,
-    }, { relations });
+      where: {
+        id,
+      },
+      relations: ['users'],
+    });
   }
 
   async createOne(payload: CreateChatDto): Promise<Chat | undefined> {
@@ -132,7 +147,12 @@ export class ChatsService {
 
     chat.name = payload.name;
     chat.createdAt = new Date();
-    chat.users = payload.userIds.map(id => ({ id })) as User[];
+    chat.users = uniqBy(
+      payload.userIds.map(id => ({ id })) as User[],
+      ({ id }) => id,
+    );
+
+    await this.chatsRepository.save(chat);
     return await this.findOne(chat.id, { includeUsers: true });
   }
 

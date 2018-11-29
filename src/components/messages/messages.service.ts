@@ -1,10 +1,12 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Message} from './message.entity';
-import {Repository} from 'typeorm';
+import { FindOptionsRelation, Repository } from 'typeorm';
 import {AddMessageDto} from './dto/add-message.dto';
 import {User} from '../users/user.entity';
 import {UpdateMessageDto} from './dto/update-message.dto';
+import { FindOneMessageDto } from './dto/find-one-message.dto';
+import { Chat } from '../chats/chat.entity';
 
 @Injectable()
 export class MessagesService {
@@ -13,14 +15,39 @@ export class MessagesService {
     private readonly messagesRepository: Repository<Message>,
   ) {}
 
-  async addMessage(payload: AddMessageDto): Promise<Message> {
+  private getRelations(query: FindOneMessageDto): FindOptionsRelation<Message> {
+    const relations: FindOptionsRelation<Message> = [];
+
+    if (query.includeUser) {
+      relations.push('user');
+    }
+
+    return relations;
+  }
+
+
+  async findOne(id: number, query: FindOneMessageDto): Promise<Message | undefined> {
+    const relations: FindOptionsRelation<Message> = this.getRelations(query);
+
+    return await this.messagesRepository.findOne({
+      where: {
+        id
+      },
+      relations
+    });
+  }
+
+  async addMessage(userId: number, chatId: number, text: string): Promise<Message | undefined> {
     const newMessage = {
       ...new Message(),
-      text: payload.text,
-      author: { id: payload.authorId } as User,
+      text,
+      user: { id: userId } as User,
+      chat: { id: chatId } as Chat,
       createdAt: new Date().toISOString()
     };
-    return await this.messagesRepository.save(newMessage);
+    await this.messagesRepository.save(newMessage);
+
+    return await this.findOne(newMessage.id, { includeUser: true });
   }
 
   async updateMessage(payload: UpdateMessageDto): Promise<Message | undefined> {
@@ -32,7 +59,7 @@ export class MessagesService {
         text: payload.text,
       },
     );
-    return this.messagesRepository.findOne({ relations: ['author'] });
+    return await this.messagesRepository.findOne({ relations: ['user'] });
   }
 
   async removeMessage(id: number): Promise<void> {
