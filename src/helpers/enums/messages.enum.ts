@@ -13,5 +13,6 @@ export enum Messages {
   AUTH_TOKEN_NOT_FOUND = 'Authorization token not found',
 
   MESSAGE_NOT_FOUND = 'Message not found',
-  NOT_USERS_MESSAGE = 'It is not your message. You cannot change it',
+  INVALID_RIGHTS_TO_UPDATE_MESSAGE = 'You don\'t have rights to update this message',
+  INVALID_RIGHTS_TO_DELETE_MESSAGE = 'You don\'t have rights to delete this message',
 }

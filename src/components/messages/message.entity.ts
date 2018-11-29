@@ -1,4 +1,4 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 import {User} from '../users/user.entity';
 import { Chat } from '../chats/chat.entity';
 
@@ -12,6 +12,9 @@ export class Message {
 
   @Column()
   createdAt: string;
+
+  @PrimaryColumn({ nullable: true })
+  userId: number;
 
   @ManyToOne(type => User)
   @JoinColumn()

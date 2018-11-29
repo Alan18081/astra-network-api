@@ -12,7 +12,7 @@ import * as chatsActions from './chats.actions';
 import * as messagesActions from '../messages/messages.actions';
 import { MessagesService } from '../messages/messages.service';
 import {ChatsService} from './chats.service';
-import { UseFilters, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { UseFilters, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import {AddNewUserDto} from './dto/sockets/add-new-user.dto';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {AuthService} from '../auth/auth.service';
@@ -23,6 +23,7 @@ import { UserInterceptor } from './user.interceptor';
 import { ClientsStoreService } from './clients-store.service';
 import { UpdateMessageDto } from '../messages/dto/update-message.dto';
 import { RemoveMessageDto } from '../messages/dto/remove-message.dto';
+import { MessageRightsGuard } from './message-rights.guard';
 
 @WebSocketGateway({ namespace: 'messages' })
 @UsePipes(new ValidationPipe())
@@ -99,15 +100,39 @@ export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage(messagesActions.UPDATE_MESSAGE)
   @UseInterceptors(UserInterceptor)
   async onUpdateMessage(client: any, payload: UpdateMessageDto): Promise<void> {
-    const message = await this.messagesService.findOne(id, {});
+    const message = await this.messagesService.findOne(payload.messageId, {});
     if (!message) {
       throw new WsException(Messages.MESSAGE_NOT_FOUND);
     }
+
+    if (message.userId !== client.user.id) {
+      throw new WsException(Messages.INVALID_RIGHTS_TO_UPDATE_MESSAGE);
+    }
+
+    const updatedMessage = await this.messagesService.updateMessage(payload);
+
+    const action = new messagesActions.UpdateMessage(updatedMessage);
+
+    this.emitMessageToChat(payload.chatId, action);
   }
 
   @SubscribeMessage(messagesActions.REMOVE_MESSAGE)
   @UseInterceptors(UserInterceptor)
-  onRemoveMessage(client: any, payload: RemoveMessageDto): Promise<void> {
+  @UseGuards(MessageRightsGuard)
+  async onRemoveMessage(client: any, payload: RemoveMessageDto): Promise<void> {
+    const message = await this.messagesService.findOne(payload.messageId, {});
+    if (!message) {
+      throw new WsException(Messages.MESSAGE_NOT_FOUND);
+    }
 
+    if (message.userId !== client.user.id) {
+      throw new WsException(Messages.INVALID_RIGHTS_TO_UPDATE_MESSAGE);
+    }
+
+    await this.messagesService.removeMessage(payload.messageId);
+
+    const action = new messagesActions.RemoveMessage(payload.messageId);
+
+    this.emitMessageToChat(payload.chatId, action);
   }
 }

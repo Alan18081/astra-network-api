@@ -16,5 +16,5 @@ export class UpdateMessage implements WsResponse {
 
 export class RemoveMessage implements WsResponse {
   readonly event = REMOVE_MESSAGE;
-  constructor(public data = null) {}
+  constructor(public data: number) {}
 }
