@@ -12,7 +12,7 @@ import * as chatsActions from './chats.actions';
 import * as messagesActions from '../messages/messages.actions';
 import { MessagesService } from '../messages/messages.service';
 import {ChatsService} from './chats.service';
-import { UseFilters, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { UseFilters, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import {AddNewUserDto} from './dto/sockets/add-new-user.dto';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {AuthService} from '../auth/auth.service';
@@ -23,9 +23,8 @@ import { UserInterceptor } from './user.interceptor';
 import { ClientsStoreService } from './clients-store.service';
 import { UpdateMessageDto } from '../messages/dto/update-message.dto';
 import { RemoveMessageDto } from '../messages/dto/remove-message.dto';
-import { MessageRightsGuard } from './message-rights.guard';
 
-@WebSocketGateway({ namespace: 'messages' })
+@WebSocketGateway({ namespace: 'chats' })
 @UsePipes(new ValidationPipe())
 @UseFilters(new BaseWsExceptionFilter())
 export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -70,8 +69,9 @@ export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage(chatsActions.ADD_NEW_USER)
   @UseInterceptors(UserInterceptor)
   async onAddUser(client: any, { chatId }: AddNewUserDto): Promise<void> {
+    client.join(chatId);
     const chat = await this.chatsService.addNewUserToChat(chatId, client.user.id);
-    const action = new chatsActions.UpdatedChat(chat);
+    const action = new chatsActions.AddNewUser(chat);
 
     this.emitMessageToChat(chatId, action);
   }
@@ -118,7 +118,6 @@ export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage(messagesActions.REMOVE_MESSAGE)
   @UseInterceptors(UserInterceptor)
-  @UseGuards(MessageRightsGuard)
   async onRemoveMessage(client: any, payload: RemoveMessageDto): Promise<void> {
     const message = await this.messagesService.findOne(payload.messageId, {});
     if (!message) {

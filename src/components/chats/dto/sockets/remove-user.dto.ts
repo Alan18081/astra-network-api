@@ -1,11 +1,11 @@
-import {IsNumber} from 'class-validator';
+import { IsInt } from 'class-validator';
 
 export class RemoveUserDto {
 
-  @IsNumber()
+  @IsInt()
   userId: number;
 
-  @IsNumber()
+  @IsInt()
   chatId: number;
 
 }

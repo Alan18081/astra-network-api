@@ -3,6 +3,7 @@ import {UserRole} from './entities/user-role.entity';
 import {Product} from '../products/product.entity';
 import {BaseEntity} from '../core/base.entity';
 import { Chat } from '../chats/chat.entity';
+import { Note } from '../notes/note.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -44,4 +45,7 @@ export class User extends BaseEntity {
 
   @Column({ type: 'boolean', default: false })
   online: boolean;
+
+  @OneToMany(type => Note, note => note.user)
+  notes: Note[];
 }

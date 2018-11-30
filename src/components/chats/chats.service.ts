@@ -5,7 +5,6 @@ import { FindOptions, FindOptionsRelation, Repository } from 'typeorm';
 import { Chat } from './chat.entity';
 import { CreateChatDto } from './dto/http/create-chat.dto';
 import { UpdateChatDto } from './dto/http/update-chat.dto';
-import { FindUsersListDto } from '../users/dto/find-users-list.dto';
 import { PaginatedResult } from '../users/interfaces/paginated-result.interface';
 import { User } from '../users/user.entity';
 import { FindOneChatDto } from './dto/http/find-one-chat.dto';

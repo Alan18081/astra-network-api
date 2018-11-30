@@ -2,7 +2,6 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Message} from './message.entity';
 import { FindOptionsRelation, Repository } from 'typeorm';
-import {AddMessageDto} from './dto/add-message.dto';
 import {User} from '../users/user.entity';
 import {UpdateMessageDto} from './dto/update-message.dto';
 import { FindOneMessageDto } from './dto/find-one-message.dto';
@@ -42,6 +41,7 @@ export class MessagesService {
       ...new Message(),
       text,
       user: { id: userId } as User,
+      userId,
       chat: { id: chatId } as Chat,
       createdAt: new Date().toISOString()
     };
@@ -53,12 +53,13 @@ export class MessagesService {
   async updateMessage(payload: UpdateMessageDto): Promise<Message | undefined> {
     await this.messagesRepository.update(
       {
-        id: payload.id,
+        id: payload.messageId,
       },
       {
         text: payload.text,
       },
     );
+
     return await this.messagesRepository.findOne({ relations: ['user'] });
   }
 

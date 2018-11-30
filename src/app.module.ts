@@ -8,17 +8,18 @@ import { FilesModule } from './components/files/files.module';
 import { OrdersModule } from './components/orders/orders.module';
 import {MessagesModule} from './components/messages/messages.module';
 import { ChatsModule } from './components/chats/chats.module';
+import { NotesModule } from './components/notes/notes.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(ORM_CONFIG),
     UsersModule,
     AuthModule,
-    //ProductsModule,
     FilesModule,
     OrdersModule,
     MessagesModule,
     ChatsModule,
+    NotesModule,
   ],
   controllers: [],
   providers: [],

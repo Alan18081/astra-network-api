@@ -1,16 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Socket } from './interfaces/sockets-map.interface';
+import { Socket } from './interfaces/socket.interface';
 
 @Injectable()
 export class ClientsStoreService {
 
   private sockets: Map<string, Socket> = new Map();
-
-  printList(): void {
-    for (const socket of this.sockets) {
-      console.log(socket);
-    }
-  }
 
   getSocket(socketId: string): Socket | undefined {
     return this.sockets.get(socketId);

@@ -1,8 +1,8 @@
-import {IsNumber} from 'class-validator';
+import { IsInt } from 'class-validator';
 
 export class AddNewUserDto {
 
-  @IsNumber()
+  @IsInt()
   chatId: number;
 
 }

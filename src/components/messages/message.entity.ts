@@ -13,7 +13,7 @@ export class Message {
   @Column()
   createdAt: string;
 
-  @PrimaryColumn({ nullable: true })
+  @PrimaryColumn()
   userId: number;
 
   @ManyToOne(type => User)
