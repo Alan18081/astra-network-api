@@ -105,7 +105,7 @@ export class AuthController {
   @ApiBearerAuth()
   @ApiOperation({ title: 'Verify your email' })
   async verifyEmail(@ReqUser() user: User): Promise<void> {
-
+    await this.authService.verifyEmail(user);
   }
 
   @Post('resetPassword')

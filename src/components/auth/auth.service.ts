@@ -17,6 +17,7 @@ import { EmailTemplatesService } from '../core/services/email-templates.service'
 import { TemplateTypes } from '../../helpers/enums/template-types.enum';
 import { EmailTitles } from '../../helpers/enums/email-titles.enum';
 import { WsException } from '@nestjs/websockets';
+import {HOST, PORT} from '../../config/common.config';
 
 @Injectable()
 export class AuthService {
@@ -79,10 +80,11 @@ export class AuthService {
   }
 
   async verifyEmail({ firstName, lastName, email, id }: User): Promise<void> {
-    await this.userHashesService.createOne(id, HashTypes.EMAIL_VERIFICATION);
+    const emailHash = await this.userHashesService.createOne(id, HashTypes.EMAIL_VERIFICATION);
     const content = this.emailTemplatesService.getTemplate(TemplateTypes.EMAIL_VERIFICATION, {
       firstName,
       lastName,
+      url: `http://${HOST}:${PORT}/verifyEmail/hash/${emailHash.hash}`,
     });
     await this.emailSendingService.sendSystemEmail(
       email,

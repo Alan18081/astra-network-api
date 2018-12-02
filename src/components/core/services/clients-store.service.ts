@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Socket } from './interfaces/socket.interface';
+import { Socket } from '../../chats/interfaces/socket.interface';
 
 @Injectable()
 export class ClientsStoreService {

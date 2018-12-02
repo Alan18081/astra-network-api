@@ -9,13 +9,19 @@ import { FindNotesListDto } from './dto/find-notes-list.dto';
 import { FindOneNoteDto } from './dto/find-one-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 import { CreateNoteDto } from './dto/create-note.dto';
+import {NotesGateway} from './notes.gateway';
+
+import * as notesActions from './notes.actions';
 
 @Controller('notes')
 @UseGuards(AuthGuard('jwt'))
 @ApiUseTags('Notes')
 export class NotesController {
 
-  constructor(private readonly notesService: NotesService) {}
+  constructor(
+    private readonly notesService: NotesService,
+    private readonly notesGateway: NotesGateway,
+  ) {}
 
   @Get()
   @ApiOperation({ title: 'Get list of notes for particular user' })
@@ -36,7 +42,12 @@ export class NotesController {
   @Post()
   @ApiOperation({ title: 'Create new note' })
   async createOne(@ReqUser() user: User, @Body() payload: CreateNoteDto): Promise<Note | undefined> {
-    return await this.notesService.createOne(payload, user.id);
+    const note = await this.notesService.createOne(payload, user.id);
+    if (note) {
+      const action = new notesActions.AddedNote(note);
+      this.notesGateway.emitMessage(action);
+    }
+    return note;
   }
 
   @Put(':id')

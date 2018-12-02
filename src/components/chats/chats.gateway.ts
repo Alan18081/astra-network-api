@@ -20,7 +20,7 @@ import { JwtPayload } from '../auth/interfaces/jwt-payload.interface';
 import { AddMessageDto } from '../messages/dto/add-message.dto';
 import { RemoveUserDto } from './dto/sockets/remove-user.dto';
 import { UserInterceptor } from './user.interceptor';
-import { ClientsStoreService } from './clients-store.service';
+import { ClientsStoreService } from '../core/services/clients-store.service';
 import { UpdateMessageDto } from '../messages/dto/update-message.dto';
 import { RemoveMessageDto } from '../messages/dto/remove-message.dto';
 
@@ -28,7 +28,8 @@ import { RemoveMessageDto } from '../messages/dto/remove-message.dto';
 @UsePipes(new ValidationPipe())
 @UseFilters(new BaseWsExceptionFilter())
 export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  @WebSocketServer() server;
+  @WebSocketServer()
+  private readonly server;
 
   constructor(
     private readonly chatsService: ChatsService,

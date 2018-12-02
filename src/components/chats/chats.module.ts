@@ -8,8 +8,9 @@ import { MessagesModule } from '../messages/messages.module';
 import {UsersModule} from '../users/users.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import {AuthModule} from '../auth/auth.module';
-import { ClientsStoreService } from './clients-store.service';
+import { ClientsStoreService } from '../core/services/clients-store.service';
 import { UserInterceptor } from './user.interceptor';
+import {CoreModule} from '../core/core.module';
 
 @Module({
   imports: [
@@ -17,12 +18,12 @@ import { UserInterceptor } from './user.interceptor';
     TypeOrmModule.forFeature([Chat]),
     UsersModule,
     AuthModule,
+    CoreModule,
   ],
   controllers: [ChatsController],
   providers: [
     ChatsGateway,
     ChatsService,
-    ClientsStoreService,
     { provide: APP_INTERCEPTOR, useClass: UserInterceptor },
   ],
 })
