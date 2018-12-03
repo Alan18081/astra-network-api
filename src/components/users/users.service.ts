@@ -54,7 +54,6 @@ export class UsersService implements BaseService<User> {
     };
   }
 
-
   async findOne(id: number): Promise<User | undefined> {
     const user =  await this.usersRepository.findOne(id);
     if (!user) {

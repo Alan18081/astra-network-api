@@ -8,6 +8,9 @@ import { Repository } from 'typeorm';
 import { UsersModule } from '../users.module';
 import { PaginatedResult } from '../interfaces/paginated-result.interface';
 import { PaginationDto } from '../../core/dto/pagination.dto';
+import {CreateUserDto} from '../dto/create-user.dto';
+import {BadRequestException} from '@nestjs/common';
+import {Messages} from '../../../helpers/enums/messages.enum';
 
 class UsersRepository extends Repository<User> {}
 
@@ -18,7 +21,7 @@ describe('UsersController', () => {
     const module = await Test.createTestingModule({
       imports: [CoreModule],
       controllers: [UsersController, UsersModule],
-      providers: [UsersService, { provide: getRepositoryToken(User), useValue: new UsersRepository() }]
+      providers: [UsersService, { provide: getRepositoryToken(User), useValue: new UsersRepository() }],
     }).compile();
 
     usersController = module.get<UsersController>(UsersController);
@@ -39,14 +42,14 @@ describe('UsersController', () => {
         data: ['test'],
         totalCount: 1,
         itemsPerPage: 10,
-        page: 1
+        page: 1,
       };
 
       jest.spyOn(usersService, 'findManyWithPagination').mockImplementation(() => result);
 
       expect(await usersController.findMany({
         page: 1,
-        limit: 5
+        limit: 5,
       })).toBe(result);
     });
   });
@@ -63,19 +66,64 @@ describe('UsersController', () => {
     it('should return paginated response if query object has been provided', async () => {
       const query: PaginationDto = {
         page: 1,
-        limit: 5
+        limit: 5,
       };
 
       const result: PaginatedResult<string> = {
         data: ['test'],
         totalCount: 1,
         itemsPerPage: 10,
-        page: 1
+        page: 1,
       };
 
       jest.spyOn(usersService, 'findManyWithPagination').mockImplementation(() => result);
 
       expect(await usersController.findMany(query)).toBe(result);
+    });
+  });
+
+  describe('findOne', () => {
+    it('should return one user', async () => {
+      const result = 'user';
+
+      jest.spyOn(usersService, 'findOne').mockImplementation(() => result);
+
+      expect(await usersController.findOne({})).toBe(result);
+    });
+  });
+
+  describe('createOne', () => {
+    const body: CreateUserDto = {
+      firstName: 'Alan',
+      lastName: 'Morgan',
+      email: 'test@gmail.com',
+      password: '123456',
+    };
+
+    const user = {
+      ...new User(),
+      ...body,
+      id: 1,
+    };
+
+    it('should return created user', async () => {
+
+      jest.spyOn(usersService, 'createOne').mockImplementation(() => user);
+      jest.spyOn(usersService, 'findOneByEmail').mockImplementation(() => undefined);
+
+      expect(await usersController.createOne(body)).toBe(user);
+    });
+
+    it('should throw an error if user with email exists', async () => {
+
+      jest.spyOn(usersService, 'createOne').mockImplementation(() => user);
+      jest.spyOn(usersService, 'findOneByEmail').mockImplementation(() => user);
+      try {
+        await usersController.createOne(body);
+        expect(false);
+      } catch (e) {
+        expect(JSON.stringify(e)).toEqual(JSON.stringify(new BadRequestException(Messages.USER_ALREADY_EXISTS)));
+      }
     });
   });
 

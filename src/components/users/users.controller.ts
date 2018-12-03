@@ -37,7 +37,7 @@ export class UsersController {
 
   @Post()
   @ApiOperation({ title: 'Creating new user' })
-  async create(@Body() payload: CreateUserDto): Promise<User | undefined> {
+  async createOne(@Body() payload: CreateUserDto): Promise<User | undefined> {
     const user = await this.usersService.findOneByEmail(payload.email);
 
     if (user) {
