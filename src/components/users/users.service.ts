@@ -1,15 +1,15 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
-import {BaseService} from '../../../helpers/interfaces/base-service.interface';
-import {User} from '../user.entity';
+import {BaseService} from '../../helpers/interfaces/base-service.interface';
+import {User} from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SelectQueryBuilder } from 'typeorm';
-import {CreateUserDto} from '../dto/create-user.dto';
-import {HashService} from '../../core/services/hash.service';
-import {FindUsersListDto} from '../dto/find-users-list.dto';
-import {Roles} from '../../../helpers/enums/roles.enum';
-import {Messages} from '../../../helpers/enums/messages.enum';
-import {GoogleUserData} from '../interfaces/google-user-data.interface';
-import { PaginatedResult } from '../interfaces/paginated-result.interface';
+import {CreateUserDto} from './dto/create-user.dto';
+import {HashService} from '../core/services/hash.service';
+import {FindUsersListDto} from './dto/find-users-list.dto';
+import {Roles} from '../../helpers/enums/roles.enum';
+import {Messages} from '../../helpers/enums/messages.enum';
+import {GoogleUserData} from './interfaces/google-user-data.interface';
+import { PaginatedResult } from './interfaces/paginated-result.interface';
 
 @Injectable()
 export class UsersService implements BaseService<User> {
@@ -111,5 +111,11 @@ export class UsersService implements BaseService<User> {
 
   async deleteOne(id: number): Promise<void> {
     await this.usersRepository.delete({ id });
+  }
+
+  async setNewPassword(id: number, password: string): Promise<void> {
+    const passwordHash = await this.hashService.generateHash(password);
+
+    await this.updateOne(id, { password: passwordHash });
   }
 }

@@ -11,7 +11,7 @@ import { FindOneChatDto } from './dto/http/find-one-chat.dto';
 import { FindChatsListDto } from './dto/http/find-chats-list.dto';
 import {WsException} from '@nestjs/websockets';
 import {Messages} from '../../helpers/enums/messages.enum';
-import {UsersService} from '../users/services/users.service';
+import {UsersService} from '../users/users.service';
 
 @Injectable()
 export class ChatsService {

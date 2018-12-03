@@ -1,7 +1,7 @@
 import {PassportStrategy} from '@nestjs/passport';
 import {Strategy} from 'passport-google-oauth20';
-import {GOOGLE_CALLBACK_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET} from '../../../config/index';
-import {UsersService} from '../../users/services/users.service';
+import {GOOGLE_CALLBACK_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET} from '../../../config';
+import {UsersService} from '../../users/users.service';
 import {Injectable} from '@nestjs/common';
 
 @Injectable()

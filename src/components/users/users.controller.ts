@@ -1,7 +1,7 @@
 import {BadRequestException, Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards} from '@nestjs/common';
 import {ApiBearerAuth, ApiOperation} from '@nestjs/swagger';
 import {CreateUserDto} from './dto/create-user.dto';
-import {UsersService} from './services/users.service';
+import {UsersService} from './users.service';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {AuthGuard} from '@nestjs/passport';
 import {FindUsersListDto} from './dto/find-users-list.dto';

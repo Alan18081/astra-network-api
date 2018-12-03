@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { User } from '../users/user.entity';
-import { UsersService } from '../users/services/users.service';
+import { UsersService } from '../users/users.service';
 import { JwtResponse } from './interfaces/jwt-response';
 import { JWT_EXPIRES } from '../../config';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -17,7 +17,9 @@ import { EmailTemplatesService } from '../core/services/email-templates.service'
 import { TemplateTypes } from '../../helpers/enums/template-types.enum';
 import { EmailTitles } from '../../helpers/enums/email-titles.enum';
 import { WsException } from '@nestjs/websockets';
-import {HOST, PORT} from '../../config/common.config';
+import {HOST, PORT} from '../../config';
+import { SetNewPasswordDto } from './dto/set-new-password.dto';
+import { HashService } from '../core/services/hash.service';
 
 @Injectable()
 export class AuthService {
@@ -84,13 +86,25 @@ export class AuthService {
     const content = this.emailTemplatesService.getTemplate(TemplateTypes.EMAIL_VERIFICATION, {
       firstName,
       lastName,
-      url: `http://${HOST}:${PORT}/verifyEmail/hash/${emailHash.hash}`,
+      url: `http://${HOST}:${PORT}/auth/verifyEmail/hash/${emailHash.hash}`,
     });
     await this.emailSendingService.sendSystemEmail(
       email,
       this.emailTemplatesService.createSubject(EmailTitles.EMAIL_VERIFICATION),
       content,
     );
+  }
+
+  async verifyEmailHash(hash: string): Promise<void> {
+    const userHash = await this.userHashesService.findOneByHash(hash);
+    if(!userHash) {
+      throw new NotFoundException(Messages.EMAIL_VERIFICATION_HASH_NOT_FOUND);
+    }
+
+    await Promise.all([
+      this.usersService.updateOne(userHash.userId, { emailVerified: true }),
+      this.userHashesService.deleteOne(userHash.id)
+    ]);
   }
 
   decodeToken(token: string): string | { [key: string]: any } | null {
@@ -107,7 +121,7 @@ export class AuthService {
 
   async resetPassword({ firstName, lastName, email, id }: User): Promise<void> {
     await this.userHashesService.createOne(id, HashTypes.RESET_PASSWORD);
-    const content = this.emailTemplatesService.getTemplate(TemplateTypes.EMAIL_VERIFICATION, {
+    const content = this.emailTemplatesService.getTemplate(TemplateTypes.RESET_PASSWORD, {
       firstName,
       lastName,
     });
@@ -116,5 +130,18 @@ export class AuthService {
       this.emailTemplatesService.createSubject(EmailTitles.RESET_PASSWORD),
       content
     );
+  }
+
+  async setNewPassword({ hash, password }: SetNewPasswordDto): Promise<void> {
+    const userHash = await this.userHashesService.findOneByHash(hash);
+
+    if(!userHash) {
+      throw new NotFoundException(Messages.RESET_PASSWORD_HASH_NOT_FOUND);
+    }
+
+    await Promise.all([
+      this.usersService.setNewPassword(userHash.userId, password),
+      this.userHashesService.deleteOne(userHash.id)
+    ]);
   }
 }

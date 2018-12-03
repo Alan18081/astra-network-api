@@ -1,11 +1,11 @@
 import {
   Body, Controller, Get, Post, UnauthorizedException, UseGuards, Res, Query, Put,
-  BadRequestException, HttpCode, HttpStatus, NotFoundException,
+  BadRequestException, HttpCode, HttpStatus, NotFoundException, Param,
 } from '@nestjs/common';
 import { Response } from 'express';
 import {ApiBearerAuth, ApiOperation, ApiUseTags} from '@nestjs/swagger';
 import {LoginDto} from './dto/login.dto';
-import {UsersService} from '../users/services/users.service';
+import {UsersService} from '../users/users.service';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {JwtResponse} from './interfaces/jwt-response';
 import {AuthService} from './auth.service';
@@ -16,6 +16,7 @@ import {ReqUser} from '../../helpers/decorators/user.decorator';
 import {User} from '../users/user.entity';
 import {ChangePasswordDto} from './dto/change-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
+import { SetNewPasswordDto } from './dto/set-new-password.dto';
 
 @Controller('auth')
 @ApiUseTags('Auth')
@@ -108,6 +109,13 @@ export class AuthController {
     await this.authService.verifyEmail(user);
   }
 
+  @Get('verifyEmail/hash/:hash')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiOperation({ title: 'Route to which you will be redirected when click btn in your email' })
+  async verifyEmailHash(@Param('hash') hash: string): Promise<void> {
+    console.log(hash);
+  }
+
   @Post('resetPassword')
   @HttpCode(HttpStatus.ACCEPTED)
   @ApiOperation({ title: 'Reset password' })
@@ -119,5 +127,12 @@ export class AuthController {
 
     await this.authService.resetPassword(user);
 
+  }
+
+  @Post('newPassword')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiOperation({ title: 'Set new password' })
+  async setNewPassword(@Body() body: SetNewPasswordDto): Promise<void> {
+    await this.authService.setNewPassword(body);
   }
 }

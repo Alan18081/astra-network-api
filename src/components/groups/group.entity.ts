@@ -1,33 +1,23 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne } from 'typeorm';
 import { File } from '../files/file.entity';
-import { Comment } from '../comments/comment.entity';
 import { User } from '../users/user.entity';
 import { BaseEntity } from '../core/base.entity';
 
 @Entity()
-export class Note extends BaseEntity {
+export class Group extends BaseEntity {
 
   @Column('varchar')
-  title: string;
+  name: string;
 
-  @Column({ type: 'text', nullable: true })
-  description?: string;
-
-  @ManyToMany(type => File)
-  @JoinTable()
-  files: File[];
-
-  @OneToMany(type => Comment, comment => comment.note)
-  comments: Comment[];
-
-  @Column({ nullable: true })
-  userId?: number;
-
-  @Column({ nullable: true })
-  groupId?: number;
+  @OneToOne(type => File)
+  image: string;
 
   @ManyToOne(type => User, user => user.notes)
   @JoinColumn({ name: 'userId' })
   user: User;
+
+  @ManyToMany(type => User, user => user.groups)
+  @JoinTable()
+  participants: User[];
 
 }

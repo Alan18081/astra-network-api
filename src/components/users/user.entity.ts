@@ -1,9 +1,8 @@
 import { Column, Entity, Index, JoinColumn, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
-import {UserRole} from './entities/user-role.entity';
-import {Product} from '../products/product.entity';
 import {BaseEntity} from '../core/base.entity';
 import { Chat } from '../chats/chat.entity';
 import { Note } from '../notes/note.entity';
+import { Group } from '../groups/group.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -24,13 +23,6 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   password: string;
 
-  @ManyToOne(type => UserRole)
-  @JoinColumn()
-  role: UserRole;
-
-  @OneToMany(type => Product, product => product.seller)
-  products: Product[];
-
   @Column({ nullable: true })
   googleId: string;
 
@@ -48,4 +40,7 @@ export class User extends BaseEntity {
 
   @OneToMany(type => Note, note => note.user)
   notes: Note[];
+
+  @ManyToMany(type => Group, group => group.participants)
+  groups: Group[];
 }

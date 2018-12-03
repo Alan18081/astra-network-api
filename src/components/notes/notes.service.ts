@@ -102,7 +102,7 @@ export class NotesService {
   async updateOne(id: number, payload: UpdateNoteDto): Promise<Note | undefined> {
     await this.notesRepository.update(id, payload);
 
-    return await this.notesRepository.findOne(id);
+    return await this.findOne(id, { includeFiles: true });
   }
 
   async deleteOne(id: number): Promise<void> {
