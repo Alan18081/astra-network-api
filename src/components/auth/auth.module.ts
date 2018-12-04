@@ -5,8 +5,6 @@ import {JwtModule} from '@nestjs/jwt';
 import {JWT_EXPIRES, JWT_SECRET} from '../../config';
 import {AuthController} from './auth.controller';
 import {AuthService} from './auth.service';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import {RefreshToken} from './entities/RefreshToken.entity';
 import {JwtStrategy} from './strategies/jwt.strategy';
 import {GoogleStrategy} from './strategies/google.strategy';
 import { CoreModule } from '../core/core.module';
@@ -24,9 +22,8 @@ import {UserHashesModule} from '../user-hashes/user-hashes.module';
     UsersModule,
     CoreModule,
     UserHashesModule,
-    TypeOrmModule.forFeature([RefreshToken]),
   ],
-  exports: [AuthService],
+  exports: [AuthService, JwtModule],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, GoogleStrategy],
 })

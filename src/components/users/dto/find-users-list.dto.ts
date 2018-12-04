@@ -10,8 +10,4 @@ export class FindUsersListDto extends PaginationDto {
   @IsOptional()
   ageTo?: number;
 
-  @IsBooleanString()
-  @IsOptional()
-  onlySellers?: boolean;
-
 }

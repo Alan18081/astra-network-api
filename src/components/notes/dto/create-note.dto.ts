@@ -6,10 +6,10 @@ export class CreateNoteDto {
 
   @IsString()
   @IsOptional()
-  description: string;
+  description?: string;
 
   @ArrayNotEmpty()
   @IsOptional()
-  fileIds: number[];
+  fileIds?: number[];
 
 }

@@ -36,7 +36,7 @@ export class MessagesService {
     });
   }
 
-  async addMessage(userId: number, chatId: number, text: string): Promise<Message | undefined> {
+  async createOne(userId: number, chatId: number, text: string): Promise<Message | undefined> {
     const newMessage = {
       ...new Message(),
       text,
@@ -50,7 +50,7 @@ export class MessagesService {
     return await this.findOne(newMessage.id, { includeUser: true });
   }
 
-  async updateMessage(payload: UpdateMessageDto): Promise<Message | undefined> {
+  async updateOne(payload: UpdateMessageDto): Promise<Message | undefined> {
     await this.messagesRepository.update(
       {
         id: payload.messageId,
@@ -60,10 +60,10 @@ export class MessagesService {
       },
     );
 
-    return await this.messagesRepository.findOne({ relations: ['user'] });
+    return await this.findOne(payload.messageId, { includeUser: true });
   }
 
-  async removeMessage(id: number): Promise<void> {
+  async deleteOne(id: number): Promise<void> {
     await this.messagesRepository.delete({id});
   }
 

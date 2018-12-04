@@ -7,6 +7,7 @@ import { FilesModule } from './components/files/files.module';
 import {MessagesModule} from './components/messages/messages.module';
 import { ChatsModule } from './components/chats/chats.module';
 import { NotesModule } from './components/notes/notes.module';
+import { RefreshTokensModule } from './components/refresh-token/refresh-tokens.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { NotesModule } from './components/notes/notes.module';
     MessagesModule,
     ChatsModule,
     NotesModule,
+    RefreshTokensModule,
   ],
   controllers: [],
   providers: [],

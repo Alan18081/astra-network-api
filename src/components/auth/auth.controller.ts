@@ -31,10 +31,14 @@ export class AuthController {
   @Post('login')
   @ApiOperation({ title: 'Login for generating access token' })
   async login(@Body() payload: LoginDto): Promise<JwtResponse> {
-    const user = await this.usersService.findOneByEmail(payload.email, true);
+    const user = await this.usersService.findOneByEmail(payload.email);
 
     if (!user) {
       throw new UnauthorizedException(Messages.USER_NOT_FOUND);
+    }
+
+    if(!user.password) {
+      throw new BadRequestException(Messages.USER_DOESNT_HAVE_PASSWORD);
     }
 
     const isValidPassword = await this.hashService.compareHash(payload.password, user.password);
@@ -89,6 +93,11 @@ export class AuthController {
   @ApiBearerAuth()
   @ApiOperation({ title: 'Create new password' })
   async changePassword(@ReqUser() user: User, @Body() payload: ChangePasswordDto): Promise<void> {
+
+    if(!user.password) {
+      throw new BadRequestException(Messages.USER_DOESNT_HAVE_PASSWORD);
+    }
+
     const isValid = await this.hashService.compareHash(payload.oldPassword, user.password);
 
     if (!isValid) {

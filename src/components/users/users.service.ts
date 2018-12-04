@@ -9,7 +9,7 @@ import {FindUsersListDto} from './dto/find-users-list.dto';
 import {Roles} from '../../helpers/enums/roles.enum';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {GoogleUserData} from './interfaces/google-user-data.interface';
-import { PaginatedResult } from './interfaces/paginated-result.interface';
+import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 
 @Injectable()
 export class UsersService implements BaseService<User> {
@@ -31,10 +31,6 @@ export class UsersService implements BaseService<User> {
 
     if (query.ageTo) {
       queryBuilder.where('age < :ageTo', { ageTo: query.ageTo });
-    }
-
-    if (query.onlySellers) {
-      queryBuilder.where('roleId = :roleId', { roleId: Roles.BUYER });
     }
 
     return queryBuilder;
@@ -63,15 +59,10 @@ export class UsersService implements BaseService<User> {
     return user;
   }
 
-  async findOneByEmail(email: string, includePassword: boolean = false): Promise<User | undefined> {
-    const query = this.usersRepository.createQueryBuilder('user')
-      .where('email = :email', { email });
-
-    if (includePassword) {
-      query.addSelect('user.password');
-    }
-
-    return await query.getOne();
+  async findOneByEmail(email: string): Promise<User | undefined> {
+    return await this.usersRepository.findOne({
+      email
+    });
   }
 
   async findOneByGoogleId(id: string): Promise<User | undefined> {

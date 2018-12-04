@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Note } from './note.entity';
 import { FindOptions, FindOptionsRelation, Repository } from 'typeorm';
-import { PaginatedResult } from '../users/interfaces/paginated-result.interface';
+import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 import { FindChatsListDto } from '../chats/dto/http/find-chats-list.dto';
 import { User } from '../users/user.entity';
 import { FindNotesListDto } from './dto/find-notes-list.dto';

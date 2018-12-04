@@ -5,11 +5,7 @@ import { User } from '../users/user.entity';
 import { UsersService } from '../users/users.service';
 import { JwtResponse } from './interfaces/jwt-response';
 import { JWT_EXPIRES } from '../../config';
-import { InjectRepository } from '@nestjs/typeorm';
-import { RefreshToken } from './entities/RefreshToken.entity';
-import { Repository } from 'typeorm';
 import { Messages } from '../../helpers/enums/messages.enum';
-import * as uid from 'uid-safe';
 import { UserHashesService } from '../user-hashes/user-hashes.service';
 import { HashTypes } from '../../helpers/enums/hash-types.enum';
 import { EmailSendingService } from '../core/services/email-sending.service';
@@ -19,7 +15,7 @@ import { EmailTitles } from '../../helpers/enums/email-titles.enum';
 import { WsException } from '@nestjs/websockets';
 import {HOST, PORT} from '../../config';
 import { SetNewPasswordDto } from './dto/set-new-password.dto';
-import { HashService } from '../core/services/hash.service';
+import { RefreshTokensService } from '../refresh-token/refresh-tokens.service';
 
 @Injectable()
 export class AuthService {
@@ -29,15 +25,14 @@ export class AuthService {
     private readonly userHashesService: UserHashesService,
     private readonly emailSendingService: EmailSendingService,
     private readonly emailTemplatesService: EmailTemplatesService,
-    @InjectRepository(RefreshToken)
-    private readonly refreshTokensRepository: Repository<RefreshToken>,
+    private readonly refreshTokensService: RefreshTokensService,
   ) {}
 
   async singIn(user: User): Promise<JwtResponse> {
     const jwtPayload: JwtPayload = { email: user.email, id: user.id };
     const accessToken = this.jwtService.sign(jwtPayload);
 
-    const refreshTokenRecord = await this.refreshTokensRepository.findOne({ user });
+    const refreshTokenRecord = await this.refreshTokensService.findOneByUserId(user.id);
 
     if (refreshTokenRecord) {
       return {
@@ -47,17 +42,14 @@ export class AuthService {
       };
     }
 
-    const refreshToken = uid.sync(30);
-
-    const newRefreshTokenRecord = new RefreshToken();
-    newRefreshTokenRecord.token = refreshToken;
-    newRefreshTokenRecord.user = user;
-
-    await this.refreshTokensRepository.save(newRefreshTokenRecord);
+    const newRefreshTokenRecord = await this.refreshTokensService.createOne({
+      userId: user.id,
+      accessToken
+    });
 
     return {
       accessToken,
-      refreshToken,
+      refreshToken: newRefreshTokenRecord.token,
       expiresIn: JWT_EXPIRES,
     };
   }
@@ -67,16 +59,13 @@ export class AuthService {
   }
 
   async exchangeToken(token: string): Promise<JwtResponse> {
-    const tokenRecord = await this.refreshTokensRepository.findOne(
-      { token },
-      { relations: ['user'] },
-    );
+    const tokenRecord = await this.refreshTokensService.findOneByToken(token);
 
     if (!tokenRecord) {
       throw new NotFoundException(Messages.REFRESH_TOKEN_NOT_FOUND);
     }
 
-    await this.refreshTokensRepository.delete(tokenRecord.id);
+    await this.refreshTokensService.deleteOne(tokenRecord.id);
 
     return await this.singIn(tokenRecord.user);
   }

@@ -90,7 +90,7 @@ export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage(messagesActions.ADD_MESSAGE)
   @UseInterceptors(UserInterceptor)
   async onAddMessage(client: any, payload: AddMessageDto): Promise<void> {
-    const message = await this.messagesService.addMessage(client.user.id, payload.chatId, payload.text);
+    const message = await this.messagesService.createOne(client.user.id, payload.chatId, payload.text);
 
     if (message) {
       const action = new messagesActions.AddMessage(message);
@@ -110,7 +110,7 @@ export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       throw new WsException(Messages.INVALID_RIGHTS_TO_UPDATE_MESSAGE);
     }
 
-    const updatedMessage = await this.messagesService.updateMessage(payload);
+    const updatedMessage = await this.messagesService.updateOne(payload);
 
     const action = new messagesActions.UpdateMessage(updatedMessage);
 
@@ -129,7 +129,7 @@ export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       throw new WsException(Messages.INVALID_RIGHTS_TO_UPDATE_MESSAGE);
     }
 
-    await this.messagesService.removeMessage(payload.messageId);
+    await this.messagesService.deleteOne(payload.messageId);
 
     const action = new messagesActions.RemoveMessage(payload.messageId);
 

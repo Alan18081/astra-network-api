@@ -9,12 +9,12 @@ export abstract class BaseEntity {
   createdAt: Date;
 
   @Column({ nullable: true })
-  updatedAt: Date;
+  updatedAt?: Date;
 
   @Column({ nullable: true })
-  deletedAt: Date;
+  deletedAt?: Date;
 
   @Column({ default: false })
-  deleted: boolean;
+  deleted?: boolean;
 
 }

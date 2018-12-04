@@ -6,7 +6,7 @@ import {Messages} from '../../helpers/enums/messages.enum';
 import {AuthService} from '../auth/auth.service';
 import {ClientsStoreService} from '../core/services/clients-store.service';
 import {JwtPayload} from '../auth/interfaces/jwt-payload.interface';
-import {UseFilters, UsePipes, ValidationPipe} from '@nestjs/common';
+import {UsePipes, ValidationPipe} from '@nestjs/common';
 
 @WebSocketGateway({ namespace: 'notes' })
 @UsePipes(new ValidationPipe())

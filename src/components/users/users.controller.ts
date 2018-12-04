@@ -8,7 +8,7 @@ import {FindUsersListDto} from './dto/find-users-list.dto';
 import {UpdateUserDto} from './dto/update-user.dto';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
 import {User} from './user.entity';
-import { PaginatedResult } from './interfaces/paginated-result.interface';
+import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 
 @Controller('users')
 export class UsersController {

@@ -14,17 +14,17 @@ export class User extends BaseEntity {
   lastName: string;
 
   @Column({ nullable: true })
-  age: number;
+  age?: number;
 
   @Column()
   @Index()
   email: string;
 
   @Column({ nullable: true })
-  password: string;
+  password?: string;
 
   @Column({ nullable: true })
-  googleId: string;
+  googleId?: string;
 
   @Column({ type: 'boolean', default: false })
   emailVerified: boolean;
@@ -33,14 +33,14 @@ export class User extends BaseEntity {
   phoneVerified: boolean;
 
   @ManyToMany(type => Chat, chat => chat.users)
-  chats: Chat[];
+  chats?: Chat[];
 
   @Column({ type: 'boolean', default: false })
   online: boolean;
 
   @OneToMany(type => Note, note => note.user)
-  notes: Note[];
+  notes?: Note[];
 
   @ManyToMany(type => Group, group => group.participants)
-  groups: Group[];
+  groups?: Group[];
 }

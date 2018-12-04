@@ -25,7 +25,7 @@ export class NotesController {
 
   @Get()
   @ApiOperation({ title: 'Get list of notes for particular user' })
-  async findAll(@Query() query: FindNotesListDto): Promise<Note[]> {
+  async findMany(@Query() query: FindNotesListDto): Promise<Note[]> {
     if (query.ids) {
       return await this.notesService.findManyByIds(query);
     } else {

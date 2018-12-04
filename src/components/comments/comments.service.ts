@@ -31,6 +31,6 @@ export class CommentsService {
   }
 
   async deleteOne(id: number): Promise<void> {
-
+    await this.commentsRepository.delete({ id });
   }
 }

@@ -1,5 +1,5 @@
 import {Column, Entity, Index, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
-import {User} from '../../users/user.entity';
+import {User} from '../users/user.entity';
 
 @Entity()
 export class RefreshToken {
@@ -11,8 +11,11 @@ export class RefreshToken {
   @Index()
   token: string;
 
+  @Column()
+  userId: number;
+
   @OneToOne(type => User)
-  @JoinColumn()
+  @JoinColumn({ name: 'userId' })
   user: User;
 
 }
