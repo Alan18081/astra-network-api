@@ -12,6 +12,7 @@ import { FindChatsListDto } from './dto/http/find-chats-list.dto';
 import {WsException} from '@nestjs/websockets';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {UsersService} from '../users/users.service';
+import { PaginationDto } from '../core/dto/pagination.dto';
 
 @Injectable()
 export class ChatsService {
@@ -40,9 +41,9 @@ export class ChatsService {
     return await this.chatsRepository.find(options);
   }
 
-  async findManyByIds(query: FindChatsListDto): Promise<Chat[]> {
+  async findManyByIds(ids: number[], query: FindChatsListDto ): Promise<Chat[]> {
     const relations = this.getRelations(query);
-    return await this.chatsRepository.findByIds(query.ids, { relations });
+    return await this.chatsRepository.findByIds(ids, { relations });
   }
 
   async addNewUserToChat(chatId: number, userId: number): Promise<Chat> {
@@ -101,7 +102,7 @@ export class ChatsService {
     return relations;
   }
 
-  async findManyWithPagination(query: FindChatsListDto): Promise<PaginatedResult<Chat>> {
+  async findManyWithPagination(query: FindChatsListDto & Required<PaginationDto>): Promise<PaginatedResult<Chat>> {
     const options: FindOptions<Chat> = {
       where: {},
       relations: [],
@@ -137,7 +138,7 @@ export class ChatsService {
       where: {
         id,
       },
-      relations: ['users'],
+      relations,
     });
   }
 

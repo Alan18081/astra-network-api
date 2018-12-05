@@ -15,7 +15,7 @@ import { EmailTitles } from '../../helpers/enums/email-titles.enum';
 import { WsException } from '@nestjs/websockets';
 import {HOST, PORT} from '../../config';
 import { SetNewPasswordDto } from './dto/set-new-password.dto';
-import { RefreshTokensService } from '../refresh-token/refresh-tokens.service';
+import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +28,7 @@ export class AuthService {
     private readonly refreshTokensService: RefreshTokensService,
   ) {}
 
-  async singIn(user: User): Promise<JwtResponse> {
+  async signIn(user: User): Promise<JwtResponse> {
     const jwtPayload: JwtPayload = { email: user.email, id: user.id };
     const accessToken = this.jwtService.sign(jwtPayload);
 
@@ -67,7 +67,7 @@ export class AuthService {
 
     await this.refreshTokensService.deleteOne(tokenRecord.id);
 
-    return await this.singIn(tokenRecord.user);
+    return await this.signIn(tokenRecord.user);
   }
 
   async verifyEmail({ firstName, lastName, email, id }: User): Promise<void> {
@@ -109,10 +109,11 @@ export class AuthService {
   }
 
   async resetPassword({ firstName, lastName, email, id }: User): Promise<void> {
-    await this.userHashesService.createOne(id, HashTypes.RESET_PASSWORD);
+    const resetPasswordHash = await this.userHashesService.createOne(id, HashTypes.RESET_PASSWORD);
     const content = this.emailTemplatesService.getTemplate(TemplateTypes.RESET_PASSWORD, {
       firstName,
       lastName,
+      url: `http://${HOST}:${PORT}/auth/resetPassword/hash/${resetPasswordHash.hash}`,
     });
     await this.emailSendingService.sendSystemEmail(
       email,

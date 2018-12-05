@@ -9,6 +9,8 @@ import { CreateChatDto } from './dto/http/create-chat.dto';
 import { FindChatsListDto } from './dto/http/find-chats-list.dto';
 import {UpdateChatDto} from './dto/http/update-chat.dto';
 import { FindOneChatDto } from './dto/http/find-one-chat.dto';
+import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
+import { PaginationDto } from '../core/dto/pagination.dto';
 
 @Controller('chats')
 @UseGuards(AuthGuard('jwt'))
@@ -22,9 +24,11 @@ export class ChatsController {
 
   @Get()
   @ApiOperation({ title: 'Get list of chats for particular user' })
-  async findAll(@Query() query: FindChatsListDto): Promise<Chat[]> {
+  async findMany(@Query() query: FindChatsListDto): Promise<Chat[] | PaginatedResult<Chat>> {
     if (query.ids) {
-      return await this.chatsService.findManyByIds(query);
+      return await this.chatsService.findManyByIds(query.ids, query);
+    } else if(query.page && query.limit) {
+      return await this.chatsService.findManyWithPagination(query as FindChatsListDto & Required<PaginationDto>);
     } else {
       return await this.chatsService.findMany(query);
     }

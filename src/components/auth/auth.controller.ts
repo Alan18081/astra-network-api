@@ -47,7 +47,8 @@ export class AuthController {
       throw new UnauthorizedException(Messages.INVALID_PASSWORD);
     }
 
-    return await this.authService.singIn(user);
+
+    return await this.authService.signIn(user);
   }
 
   @Post('token')
@@ -64,7 +65,7 @@ export class AuthController {
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
   @ApiOperation({ title: 'Callback for google authentication' })
-  async googleLoginCallback(@ReqUser() user: User | null, @Res() res: Response): Promise<void> {
+  googleLoginCallback(@ReqUser() user: User | null, @Res() res: Response): void {
     if (user) {
       res.redirect(`/auth/google/success?userId=${user.id}`);
     } else {
@@ -77,7 +78,7 @@ export class AuthController {
   async googleSuccess(@Query('userId') userId: string | number): Promise<JwtResponse | void> {
     const user = await this.usersService.findOne(+userId);
     if (user) {
-      return await this.authService.singIn(user);
+      return await this.authService.signIn(user);
 
     }
   }
@@ -130,6 +131,7 @@ export class AuthController {
   @ApiOperation({ title: 'Reset password' })
   async resetPassword(@Body() body: ResetPasswordDto): Promise<void> {
     const user = await this.usersService.findOneByEmail(body.email);
+
     if (!user) {
       throw new NotFoundException(Messages.USER_NOT_FOUND);
     }

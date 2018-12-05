@@ -5,7 +5,7 @@ export class FindChatsListDto extends PaginationDto {
 
   @IsOptional()
   @ArrayNotEmpty()
-  ids: number[];
+  ids?: number[];
 
   @IsBooleanString()
   @IsOptional()
@@ -17,6 +17,6 @@ export class FindChatsListDto extends PaginationDto {
 
   @IsOptional()
   @IsNumberString()
-  userId?: boolean;
+  userId: number;
 
 }

@@ -1,8 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CoreModule } from '../../core/core.module';
-import { PaginatedResult } from '../../../helpers/interfaces/paginated-result.interface';
-import { PaginationDto } from '../../core/dto/pagination.dto';
 import { NotesRepository } from './notes.repository';
 import { NotesController } from '../notes.controller';
 import { NotesService } from '../notes.service';

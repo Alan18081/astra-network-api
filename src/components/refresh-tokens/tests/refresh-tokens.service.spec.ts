@@ -1,18 +1,30 @@
 import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
 import { mockRepository } from '../../../helpers/test-helpers/mock-repository';
 import { RefreshTokensService } from '../refresh-tokens.service';
 import { RefreshToken } from '../refresh-token.entity';
 import { CreateRefreshTokenInterface } from '../interfaces/create-refresh-token.interface';
 
-describe('UserHashesService', () => {
+describe('RefreshTokensService', () => {
   let refreshTokensService;
+
+  const mockJwtService = {
+    sign() {
+      return 'Signed token'
+    }
+  };
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
       imports: [],
-      providers: [RefreshTokensService, { provide: getRepositoryToken(RefreshToken), useValue: mockRepository }]
-    }).compile();
+      providers: [
+        RefreshTokensService,
+        { provide: getRepositoryToken(RefreshToken), useValue: mockRepository },
+      ]
+    }).overrideProvider(JwtService)
+      .useValue(mockJwtService)
+      .compile();
 
     refreshTokensService = module.get<RefreshTokensService>(RefreshTokensService);
   });
@@ -23,7 +35,7 @@ describe('UserHashesService', () => {
 
       const result = {
         ...new RefreshToken(),
-        userId: payload.userId,
+        userId,
         token: 'Some refresh token'
       };
 
@@ -39,7 +51,7 @@ describe('UserHashesService', () => {
 
       const result = {
         ...new RefreshToken(),
-        userId: payload.userId,
+        userId: 5,
         token: 'Some refresh token'
       };
 
@@ -65,7 +77,7 @@ describe('UserHashesService', () => {
 
       jest.spyOn(mockRepository, 'save').mockImplementation(async () => result);
 
-      expect(await refreshTokensService.createOne()).toEqual(result);
+      expect(await refreshTokensService.createOne(payload)).toEqual(result);
     });
   });
 
