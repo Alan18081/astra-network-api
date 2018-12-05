@@ -10,6 +10,7 @@ import {Roles} from '../../helpers/enums/roles.enum';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {GoogleUserData} from './interfaces/google-user-data.interface';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
+import { PaginationDto } from '../core/dto/pagination.dto';
 
 @Injectable()
 export class UsersService implements BaseService<User> {
@@ -36,15 +37,15 @@ export class UsersService implements BaseService<User> {
     return queryBuilder;
   }
 
-  async findManyWithPagination(payload: FindUsersListDto): Promise<PaginatedResult<User>> {
-    const skip = (payload.page - 1) * payload.limit;
-    const queryBuilder = this.prepareBuilder(this.usersRepository.createQueryBuilder('user'), payload);
+  async findManyWithPagination(query: FindUsersListDto & Required<PaginationDto>): Promise<PaginatedResult<User>> {
+    const skip = (query.page - 1) * query.limit;
+    const queryBuilder = this.prepareBuilder(this.usersRepository.createQueryBuilder('user'), query);
     const totalCount = await queryBuilder.getCount();
-    const data = await queryBuilder.skip(skip).take(payload.limit).getMany();
+    const data = await queryBuilder.skip(skip).take(query.limit).getMany();
 
     return {
-      page: payload.page,
-      itemsPerPage: payload.limit,
+      page: query.page,
+      itemsPerPage: query.limit,
       totalCount,
       data,
     };

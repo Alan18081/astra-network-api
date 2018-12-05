@@ -25,17 +25,11 @@ export class ChatsService {
 
   async findMany(query: FindChatsListDto): Promise<Chat[]> {
     const options: FindOptions<Chat> = {
-      where: {},
+      where: {
+        id: query.userId,
+      },
       relations: [],
     };
-
-    if (query.userId) {
-      options.where = {
-       users: {
-         id: query.userId,
-       },
-      };
-    }
 
     options.relations = this.getRelations(query);
     return await this.chatsRepository.find(options);

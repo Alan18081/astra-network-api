@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany, OneToMany } from 'typeorm';
+import { Column, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { File } from '../files/file.entity';
 import { Comment } from '../comments/comment.entity';

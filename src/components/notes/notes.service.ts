@@ -9,6 +9,7 @@ import { FindNotesListDto } from './dto/find-notes-list.dto';
 import { FindOneNoteDto } from './dto/find-one-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 import { CreateNoteDto } from './dto/create-note.dto';
+import { PaginationDto } from '../core/dto/pagination.dto';
 
 @Injectable()
 export class NotesService {
@@ -17,7 +18,7 @@ export class NotesService {
     private readonly notesRepository: Repository<Note>,
   ) {}
 
-  async findMany(query: FindChatsListDto): Promise<Note[]> {
+  async findMany(query: FindNotesListDto): Promise<Note[]> {
     const options: FindOptions<Note> = {
       where: {},
       relations: ['user'],
@@ -48,7 +49,7 @@ export class NotesService {
     return relations;
   }
 
-  async findManyWithPagination(query: FindNotesListDto): Promise<PaginatedResult<Note>> {
+  async findManyWithPagination(query: FindNotesListDto & Required<PaginationDto>): Promise<PaginatedResult<Note>> {
     const options: FindOptions<Note> = {
       where: {},
       relations: [],

@@ -6,14 +6,17 @@ import { mockRepository } from '../../../helpers/test-helpers/mock-repository';
 import { Chat } from '../chat.entity';
 import { ChatsService } from '../chats.service';
 import { UsersService } from '../../users/users.service';
+import { FindChatsListDto } from '../dto/http/find-chats-list.dto';
+import { CreateChatDto } from '../dto/http/create-chat.dto';
+import { UpdateChatDto } from '../dto/http/update-chat.dto';
 
 const mockUsersService = {
 
 };
 
-describe('UsersService', () => {
+describe('ChatsService', () => {
   let chatsService;
-  const mockUsers = [new Chat(), new Chat()];
+  const mockChats = [new Chat(), new Chat()];
 
 
   beforeEach(async () => {
@@ -28,44 +31,45 @@ describe('UsersService', () => {
   });
 
   describe('findMany', () => {
+    const query: FindChatsListDto = {
+      userId: 5
+    };
 
     it('should return an array', async () => {
-      jest.spyOn(chatsService, 'prepareBuilder').mockImplementation(() =>  ({
-        async getMany() {
-          return mockUsers;
-        }
-      }));
-      expect(await chatsService.findMany({  })).toBe(mockUsers);
+      jest.spyOn(chatsService, 'getRelations').mockImplementation(() => ['users']);
+      jest.spyOn(mockRepository, 'find').mockImplementation(() => mockChats);
+
+      expect(await chatsService.findMany(query)).toBe(mockChats);
+    });
+
+    it('should call getRelations with query', async () => {
+      jest.spyOn(mockRepository, 'find').mockImplementation(() => mockChats);
+
+      const spy = jest.spyOn(chatsService, 'getRelations');
+      spy.mockImplementation(() => ['users']);
+
+      await chatsService.findMany(query);
+      expect(spy).toBeCalledWith(query);
     });
 
   });
 
   describe('findManyWithPagination', () => {
-    const query: PaginationDto = {
+    const query: Required<PaginationDto> = {
       page: 1,
       limit: 2
     };
+
     const paginatedResult: PaginatedResult<Chat> = {
       itemsPerPage: query.limit,
       totalCount: 5,
       page: query.page,
-      data: mockUsers,
+      data: mockChats,
     };
+
     it('should return paginated result', async () => {
-      jest.spyOn(chatsService, 'prepareBuilder').mockImplementation(() =>  ({
-        skip() {
-          return this;
-        },
-        async getCount() {
-          return 5;
-        },
-        take() {
-          return this;
-        },
-        async getMany() {
-          return mockUsers;
-        }
-      }));
+      jest.spyOn(chatsService, 'getRelations').mockImplementation(() => ['users']);
+      jest.spyOn(mockRepository, 'findAndCount').mockImplementation(() => [mockChats, paginatedResult.totalCount]);
 
       const result = await chatsService.findManyWithPagination(query);
 
@@ -76,35 +80,31 @@ describe('UsersService', () => {
 
   describe('findOne', () => {
     it('should return user', async () => {
-      const result = new User();
+      const result = new Chat();
       jest.spyOn(mockRepository, 'findOne').mockImplementation(async () => result);
 
-      expect(await chatsService.findOne(5)).toEqual(result);
+      expect(await chatsService.findOne(5, {})).toEqual(result);
     });
   });
 
-  describe('findOneByEmail', () => {
-    it('should return user', async () => {
-      const result = new User();
-      jest.spyOn(mockRepository, 'findOne').mockImplementation(async () => result);
+  describe('getRelations', () => {
 
-      expect(await chatsService.findOne('markus@gmail.com')).toEqual(result);
+    it('should return valid array of relations', () => {
+
     });
+
   });
 
   describe('createOne', () => {
     it('should create new user and return it', async () => {
-      const payload: CreateUserDto = {
-        firstName: 'Alan',
-        lastName: 'Morgan',
-        email: 'gogunov00@gmail.com',
-        password: 'hello'
+      const payload: CreateChatDto = {
+        name: 'My chat',
+        userIds: [4, 5]
       };
 
       const result = {
-        ...new User(),
+        ...new Chat(),
         ...payload,
-        password: hashService.generateHash('hello')
       };
 
       jest.spyOn(mockRepository, 'save').mockImplementation(async () => result);
@@ -113,61 +113,21 @@ describe('UsersService', () => {
     });
   });
 
-  describe('createByGoogle', () => {
-    it('should create new user and return it', async () => {
-      const payload: GoogleUserData = {
-        firstName: 'Alan',
-        lastName: 'Morgan',
-        email: 'gogunov00@gmail.com',
-        googleId: '54545454'
-      };
-
-      const result = {
-        ...new User(),
-        ...payload,
-      };
-
-      jest.spyOn(mockRepository, 'save').mockImplementation(async () => result);
-
-      expect(await chatsService.createByGoogle(payload)).toEqual(result);
-    });
-  });
-
   describe('updateOne', () => {
     it('should update user and returns it', async () => {
-      const payload = {
-        firstName: 'Alan',
-        lastName: 'Morgan',
+      const payload: UpdateChatDto = {
+        name: 'Alan'
       };
 
       const result = {
-        ...new User(),
-        id: 5,
-        firstName: 'Alan',
-        lastName: 'Morgan',
-        email: 'gogunov00@gmail.com',
-        googleId: '54545454',
-        emailVerified: false,
-        phoneVerified: false,
-        online: true,
-        createdAt: new Date()
+        ...new Chat(),
+        ...payload,
       };
 
       jest.spyOn(mockRepository, 'update').mockImplementation(async () => result);
       jest.spyOn(mockRepository, 'findOne').mockImplementation(async () => result);
 
       expect(await chatsService.updateOne(result.id, payload)).toEqual(result);
-    });
-  });
-
-  describe('setNewPassword', () => {
-    it('should not throw', async () => {
-      try {
-        await chatsService.updateOne('hash', 'password');
-        expect(true);
-      } catch (e) {
-        expect(false);
-      }
     });
   });
 
