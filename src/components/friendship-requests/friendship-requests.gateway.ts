@@ -8,6 +8,11 @@ import { AcceptRequestDto } from './dto/accept-request.dto';
 import { Messages } from '../../helpers/enums/messages.enum';
 import { UserInterceptor } from '../../helpers/interceptors/user.interceptor';
 import { RemoveRequestDto } from './dto/remove-request.dto';
+import { PaginationDto } from '../core/dto/pagination.dto';
+import { FriendshipRequest } from './friendship-request.entity';
+import { FriendshipRequestsType } from './friendship-requests-type.enum';
+import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
+import { FetchIncomingFriendshipRequests, FetchOutgoingFriendshipRequests } from './friendship-requests.actions';
 
 @WebSocketGateway({ namespace: '/friendship' })
 @UsePipes(new ValidationPipe())
@@ -21,16 +26,30 @@ export class FriendshipRequestsGateway {
   ) {}
 
   @SubscribeMessage(actions.FETCH_INCOMING_FRIENDSHIP_REQUESTS)
-  async onFetchIncomingFriendshipRequests(client: any): Promise<actions.FetchIncomingFriendshipRequests> {
-    const friendshipRequests = await this.friendshipRequestsService.findIncomingRequests(client.user.id);
-    return new actions.FetchIncomingFriendshipRequests(friendshipRequests);
+  async onFetchIncomingFriendshipRequests(client: any, data: PaginationDto): Promise<actions.FetchIncomingFriendshipRequests> {
+    const result =  await this.fetchFriendshipRequests(client.user.id, data, FriendshipRequestsType.INCOMING);
+    return new actions.FetchIncomingFriendshipRequests(result);
   }
 
   @SubscribeMessage(actions.FETCH_OUTGOING_FRIENDSHIP_REQUESTS)
-  async onFetchOutgoingFriendshipRequests(client: any): Promise<actions.FetchOutgoingFriendshipRequests> {
-    const friendshipRequests = await this.friendshipRequestsService.findOutgoingRequests(client.user.id);
-    return new actions.FetchOutgoingFriendshipRequests(friendshipRequests);
+  async onFetchOutgoingFriendshipRequests(client: any, data: PaginationDto): Promise<actions.FetchOutgoingFriendshipRequests> {
+    const result =  await this.fetchFriendshipRequests(client.user.id, data, FriendshipRequestsType.INCOMING);
+    return new actions.FetchOutgoingFriendshipRequests(result);
   }
+
+  private async fetchFriendshipRequests(userId: number, { page, limit }: PaginationDto, type: FriendshipRequestsType): Promise<FriendshipRequest[] | PaginatedResult<FriendshipRequest>> {
+    let response: FriendshipRequest[] | PaginatedResult<FriendshipRequest>;
+
+    if(page && limit) {
+      response = await this.friendshipRequestsService.findRequestsWithPagination(userId, { page, limit }, type);
+    } else {
+      response = await this.friendshipRequestsService.findRequests(userId, type);
+    }
+
+    return response;
+
+  }
+
 
   @SubscribeMessage(actions.SEND_FRIENDSHIP_REQUEST)
   async onSendFriendshipRequest(client: any, data: SendRequestDto): Promise<void> {

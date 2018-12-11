@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FriendshipRequest } from './friendship-request.entity';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
+import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
+import { PaginationDto } from '../core/dto/pagination.dto';
+import { FriendshipRequestsType } from './friendship-requests-type.enum';
 
 @Injectable()
 export class FriendshipRequestsService {
@@ -11,22 +14,33 @@ export class FriendshipRequestsService {
     private readonly friendshipRequestsRepository: Repository<FriendshipRequest>,
   ) {}
 
-  async findIncomingRequests(userId: number): Promise<FriendshipRequest[]> {
+  async findRequests(userId: number, type: FriendshipRequestsType): Promise<FriendshipRequest[]> {
+    const field = type === FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
     return await this.friendshipRequestsRepository.find({
       where: {
-        receiverId: userId
+        [field]: userId
       },
-      relations: ['sender']
+      relations: [type === FriendshipRequestsType.INCOMING ? 'receiver' : 'sender']
     });
   }
 
-  async findOutgoingRequests(userId: number): Promise<FriendshipRequest[]> {
-    return await this.friendshipRequestsRepository.find({
+  async findRequestsWithPagination(userId: number, { page, limit }: Required<PaginationDto>, type: FriendshipRequestsType): Promise<PaginatedResult<FriendshipRequest>> {
+    const field = type === FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
+    const [requests, totalCount] = await this.friendshipRequestsRepository.findAndCount({
       where: {
-        senderId: userId
+        [field]: userId
       },
-      relations: ['receiver']
+      skip: (page - 1) * limit,
+      take: limit,
+      relations: [type === FriendshipRequestsType.INCOMING ? 'receiver' : 'sender']
     });
+
+    return {
+      data: requests,
+      page,
+      totalCount,
+      itemsPerPage: limit
+    };
   }
 
   async findOne(id: number): Promise<FriendshipRequest | undefined> {

@@ -2,37 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d9b76ef-6374-485e-a8fa-a509f25f71bc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/app.gateway.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/dto/accept-request.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/dto/remove-request.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/dto/send-request.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.gateway.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/actions/ws-errors.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests-type.enum.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/auth.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/tests/auth.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/tests/auth.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/tests/chats.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/tests/chats.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/user.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/base.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/core/base.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/tests/notes.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/tests/notes.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/tests/users.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/tests/users.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/user.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/database.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/database.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/enums/messages.enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/enums/messages.enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="18" column="56" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+            <state relative-caret-position="346">
+              <caret line="31" column="3" lean-forward="true" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
               <folding>
                 <element signature="e#0#108#0" expanded="true" />
               </folding>
@@ -58,10 +33,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="676">
+              <caret line="28" column="84" selection-start-line="28" selection-start-column="84" selection-end-line="28" selection-end-column="84" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+            <state relative-caret-position="738">
+              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -69,11 +56,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests-type.enum.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="24" selection-start-line="24" selection-end-line="27" selection-end-column="6" />
+            <state relative-caret-position="508">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.gateway.spec.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1331">
+              <caret line="155" column="7" lean-forward="true" selection-start-line="155" selection-start-column="7" selection-end-line="155" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,8 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/refresh-tokens/tests/refresh-tokens.service.spec.ts" />
-        <option value="$PROJECT_DIR$/src/components/notes/tests/notes.controller.spec.ts" />
         <option value="$PROJECT_DIR$/src/components/auth/auth.controller.ts" />
         <option value="$PROJECT_DIR$/src/components/auth/tests/auth.controller.spec.ts" />
         <option value="$PROJECT_DIR$/src/components/chats/tests/users.repository.ts" />
@@ -139,9 +145,6 @@
         <option value="$PROJECT_DIR$/src/app.module.ts" />
         <option value="$PROJECT_DIR$/src/components/chats/chats.gateway.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/dto/find-requests-lis.dto.ts" />
-        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" />
-        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts" />
-        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.service.spec.ts" />
         <option value="$PROJECT_DIR$/src/components/users/tests/users.service.spec.ts" />
         <option value="$PROJECT_DIR$/src/components/notes/tests/notes.service.spec.ts" />
@@ -150,6 +153,11 @@
         <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.module.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.gateway.spec.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.enum.ts" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests-type.enum.ts" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" />
       </list>
     </option>
   </component>
@@ -305,7 +313,7 @@
       <workItem from="1544191327642" duration="3902000" />
       <workItem from="1544431179714" duration="7955000" />
       <workItem from="1544516990024" duration="12418000" />
-      <workItem from="1544540677904" duration="8707000" />
+      <workItem from="1544540677904" duration="10917000" />
     </task>
     <servers />
   </component>
@@ -315,13 +323,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105239000" />
+    <option name="totallyTimeSpent" value="107449000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19850586" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19850586" />
       <window_info id="Structure" order="1" weight="0.2497332" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -484,15 +492,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/core/services/email-sending.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/core/services/clients-store.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -771,16 +770,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/chats/chats.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -890,7 +879,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.gateway.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
+        <state relative-caret-position="1331">
           <caret line="155" column="7" lean-forward="true" selection-start-line="155" selection-start-column="7" selection-end-line="155" selection-end-column="7" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -898,30 +887,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="18" column="56" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#108#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="508">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests-type.enum.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+        <state relative-caret-position="738">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="24" selection-start-line="24" selection-end-line="27" selection-end-column="6" />
+        <state relative-caret-position="676">
+          <caret line="28" column="84" selection-start-line="28" selection-start-column="84" selection-end-line="28" selection-end-column="84" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="31" column="3" lean-forward="true" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#108#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

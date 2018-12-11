@@ -1,6 +1,7 @@
 import {WsResponse} from '@nestjs/websockets';
 import { User } from '../users/user.entity';
 import { FriendshipRequest } from './friendship-request.entity';
+import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 
 export const SEND_FRIENDSHIP_REQUEST = 'SEND_FRIENDSHIP_REQUEST';
 export const ACCEPT_FRIENDSHIP_REQUEST = 'ACCEPT_FRIENDSHIP_REQUEST';
@@ -20,10 +21,10 @@ export class AcceptFriendshipRequest implements WsResponse {
 
 export class FetchIncomingFriendshipRequests implements WsResponse {
   readonly event = FETCH_INCOMING_FRIENDSHIP_REQUESTS;
-  constructor( public data: FriendshipRequest[]) {}
+  constructor( public data: FriendshipRequest[] | PaginatedResult<FriendshipRequest>) {}
 }
 
 export class FetchOutgoingFriendshipRequests implements WsResponse {
   readonly event = FETCH_OUTGOING_FRIENDSHIP_REQUESTS;
-  constructor( public data: FriendshipRequest[]) {}
+  constructor( public data: FriendshipRequest[] | PaginatedResult<FriendshipRequest>) {}
 }

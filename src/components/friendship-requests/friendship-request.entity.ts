@@ -22,10 +22,10 @@ export class FriendshipRequest extends BaseEntity {
   @Column({ type: 'varchar', nullable: true, length: 50 })
   message?: string;
 
-  // constructor(data: any) {
-  //   super();
-  //   Object.assign(this, data);
-  // }
+  constructor(data?: Partial<FriendshipRequest>) {
+    super();
+    Object.assign(this, data);
+  }
 
 
 }
