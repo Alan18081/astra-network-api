@@ -109,4 +109,24 @@ export class UsersService implements BaseService<User> {
 
     await this.updateOne(id, { password: passwordHash });
   }
+
+  async addFriend(userId: number, friendId: number): Promise<User | undefined> {
+   await this.usersRepository
+     .createQueryBuilder()
+     .relation(User, 'friends')
+     .of(userId)
+     .add(friendId);
+
+   return await this.findOne(userId);
+  }
+
+  async removeFriend(userId: number, friendId: number): Promise<User | undefined> {
+    await this.usersRepository
+      .createQueryBuilder()
+      .relation(User, 'friends')
+      .of(userId)
+      .remove(friendId);
+
+    return await this.findOne(userId);
+  }
 }

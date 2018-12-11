@@ -9,6 +9,7 @@ import { UsersService } from '../../users/users.service';
 import { FindChatsListDto } from '../dto/http/find-chats-list.dto';
 import { CreateChatDto } from '../dto/http/create-chat.dto';
 import { UpdateChatDto } from '../dto/http/update-chat.dto';
+import { User } from '../../users/user.entity';
 
 const mockUsersService = {
 
@@ -96,16 +97,28 @@ describe('ChatsService', () => {
   });
 
   describe('createOne', () => {
-    it('should create new user and return it', async () => {
-      const payload: CreateChatDto = {
-        name: 'My chat',
-        userIds: [4, 5]
-      };
+    const payload: CreateChatDto = {
+      name: 'My chat',
+      userIds: [4, 5]
+    };
 
-      const result = {
-        ...new Chat(),
-        ...payload,
-      };
+    const result = {
+      id: 5,
+      name: 'My chat',
+      users: [{ id: 4 } as User, { id: 5 } as User],
+      messages: [],
+      createdAt: new Date()
+    };
+
+    it('should call "save" on repository with new chat', async () => {
+      const spy = jest.spyOn(mockRepository, 'save').mockImplementation(async () => {});
+
+      await chatsService.createOne(payload);
+      expect(spy).toBeCalled();
+    });
+
+    it('should create new user and return it', async () => {
+      jest.spyOn(chatsService, 'findOne').mockImplementation(async () => result);
 
       jest.spyOn(mockRepository, 'save').mockImplementation(async () => result);
 

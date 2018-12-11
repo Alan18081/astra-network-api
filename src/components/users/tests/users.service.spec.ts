@@ -39,7 +39,7 @@ describe('UsersService', () => {
   });
 
   describe('findManyWithPagination', () => {
-    const query: PaginationDto = {
+    const query: Required<PaginationDto> = {
       page: 1,
       limit: 2
     };

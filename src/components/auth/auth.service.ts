@@ -100,7 +100,7 @@ export class AuthService {
     const res = this.jwtService.decode(token, {});
 
     if(!res || typeof res !== 'object') {
-      throw new WsException(Messages.INVALID_TOKEN);
+      return null;
     }
     delete res.iat;
     delete res.exp;

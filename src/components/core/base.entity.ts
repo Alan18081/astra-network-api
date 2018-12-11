@@ -17,4 +17,5 @@ export abstract class BaseEntity {
   @Column({ default: false })
   deleted?: boolean;
 
+
 }

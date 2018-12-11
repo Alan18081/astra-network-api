@@ -2,10 +2,9 @@ import {
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
-  OnGatewayConnection,
   WsResponse,
   WsException,
-  BaseWsExceptionFilter, OnGatewayDisconnect,
+  BaseWsExceptionFilter,
 } from '@nestjs/websockets';
 
 import * as chatsActions from './chats.actions';
@@ -15,56 +14,26 @@ import {ChatsService} from './chats.service';
 import { UseFilters, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import {AddNewUserDto} from './dto/sockets/add-new-user.dto';
 import {Messages} from '../../helpers/enums/messages.enum';
-import {AuthService} from '../auth/auth.service';
-import { JwtPayload } from '../auth/interfaces/jwt-payload.interface';
 import { AddMessageDto } from '../messages/dto/add-message.dto';
 import { RemoveUserDto } from './dto/sockets/remove-user.dto';
-import { UserInterceptor } from './user.interceptor';
-import { ClientsStoreService } from '../core/services/clients-store.service';
+import { UserInterceptor } from '../../helpers/interceptors/user.interceptor';
 import { UpdateMessageDto } from '../messages/dto/update-message.dto';
 import { RemoveMessageDto } from '../messages/dto/remove-message.dto';
 
 @WebSocketGateway({ namespace: 'chats' })
 @UsePipes(new ValidationPipe())
 @UseFilters(new BaseWsExceptionFilter())
-export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
+export class ChatsGateway {
   @WebSocketServer()
   private readonly server;
 
   constructor(
     private readonly chatsService: ChatsService,
     private readonly messagesService: MessagesService,
-    private readonly authService: AuthService,
-    private readonly clientsStoreService: ClientsStoreService,
   ) {}
 
   private emitMessageToChat(chatId: number, action: WsResponse): void {
     this.server.to(chatId).emit(action.event, action.data);
-  }
-
-  async handleConnection(client: any) {
-    const { token } = client.handshake.query;
-
-    if (!token) {
-      throw new WsException(Messages.AUTH_TOKEN_NOT_FOUND);
-    }
-
-    const data = this.authService.decodeToken(token) as JwtPayload;
-    const user = await this.authService.validateUser(data);
-
-    if (!user) {
-      throw new WsException(Messages.USER_NOT_FOUND);
-    }
-
-    this.clientsStoreService.addSocket({
-      id: client.id,
-      socket: client,
-      user,
-    });
-  }
-
-  async handleDisconnect(client: any) {
-    this.clientsStoreService.removeSocket(client.id);
   }
 
   @SubscribeMessage(chatsActions.ADD_NEW_USER)

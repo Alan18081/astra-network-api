@@ -328,12 +328,10 @@ describe('AuthService', () => {
     });
 
     it('should throw an error if token data is empty', async () => {
-      const tokenData = {};
-
       jest.spyOn(mockJwtService, 'decode').mockImplementation(() => undefined);
 
       try {
-        expect(await authService.decodeToken(token)).toBe(tokenData);
+        await authService.decodeToken(token);
         expect(false);
       } catch (e) {
         expect(JSON.stringify(e)).toEqual(JSON.stringify(new WsException(Messages.INVALID_TOKEN)));

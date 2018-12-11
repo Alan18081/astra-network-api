@@ -9,7 +9,7 @@ import {UsersModule} from '../users/users.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import {AuthModule} from '../auth/auth.module';
 import { ClientsStoreService } from '../core/services/clients-store.service';
-import { UserInterceptor } from './user.interceptor';
+import { UserInterceptor } from '../../helpers/interceptors/user.interceptor';
 import {CoreModule} from '../core/core.module';
 
 @Module({

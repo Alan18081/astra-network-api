@@ -1,4 +1,4 @@
-import { Column, Entity, Index, JoinColumn, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, Index, ManyToMany, OneToMany } from 'typeorm';
 import {BaseEntity} from '../core/base.entity';
 import { Chat } from '../chats/chat.entity';
 import { Note } from '../notes/note.entity';
@@ -43,4 +43,10 @@ export class User extends BaseEntity {
 
   @ManyToMany(type => Group, group => group.participants)
   groups?: Group[];
+
+  @ManyToMany(type => User, user => user.friends)
+  friends: User[];
+
+
+
 }

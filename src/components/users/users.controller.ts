@@ -9,6 +9,7 @@ import {UpdateUserDto} from './dto/update-user.dto';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
 import {User} from './user.entity';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
+import { PaginationDto } from '../core/dto/pagination.dto';
 
 @Controller('users')
 export class UsersController {
@@ -22,7 +23,7 @@ export class UsersController {
   @ApiOperation({ title: 'Fetch list of users' })
   async findMany(@Query() query: FindUsersListDto): Promise<User[] | PaginatedResult<User>> {
     if (query.page && query.limit) {
-      return await this.usersService.findManyWithPagination(query);
+      return await this.usersService.findManyWithPagination(query as FindUsersListDto & Required<PaginationDto>);
     }
 
     return await this.usersService.findMany(query);
