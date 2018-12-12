@@ -4,14 +4,26 @@ import { Socket } from '../../chats/interfaces/socket.interface';
 @Injectable()
 export class ClientsStoreService {
 
-  private sockets: Map<string, Socket> = new Map();
+  private sockets: Map<{ socketId: string, userId: number }, Socket> = new Map();
 
-  getSocket(socketId: string): Socket | undefined {
-    return this.sockets.get(socketId);
+  getSocketById(socketId: string): Socket | undefined {
+    for(const [key, value] of this.sockets) {
+      if(key.socketId === socketId) {
+        return value;
+      }
+    }
+  }
+
+  getSocketByUserId(userId: number): Socket | undefined {
+    for(const [key, value] of this.sockets) {
+      if(key.userId === userId) {
+        return value;
+      }
+    }
   }
 
   addSocket(socket: Socket): void {
-    this.sockets.set(socket.id, socket);
+    this.sockets.set({ socketId: socket.id, userId: socket.user.id}, socket);
   }
 
   removeSocket(socketId: string): void {

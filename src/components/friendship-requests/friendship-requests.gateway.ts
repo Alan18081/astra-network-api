@@ -1,4 +1,10 @@
-import { BaseWsExceptionFilter, SubscribeMessage, WebSocketGateway, WsException } from '@nestjs/websockets';
+import {
+  BaseWsExceptionFilter,
+  SubscribeMessage,
+  WebSocketGateway,
+  WebSocketServer,
+  WsException
+} from '@nestjs/websockets';
 import { UseFilters, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { FriendshipRequestsService } from './friendship-requests.service';
 import { UsersService } from '../users/users.service';
@@ -12,6 +18,7 @@ import { PaginationDto } from '../core/dto/pagination.dto';
 import { FriendshipRequest } from './friendship-request.entity';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
+import { ClientsStoreService } from '../core/services/clients-store.service';
 
 @WebSocketGateway({ namespace: '/friendship' })
 @UsePipes(new ValidationPipe())
@@ -19,9 +26,13 @@ import { PaginatedResult } from '../../helpers/interfaces/paginated-result.inter
 @UseInterceptors(UserInterceptor)
 export class FriendshipRequestsGateway {
 
+  @WebSocketServer()
+  private readonly server: any;
+
   constructor(
     private readonly friendshipRequestsService: FriendshipRequestsService,
     private readonly usersService: UsersService,
+    private readonly clientsStoreService: ClientsStoreService,
   ) {}
 
   @SubscribeMessage(actions.FETCH_INCOMING_FRIENDSHIP_REQUESTS)
@@ -52,7 +63,11 @@ export class FriendshipRequestsGateway {
 
   @SubscribeMessage(actions.SEND_FRIENDSHIP_REQUEST)
   async onSendFriendshipRequest(client: any, data: SendRequestDto): Promise<void> {
-    await this.friendshipRequestsService.createOne(client.user.id, data.receiverId, data.message);
+    const friendshipRequest = await this.friendshipRequestsService.createOne(client.user.id, data.receiverId, data.message);
+    const socket = await this.clientsStoreService.getSocketByUserId(friendshipRequest.receiverId);
+    if(socket) {
+      this.server.to(socket.id).emit(actions.NEW_FRIENDSHIP_REQUEST, friendshipRequest);
+    }
   }
 
   @SubscribeMessage(actions.ACCEPT_FRIENDSHIP_REQUEST)
