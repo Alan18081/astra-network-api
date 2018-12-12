@@ -12,7 +12,6 @@ import { PaginationDto } from '../core/dto/pagination.dto';
 import { FriendshipRequest } from './friendship-request.entity';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
-import { FetchIncomingFriendshipRequests, FetchOutgoingFriendshipRequests } from './friendship-requests.actions';
 
 @WebSocketGateway({ namespace: '/friendship' })
 @UsePipes(new ValidationPipe())
@@ -33,7 +32,7 @@ export class FriendshipRequestsGateway {
 
   @SubscribeMessage(actions.FETCH_OUTGOING_FRIENDSHIP_REQUESTS)
   async onFetchOutgoingFriendshipRequests(client: any, data: PaginationDto): Promise<actions.FetchOutgoingFriendshipRequests> {
-    const result =  await this.fetchFriendshipRequests(client.user.id, data, FriendshipRequestsType.INCOMING);
+    const result =  await this.fetchFriendshipRequests(client.user.id, data, FriendshipRequestsType.OUTGOING);
     return new actions.FetchOutgoingFriendshipRequests(result);
   }
 
@@ -41,9 +40,9 @@ export class FriendshipRequestsGateway {
     let response: FriendshipRequest[] | PaginatedResult<FriendshipRequest>;
 
     if(page && limit) {
-      response = await this.friendshipRequestsService.findRequestsWithPagination(userId, { page, limit }, type);
+      response = await this.friendshipRequestsService.findManyWithPagination(userId, { page, limit }, type);
     } else {
-      response = await this.friendshipRequestsService.findRequests(userId, type);
+      response = await this.friendshipRequestsService.findMany(userId, type);
     }
 
     return response;

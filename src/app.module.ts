@@ -9,7 +9,7 @@ import { ChatsModule } from './components/chats/chats.module';
 import { NotesModule } from './components/notes/notes.module';
 import { RefreshTokensModule } from './components/refresh-tokens/refresh-tokens.module';
 import { AppGateway } from './components/app.gateway';
-import { FriendshipRequest } from './components/friendship-requests/friendship-request.entity';
+import { FriendshipRequestsModule } from './components/friendship-requests/friendship-requests.module';
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ import { FriendshipRequest } from './components/friendship-requests/friendship-r
     ChatsModule,
     NotesModule,
     RefreshTokensModule,
-    FriendshipRequest
+    FriendshipRequestsModule
   ],
   controllers: [],
   providers: [AppGateway],

@@ -3,6 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { mockRepository } from '../../../helpers/test-helpers/mock-repository';
 import { FriendshipRequest } from '../friendship-request.entity';
 import { FriendshipRequestsService } from '../friendship-requests.service';
+import { FriendshipRequestsType } from '../friendship-requests-type.enum';
 
 describe('FriendshipRequestsService', () => {
   let friendshipRequestsService;
@@ -17,40 +18,37 @@ describe('FriendshipRequestsService', () => {
     friendshipRequestsService = module.get<FriendshipRequestsService>(FriendshipRequestsService);
   });
 
-  describe('findIncomingRequests', () => {
+  describe('findMany', () => {
+    const userId = 5;
 
-    it('should call "find" method on repository with proper arguments', async () => {
+    it('should call "find" on repository with "sender" as relations and "receiverId" as key of where clause if type is INCOMING', async () => {
       const spy = jest.spyOn(mockRepository, 'find').mockImplementation(async () => mockRequests);
-      const userId = 5;
 
-      await friendshipRequestsService.findIncomingRequests(userId);
-      expect(spy).toBeCalledWith({ where: { receiverId: userId }, relations: ['sender'] });
+      await friendshipRequestsService.findMany(userId, FriendshipRequestsType.INCOMING);
+      expect(spy).toBeCalledWith({
+        where: {
+          receiverId: userId
+        },
+        relations: ['sender']
+      });
+    });
+
+    it('should call "find" on repository with "receiver" as relations and "senderId" as key of where clause if type is OUTGOING', async () => {
+      const spy = jest.spyOn(mockRepository, 'find').mockImplementation(async () => mockRequests);
+
+      await friendshipRequestsService.findMany(userId, FriendshipRequestsType.OUTGOING);
+      expect(spy).toBeCalledWith({
+        where: {
+          senderId: userId
+        },
+        relations: ['receiver']
+      });
     });
 
     it('should return array of requests', async () => {
       jest.spyOn(mockRepository, 'find').mockImplementation(async () => mockRequests);
-      const userId = 5;
 
-      expect(await friendshipRequestsService.findIncomingRequests(userId)).toBe(mockRequests);
-    });
-
-  });
-
-  describe('findOutgoingRequests', () => {
-
-    it('should call "find" method on repository with proper arguments', async () => {
-      const spy = jest.spyOn(mockRepository, 'find').mockImplementation(async () => mockRequests);
-      const userId = 5;
-
-      await friendshipRequestsService.findOutgoingRequests(userId);
-      expect(spy).toBeCalledWith({ where: { senderId: userId }, relations: ['receiver'] });
-    });
-
-    it('should return array of requests', async () => {
-      jest.spyOn(mockRepository, 'find').mockImplementation(async () => mockRequests);
-      const userId = 5;
-
-      expect(await friendshipRequestsService.findIncomingRequests(userId)).toBe(mockRequests);
+      expect(await friendshipRequestsService.findMany(userId)).toBe(mockRequests);
     });
 
   });

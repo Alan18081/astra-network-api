@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FriendshipRequest } from './friendship-request.entity';
-import { FindOptionsWhere, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 import { PaginationDto } from '../core/dto/pagination.dto';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
@@ -14,17 +14,17 @@ export class FriendshipRequestsService {
     private readonly friendshipRequestsRepository: Repository<FriendshipRequest>,
   ) {}
 
-  async findRequests(userId: number, type: FriendshipRequestsType): Promise<FriendshipRequest[]> {
+  async findMany(userId: number, type: FriendshipRequestsType): Promise<FriendshipRequest[]> {
     const field = type === FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
     return await this.friendshipRequestsRepository.find({
       where: {
         [field]: userId
       },
-      relations: [type === FriendshipRequestsType.INCOMING ? 'receiver' : 'sender']
+      relations: [type === FriendshipRequestsType.INCOMING ? 'sender' : 'receiver']
     });
   }
 
-  async findRequestsWithPagination(userId: number, { page, limit }: Required<PaginationDto>, type: FriendshipRequestsType): Promise<PaginatedResult<FriendshipRequest>> {
+  async findManyWithPagination(userId: number, { page, limit }: Required<PaginationDto>, type: FriendshipRequestsType): Promise<PaginatedResult<FriendshipRequest>> {
     const field = type === FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
     const [requests, totalCount] = await this.friendshipRequestsRepository.findAndCount({
       where: {

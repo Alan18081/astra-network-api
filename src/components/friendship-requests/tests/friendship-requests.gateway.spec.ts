@@ -12,6 +12,8 @@ import { ClientsStoreService } from '../../core/services/clients-store.service';
 import { WsException } from '@nestjs/websockets';
 import { Messages } from '../../../helpers/enums/messages.enum';
 import { User } from '../../users/user.entity';
+import { FriendshipRequestsType } from '../friendship-requests-type.enum';
+import { PaginationDto } from '../../core/dto/pagination.dto';
 
 const mockUsersService = {
   async addFriend() {}
@@ -30,6 +32,10 @@ describe('FriendshipRequestsGateway', () => {
   const mockRequests = [new FriendshipRequest({}), new FriendshipRequest({})];
   const client = {
     user: { id: 10 }
+  };
+  const pagination: Required<PaginationDto> = {
+    page: 5,
+    limit: 6
   };
 
   beforeEach(async () => {
@@ -50,34 +56,34 @@ describe('FriendshipRequestsGateway', () => {
 
   describe('onFetchIncomingFriendshipRequests', () => {
 
-    it('should call "findIncomingRequests" on friendshipRequestsService', async () => {
-      const spy = jest.spyOn(mockFriendshipRequestsService, 'findIncomingRequests').mockImplementation(async () => mockRequests);
+    it('should call "fetchFriendshipRequests"', async () => {
+      const spy = jest.spyOn(friendshipRequestsGateway, 'fetchFriendshipRequests').mockImplementation(async () => mockRequests);
 
-      await friendshipRequestsGateway.onFetchIncomingFriendshipRequests(client);
-      expect(spy).toBeCalledWith(client.user.id);
+      await friendshipRequestsGateway.onFetchIncomingFriendshipRequests(client, pagination);
+      expect(spy).toBeCalledWith(client.user.id, pagination, FriendshipRequestsType.INCOMING);
     });
 
     it('should return array of requests', async () => {
-      jest.spyOn(mockFriendshipRequestsService, 'findIncomingRequests').mockImplementation(async () => mockRequests);
+      jest.spyOn(friendshipRequestsGateway, 'fetchFriendshipRequests').mockImplementation(async () => mockRequests);
 
-      expect(await friendshipRequestsGateway.onFetchIncomingFriendshipRequests(client)).toEqual(new FetchIncomingFriendshipRequests(mockRequests));
+      expect(await friendshipRequestsGateway.onFetchIncomingFriendshipRequests(client, pagination)).toEqual(new FetchIncomingFriendshipRequests(mockRequests));
     });
 
   });
 
   describe('onFetchOutgoingFriendshipRequests', () => {
 
-    it('should call "findOutgoingRequests" on friendshipRequestsService', async () => {
-      const spy = jest.spyOn(mockFriendshipRequestsService, 'findOutgoingRequests').mockImplementation(async () => mockRequests);
+    it('should call "fetchFriendshipRequests"', async () => {
+      const spy = jest.spyOn(friendshipRequestsGateway, 'fetchFriendshipRequests').mockImplementation(async () => mockRequests);
 
-      await friendshipRequestsGateway.onFetchOutgoingFriendshipRequests(client);
-      expect(spy).toBeCalledWith(client.user.id);
+      await friendshipRequestsGateway.onFetchOutgoingFriendshipRequests(client, pagination);
+      expect(spy).toBeCalledWith(client.user.id, pagination, FriendshipRequestsType.OUTGOING);
     });
 
     it('should return array of requests', async () => {
-      jest.spyOn(mockFriendshipRequestsService, 'findOutgoingRequests').mockImplementation(async () => mockRequests);
+      jest.spyOn(friendshipRequestsGateway, 'fetchFriendshipRequests').mockImplementation(async () => mockRequests);
 
-      expect(await friendshipRequestsGateway.onFetchOutgoingFriendshipRequests(client)).toEqual(new FetchOutgoingFriendshipRequests(mockRequests));
+      expect(await friendshipRequestsGateway.onFetchOutgoingFriendshipRequests(client, pagination)).toEqual(new FetchOutgoingFriendshipRequests(mockRequests));
     });
 
   });
