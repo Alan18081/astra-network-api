@@ -7,6 +7,7 @@ export class ClientsStoreService {
   private sockets: Map<{ socketId: string, userId: number }, Socket> = new Map();
 
   getSocketById(socketId: string): Socket | undefined {
+    console.log(socketId);
     for(const [key, value] of this.sockets) {
       if(key.socketId === socketId) {
         return value;
@@ -27,7 +28,11 @@ export class ClientsStoreService {
   }
 
   removeSocket(socketId: string): void {
-    this.sockets.delete(socketId);
+    for(const [key] of this.sockets) {
+      if(key.socketId === socketId) {
+        this.sockets.delete(key);
+      }
+    }
   }
 
 }

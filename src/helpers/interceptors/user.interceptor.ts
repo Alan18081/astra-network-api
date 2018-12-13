@@ -10,8 +10,7 @@ export class UserInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, call$: Observable<any>): Observable<any> | Promise<Observable<any>> {
     const socketContext = context.switchToWs();
     const client = socketContext.getClient();
-    console.log('Interceptor');
-    const socket = this.clientsStoreService.getSocketById(client.id);
+    const socket = this.clientsStoreService.getSocketById(client.client.id);
     if (socket) {
       client.user = socket.user;
     }

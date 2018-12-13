@@ -19,6 +19,7 @@ export enum Messages {
   INVALID_RIGHTS_TO_DELETE_MESSAGE = 'You don\'t have rights to delete this message',
 
   FRIENDSHIP_REQUEST_NOT_FOUND = 'Friendship request doesn\'t exists',
+  FRIENDSHIP_REQUEST_ALREADY_EXISTS = 'Friendship request already exists',
   PROVIDED_USER_IS_NOT_RECEIVER = 'Provided user is not an receiver of friendship request',
   PROVIDED_USER_IS_NOT_SENDER = 'Provided user is not an sender of friendship request',
 }

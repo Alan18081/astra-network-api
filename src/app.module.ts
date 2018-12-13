@@ -8,7 +8,7 @@ import { MessagesModule } from './components/messages/messages.module';
 import { ChatsModule } from './components/chats/chats.module';
 import { NotesModule } from './components/notes/notes.module';
 import { RefreshTokensModule } from './components/refresh-tokens/refresh-tokens.module';
-import { AppGateway } from './components/app.gateway';
+import { AppGateway } from './app.gateway';
 import { FriendshipRequestsModule } from './components/friendship-requests/friendship-requests.module';
 
 @Module({

@@ -3,6 +3,7 @@ import {BaseEntity} from '../core/base.entity';
 import { Chat } from '../chats/chat.entity';
 import { Note } from '../notes/note.entity';
 import { Group } from '../groups/group.entity';
+import { Expose } from 'class-transformer';
 
 @Entity()
 export class User extends BaseEntity {
@@ -20,6 +21,7 @@ export class User extends BaseEntity {
   @Index()
   email: string;
 
+  @Expose()
   @Column({ nullable: true })
   password?: string;
 

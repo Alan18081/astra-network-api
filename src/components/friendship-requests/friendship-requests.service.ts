@@ -47,6 +47,10 @@ export class FriendshipRequestsService {
     return await this.friendshipRequestsRepository.findOne(id);
   }
 
+  async findOneBySenderId(senderId: number): Promise<FriendshipRequest | undefined> {
+    return await this.friendshipRequestsRepository.findOne({  senderId });
+  }
+
   async createOne(senderId: number, receiverId: number, message?: string): Promise<FriendshipRequest> {
     const friendRequest = new FriendshipRequest({
       senderId,

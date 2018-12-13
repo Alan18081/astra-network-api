@@ -1,10 +1,10 @@
 import { OnGatewayConnection, OnGatewayDisconnect, WebSocketGateway } from '@nestjs/websockets';
-import { Messages } from '../helpers/enums/messages.enum';
-import { JwtPayload } from './auth/interfaces/jwt-payload.interface';
-import { ClientsStoreService } from './core/services/clients-store.service';
-import { UsersService } from './users/users.service';
-import { AuthService } from './auth/auth.service';
-import { AUTH_ERROR, SERVER_ERROR, WsError } from '../helpers/actions/ws-errors';
+import { Messages } from './helpers/enums/messages.enum';
+import { JwtPayload } from './components/auth/interfaces/jwt-payload.interface';
+import { ClientsStoreService } from './components/core/services/clients-store.service';
+import { UsersService } from './components/users/users.service';
+import { AuthService } from './components/auth/auth.service';
+import { AUTH_ERROR, SERVER_ERROR, WsError } from './helpers/actions/ws-errors';
 
 @WebSocketGateway({ namespace: '/' })
 export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -46,6 +46,10 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
         socket: client,
         user,
       });
+
+      console.log('Socket id', client.id);
+
+      console.log(`User ID: ${user.id} successfully connected`);
     } catch (e) {
       client.emit(SERVER_ERROR, new WsError(Messages.SERVER_ERROR));
     }

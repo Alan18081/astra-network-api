@@ -19,6 +19,8 @@ import { FriendshipRequest } from './friendship-request.entity';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 import { ClientsStoreService } from '../core/services/clients-store.service';
+import { AcceptFriendshipRequest } from './friendship-requests.actions';
+import { WsError } from '../../helpers/actions/ws-errors';
 
 @WebSocketGateway({ namespace: '/friendship' })
 @UsePipes(new ValidationPipe())
@@ -60,13 +62,20 @@ export class FriendshipRequestsGateway {
 
   }
 
-
   @SubscribeMessage(actions.SEND_FRIENDSHIP_REQUEST)
-  async onSendFriendshipRequest(client: any, data: SendRequestDto): Promise<void> {
-    const friendshipRequest = await this.friendshipRequestsService.createOne(client.user.id, data.receiverId, data.message);
-    const socket = await this.clientsStoreService.getSocketByUserId(friendshipRequest.receiverId);
+  async onSendFriendshipRequest(client: any, data: SendRequestDto): Promise<void | WsException> {
+    const friendshipRequest = await this.friendshipRequestsService.findOneBySenderId(client.user.id);
+
+    console.log(friendshipRequest);
+
+    if(friendshipRequest) {
+      return new WsException(Messages.FRIENDSHIP_REQUEST_ALREADY_EXISTS);
+    }
+
+    const newFriendshipRequest = await this.friendshipRequestsService.createOne(client.user.id, data.receiverId, data.message);
+    const socket = await this.clientsStoreService.getSocketByUserId(newFriendshipRequest.receiverId);
     if(socket) {
-      this.server.to(socket.id).emit(actions.NEW_FRIENDSHIP_REQUEST, friendshipRequest);
+      this.server.to(socket.id).emit(actions.NEW_FRIENDSHIP_REQUEST, newFriendshipRequest);
     }
   }
 
@@ -83,13 +92,21 @@ export class FriendshipRequestsGateway {
       throw new WsException(Messages.PROVIDED_USER_IS_NOT_RECEIVER);
     }
 
-    const [friend] = await Promise.all([
+    const [friend, user] = await Promise.all([
       this.usersService.addFriend(friendshipRequest.receiverId, userId),
       this.usersService.addFriend(userId, friendshipRequest.receiverId),
       this.friendshipRequestsService.deleteOne(friendshipRequest.id)
     ]);
 
-    return await new actions.AcceptFriendshipRequest(friend);
+    if(friend && user) {
+      const socket = await this.clientsStoreService.getSocketByUserId(friend.id);
+      if(socket) {
+        this.server.to(socket.id).emit(actions.NEW_ACCEPTED_FRIENDSHIP_REQUEST, user);
+      }
+    }
+
+    return new AcceptFriendshipRequest(friend);
+
   }
 
   @SubscribeMessage(actions.REMOVE_FRIENDSHIP_REQUEST)
