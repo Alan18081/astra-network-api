@@ -10,6 +10,7 @@ export class ClientsStoreService {
 
 
   getSocketById(socketId: string): Socket | undefined {
+    console.log(socketId);
     const userId = this.socketIdsToUserIds.get(socketId);
     if(userId) {
       return this.sockets.get(JSON.stringify({ userId, socketId }));
@@ -26,7 +27,7 @@ export class ClientsStoreService {
   addSocket(socket: Socket): void {
     this.userIdsToSocketIds.set(socket.user.id, socket.id);
     this.socketIdsToUserIds.set(socket.id, socket.user.id);
-    this.sockets.set(JSON.stringify({ socketId: socket.id, userId: socket.user.id}), socket);
+    this.sockets.set(JSON.stringify({ userId: socket.user.id, socketId: socket.id }), socket);
   }
 
   removeSocket(socketId: string): void {

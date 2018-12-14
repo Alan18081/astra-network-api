@@ -64,13 +64,18 @@ export class FriendshipRequestsGateway {
   @SubscribeMessage(actions.SEND_FRIENDSHIP_REQUEST)
   async onSendFriendshipRequest(client: any, data: SendRequestDto): Promise<void | WsException> {
     const userId = client.user.id;
+    console.log(userId);
 
-    const isFriend = await this.usersService.isFriend(userId, data.receiverId);
-    console.log('Is friend', isFriend);
-
-    if(isFriend) {
-      return new WsException(Messages.ALREADY_FRIEND);
+    try {
+      const isFriend = await this.usersService.isFriend(userId, data.receiverId);
+      console.log('Is friend', isFriend);
+    } catch (e) {
+      console.log('Friend error', e);
     }
+
+    // if(isFriend) {
+    //   return new WsException(Messages.ALREADY_FRIEND);
+    // }
 
     const friendshipRequest = await this.friendshipRequestsService.findOneBySenderId(userId);
 
