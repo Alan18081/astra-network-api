@@ -129,4 +129,15 @@ export class UsersService implements BaseService<User> {
 
     return await this.findOne(userId);
   }
+
+  async isFriend(userId: number, friendId: number): Promise<boolean> {
+    const friend = await this.usersRepository.createQueryBuilder('user')
+      .leftJoinAndSelect('user.friends', 'friend')
+      .where('friend.id = :friendId', { friendId })
+      .getOne();
+
+    console.log(friend);
+
+    return !!friend;
+  }
 }

@@ -1,5 +1,6 @@
 const io = require('socket.io-client');
 const NEW_FRIENDSHIP_REQUEST = 'NEW_FRIENDSHIP_REQUEST';
+const FETCH_INCOMING_FRIENDSHIP_REQUESTS = 'FETCH_INCOMING_FRIENDSHIP_REQUESTS';
 
 const client2 = io('http://localhost:4000/friendship',
 	{ query: {
@@ -10,6 +11,16 @@ const client2 = io('http://localhost:4000/friendship',
 client2.on(NEW_FRIENDSHIP_REQUEST, data => {
 	console.log(data);
 });
+
+client2.emit(FETCH_INCOMING_FRIENDSHIP_REQUESTS, { id: 1 }, data => {
+});
+client2.on(FETCH_INCOMING_FRIENDSHIP_REQUESTS, data => {
+	console.log('Requests', data);
+});
+
+
+
+
 
 
 

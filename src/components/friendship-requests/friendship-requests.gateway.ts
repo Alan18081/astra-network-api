@@ -19,8 +19,7 @@ import { FriendshipRequest } from './friendship-request.entity';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 import { ClientsStoreService } from '../core/services/clients-store.service';
-import { AcceptFriendshipRequest } from './friendship-requests.actions';
-import { WsError } from '../../helpers/actions/ws-errors';
+import { getSocketIdWithNamespace } from '../../helpers/functions/get-socket-id-with-namespace';
 
 @WebSocketGateway({ namespace: '/friendship' })
 @UsePipes(new ValidationPipe())
@@ -39,7 +38,7 @@ export class FriendshipRequestsGateway {
 
   @SubscribeMessage(actions.FETCH_INCOMING_FRIENDSHIP_REQUESTS)
   async onFetchIncomingFriendshipRequests(client: any, data: PaginationDto): Promise<actions.FetchIncomingFriendshipRequests> {
-    const result =  await this.fetchFriendshipRequests(client.user.id, data, FriendshipRequestsType.INCOMING);
+    const result = await this.fetchFriendshipRequests(client.user.id, data, FriendshipRequestsType.INCOMING);
     return new actions.FetchIncomingFriendshipRequests(result);
   }
 
@@ -64,18 +63,25 @@ export class FriendshipRequestsGateway {
 
   @SubscribeMessage(actions.SEND_FRIENDSHIP_REQUEST)
   async onSendFriendshipRequest(client: any, data: SendRequestDto): Promise<void | WsException> {
-    const friendshipRequest = await this.friendshipRequestsService.findOneBySenderId(client.user.id);
+    const userId = client.user.id;
 
-    console.log(friendshipRequest);
+    const isFriend = await this.usersService.isFriend(userId, data.receiverId);
+    console.log('Is friend', isFriend);
+
+    if(isFriend) {
+      return new WsException(Messages.ALREADY_FRIEND);
+    }
+
+    const friendshipRequest = await this.friendshipRequestsService.findOneBySenderId(userId);
 
     if(friendshipRequest) {
       return new WsException(Messages.FRIENDSHIP_REQUEST_ALREADY_EXISTS);
     }
 
-    const newFriendshipRequest = await this.friendshipRequestsService.createOne(client.user.id, data.receiverId, data.message);
+    const newFriendshipRequest = await this.friendshipRequestsService.createOne(userId, data.receiverId, data.message);
     const socket = await this.clientsStoreService.getSocketByUserId(newFriendshipRequest.receiverId);
     if(socket) {
-      this.server.to(socket.id).emit(actions.NEW_FRIENDSHIP_REQUEST, newFriendshipRequest);
+      this.server.to(getSocketIdWithNamespace('friendship', socket.id)).emit(actions.NEW_FRIENDSHIP_REQUEST, newFriendshipRequest);
     }
   }
 
@@ -101,11 +107,11 @@ export class FriendshipRequestsGateway {
     if(friend && user) {
       const socket = await this.clientsStoreService.getSocketByUserId(friend.id);
       if(socket) {
-        this.server.to(socket.id).emit(actions.NEW_ACCEPTED_FRIENDSHIP_REQUEST, user);
+        this.server.to(getSocketIdWithNamespace('friendship', socket.id)).emit(actions.NEW_ACCEPTED_FRIENDSHIP_REQUEST, user);
       }
     }
 
-    return new AcceptFriendshipRequest(friend);
+    return new actions.AcceptFriendshipRequest(friend);
 
   }
 

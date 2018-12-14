@@ -4,35 +4,38 @@ import { Socket } from '../../chats/interfaces/socket.interface';
 @Injectable()
 export class ClientsStoreService {
 
-  private sockets: Map<{ socketId: string, userId: number }, Socket> = new Map();
+  private sockets: Map<string, Socket> = new Map();
+  private userIdsToSocketIds: Map<number, string> = new Map();
+  private socketIdsToUserIds: Map<string, number> = new Map();
+
 
   getSocketById(socketId: string): Socket | undefined {
-    console.log(socketId);
-    for(const [key, value] of this.sockets) {
-      if(key.socketId === socketId) {
-        return value;
-      }
+    const userId = this.socketIdsToUserIds.get(socketId);
+    if(userId) {
+      return this.sockets.get(JSON.stringify({ userId, socketId }));
     }
   }
 
   getSocketByUserId(userId: number): Socket | undefined {
-    for(const [key, value] of this.sockets) {
-      if(key.userId === userId) {
-        return value;
-      }
+    const socketId = this.userIdsToSocketIds.get(userId);
+    if(socketId) {
+      return this.sockets.get(JSON.stringify({ userId, socketId }));
     }
   }
 
   addSocket(socket: Socket): void {
-    this.sockets.set({ socketId: socket.id, userId: socket.user.id}, socket);
+    this.userIdsToSocketIds.set(socket.user.id, socket.id);
+    this.socketIdsToUserIds.set(socket.id, socket.user.id);
+    this.sockets.set(JSON.stringify({ socketId: socket.id, userId: socket.user.id}), socket);
   }
 
   removeSocket(socketId: string): void {
-    for(const [key] of this.sockets) {
-      if(key.socketId === socketId) {
-        this.sockets.delete(key);
-      }
+    const userId = this.socketIdsToUserIds.get(socketId);
+    if(userId) {
+      this.userIdsToSocketIds.delete(userId);
     }
+    this.socketIdsToUserIds.delete(socketId);
+    this.sockets.delete(JSON.stringify({ socketId, userId }));
   }
 
 }
