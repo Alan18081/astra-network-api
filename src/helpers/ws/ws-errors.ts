@@ -1,7 +1,7 @@
 import { Messages } from '../enums/messages.enum';
 
-export const SERVER_ERROR = '[Websocket] Server Error';
-export const AUTH_ERROR = '[Websocket] Auth Error';
+export const SERVER_ERROR = 'SERVER_ERROR';
+export const AUTH_ERROR = 'AUTH_ERROR';
 
 export class WsError {
   error: string;

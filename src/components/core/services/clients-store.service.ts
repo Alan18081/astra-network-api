@@ -25,6 +25,7 @@ export class ClientsStoreService {
   }
 
   addSocket(socket: Socket): void {
+    console.log(socket.id, socket.user.id);
     this.userIdsToSocketIds.set(socket.user.id, socket.id);
     this.socketIdsToUserIds.set(socket.id, socket.user.id);
     this.sockets.set(JSON.stringify({ userId: socket.user.id, socketId: socket.id }), socket);

@@ -20,9 +20,10 @@ import { UserInterceptor } from '../../helpers/interceptors/user.interceptor';
 import { UpdateMessageDto } from '../messages/dto/update-message.dto';
 import { RemoveMessageDto } from '../messages/dto/remove-message.dto';
 
-@WebSocketGateway({ namespace: 'chats' })
-@UsePipes(new ValidationPipe())
-@UseFilters(new BaseWsExceptionFilter())
+@WebSocketGateway()
+@UsePipes(ValidationPipe)
+@UseFilters(BaseWsExceptionFilter)
+@UseInterceptors(UserInterceptor)
 export class ChatsGateway {
   @WebSocketServer()
   private readonly server;

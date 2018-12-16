@@ -77,6 +77,7 @@ export class UsersService implements BaseService<User> {
       ...new User(),
       ...payload,
       password: passwordHash,
+      createdAt: new Date()
     };
 
     return await this.usersRepository.save(newUser);

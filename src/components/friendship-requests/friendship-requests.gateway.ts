@@ -21,7 +21,7 @@ import { PaginatedResult } from '../../helpers/interfaces/paginated-result.inter
 import { ClientsStoreService } from '../core/services/clients-store.service';
 import { getSocketIdWithNamespace } from '../../helpers/functions/get-socket-id-with-namespace';
 
-@WebSocketGateway({ namespace: '/friendship' })
+@WebSocketGateway({ namespace: '/' })
 @UsePipes(new ValidationPipe())
 @UseFilters(new BaseWsExceptionFilter())
 @UseInterceptors(UserInterceptor)

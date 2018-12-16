@@ -1,8 +1,11 @@
 import {WsResponse} from '@nestjs/websockets';
 import {Note} from './note.entity';
-export const ADDED_NOTE = '[Notes] Added Note';
-export const UPDATED_NOTE = '[Notes] Updated Note';
-export const REMOVED_NOTE = '[Notes] Removed Note';
+
+const namespace = 'Notes';
+
+export const ADDED_NOTE = `[${namespace}] Added note`;
+export const UPDATED_NOTE = `[${namespace}] Updated note`;
+export const REMOVED_NOTE = `[${namespace}] Removed note`;
 
 export class AddedNote implements WsResponse {
   readonly event = ADDED_NOTE;

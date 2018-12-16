@@ -1,9 +1,11 @@
 import {WsResponse} from '@nestjs/websockets';
 import {Chat} from './chat.entity';
 
-export const ADD_NEW_USER = 'ADD_NEW_USER';
-export const REMOVE_USER = 'REMOVE_USER';
-export const UPDATED_CHAT = 'UPDATED_CHAT';
+const namespace = 'Chats';
+
+export const ADD_NEW_USER = `[${namespace}] Add new user to chat`;
+export const REMOVE_USER = `[${namespace}] Remove user from chat`;
+export const UPDATED_CHAT = `[${namespace}] Updated chat`;
 
 export class AddNewUser implements WsResponse {
   readonly event = ADD_NEW_USER;

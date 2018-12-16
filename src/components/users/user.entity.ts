@@ -2,7 +2,6 @@ import { Column, Entity, Index, ManyToMany, OneToMany } from 'typeorm';
 import {BaseEntity} from '../core/base.entity';
 import { Chat } from '../chats/chat.entity';
 import { Note } from '../notes/note.entity';
-import { Group } from '../groups/group.entity';
 import { Expose } from 'class-transformer';
 
 @Entity()
@@ -42,9 +41,6 @@ export class User extends BaseEntity {
 
   @OneToMany(type => Note, note => note.user)
   notes?: Note[];
-
-  @ManyToMany(type => Group, group => group.participants)
-  groups?: Group[];
 
   @ManyToMany(type => User, user => user.friends)
   friends: User[];

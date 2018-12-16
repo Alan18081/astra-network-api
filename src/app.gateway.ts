@@ -49,6 +49,7 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
       console.log(`User ID: ${user.id} successfully connected`);
     } catch (e) {
+      console.log(e);
       client.emit(SERVER_ERROR, new WsException(Messages.SERVER_ERROR));
     }
   }
