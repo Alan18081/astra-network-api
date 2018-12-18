@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d9b76ef-6374-485e-a8fa-a509f25f71bc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chat.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/comments/comment.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/base.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/base.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/core/base.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/services/clients-store.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/services/hash.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/file.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests-type.enum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/message.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/messages.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/note.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/user.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -100,11 +79,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/core/base.entity.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+            <state relative-caret-position="448">
+              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -165,7 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/notes/notes.gateway.ts" />
         <option value="$PROJECT_DIR$/src/components/friend-requests/friend-request.gateway.ts" />
         <option value="$PROJECT_DIR$/src/components/friend-requests/friend-requests.module.ts" />
         <option value="$PROJECT_DIR$/src/components/friend-requests/friend-request.entity.ts" />
@@ -216,6 +203,7 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/src/components/core/base.entity.ts" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -255,12 +243,6 @@
               <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
               <item name="astra-store" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -370,7 +352,7 @@
       <workItem from="1544998612678" duration="77000" />
       <workItem from="1545109664493" duration="557000" />
       <workItem from="1545110242481" duration="3979000" />
-      <workItem from="1545143697429" duration="1825000" />
+      <workItem from="1545143697429" duration="1864000" />
     </task>
     <servers />
   </component>
@@ -380,13 +362,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153215000" />
+    <option name="totallyTimeSpent" value="153254000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21344717" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21344717" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2497332" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -557,13 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
@@ -797,8 +772,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/core/base.entity.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        <state relative-caret-position="448">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
         </state>
       </provider>
     </entry>

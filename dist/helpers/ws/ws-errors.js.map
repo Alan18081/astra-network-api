@@ -1,0 +1,1 @@
+{"version":3,"file":"ws-errors.js","sourceRoot":"","sources":["../../../src/helpers/ws/ws-errors.ts"],"names":[],"mappings":";;AAEa,QAAA,YAAY,GAAG,cAAc,CAAC;AAC9B,QAAA,UAAU,GAAG,YAAY,CAAC;AAEvC,MAAa,OAAO;IAGlB,YAAY,OAAiB;QAC3B,IAAI,CAAC,KAAK,GAAG,OAAO,CAAC;IACvB,CAAC;CAEF;AAPD,0BAOC"}
