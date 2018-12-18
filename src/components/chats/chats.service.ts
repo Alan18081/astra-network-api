@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { uniqBy } from 'lodash';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindManyOptions, Repository } from 'typeorm';
+import {FindOptions, FindOptionsRelation, Repository} from 'typeorm';
 import { Chat } from './chat.entity';
 import { CreateChatDto } from './dto/http/create-chat.dto';
 import { UpdateChatDto } from './dto/http/update-chat.dto';
@@ -24,7 +24,7 @@ export class ChatsService {
   ) {}
 
   async findMany(query: FindChatsListDto): Promise<Chat[]> {
-    const options: FindManyOptions<Chat> = {
+    const options: FindOptions<Chat> = {
       where: {
         id: query.userId,
       },
@@ -82,8 +82,8 @@ export class ChatsService {
     return await this.chatsRepository.save(chat);
   }
 
-  private getRelations(query: FindChatsListDto | FindOneChatDto): string[] {
-    const relations: string[] = [];
+  private getRelations(query: FindChatsListDto | FindOneChatDto): FindOptionsRelation<Chat> {
+    const relations: FindOptionsRelation<Chat> = [];
 
     if (query.includeMessages) {
       relations.push('messages');
@@ -97,7 +97,7 @@ export class ChatsService {
   }
 
   async findManyWithPagination(query: FindChatsListDto & Required<PaginationDto>): Promise<PaginatedResult<Chat>> {
-    const options: FindManyOptions<Chat> = {
+    const options: FindOptions<Chat> = {
       where: {},
       relations: [],
       skip: (query.page - 1) * query.limit,
