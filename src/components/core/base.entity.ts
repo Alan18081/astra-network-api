@@ -1,21 +1,17 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-export abstract class BaseEntity {
+export class BaseEntity {
 
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: true })
+  @CreateDateColumn({ type: 'date' })
   createdAt: Date;
 
-  @Column({ nullable: true })
+  @UpdateDateColumn({ type: 'date' })
   updatedAt?: Date;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'date' })
   deletedAt?: Date;
-
-  @Column({ default: false })
-  deleted?: boolean;
-
 
 }

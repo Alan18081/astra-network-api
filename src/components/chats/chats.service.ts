@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { uniqBy } from 'lodash';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptions, FindOptionsRelation, Repository } from 'typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { Chat } from './chat.entity';
 import { CreateChatDto } from './dto/http/create-chat.dto';
 import { UpdateChatDto } from './dto/http/update-chat.dto';
@@ -24,7 +24,7 @@ export class ChatsService {
   ) {}
 
   async findMany(query: FindChatsListDto): Promise<Chat[]> {
-    const options: FindOptions<Chat> = {
+    const options: FindManyOptions<Chat> = {
       where: {
         id: query.userId,
       },
@@ -82,8 +82,8 @@ export class ChatsService {
     return await this.chatsRepository.save(chat);
   }
 
-  private getRelations(query: FindChatsListDto | FindOneChatDto): FindOptionsRelation<Chat> {
-    const relations: FindOptionsRelation<Chat> = [];
+  private getRelations(query: FindChatsListDto | FindOneChatDto): string[] {
+    const relations: string[] = [];
 
     if (query.includeMessages) {
       relations.push('messages');
@@ -97,7 +97,7 @@ export class ChatsService {
   }
 
   async findManyWithPagination(query: FindChatsListDto & Required<PaginationDto>): Promise<PaginatedResult<Chat>> {
-    const options: FindOptions<Chat> = {
+    const options: FindManyOptions<Chat> = {
       where: {},
       relations: [],
       skip: (query.page - 1) * query.limit,
@@ -126,7 +126,7 @@ export class ChatsService {
   }
 
   async findOne(id: number, query: FindOneChatDto): Promise<Chat | undefined> {
-    const relations: FindOptionsRelation<Chat> = this.getRelations(query);
+    const relations = this.getRelations(query);
 
     return await this.chatsRepository.findOne({
       where: {

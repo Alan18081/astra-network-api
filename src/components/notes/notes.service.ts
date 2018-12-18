@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Note } from './note.entity';
-import { FindOptions, FindOptionsRelation, Repository } from 'typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
-import { FindChatsListDto } from '../chats/dto/http/find-chats-list.dto';
 import { User } from '../users/user.entity';
 import { FindNotesListDto } from './dto/find-notes-list.dto';
 import { FindOneNoteDto } from './dto/find-one-note.dto';
@@ -19,7 +18,7 @@ export class NotesService {
   ) {}
 
   async findMany(query: FindNotesListDto): Promise<Note[]> {
-    const options: FindOptions<Note> = {
+    const options: FindManyOptions<Note> = {
       where: {},
       relations: ['user'],
     };
@@ -39,8 +38,8 @@ export class NotesService {
     return await this.notesRepository.findByIds(query.ids, { relations });
   }
 
-  private getRelations(query: FindNotesListDto | FindOneNoteDto): FindOptionsRelation<Note> {
-    const relations: FindOptionsRelation<Note> = ['user'];
+  private getRelations(query: FindNotesListDto | FindOneNoteDto): string[] {
+    const relations: string[] = ['user'];
 
     if (query.includeFiles) {
       relations.push('files');
@@ -50,7 +49,7 @@ export class NotesService {
   }
 
   async findManyWithPagination(query: FindNotesListDto & Required<PaginationDto>): Promise<PaginatedResult<Note>> {
-    const options: FindOptions<Note> = {
+    const options: FindManyOptions<Note> = {
       where: {},
       relations: [],
       skip: (query.page - 1) * query.limit,
@@ -78,7 +77,7 @@ export class NotesService {
   }
 
   async findOne(id: number, query: FindOneNoteDto): Promise<Note | undefined> {
-    const relations: FindOptionsRelation<Note> = this.getRelations(query);
+    const relations: string[] = this.getRelations(query);
 
     return await this.notesRepository.findOne({
       where: {
