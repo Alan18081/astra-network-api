@@ -2,268 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d9b76ef-6374-485e-a8fa-a509f25f71bc" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app.actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/11f7d364609349f3f93d.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/1de46c6dbd82b044e7d7.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/21767301aa060a4acfbc.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/29d2c44d16d035741865.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/30d5fd401d000e6dd6b3.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/37313366550bf39171f2.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/376a3c8d8ccd163d3ebe.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/3815dc3e0330f7833b32.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/398eeb171861d8e47f30.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/3d2ca263a2856bc88743.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/3dda97df6dd3963e7012.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/3df7fe0896a38bb44d36.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/3ed40bc86b4b8dc97355.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/4228d2d47c250fa4a23f.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/47a3c6c4c598517067d6.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/519850804d2436f4e487.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/558de93b288737cf88a4.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/56526dd3dd1629e00823.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/60057b540cc8dec9a0cc.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/61eee8047058064689d6.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/66d2ebecd88c681f5ae4.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/67171e9fe7511b4ece4f.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/6ee4f9021fb6cd0c4c21.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/704bd8081ebe657f9672.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/71351322478c7beb8778.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/74ca006b784eff5f06dd.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/77216d2b7d90ffcffe0a.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/791f2ce3fe2440a9021e.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/79e05c983b9f18d4fd7e.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/8ce83f31a3481b997164.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/8e749c801ca4a71d95cc.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/933a556737d982fff881.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/9a816c7fb490e674b0af.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/9c16a97211cd52480121.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/9d85f538ecfb112be1c4.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a0a0aaed34512f0e9fb1.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a2cbcd5d60edc6b66d3f.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a7d88e38b000be9fc3be.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/a995776b66cc51dac440.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/b06c2fa80f2332e7b354.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/b2327ed83fb30493ed2a.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/b7a20ceede2ba55599c1.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/b8e89a31b2b40ab893c0.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/b96df54467805907a246.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bd3ce3e4a136a435d503.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bee5aa420ff2299ffbeb.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/bfa96a414e77232d1db3.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/c5fefe55dde3f7c6e80f.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/cc5391518bbe7c13f845.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/cddada05ae3d201e4f51.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/d4fbda7f020118c5c5a6.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/d8ae04b7fae3974e2aee.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/d9379736fa81c46262ec.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/d988c794c554ffbb6d86.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/app.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/auth.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/auth.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/auth.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/dto/change-password.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/dto/exchangeToken.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/dto/login.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/dto/reset-password.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/entities/RefreshToken.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/interfaces/jwt-payload.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/interfaces/jwt-response.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/strategies/google.strategy.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/strategies/http.strategy.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/auth/strategies/jwt.strategy.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/chat.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/chats.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/chats.gateway.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/chats.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/chats.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/dto/add-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/dto/create-chat.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/dto/find-chats-list.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/dto/find-one.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/dto/remove-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/dto/update-chat.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/chats/dto/update-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/comments/comment.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/comments/comments.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/comments/comments.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/comments/dto/create-comment.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/comments/dto/update-comment.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/core/base.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/core/core.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/core/dto/pagination.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/core/services/email-sending.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/core/services/email-templates.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/core/services/hash.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/core/services/stripe.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/emails/classes/email.abstract.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/emails/email.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/emails/emails.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/emails/emails.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/emails/enums/email-types.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/emails/template-generator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/files/file.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/files/files.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/files/files.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/files/files.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/messages/dto/add-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/messages/dto/remove-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/messages/dto/update-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/messages/message.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/messages/messages.actions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/messages/messages.gateway.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/messages/messages.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/messages/messages.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/orders/dto/create-order.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/orders/order.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/orders/orders.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/orders/orders.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/orders/orders.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/dto/create-product-files.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/dto/create-product.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/dto/find-product.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/dto/find-products-list.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/dto/update-product.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/interfaces/product-data.type.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/interfaces/product-images.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/product-owner.guard.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/product.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/products.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/products.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/products/products.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/user-hashes/user-hash.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/user-hashes/user-hashes.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/user-hashes/user-hashes.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/dto/create-user.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/dto/find-users-list.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/dto/update-user.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/entities/user-role.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/interfaces/google-user-data.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/interfaces/paginated-result.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/services/users.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/user.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/users.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/components/users/users.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/config/coludinary.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/config/common.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/config/database.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/config/emails.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/config/google.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/config/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/config/jwt.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/config/orm.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/config/stripe.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/card-validators/card-cvv.validator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/card-validators/card-expires-in.validator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/decorators/user.decorator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/enums/email-titles.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/enums/hash-types.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/enums/messages.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/enums/roles.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/enums/template-types.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/guards/is-product-owner.guard.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/helpers/interfaces/base-service.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dist/main.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e02f9dcee0e5b11f4e01.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e07e97969de71a1287da.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e39ffdbb99176046d245.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e4fad61976e613d307bd.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e6ab9115567a116892fd.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e6ea8bbf7b31f6f71ac6.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e76c0fa777c04248f643.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e8e0072e0e6b71084885.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/e9203d293033c1ac91ad.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/eaf67cf89ccb947b4bdd.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/f6c491219d0ef88ee7f9.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/f80418a8a4a9f8355310.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/f9a28d92bcae9fdb6677.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.11f7d364609349f3f93d.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.1de46c6dbd82b044e7d7.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.21767301aa060a4acfbc.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.29d2c44d16d035741865.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.30d5fd401d000e6dd6b3.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.37313366550bf39171f2.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.376a3c8d8ccd163d3ebe.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.3815dc3e0330f7833b32.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.398eeb171861d8e47f30.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.3d2ca263a2856bc88743.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.3dda97df6dd3963e7012.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.3df7fe0896a38bb44d36.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.3ed40bc86b4b8dc97355.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.4228d2d47c250fa4a23f.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.47a3c6c4c598517067d6.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.519850804d2436f4e487.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.558de93b288737cf88a4.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.56526dd3dd1629e00823.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.60057b540cc8dec9a0cc.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.61eee8047058064689d6.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.66d2ebecd88c681f5ae4.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.67171e9fe7511b4ece4f.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.6ee4f9021fb6cd0c4c21.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.704bd8081ebe657f9672.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.71351322478c7beb8778.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.74ca006b784eff5f06dd.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.77216d2b7d90ffcffe0a.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.791f2ce3fe2440a9021e.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.79e05c983b9f18d4fd7e.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.8ce83f31a3481b997164.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.8e749c801ca4a71d95cc.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.933a556737d982fff881.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.9a816c7fb490e674b0af.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.9c16a97211cd52480121.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.9d85f538ecfb112be1c4.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.a0a0aaed34512f0e9fb1.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.a2cbcd5d60edc6b66d3f.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.a7d88e38b000be9fc3be.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.a995776b66cc51dac440.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.b06c2fa80f2332e7b354.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.b2327ed83fb30493ed2a.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.b7a20ceede2ba55599c1.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.b8e89a31b2b40ab893c0.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.b96df54467805907a246.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.bd3ce3e4a136a435d503.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.bee5aa420ff2299ffbeb.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.bfa96a414e77232d1db3.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.c5fefe55dde3f7c6e80f.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.cc5391518bbe7c13f845.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.cddada05ae3d201e4f51.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.d4fbda7f020118c5c5a6.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.d8ae04b7fae3974e2aee.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.d9379736fa81c46262ec.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.d988c794c554ffbb6d86.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.e02f9dcee0e5b11f4e01.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.e07e97969de71a1287da.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.e39ffdbb99176046d245.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.e4fad61976e613d307bd.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.e6ab9115567a116892fd.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.e6ea8bbf7b31f6f71ac6.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.e76c0fa777c04248f643.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.e8e0072e0e6b71084885.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.e9203d293033c1ac91ad.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.eaf67cf89ccb947b4bdd.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.f6c491219d0ef88ee7f9.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.f80418a8a4a9f8355310.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.f9a28d92bcae9fdb6677.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/services/clients-store.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/core/services/clients-store.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/groups/dto/create-group.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/groups/dto/find-groups-list.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/groups/dto/find-one-group.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/groups/dto/update-group.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/groups/group.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/groups/notes.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/groups/notes.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/groups/notes.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/user.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/ws/ws-errors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/ws/ws-errors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testing-clients/client-1.js" beforeDir="false" afterPath="$PROJECT_DIR$/testing-clients/client-1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing-clients/client-2.js" beforeDir="false" afterPath="$PROJECT_DIR$/testing-clients/client-2.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -294,8 +40,8 @@
       <file leaf-file-name="friendship-requests.gateway.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-161">
-              <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+            <state relative-caret-position="82">
+              <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
               <folding>
                 <element signature="e#0#135#0" expanded="true" />
               </folding>
@@ -303,44 +49,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.gateway.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app.gateway.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users.service.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/users/users.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="78" column="29" lean-forward="true" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="user.interceptor.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#79#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="84">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="users.module.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/users/users.module.ts">
+      <file leaf-file-name="client-2.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testing-clients/client-2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="13" column="33" lean-forward="true" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.gateway.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app.gateway.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="56" column="27" lean-forward="true" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.actions.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app.actions.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="2" column="73" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="friendship-requests.actions.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="91" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -348,50 +106,8 @@
       <file leaf-file-name="friendship-requests.module.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chats.module.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/chats/chats.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="client-1.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/testing-clients/client-1.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="7" column="193" selection-start-line="7" selection-start-column="193" selection-end-line="7" selection-end-column="193" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chats.gateway.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/chats/chats.gateway.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#150#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clients-store.service.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/core/services/clients-store.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="224">
+              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -423,7 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/friend-requests/friend-request.module.ts" />
         <option value="$PROJECT_DIR$/src/components/auth/auth.module.ts" />
         <option value="$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.module.ts" />
         <option value="$PROJECT_DIR$/src/config/database.config.ts" />
@@ -440,7 +155,6 @@
         <option value="$PROJECT_DIR$/src/components/friendship-requests/dto/reject-request.dto.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/dto/accept-request.dto.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/dto/send-request.dto.ts" />
-        <option value="$PROJECT_DIR$/src/components/core/base.entity.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/dto/remove-request.dto.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/dto/find-requests-lis.dto.ts" />
         <option value="$PROJECT_DIR$/src/components/users/tests/users.service.spec.ts" />
@@ -451,13 +165,9 @@
         <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.enum.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests-type.enum.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts" />
-        <option value="$PROJECT_DIR$/src/app.module.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.service.spec.ts" />
-        <option value="$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.gateway.spec.ts" />
-        <option value="$PROJECT_DIR$/src/main.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" />
         <option value="$PROJECT_DIR$/src/helpers/functions/get-socket-id-with-namespace.ts" />
-        <option value="$PROJECT_DIR$/testing-clients/client-2.js" />
         <option value="$PROJECT_DIR$/src/helpers/enums/messages.enum.ts" />
         <option value="$PROJECT_DIR$/src/components/core/services/clients-store.service.ts" />
         <option value="$PROJECT_DIR$/src/helpers/ws/ws-errors.ts" />
@@ -467,20 +177,24 @@
         <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts" />
         <option value="$PROJECT_DIR$/src/components/chats/chats.actions.ts" />
         <option value="$PROJECT_DIR$/src/components/notes/notes.actions.ts" />
-        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" />
-        <option value="$PROJECT_DIR$/src/app.gateway.ts" />
-        <option value="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts" />
         <option value="$PROJECT_DIR$/src/components/chats/chats.module.ts" />
         <option value="$PROJECT_DIR$/src/components/chats/chats.gateway.ts" />
         <option value="$PROJECT_DIR$/src/components/users/users.service.ts" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.gateway.spec.ts" />
+        <option value="$PROJECT_DIR$/src/components/core/base.entity.ts" />
+        <option value="$PROJECT_DIR$/src/main.ts" />
         <option value="$PROJECT_DIR$/testing-clients/client-1.js" />
+        <option value="$PROJECT_DIR$/src/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" />
+        <option value="$PROJECT_DIR$/src/app.actions.ts" />
+        <option value="$PROJECT_DIR$/src/app.gateway.ts" />
+        <option value="$PROJECT_DIR$/testing-clients/client-2.js" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
-    <package-json value="$PROJECT_DIR$/package.json" />
-  </component>
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -518,7 +232,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -534,25 +247,13 @@
             <path>
               <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
               <item name="astra-network" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-network" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-network" type="462c0819:PsiDirectoryNode" />
               <item name="testing-clients" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -652,6 +353,9 @@
       <workItem from="1544773050051" duration="13004000" />
       <workItem from="1544884430064" duration="1315000" />
       <workItem from="1544888820379" duration="6696000" />
+      <workItem from="1544998612678" duration="77000" />
+      <workItem from="1545109664493" duration="557000" />
+      <workItem from="1545110242481" duration="3979000" />
     </task>
     <servers />
   </component>
@@ -661,10 +365,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141879000" />
+    <option name="totallyTimeSpent" value="146492000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -672,12 +377,11 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3298647" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" auto_hide="true" id="Terminal" order="10" visible="true" weight="0.64099896" />
+      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="10" weight="0.64099896" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2070081" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2070081" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32977587" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2497332" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39958376" />
@@ -687,13 +391,14 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18569905" />
       <window_info id="Structure" order="1" weight="0.2497332" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -701,19 +406,53 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.82820785" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/components/users/interfaces/google-user-data.interface.js" />
+        <option value="$PROJECT_DIR$/src/components/notes/note.entity.js" />
+        <option value="$PROJECT_DIR$/src/components/users/dto/find-users-list.dto.js" />
+        <option value="$PROJECT_DIR$/src/components/users/dto/create-user.dto.js" />
+        <option value="$PROJECT_DIR$/src/components/core/dto/pagination.dto.js" />
+        <option value="$PROJECT_DIR$/src/helpers/interfaces/paginated-result.interface.js" />
+        <option value="$PROJECT_DIR$/src/helpers/interfaces/base-service.interface.js" />
+        <option value="$PROJECT_DIR$/src/helpers/functions/get-socket-id-with-namespace.js" />
+        <option value="$PROJECT_DIR$/src/components/chats/interfaces/socket.interface.js" />
+        <option value="$PROJECT_DIR$/src/helpers/enums/roles.enum.js" />
+        <option value="$PROJECT_DIR$/src/helpers/enums/messages.enum.js" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.js" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests-type.enum.js" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.js" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.js" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.js" />
+        <option value="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.js" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/dto/remove-request.dto.js" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/dto/send-request.dto.js" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/dto/accept-request.dto.js" />
+        <option value="$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.gateway.spec.js" />
+        <option value="$PROJECT_DIR$/src/components/core/base.entity.js" />
+        <option value="$PROJECT_DIR$/src/components/comments/comment.entity.js" />
+        <option value="$PROJECT_DIR$/src/components/core/services/hash.service.js" />
+        <option value="$PROJECT_DIR$/src/components/core/services/clients-store.service.js" />
+        <option value="$PROJECT_DIR$/src/components/files/file.entity.js" />
+        <option value="$PROJECT_DIR$/src/components/messages/message.entity.js" />
+        <option value="$PROJECT_DIR$/src/components/chats/chat.entity.js" />
+        <option value="$PROJECT_DIR$/src/components/users/users.service.js" />
+        <option value="$PROJECT_DIR$/src/components/users/user.entity.js" />
+      </list>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -744,7 +483,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/testing-clients/client-1.js</url>
           <line>13</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
@@ -752,92 +490,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/chats/tests/chats.controller.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="35" column="5" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="35" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/core/base.entity.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests-type.enum.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.service.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.gateway.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#2506#3203#0" />
-            <element signature="e#3251#3771#0" />
-            <element signature="e#3821#6556#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/chats/interfaces/socket.interface.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/users.controller.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1092">
-          <caret line="50" column="12" selection-start-line="50" selection-start-column="12" selection-end-line="50" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#118#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/common.config.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/dto/send-request.dto.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/typescript/lib/lib.es5.d.ts" />
     <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -867,9 +519,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -880,41 +529,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing-clients/client-2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/dist/config/coludinary.config.d.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/dist/config/coludinary.config.d.ts" />
     <entry file="file://$PROJECT_DIR$/src/config/orm.config.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/database.config.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/notes/notes.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -932,43 +556,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/core/services/email-sending.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-84" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/groups/notes.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/groups/notes.service.ts" />
     <entry file="file://$PROJECT_DIR$/src/components/notes/notes.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="19" column="19" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/chats/chat.entity.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -979,16 +577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/user.entity.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#71#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@nestjs/websockets/exceptions/ws-exception.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
@@ -996,13 +584,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/enums/socket-codes.enum.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/enums/socket-codes.enum.ts" />
     <entry file="file://$PROJECT_DIR$/src/components/chats/chats.controller.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-649" />
@@ -1012,9 +594,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="7" column="57" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1022,60 +601,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="89" selection-start-line="12" selection-start-column="89" selection-end-line="12" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/auth/auth.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="57" column="44" lean-forward="true" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-161">
-          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/core/services/clients-store.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/users/users.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="13" column="33" lean-forward="true" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+        <state relative-caret-position="224">
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1086,44 +618,168 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/chats/chats.gateway.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#150#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="92">
+          <caret line="11" column="63" selection-start-line="11" selection-start-column="63" selection-end-line="11" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/users/users.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="78" column="29" lean-forward="true" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
+        <state relative-caret-position="613">
+          <caret line="143" column="39" lean-forward="true" selection-start-line="143" selection-start-column="39" selection-end-line="143" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/users/user.entity.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+        <state relative-caret-position="644">
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/typeorm/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elect">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tslint.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.spec.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/core/base.entity.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/database.config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
           <folding>
-            <element signature="e#0#79#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.gateway.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/auth/auth.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+        <state relative-caret-position="305">
+          <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testing-clients/client-1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="7" column="193" selection-start-line="7" selection-start-column="193" selection-end-line="7" selection-end-column="193" />
+        <state relative-caret-position="392">
+          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/core/services/clients-store.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/tests/friendship-requests.gateway.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="90" column="45" selection-start-line="90" selection-start-column="45" selection-end-line="90" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#135#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.gateway.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="56" column="27" lean-forward="true" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.actions.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="73" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing-clients/client-2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
         </state>
       </provider>
     </entry>

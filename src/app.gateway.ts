@@ -5,6 +5,7 @@ import { ClientsStoreService } from './components/core/services/clients-store.se
 import { UsersService } from './components/users/users.service';
 import { AuthService } from './components/auth/auth.service';
 import { AUTH_ERROR, SERVER_ERROR } from './helpers/ws/ws-errors';
+import {CONNECTED} from "./app.actions";
 
 @WebSocketGateway({ namespace: '/' })
 export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -21,6 +22,7 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const { token } = client.handshake.query;
 
       if (!token) {
+        console.log('Empty token');
         client.emit(AUTH_ERROR, new WsException(Messages.AUTH_TOKEN_NOT_FOUND));
         return;
       }
@@ -28,6 +30,7 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const data = this.authService.decodeToken(token) as JwtPayload;
 
       if(!data) {
+        console.log('Empty token');
         client.emit(AUTH_ERROR, new WsException(Messages.INVALID_TOKEN));
         return;
       }
@@ -35,12 +38,14 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const user = await this.authService.validateUser(data);
 
       if (!user) {
+        console.log('Empty user');
         client.emit(AUTH_ERROR, new WsException(Messages.USER_NOT_FOUND));
         return;
       }
 
       await this.usersService.updateOne(user.id, { online: true });
 
+      console.log('Adding socket to store');
       this.clientsStoreService.addSocket({
         id: client.id,
         socket: client,
@@ -48,6 +53,8 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
       });
 
       console.log(`User ID: ${user.id} successfully connected`);
+
+      client.emit(CONNECTED);
     } catch (e) {
       console.log(e);
       client.emit(SERVER_ERROR, new WsException(Messages.SERVER_ERROR));

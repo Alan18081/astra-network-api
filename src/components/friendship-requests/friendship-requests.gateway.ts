@@ -22,8 +22,8 @@ import { ClientsStoreService } from '../core/services/clients-store.service';
 import { getSocketIdWithNamespace } from '../../helpers/functions/get-socket-id-with-namespace';
 
 @WebSocketGateway({ namespace: '/' })
-@UsePipes(new ValidationPipe())
-@UseFilters(new BaseWsExceptionFilter())
+@UsePipes(ValidationPipe)
+@UseFilters(BaseWsExceptionFilter)
 @UseInterceptors(UserInterceptor)
 export class FriendshipRequestsGateway {
 
@@ -38,6 +38,7 @@ export class FriendshipRequestsGateway {
 
   @SubscribeMessage(actions.FETCH_INCOMING_FRIENDSHIP_REQUESTS)
   async onFetchIncomingFriendshipRequests(client: any, data: PaginationDto): Promise<actions.FetchIncomingFriendshipRequests> {
+    console.log('Hello');
     const result = await this.fetchFriendshipRequests(client.user.id, data, FriendshipRequestsType.INCOMING);
     return new actions.FetchIncomingFriendshipRequests(result);
   }
@@ -61,8 +62,9 @@ export class FriendshipRequestsGateway {
 
   }
 
-  @SubscribeMessage(actions.SEND_FRIENDSHIP_REQUEST)
+  @SubscribeMessage('Hello')
   async onSendFriendshipRequest(client: any, data: SendRequestDto): Promise<void | WsException> {
+    console.log(client.user);
     const userId = client.user.id;
     console.log(userId);
 
