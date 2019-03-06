@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UsersModule } from './components/users/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ORM_CONFIG } from './config';
 import { AuthModule } from './components/auth/auth.module';
+import { MongooseModule } from '@nestjs/mongoose'
 import { FilesModule } from './components/files/files.module';
 import { MessagesModule } from './components/messages/messages.module';
 import { ChatsModule } from './components/chats/chats.module';
@@ -17,7 +16,7 @@ import { FriendshipRequestsModule } from './components/friendship-requests/frien
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
     }),
-    TypeOrmModule.forRoot(ORM_CONFIG),
+    MongooseModule.forRoot('mongodb://localhost/astra_network'),
     UsersModule,
     AuthModule,
     FilesModule,
