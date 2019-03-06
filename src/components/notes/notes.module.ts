@@ -15,6 +15,6 @@ import {AuthModule} from '../auth/auth.module';
   ],
   exports: [],
   controllers: [NotesController],
-  providers: [NotesService, NotesGateway],
+  providers: [NotesGateway, NotesService],
 })
 export class NotesModule {}
