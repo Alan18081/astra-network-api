@@ -1,0 +1,15 @@
+type User {
+    _id: String!
+    firstName: String!
+    lastName: String!
+    email: String!
+    age: Number
+    password: String
+    googleId: String
+    emailVerified: Boolean
+    phoneVerified: Boolean
+    online: Boolean
+    friends: [User!]!
+    notes: [Note]
+    chats: [Chat]
+}

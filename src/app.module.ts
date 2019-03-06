@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
 import { UsersModule } from './components/users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ORM_CONFIG } from './config';
@@ -13,6 +14,9 @@ import { FriendshipRequestsModule } from './components/friendship-requests/frien
 
 @Module({
   imports: [
+    GraphQLModule.forRoot({
+      typePaths: ['./**/*.graphql'],
+    }),
     TypeOrmModule.forRoot(ORM_CONFIG),
     UsersModule,
     AuthModule,
