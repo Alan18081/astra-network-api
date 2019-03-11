@@ -1,9 +1,12 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, ObjectID, ObjectIdColumn } from 'typeorm';
 import { BaseEntity } from '../core/base.entity';
 import { User } from '../users/user.entity';
 
 @Entity()
 export class File extends BaseEntity {
+
+  @ObjectIdColumn()
+  id: ObjectID;
 
   @Column()
   url: string;
@@ -13,10 +16,10 @@ export class File extends BaseEntity {
 
   @Column({ nullable: true })
   userId: number;
-
-  @ManyToOne(type => User)
-  @JoinColumn({ name: 'userId' })
-  user: User;
+  //
+  // @ManyToOne(type => User)
+  // @JoinColumn({ name: 'userId' })
+  // user: User;
 
 
 }

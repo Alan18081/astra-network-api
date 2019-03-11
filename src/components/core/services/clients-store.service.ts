@@ -5,19 +5,18 @@ import { Socket } from '../../chats/interfaces/socket.interface';
 export class ClientsStoreService {
 
   private sockets: Map<string, Socket> = new Map();
-  private userIdsToSocketIds: Map<number, string> = new Map();
-  private socketIdsToUserIds: Map<string, number> = new Map();
+  private userIdsToSocketIds: Map<string, string> = new Map();
+  private socketIdsToUserIds: Map<string, string> = new Map();
 
 
   getSocketById(socketId: string): Socket | undefined {
-    console.log(socketId);
     const userId = this.socketIdsToUserIds.get(socketId);
     if(userId) {
       return this.sockets.get(JSON.stringify({ userId, socketId }));
     }
   }
 
-  getSocketByUserId(userId: number): Socket | undefined {
+  getSocketByUserId(userId: string): Socket | undefined {
     const socketId = this.userIdsToSocketIds.get(userId);
     if(socketId) {
       return this.sockets.get(JSON.stringify({ userId, socketId }));
@@ -26,8 +25,8 @@ export class ClientsStoreService {
 
   addSocket(socket: Socket): void {
     console.log(socket.id, socket.user.id);
-    this.userIdsToSocketIds.set(socket.user.id, socket.id);
-    this.socketIdsToUserIds.set(socket.id, socket.user.id);
+    this.userIdsToSocketIds.set(socket.user.id.toString(), socket.id);
+    this.socketIdsToUserIds.set(socket.id, socket.user.id.toString());
     this.sockets.set(JSON.stringify({ userId: socket.user.id, socketId: socket.id }), socket);
   }
 
