@@ -1,9 +1,12 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, ObjectID, ObjectIdColumn, OneToOne } from 'typeorm';
 import { BaseEntity } from '../core/base.entity';
 import { User } from '../users/user.entity';
 
 @Entity()
 export class FriendshipRequest extends BaseEntity {
+
+  @ObjectIdColumn()
+  id: ObjectID;
 
   @Column()
   receiverId: number;

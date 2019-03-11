@@ -1,7 +1,7 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Message} from './message.entity';
-import { Repository, FindOptionsRelation } from 'typeorm';
+import { Repository } from 'typeorm';
 import {User} from '../users/user.entity';
 import {UpdateMessageDto} from './dto/update-message.dto';
 import { FindOneMessageDto } from './dto/find-one-message.dto';
@@ -14,8 +14,8 @@ export class MessagesService {
     private readonly messagesRepository: Repository<Message>,
   ) {}
 
-  private getRelations(query: FindOneMessageDto): FindOptionsRelation<Message> {
-    const relations: FindOptionsRelation<Message> = [];
+  private getRelations(query: FindOneMessageDto): string[] {
+    const relations: string[] = [];
 
     if (query.includeUser) {
       relations.push('user');
@@ -26,7 +26,7 @@ export class MessagesService {
 
 
   async findOne(id: number, query: FindOneMessageDto): Promise<Message | undefined> {
-    const relations: FindOptionsRelation<Message> = this.getRelations(query);
+    const relations: string[] = this.getRelations(query);
 
     return await this.messagesRepository.findOne({
       where: {

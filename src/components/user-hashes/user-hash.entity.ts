@@ -1,11 +1,10 @@
-import { Column, Entity } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ObjectID, ObjectIdColumn } from 'typeorm';
 
 @Entity()
 export class UserHash {
 
-  @PrimaryGeneratedColumn()
-  id: number;
+  @ObjectIdColumn()
+  id: ObjectID;
 
   @Column('varchar')
   hash: string;

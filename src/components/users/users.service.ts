@@ -6,7 +6,6 @@ import { Repository, SelectQueryBuilder } from 'typeorm';
 import {CreateUserDto} from './dto/create-user.dto';
 import {HashService} from '../core/services/hash.service';
 import {FindUsersListDto} from './dto/find-users-list.dto';
-import {Roles} from '../../helpers/enums/roles.enum';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {GoogleUserData} from './interfaces/google-user-data.interface';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';

@@ -1,11 +1,11 @@
-import {Column, Entity, Index, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ObjectID, ObjectIdColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import {User} from '../users/user.entity';
 
 @Entity()
 export class RefreshToken {
 
-  @PrimaryGeneratedColumn()
-  id: number;
+  @ObjectIdColumn()
+  id: ObjectID;
 
   @Column('varchar')
   @Index()

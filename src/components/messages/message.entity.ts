@@ -1,11 +1,21 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  ObjectID,
+  ObjectIdColumn,
+  PrimaryColumn,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 import {User} from '../users/user.entity';
 import { Chat } from '../chats/chat.entity';
 
 @Entity()
 export class Message {
-  @PrimaryGeneratedColumn()
-  id: number;
+
+  @ObjectIdColumn()
+  id: ObjectID;
 
   @Column('varchar')
   text: string;
