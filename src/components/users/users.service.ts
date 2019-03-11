@@ -1,28 +1,24 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {BaseService} from '../../helpers/interfaces/base-service.interface';
-import {User} from './user.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, SelectQueryBuilder } from 'typeorm';
 import {CreateUserDto} from './dto/create-user.dto';
 import {HashService} from '../core/services/hash.service';
 import {FindUsersListDto} from './dto/find-users-list.dto';
-import {Roles} from '../../helpers/enums/roles.enum';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {GoogleUserData} from './interfaces/google-user-data.interface';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 import { PaginationDto } from '../core/dto/pagination.dto';
+import { UsersRepository } from './users.repository';
+import { User } from './interfaces/user.interface';
 
 @Injectable()
 export class UsersService implements BaseService<User> {
   constructor(
-    @InjectRepository(User)
-    private readonly usersRepository: Repository<User>,
+    private readonly usersRepository: UsersRepository,
     private readonly hashService: HashService,
   ) {}
 
   async findMany(payload: FindUsersListDto): Promise<User[]> {
-    const queryBuilder = this.prepareBuilder(this.usersRepository.createQueryBuilder('user'), payload);
-    return await queryBuilder.getMany();
+    return this.usersRepository.findMany(payload);
   }
 
   prepareBuilder(queryBuilder: SelectQueryBuilder<User>, query: FindUsersListDto): SelectQueryBuilder<User> {
@@ -141,7 +137,6 @@ export class UsersService implements BaseService<User> {
       }
     });
 
-    console.log('Some friend', friend);
 
     return !!friend;
   }
