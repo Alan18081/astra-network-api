@@ -1,36 +1,30 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Comment } from './comment.entity';
 import { CreateCommentDto } from './dto/create-comment.dto';
-import { Repository } from 'typeorm';
-import { User } from '../users/user.entity';
 import { UpdateCommentDto } from './dto/update-comment.dto';
+import {Comment} from './comment.interface';
+import {CommentsRepository} from './comments.repository';
 
 @Injectable()
 export class CommentsService {
 
   constructor(
-    @InjectRepository(Comment)
-    private readonly commentsRepository: Repository<Comment>,
+    private readonly commentsRepository: CommentsRepository,
   ) {}
 
-  async createOne(payload: CreateCommentDto, user: User): Promise<Comment> {
-    const newComment = {
-      ...new Comment(),
+  async createOne(payload: CreateCommentDto, userId: string): Promise<Comment> {
+    const newComment: Partial<Comment> = {
       ...payload,
-      author: user,
+      user: userId,
     };
 
-    return await this.commentsRepository.save(newComment);
+    return this.commentsRepository.save(newComment);
   }
 
-  async updateOne(id: number, payload: UpdateCommentDto): Promise<Comment | undefined> {
-    await this.commentsRepository.update(id, { ...payload });
-
-    return await this.commentsRepository.findOne(id);
+  async updateById(id: string, payload: UpdateCommentDto): Promise<Comment | null> {
+    return this.commentsRepository.updateById(id, payload);
   }
 
-  async deleteOne(id: number): Promise<void> {
-    await this.commentsRepository.delete({ id });
+  async deleteOne(id: string): Promise<void> {
+    await this.commentsRepository.deleteById(id);
   }
 }

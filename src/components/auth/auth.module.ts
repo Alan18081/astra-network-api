@@ -8,8 +8,8 @@ import {AuthService} from './auth.service';
 import {JwtStrategy} from './strategies/jwt.strategy';
 import {GoogleStrategy} from './strategies/google.strategy';
 import { CoreModule } from '../core/core.module';
-import {UserHashesModule} from '../user-hashes/user-hashes.module';
-import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
+// import {UserHashesModule} from '../user-hashes/user-hashes.module';
+// import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
 
 @Module({
   imports: [
@@ -22,8 +22,8 @@ import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
     }),
     UsersModule,
     CoreModule,
-    UserHashesModule,
-    RefreshTokensModule,
+    // UserHashesModule,
+    // RefreshTokensModule,
   ],
   exports: [AuthService, JwtModule],
   controllers: [AuthController],

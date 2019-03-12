@@ -13,7 +13,7 @@ import {HashService} from '../core/services/hash.service';
 import {ExchangeTokenDto} from './dto/exchangeToken.dto';
 import {AuthGuard} from '@nestjs/passport';
 import {ReqUser} from '../../helpers/decorators/user.decorator';
-import {User} from '../users/user.entity';
+import {User} from '../users/user.interface';
 import {ChangePasswordDto} from './dto/change-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { SetNewPasswordDto } from './dto/set-new-password.dto';
@@ -75,8 +75,8 @@ export class AuthController {
 
   @Get('google/success')
   @ApiOperation({ title: 'Google success authentication' })
-  async googleSuccess(@Query('userId') userId: string | number): Promise<JwtResponse | void> {
-    const user = await this.usersService.findOne(+userId);
+  async googleSuccess(@Query('userId') userId: string): Promise<JwtResponse | void> {
+    const user = await this.usersService.findOne(userId);
     if (user) {
       return await this.authService.signIn(user);
 
@@ -107,7 +107,7 @@ export class AuthController {
 
     const newPassword = await this.hashService.generateHash(payload.newPassword);
 
-    await this.usersService.updateOne(user.id, { password: newPassword });
+    await this.usersService.updateById(user.id, { password: newPassword });
   }
 
   @Get('verifyEmail')
@@ -139,11 +139,11 @@ export class AuthController {
     await this.authService.resetPassword(user);
 
   }
-
-  @Post('newPassword')
-  @HttpCode(HttpStatus.ACCEPTED)
-  @ApiOperation({ title: 'Set new password' })
-  async setNewPassword(@Body() body: SetNewPasswordDto): Promise<void> {
-    await this.authService.setNewPassword(body);
-  }
+  //
+  // @Post('newPassword')
+  // @HttpCode(HttpStatus.ACCEPTED)
+  // @ApiOperation({ title: 'Set new password' })
+  // async setNewPassword(@Body() body: SetNewPasswordDto): Promise<void> {
+  //   await this.authService.setNewPassword(body);
+  // }
 }

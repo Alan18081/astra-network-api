@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
 import { CommentsService } from './comments.service';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import {Comment} from './comment.entity';
+import {MongooseModule} from '@nestjs/mongoose';
+import {CommentSchema} from './comment.schema';
+import {CommentsRepository} from './comments.repository';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Comment]),
+      MongooseModule.forFeature([{name: 'Comment', schema: CommentSchema }])
   ],
   exports: [CommentsService],
   controllers: [],
   providers: [
     CommentsService,
+    CommentsRepository
   ],
 })
 export class CommentsModule {}

@@ -1,33 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { UserHash } from './user-hash.entity';
-import { Repository } from 'typeorm';
 import { HashTypes } from '../../helpers/enums/hash-types.enum';
 import { HashService } from '../core/services/hash.service';
+import { UserHashesRepository } from './user-hashes.repository';
+import { UserHash } from './user-hash.interface';
 
 @Injectable()
 export class UserHashesService {
 
   constructor(
-    @InjectRepository(UserHash)
-    private readonly userHashesRepository: Repository<UserHash>,
+    private readonly userHashesRepository: UserHashesRepository,
     private readonly hashService: HashService,
   ) {}
 
-  async findOneByHash(hash: string): Promise<UserHash | undefined> {
-    return await this.userHashesRepository.findOne({ hash });
+  async findOneByHash(hash: string): Promise<UserHash | null> {
+    return await this.userHashesRepository.findOneByHash(hash);
   }
 
-  async createOne(userId: number, type: HashTypes): Promise<UserHash> {
-    const userHash = new UserHash();
+  async createOne(userId: string, type: HashTypes): Promise<UserHash> {
+    const userHash: Partial<UserHash> = {};
     userHash.hash = await this.hashService.generateHash(JSON.stringify({ userId, type }));
     userHash.userId = userId;
 
     return await this.userHashesRepository.save(userHash);
   }
 
-  async deleteOne(id: number): Promise<void> {
-    await this.userHashesRepository.delete({ id });
+  async deleteOne(id: string): Promise<void> {
+    await this.userHashesRepository.deleteById(id);
   }
 
 }

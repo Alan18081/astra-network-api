@@ -1,67 +1,39 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { FriendshipRequest } from './friendship-request.entity';
-import { Repository } from 'typeorm';
-import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
-import { PaginationDto } from '../core/dto/pagination.dto';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
+import { FriendshipRequestsRepository } from './friendship-requests.repository';
+import {FriendshipRequest} from './friendship-request.interface';
 
 @Injectable()
 export class FriendshipRequestsService {
 
   constructor(
-    @InjectRepository(FriendshipRequest)
-    private readonly friendshipRequestsRepository: Repository<FriendshipRequest>,
+    private readonly friendshipRequestsRepository: FriendshipRequestsRepository,
   ) {}
 
   async findMany(userId: number, type: FriendshipRequestsType): Promise<FriendshipRequest[]> {
     const field = type === FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
-    return await this.friendshipRequestsRepository.find({
-      where: {
-        [field]: userId
-      },
-      relations: [type === FriendshipRequestsType.INCOMING ? 'sender' : 'receiver']
-    });
+    return this.friendshipRequestsRepository.findMany({[field]: userId});
   }
 
-  async findManyWithPagination(userId: number, { page, limit }: Required<PaginationDto>, type: FriendshipRequestsType): Promise<PaginatedResult<FriendshipRequest>> {
-    const field = type === FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
-    const [requests, totalCount] = await this.friendshipRequestsRepository.findAndCount({
-      where: {
-        [field]: userId
-      },
-      skip: (page - 1) * limit,
-      take: limit,
-      relations: [type === FriendshipRequestsType.INCOMING ? 'receiver' : 'sender']
-    });
-
-    return {
-      data: requests,
-      page,
-      totalCount,
-      itemsPerPage: limit
-    };
+  async findOne(id: string): Promise<FriendshipRequest | null> {
+    return await this.friendshipRequestsRepository.findById(id);
   }
 
-  async findOne(id: number): Promise<FriendshipRequest | undefined> {
-    return await this.friendshipRequestsRepository.findOne(id);
+  async findOneBySenderId(senderId: string): Promise<FriendshipRequest | null> {
+    return this.friendshipRequestsRepository.findOneBySenderId(senderId);
   }
 
-  async findOneBySenderId(senderId: number): Promise<FriendshipRequest | undefined> {
-    return await this.friendshipRequestsRepository.findOne({  senderId });
-  }
-
-  async createOne(senderId: number, receiverId: number, message?: string): Promise<FriendshipRequest> {
-    const friendRequest = new FriendshipRequest({
-      senderId,
-      receiverId,
+  async createOne(senderId: string, receiverId: string, message?: string): Promise<FriendshipRequest> {
+    const friendRequest: Partial<FriendshipRequest> = {
+      sender: senderId,
+      receiver: receiverId,
       message
-    });
+    };
 
-    return await this.friendshipRequestsRepository.save(friendRequest);
+    return this.friendshipRequestsRepository.save(friendRequest);
   }
 
-  async deleteOne(id: number): Promise<void> {
-    await this.friendshipRequestsRepository.delete({ id });
+  async deleteOne(id: string): Promise<void> {
+    await this.friendshipRequestsRepository.deleteById(id);
   }
 }

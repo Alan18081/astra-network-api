@@ -5,7 +5,7 @@ export class FindNotesListDto extends PaginationDto {
 
   @IsOptional()
   @ArrayNotEmpty()
-  ids: number[];
+  ids?: string[];
 
   @IsBooleanString()
   @IsOptional()

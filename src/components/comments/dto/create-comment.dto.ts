@@ -8,8 +8,4 @@ export class CreateCommentDto {
   @ApiModelProperty()
   text: string;
 
-  @IsInt()
-  @ApiModelProperty()
-  productId: number;
-
 }
