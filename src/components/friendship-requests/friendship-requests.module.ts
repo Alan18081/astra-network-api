@@ -1,17 +1,18 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from '../users/users.module';
 import { FriendshipRequestsGateway } from './friendship-requests.gateway';
 import { FriendshipRequestsService } from './friendship-requests.service';
-import { FriendshipRequest } from './friendship-request.entity';
 import { CoreModule } from '../core/core.module';
+import { FriendshipRequestSchema } from './friendship-request.schema';
+import { FriendshipRequestsRepository } from './friendship-requests.repository';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([FriendshipRequest]),
+    MongooseModule.forFeature([{name: 'FriendshipRequest', schema: FriendshipRequestSchema}]),
     UsersModule,
     CoreModule,
   ],
-  providers: [FriendshipRequestsGateway, FriendshipRequestsService]
+  providers: [FriendshipRequestsGateway, FriendshipRequestsService, FriendshipRequestsRepository]
 })
 export class FriendshipRequestsModule {}

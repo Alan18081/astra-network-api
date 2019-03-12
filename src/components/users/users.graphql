@@ -4,7 +4,6 @@ type User {
     lastName: String!
     email: String!
     age: Number
-    password: String
     googleId: String
     emailVerified: Boolean
     phoneVerified: Boolean
@@ -12,4 +11,32 @@ type User {
     friends: [User!]!
     notes: [Note]
     chats: [Chat]
+}
+
+type Query {
+    users: [User!]!
+    user(id: String): User
+    profile: User!
+    friends(userId: String): [User!]!
+}
+
+type Mutation {
+    createUser(input: CreateUserInput): User!
+    updateUser(input: UpdateUserInput): User!
+    deleteUser(id: String): Void
+    addFriend(friendId: String): Void
+    removeFriend(friendId: String): Void
+}
+
+input CreateUserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    password: String!
+}
+
+input UpdateUserInput {
+    firstName: String
+    lastName: String
+    age: Int
 }

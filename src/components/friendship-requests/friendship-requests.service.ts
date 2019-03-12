@@ -1,17 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { FriendshipRequest } from './friendship-request.entity';
-import { Repository } from 'typeorm';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 import { PaginationDto } from '../core/dto/pagination.dto';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
+import { FriendshipRequestsRepository } from './friendship-requests.repository';
 
 @Injectable()
 export class FriendshipRequestsService {
 
   constructor(
-    @InjectRepository(FriendshipRequest)
-    private readonly friendshipRequestsRepository: Repository<FriendshipRequest>,
+    private readonly friendshipRequestsRepository: FriendshipRequestsRepository,
   ) {}
 
   async findMany(userId: number, type: FriendshipRequestsType): Promise<FriendshipRequest[]> {

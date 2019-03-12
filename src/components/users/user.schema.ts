@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 import { Chat } from '../chats/chat.entity';
 import { Note } from '../notes/note.entity';
 
-export const UserSchema = new Schema({
+const UserSchema = new Schema({
   firstName: String,
   lastName: String,
   age: { type: Number, default: '' },
@@ -16,3 +16,7 @@ export const UserSchema = new Schema({
   notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }],
   friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
+
+UserSchema.index({ email: 1 });
+
+export { UserSchema };

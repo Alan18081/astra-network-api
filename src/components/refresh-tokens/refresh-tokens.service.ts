@@ -1,40 +1,38 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { RefreshToken } from './refresh-token.entity';
-import { Repository } from 'typeorm';
 import { CreateRefreshTokenInterface } from './interfaces/create-refresh-token.interface';
+import { RefreshTokensRepository } from './refresh-tokens.repository';
+import { RefreshToken } from './refresh-token.interface';
 
 @Injectable()
 export class RefreshTokensService {
 
   constructor(
-    @InjectRepository(RefreshToken)
-    private readonly refreshTokensRepository: Repository<RefreshToken>,
+    private readonly refreshTokensRepository: RefreshTokensRepository,
     private readonly jwtService: JwtService,
   ) {}
 
-  async findOneByUserId(userId: number): Promise<RefreshToken | undefined> {
-    return await this.refreshTokensRepository.findOne({ userId });
+  async findOneByUserId(userId: string): Promise<RefreshToken | null> {
+    return await this.refreshTokensRepository.findOneByUserId(userId);
   }
 
-  async findOneByToken(token: string): Promise<RefreshToken | undefined> {
-    return await this.refreshTokensRepository.findOne({ token }, { relations: ['user'] });
+  async findOneByToken(token: string): Promise<RefreshToken | null> {
+    return await this.refreshTokensRepository.findOneByToken(token);
   }
 
   async createOne(payload: CreateRefreshTokenInterface): Promise<RefreshToken> {
     const { accessToken, userId } = payload;
     const token = this.jwtService.sign({ accessToken, userId });
 
-    const refreshToken = new RefreshToken();
+    const refreshToken: Partial<RefreshToken> = {};
     refreshToken.token = token;
     refreshToken.userId = userId;
 
     return await this.refreshTokensRepository.save(refreshToken);
   }
 
-  async deleteOne(id: number): Promise<void> {
-    await this.refreshTokensRepository.delete({ id });
+  async deleteOne(id: string): Promise<void> {
+    await this.refreshTokensRepository.deleteById(id);
   }
 
 }

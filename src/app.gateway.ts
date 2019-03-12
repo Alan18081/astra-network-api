@@ -43,7 +43,7 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
         return;
       }
 
-      await this.usersService.updateOne(user.id, { online: true });
+      await this.usersService.updateById(user.id, { online: true });
 
       console.log('Adding socket to store');
       this.clientsStoreService.addSocket({

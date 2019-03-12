@@ -1,5 +1,4 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
-import {BaseService} from '../../helpers/interfaces/base-service.interface';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import {CreateUserDto} from './dto/create-user.dto';
 import {HashService} from '../core/services/hash.service';
 import {FindUsersListDto} from './dto/find-users-list.dto';
@@ -8,47 +7,29 @@ import {GoogleUserData} from './interfaces/google-user-data.interface';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 import { PaginationDto } from '../core/dto/pagination.dto';
 import { UsersRepository } from './users.repository';
-import { User } from './interfaces/user.interface';
+import { User } from './user.interface';
 
 @Injectable()
-export class UsersService implements BaseService<User> {
+export class UsersService {
   constructor(
     private readonly usersRepository: UsersRepository,
     private readonly hashService: HashService,
   ) {}
 
   async findMany(payload: FindUsersListDto): Promise<User[]> {
-    return this.usersRepository.findMany(payload);
+    return this.usersRepository.findMany({});
   }
 
-  prepareBuilder(queryBuilder: SelectQueryBuilder<User>, query: FindUsersListDto): SelectQueryBuilder<User> {
-    if (query.ageFrom) {
-      queryBuilder.where('age > :ageFrom', { ageFrom: query.ageFrom});
-    }
-
-    if (query.ageTo) {
-      queryBuilder.where('age < :ageTo', { ageTo: query.ageTo });
-    }
-
-    return queryBuilder;
+  async findUserFriends(userId: string): Promise<User[]> {
+    return this.usersRepository.findUserFriends(userId);
   }
 
   async findManyWithPagination(query: FindUsersListDto & Required<PaginationDto>): Promise<PaginatedResult<User>> {
-    const skip = (query.page - 1) * query.limit;
-    const queryBuilder = this.prepareBuilder(this.usersRepository.createQueryBuilder('user'), query);
-    const totalCount = await queryBuilder.getCount();
-    const data = await queryBuilder.skip(skip).take(query.limit).getMany();
-
-    return {
-      page: query.page,
-      itemsPerPage: query.limit,
-      totalCount,
-      data,
-    };
+    return this.usersRepository.findManyWithPagination(query, { page: query.page, limit: query.limit });
   }
 
-  async findOne(id: number): Promise<User | undefined> {
-    const user =  await this.usersRepository.findOne(id);
+  async findOne(id: string): Promise<User> {
+    const user =  await this.usersRepository.findById(id);
     if (!user) {
       throw new NotFoundException(Messages.USER_NOT_FOUND);
     }
@@ -56,21 +37,23 @@ export class UsersService implements BaseService<User> {
     return user;
   }
 
-  async findOneByEmail(email: string): Promise<User | undefined> {
-    return await this.usersRepository.findOne({
-      email
-    });
+  async findOneByEmail(email: string): Promise<User | null> {
+    return this.usersRepository.findOneByEmail(email);
   }
 
-  async findOneByGoogleId(id: string): Promise<User | undefined> {
-    return await this.usersRepository.findOne({ googleId: id });
+  async findOneByGoogleId(id: string): Promise<User | null> {
+    return this.usersRepository.findOneByGoogleId(id);
   }
 
   async createOne(payload: CreateUserDto): Promise<User> {
+    const user = await this.usersRepository.findOneByEmail(payload.email);
+    if(user) {
+      throw new BadRequestException(Messages.USER_ALREADY_EXISTS);
+    }
+
     const passwordHash = await this.hashService.generateHash(payload.password);
 
     const newUser = {
-      ...new User(),
       ...payload,
       password: passwordHash,
       createdAt: new Date()
@@ -81,63 +64,42 @@ export class UsersService implements BaseService<User> {
 
   async createByGoogle(payload: GoogleUserData): Promise<User> {
     const newUser = {
-      ...new User(),
       ...payload,
     };
 
     return await this.usersRepository.save(newUser);
   }
 
-  async updateOne(id: number, payload: Partial<User>): Promise<User | undefined> {
-    await this.usersRepository.update(
-      { id },
-      payload,
-    );
+  async updateById(id: string, payload: Partial<User>): Promise<User | null> {
+    await this.usersRepository.updateById(id, payload);
 
-    return await this.usersRepository.findOne(id);
+    return await this.usersRepository.findById(id);
   }
 
-  async deleteOne(id: number): Promise<void> {
-    await this.usersRepository.delete({ id });
+  async deleteById(id: string): Promise<void> {
+    await this.usersRepository.deleteById(id);
   }
 
-  async setNewPassword(id: number, password: string): Promise<void> {
+  async setNewPassword(id: string, password: string): Promise<void> {
     const passwordHash = await this.hashService.generateHash(password);
 
-    await this.updateOne(id, { password: passwordHash });
+    await this.updateById(id, { password: passwordHash });
   }
 
-  async addFriend(userId: number, friendId: number): Promise<User | undefined> {
-   await this.usersRepository
-     .createQueryBuilder()
-     .relation(User, 'friends')
-     .of(userId)
-     .add(friendId);
+  async addFriend(userId: string, friendId: number): Promise<User | undefined> {
 
    return await this.findOne(userId);
   }
 
-  async removeFriend(userId: number, friendId: number): Promise<User | undefined> {
-    await this.usersRepository
-      .createQueryBuilder()
-      .relation(User, 'friends')
-      .of(userId)
-      .remove(friendId);
+  async removeFriend(userId: string, friendId: number): Promise<User | undefined> {
 
     return await this.findOne(userId);
   }
 
   async isFriend(userId: number, friendId: number): Promise<boolean> {
-    const friend = await this.usersRepository.findOne({
-      where: {
-        id: friendId,
-        friends: {
-          id: friendId
-        }
-      }
-    });
 
 
-    return !!friend;
+    // return !!friend;
+    return false;
   }
 }
