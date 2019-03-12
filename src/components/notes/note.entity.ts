@@ -7,7 +7,7 @@ import {
   ManyToOne,
   ObjectID,
   ObjectIdColumn,
-  OneToMany
+  OneToMany, PrimaryGeneratedColumn
 } from 'typeorm';
 import { File } from '../files/file.entity';
 import { Comment } from '../comments/comment.entity';
@@ -17,8 +17,8 @@ import { BaseEntity } from '../core/base.entity';
 @Entity()
 export class Note extends BaseEntity {
 
-  @ObjectIdColumn()
-  id: ObjectID;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column('varchar')
   title: string;

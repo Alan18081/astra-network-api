@@ -19,15 +19,15 @@ import { FriendshipRequestsModule } from './components/friendship-requests/frien
     }),
     TypeOrmModule.forRoot(ORM_CONFIG),
     UsersModule,
-    // AuthModule,
-    // FilesModule,
-    // MessagesModule,
-    // ChatsModule,
-    // NotesModule,
-    // RefreshTokensModule,
-    // FriendshipRequestsModule
+    AuthModule,
+    FilesModule,
+    MessagesModule,
+    ChatsModule,
+    NotesModule,
+    RefreshTokensModule,
+    FriendshipRequestsModule
   ],
   controllers: [],
-  // providers: [AppGateway],
+  providers: [AppGateway],
 })
 export class AppModule {}
