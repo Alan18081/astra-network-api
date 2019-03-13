@@ -86,20 +86,16 @@ export class UsersService {
     await this.updateById(id, { password: passwordHash });
   }
 
-  async addFriend(userId: string, friendId: number): Promise<User | undefined> {
-
-   return await this.findOne(userId);
+  async addFriend(userId: string, friendId: string): Promise<User | null> {
+    return this.usersRepository.addFriend(userId, friendId);
   }
 
-  async removeFriend(userId: string, friendId: number): Promise<User | undefined> {
-
-    return await this.findOne(userId);
+  async removeFriend(userId: string, friendId: string): Promise<User | null> {
+    return this.usersRepository.removeFriend(userId, friendId);
   }
 
-  async isFriend(userId: number, friendId: number): Promise<boolean> {
-
-
-    // return !!friend;
-    return false;
+  async checkIsFriend(userId: string, friendId: string): Promise<boolean> {
+    const user = await this.usersRepository.findUserWithFriend(userId, friendId);
+    return !!user;
   }
 }

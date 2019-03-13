@@ -7,12 +7,12 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class UserHashesRepository extends BaseRepository<UserHash> {
 
-  constructor(@InjectModel('UserHash') private readonly userHashModel: Model<UserHash>) {
+  constructor(@InjectModel('UserHash') userHashModel: Model<UserHash>) {
     super(userHashModel);
   }
 
   async findOneByHash(hash: string): Promise<UserHash | null> {
-    return this.userHashModel.findOne({ hash });
+    return super.model.findOne({ hash });
   }
 
 }

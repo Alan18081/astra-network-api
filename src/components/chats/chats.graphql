@@ -1,0 +1,33 @@
+type Chat {
+    _id: String!
+    name: String!
+    users: [User!]
+}
+
+type Query {
+    findManyByUser(input: FindManyChatsInput): [Chat!]!
+    findOne(input: FindOneChatInput): Chat
+}
+
+type Mutation {
+    createChat(input: CreateChatInput): Chat!
+    updateChat(input: CreateChatInput): Chat!
+    deleteChat(id: String!): Chat
+}
+
+input FindManyChatsInput {
+    ids: [String!]
+    includeMessages: Boolean
+    includeUsers: Boolean
+}
+
+input FindOneChatInput {
+    id: String!
+    includeMessages: Boolean
+    includeUsers: Boolean
+}
+
+input CreateChatInput {
+    name: String!
+    userIds: [String!]
+}

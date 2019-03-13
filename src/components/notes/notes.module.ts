@@ -6,6 +6,8 @@ import { NotesService } from './notes.service';
 import {NotesGateway} from './notes.gateway';
 import {CoreModule} from '../core/core.module';
 import {AuthModule} from '../auth/auth.module';
+import { NotesResolver } from './notes.resolver';
+import { NotesRepository } from './notes.repository';
 
 @Module({
   imports: [
@@ -15,6 +17,6 @@ import {AuthModule} from '../auth/auth.module';
   ],
   exports: [],
   controllers: [NotesController],
-  providers: [NotesGateway, NotesService],
+  providers: [NotesGateway, NotesService, NotesResolver, NotesRepository],
 })
 export class NotesModule {}

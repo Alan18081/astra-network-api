@@ -1,6 +1,4 @@
 import { Schema } from 'mongoose';
-import { Chat } from '../chats/chat.entity';
-import { Note } from '../notes/note.entity';
 
 const UserSchema = new Schema({
   firstName: String,

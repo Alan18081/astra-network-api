@@ -22,7 +22,7 @@ export class NotesService {
     return this.notesRepository.findById(id);
   }
 
-  async createOne(payload: CreateNoteDto, userId: string): Promise<Note | undefined> {
+  async createOne(payload: CreateNoteDto, userId: string): Promise<Note> {
     const note: Partial<Note> = {};
 
     note.title = payload.title;
@@ -36,7 +36,7 @@ export class NotesService {
     return this.notesRepository.updateById(id, payload);
   }
 
-  async deleteOne(id: string): Promise<void> {
+  async deleteById(id: string): Promise<void> {
     await this.notesRepository.deleteById(id);
   }
 }

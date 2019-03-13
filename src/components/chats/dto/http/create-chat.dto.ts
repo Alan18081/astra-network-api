@@ -9,6 +9,6 @@ export class CreateChatDto {
 
   @IsArray()
   @IsInt({ each: true })
-  userIds: number[];
+  userIds: string[];
 
 }

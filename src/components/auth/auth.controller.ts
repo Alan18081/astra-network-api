@@ -51,11 +51,11 @@ export class AuthController {
     return await this.authService.signIn(user);
   }
 
-  @Post('token')
-  @ApiOperation({ title: 'Exchange refresh token for new access token' })
-  async exchangeToken(@Body() payload: ExchangeTokenDto): Promise<JwtResponse> {
-   return await this.authService.exchangeToken(payload.refreshToken);
-  }
+  // @Post('token')
+  // @ApiOperation({ title: 'Exchange refresh token for new access token' })
+  // async exchangeToken(@Body() payload: ExchangeTokenDto): Promise<JwtResponse> {
+  //  return await this.authService.exchangeToken(payload.refreshToken);
+  // }
 
   @Get('google')
   @UseGuards(AuthGuard('google'))
@@ -110,14 +110,14 @@ export class AuthController {
     await this.usersService.updateById(user.id, { password: newPassword });
   }
 
-  @Get('verifyEmail')
-  @HttpCode(HttpStatus.ACCEPTED)
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
-  @ApiOperation({ title: 'Verify your email' })
-  async verifyEmail(@ReqUser() user: User): Promise<void> {
-    await this.authService.verifyEmail(user);
-  }
+  // @Get('verifyEmail')
+  // @HttpCode(HttpStatus.ACCEPTED)
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
+  // @ApiOperation({ title: 'Verify your email' })
+  // async verifyEmail(@ReqUser() user: User): Promise<void> {
+  //   await this.authService.verifyEmail(user);
+  // }
 
   @Get('verifyEmail/hash/:hash')
   @HttpCode(HttpStatus.ACCEPTED)
@@ -126,19 +126,19 @@ export class AuthController {
     console.log(hash);
   }
 
-  @Post('resetPassword')
-  @HttpCode(HttpStatus.ACCEPTED)
-  @ApiOperation({ title: 'Reset password' })
-  async resetPassword(@Body() body: ResetPasswordDto): Promise<void> {
-    const user = await this.usersService.findOneByEmail(body.email);
-
-    if (!user) {
-      throw new NotFoundException(Messages.USER_NOT_FOUND);
-    }
-
-    await this.authService.resetPassword(user);
-
-  }
+  // @Post('resetPassword')
+  // @HttpCode(HttpStatus.ACCEPTED)
+  // @ApiOperation({ title: 'Reset password' })
+  // async resetPassword(@Body() body: ResetPasswordDto): Promise<void> {
+  //   const user = await this.usersService.findOneByEmail(body.email);
+  //
+  //   if (!user) {
+  //     throw new NotFoundException(Messages.USER_NOT_FOUND);
+  //   }
+  //
+  //   await this.authService.resetPassword(user);
+  //
+  // }
   //
   // @Post('newPassword')
   // @HttpCode(HttpStatus.ACCEPTED)

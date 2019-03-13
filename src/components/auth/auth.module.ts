@@ -8,8 +8,9 @@ import {AuthService} from './auth.service';
 import {JwtStrategy} from './strategies/jwt.strategy';
 import {GoogleStrategy} from './strategies/google.strategy';
 import { CoreModule } from '../core/core.module';
-// import {UserHashesModule} from '../user-hashes/user-hashes.module';
-// import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
+import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
+import { AuthResolver } from './auth.resolver';
+import {UserHashesModule} from '../user-hashes/user-hashes.module';
 
 @Module({
   imports: [
@@ -22,11 +23,10 @@ import { CoreModule } from '../core/core.module';
     }),
     UsersModule,
     CoreModule,
-    // UserHashesModule,
-    // RefreshTokensModule,
+    UserHashesModule,
+    RefreshTokensModule,
   ],
   exports: [AuthService, JwtModule],
-  controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, GoogleStrategy],
+  providers: [AuthService, JwtStrategy, GoogleStrategy, AuthResolver],
 })
 export class AuthModule {}

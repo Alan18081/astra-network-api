@@ -1,0 +1,13 @@
+scalar Upload
+
+type File {
+    _id: ID!
+    url: String!
+    publicId: ID!
+    userId: ID!
+}
+
+type Mutation {
+    uploadFile(file: Upload!): File!
+    uploadFilesList(files: [Upload!]!): [File!]!
+}

@@ -40,10 +40,10 @@ export class ChatsService {
       throw new WsException(Messages.CHAT_NOT_FOUND);
     }
 
-    return this.chatsRepository.addUserToChat(chat);
+    return this.chatsRepository.addUserToChat(chat._id, user._id);
   }
 
-  async removeUserFromChat(chatId: string, userId: string): Promise<Chat> {
+  async removeUserFromChat(chatId: string, userId: string): Promise<Chat | null> {
     const [chat, user] = await Promise.all([
       this.findOne(chatId, { includeUsers: true }),
       this.usersService.findOne(userId),
@@ -57,16 +57,14 @@ export class ChatsService {
       throw new WsException(Messages.CHAT_NOT_FOUND);
     }
 
-    chat.users = chat.users.filter((id) => id !== userId);
-
-    return await this.chatsRepository.save(chat);
+    return this.chatsRepository.removeUserFromChat(chat._id, user._id);
   }
 
   async findOne(id: string, query: FindOneChatDto): Promise<Chat | null> {
     return this.chatsRepository.findChatById(id, { includeUsers: query.includeMessages, includeMessages: query.includeUsers });
   }
 
-  async createOne({ name, userIds }: CreateChatDto): Promise<Chat | undefined> {
+  async createOne({ name, userIds }: CreateChatDto): Promise<Chat> {
     const chat: Partial<Chat> = {
         name,
         createdAt: new Date(),
@@ -76,11 +74,11 @@ export class ChatsService {
     return this.chatsRepository.save(chat);
   }
 
-  async updateById(id: string, payload: UpdateChatDto): Promise<Chat | undefined> {
+  async updateById(id: string, payload: UpdateChatDto): Promise<Chat | null> {
     return this.chatsRepository.updateById(id, payload);
   }
 
-  async deleteOne(id: string): Promise<void> {
+  async deleteById(id: string): Promise<void> {
     await this.chatsRepository.deleteById(id);
   }
 }

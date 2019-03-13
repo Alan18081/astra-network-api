@@ -3,7 +3,7 @@ type User {
     firstName: String!
     lastName: String!
     email: String!
-    age: Number
+    age: Int
     googleId: String
     emailVerified: Boolean
     phoneVerified: Boolean
@@ -17,15 +17,16 @@ type Query {
     users: [User!]!
     user(id: String): User
     profile: User!
-    friends(userId: String): [User!]!
+    friends(userId: String!): [User!]!
 }
 
 type Mutation {
-    createUser(input: CreateUserInput): User!
-    updateUser(input: UpdateUserInput): User!
-    deleteUser(id: String): Void
-    addFriend(friendId: String): Void
-    removeFriend(friendId: String): Void
+    createUser(input: CreateUserInput!): User!
+    updateUser(id: String!, input: UpdateUserInput!): User!
+    deleteUser(id: String!): Boolean
+    addFriend(friendId: String!): Boolean
+    removeFriend(friendId: String!): Boolean
+    checkIsFriend(friendId: String!): Boolean
 }
 
 input CreateUserInput {

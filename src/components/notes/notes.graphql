@@ -1,0 +1,29 @@
+type Note {
+    _id: ID!
+    title: String!
+    description: String
+    files: [File!]
+    comments: [Comment]!
+    user: User!
+}
+
+type Query {
+    getNotesByUser(userId: String!): [Note!]!
+    getNoteById(id: String!): Note
+}
+
+type Mutation {
+    createNote(input: CreateNoteInput): Note!
+    updateNote(input: CreateNoteInput): Note!
+    deleteNote(id: String): Boolean
+}
+
+input CreateNoteInput {
+    title: String!
+    description: String
+}
+
+input UpdateNoteInput {
+    title: String
+    description: String
+}

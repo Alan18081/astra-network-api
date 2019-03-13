@@ -15,7 +15,6 @@ import { Messages } from '../../helpers/enums/messages.enum';
 import { UserInterceptor } from '../../helpers/interceptors/user.interceptor';
 import { RemoveRequestDto } from './dto/remove-request.dto';
 import { PaginationDto } from '../core/dto/pagination.dto';
-import { FriendshipRequest } from './friendship-request.entity';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 import { ClientsStoreService } from '../core/services/clients-store.service';
