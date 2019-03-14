@@ -6,11 +6,11 @@ type Chat {
 
 type Query {
     findManyByUser(input: FindManyChatsInput): [Chat!]!
-    findOne(input: FindOneChatInput): Chat
+    findChatById(input: FindOneChatInput): Chat
 }
 
 type Mutation {
-    createChat(input: CreateChatInput): Chat!
+        createChat(input: CreateChatInput): Chat!
     updateChat(input: CreateChatInput): Chat!
     deleteChat(id: String!): Chat
 }

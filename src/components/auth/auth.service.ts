@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { User } from '../users/user.interface';
@@ -15,17 +15,40 @@ import { EmailTitles } from '../../helpers/enums/email-titles.enum';
 import {HOST, PORT} from '../../config';
 import { SetNewPasswordDto } from './dto/set-new-password.dto';
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
+import { LoginDto } from './dto/login.dto';
+import { HashService } from '../core/services/hash.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly hashService: HashService,
     // private readonly userHashesService: UserHashesService,
     private readonly emailSendingService: EmailSendingService,
     private readonly emailTemplatesService: EmailTemplatesService,
     private readonly refreshTokensService: RefreshTokensService,
   ) {}
+
+  async login(loginDto: LoginDto): Promise<JwtResponse> {
+    const user = await this.usersService.findOneByEmail(loginDto.email);
+
+    if (!user) {
+      throw new UnauthorizedException(Messages.USER_NOT_FOUND);
+    }
+
+    if(!user.password) {
+      throw new BadRequestException(Messages.USER_DOESNT_HAVE_PASSWORD);
+    }
+
+    const isValidPassword = await this.hashService.compareHash(loginDto.password, user.password);
+
+    if (!isValidPassword)  {
+      throw new UnauthorizedException(Messages.INVALID_PASSWORD);
+    }
+
+    return this.signIn(user);
+  }
 
   async signIn(user: User): Promise<JwtResponse> {
     const jwtPayload: JwtPayload = { email: user.email, id: user.id };
@@ -53,8 +76,8 @@ export class AuthService {
     };
   }
 
-  async validateUser(payload: JwtPayload): Promise<User | undefined> {
-    return await this.usersService.findOne(payload.email);
+  async validateUser(payload: JwtPayload): Promise<User | null> {
+    return this.usersService.findOneByEmail(payload.email);
   }
 
   // async exchangeToken(token: string): Promise<JwtResponse> {

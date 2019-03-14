@@ -1,0 +1,8 @@
+scalar Date
+
+type Message {
+    _id: ID!
+    text: String!
+    author: User!
+    createdAt: Date
+}

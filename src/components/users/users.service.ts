@@ -24,7 +24,7 @@ export class UsersService {
     return this.usersRepository.findUserFriends(userId);
   }
 
-  async findManyWithPagination(query: FindUsersListDto & Required<PaginationDto>): Promise<PaginatedResult<User>> {
+  async findManyWithPagination(query: Partial<User> & Required<PaginationDto>): Promise<PaginatedResult<User>> {
     return this.usersRepository.findManyWithPagination(query, { page: query.page, limit: query.limit });
   }
 

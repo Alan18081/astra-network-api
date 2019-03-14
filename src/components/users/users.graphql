@@ -29,6 +29,10 @@ type Mutation {
     checkIsFriend(friendId: String!): Boolean
 }
 
+type Subscription {
+    userStatusChanged(id: ID!): User!
+}
+
 input CreateUserInput {
     firstName: String!
     lastName: String!

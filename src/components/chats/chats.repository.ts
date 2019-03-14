@@ -14,7 +14,7 @@ export class ChatsRepository extends BaseRepository<Chat> {
     }
 
     async findManyByIds(ids: string[], { includeUsers, includeMessages }: FindChatsListDto): Promise<Chat[]> {
-        let cursor = super.model.find({ _id: { $in: ids } });
+        let cursor = this.model.find({ _id: { $in: ids } });
         if(includeUsers) {
             cursor = cursor.populate('users');
         }
@@ -27,7 +27,7 @@ export class ChatsRepository extends BaseRepository<Chat> {
     }
 
     async findChatById(id: string, { includeUsers, includeMessages }: Relations): Promise<Chat | null> {
-        let query = super.model.findById(id);
+        let query = this.model.findById(id);
         if(includeMessages) {
             query = query.populate('users');
         }
@@ -40,10 +40,10 @@ export class ChatsRepository extends BaseRepository<Chat> {
     }
 
     async addUserToChat(chatId: string, userId: string): Promise<Chat | null> {
-        return super.model.findByIdAndUpdate(chatId, { $addToSet: { users: userId } });
+        return this.model.findByIdAndUpdate(chatId, { $addToSet: { users: userId } });
     }
 
     async removeUserFromChat(chatId: string, userId: string): Promise<Chat | null> {
-        return super.model.findByIdAndUpdate(chatId, { $pull: { users: userId } });
+        return this.model.findByIdAndUpdate(chatId, { $pull: { users: userId } });
     }
 }

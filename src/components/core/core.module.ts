@@ -4,13 +4,15 @@ import { EmailSendingService } from './services/email-sending.service';
 import { EmailTemplatesService } from './services/email-templates.service';
 import {ClientsStoreService} from './services/clients-store.service';
 import { DateScalar } from './scalars/date.scalar';
+import { PublisherService } from './services/publisher.service';
 
 const exportedProviders = [
   HashService,
   EmailSendingService,
   EmailTemplatesService,
   ClientsStoreService,
-  DateScalar
+  DateScalar,
+  PublisherService,
 ];
 
 @Module({

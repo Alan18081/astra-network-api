@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { NoteSchema } from './note.schema';
-import { NotesController } from './notes.controller';
 import { NotesService } from './notes.service';
 import {NotesGateway} from './notes.gateway';
 import {CoreModule} from '../core/core.module';
@@ -16,7 +15,6 @@ import { NotesRepository } from './notes.repository';
     AuthModule,
   ],
   exports: [],
-  controllers: [NotesController],
   providers: [NotesGateway, NotesService, NotesResolver, NotesRepository],
 })
 export class NotesModule {}

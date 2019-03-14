@@ -12,30 +12,30 @@ export class UsersRepository extends BaseRepository<User> {
   }
 
   async findById(id: string): Promise<User | null> {
-    return super.model.findById(id);
+    return this.model.findById(id);
   }
 
   async findOneByEmail(email: string): Promise<User | null> {
-    return super.model.findOne({ email });
+    return this.model.findOne({ email });
   }
 
   async findOneByGoogleId(googleId: string): Promise<User | null> {
-    return super.model.findOne({ googleId });
+    return this.model.findOne({ googleId });
   }
 
   async findUserFriends(userId: string): Promise<User[]> {
-    return super.model.find({ friends: { $contains: userId } });
+    return this.model.find({ friends: { $contains: userId } });
   }
 
   async addFriend(userId: string, friendId: string): Promise<User | null> {
-    return super.model.findByIdAndUpdate(userId, { $addToSet: { friends: friendId }});
+    return this.model.findByIdAndUpdate(userId, { $addToSet: { friends: friendId }});
   }
 
   async removeFriend(userId: string, friendId: string): Promise<User | null> {
-    return super.model.findByIdAndUpdate(userId, { pull: { friends: friendId }});
+    return this.model.findByIdAndUpdate(userId, { pull: { friends: friendId }});
   }
 
   async findUserWithFriend(userId: string, friendId: string): Promise<User | null> {
-    return super.model.findOne({ _id: userId, friends: { $contains: friendId } });
+    return this.model.findOne({ _id: userId, friends: { $contains: friendId } });
   }
 }

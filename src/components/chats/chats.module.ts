@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ChatsGateway } from './chats.gateway';
 import { ChatsService } from './chats.service';
 import { MessagesModule } from '../messages/messages.module';
 import {UsersModule} from '../users/users.module';
@@ -19,7 +18,6 @@ import { ChatSchema } from './chat.schema';
     MongooseModule.forFeature([{ name: 'Chat', schema: ChatSchema }])
   ],
   providers: [
-    ChatsGateway,
     ChatsService,
     ChatsRepository,
     ChatsResolver,

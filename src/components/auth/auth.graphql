@@ -1,7 +1,7 @@
 type JwtResponse {
-    accessToken: String
-    refreshToken: String
-    expiresIn: Long
+    accessToken: String!
+    refreshToken: String!
+    expiresIn: Int!
 }
 
 type Mutation {
@@ -13,4 +13,9 @@ type Mutation {
 input LoginInput {
     email: String!
     password: String!
+}
+
+input ChangePasswordInput {
+    oldPassword: String!
+    newPassword: String!
 }

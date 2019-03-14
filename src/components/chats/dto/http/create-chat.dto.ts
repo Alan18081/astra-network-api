@@ -1,4 +1,4 @@
-import { IsArray, IsString, IsInt } from 'class-validator';
+import { IsArray, IsString } from 'class-validator';
 import {ApiModelProperty } from '@nestjs/swagger';
 
 export class CreateChatDto {
@@ -8,7 +8,7 @@ export class CreateChatDto {
   name: string;
 
   @IsArray()
-  @IsInt({ each: true })
+  @IsString({ each: true })
   userIds: string[];
 
 }

@@ -1,13 +1,14 @@
-import { Injectable } from '@nestjs/common';
 import { Model, Schema, Document } from 'mongoose';
-import { User } from '../users/user.interface';
 import { PaginationDto } from './dto/pagination.dto';
 import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
 
-@Injectable()
 export class BaseRepository<T extends Document> {
 
-  constructor(protected readonly model: Model<T>) {}
+  public readonly model: Model<T>;
+
+  constructor(model: Model<T>) {
+    this.model = model;
+  }
 
   async findMany(query: Partial<T>): Promise<T[]> {
     return this.model.find(query).exec();
