@@ -15,6 +15,14 @@ type Mutation {
     deleteChat(id: String!): Chat
 }
 
+type Subscription {
+    userAddedToChat(chatId: String!): User!
+    userRemovedFromChat(chatId: String!): ID!
+    messageAdded(chatId: String!): Message!
+    messageEdited(chatId: String!): Message!
+    messageRemoved(chatId: String!): ID!
+}
+
 input FindManyChatsInput {
     ids: [String!]
     includeMessages: Boolean
