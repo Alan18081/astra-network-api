@@ -1,11 +1,11 @@
-import { IsInt } from 'class-validator';
+import { IsMongoId } from 'class-validator';
 
 export class RemoveRequestDto {
 
-  @IsInt()
-  id: number;
+  @IsMongoId()
+  id: string;
 
-  @IsInt()
-  receiverId: number;
+  @IsMongoId()
+  receiverId: string;
 
 }

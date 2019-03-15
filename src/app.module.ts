@@ -26,26 +26,33 @@ import { Events } from './helpers/enums/events.enum';
         return {
           typePaths: ['./**/*.graphql'],
           context: ({ req }) => ({ req }),
+          installSubscriptionHandlers: true,
           subscriptions: {
             async onConnect(connectionParams, webSocket) {
-              const { token } = connectionParams as { token: string };
-
-              if(!token) {
-                throw new UnauthorizedException(Messages.INVALID_TOKEN);
-              }
-
-              const payload = jwtService.verify(token);
-
-              if(!payload) {
-                throw new UnauthorizedException(Messages.INVALID_TOKEN);
-              }
-
-              const user = await authService.validateUser(payload);
-              if(!user) {
-                throw new NotFoundException(Messages.USER_NOT_FOUND);
-              }
-
-              await publisherService.publish(Events.USER_STATUS_CHANGED, user);
+              // const { Authorization } = connectionParams as { Authorization: string };
+              //
+              // if(!Authorization) {
+              //   throw new UnauthorizedException(Messages.INVALID_TOKEN);
+              // }
+              //
+              // const token = Authorization.split(' ')[1];
+              //
+              // if(!token) {
+              //   throw new UnauthorizedException(Messages.INVALID_TOKEN);
+              // }
+              //
+              // const payload = jwtService.verify(token);
+              //
+              // if(!payload) {
+              //   throw new UnauthorizedException(Messages.INVALID_TOKEN);
+              // }
+              //
+              // const user = await authService.validateUser(payload);
+              // if(!user) {
+              //   throw new NotFoundException(Messages.USER_NOT_FOUND);
+              // }
+              //
+              // await publisherService.publish(Events.USER_STATUS_CHANGED, 'userStatusChanged', user);
             }
           }
         };

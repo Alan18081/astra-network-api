@@ -1,4 +1,4 @@
-import { ArrayNotEmpty, IsBooleanString, IsNumberString, IsOptional } from 'class-validator';
+import { ArrayNotEmpty, IsBooleanString, IsMongoId, IsOptional } from 'class-validator';
 import { PaginationDto } from '../../core/dto/pagination.dto';
 
 export class FindNotesListDto extends PaginationDto {
@@ -12,7 +12,7 @@ export class FindNotesListDto extends PaginationDto {
   includeFiles?: boolean;
 
   @IsOptional()
-  @IsNumberString()
+  @IsMongoId()
   userId?: boolean;
 
 }

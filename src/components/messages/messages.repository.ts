@@ -12,11 +12,19 @@ export class MessagesRepository extends BaseRepository<Message> {
   }
 
   async findByIdWithMessages(id: string): Promise<Message | null> {
-    return super.model.findById(id).populate('user');
+    return this.model.findById(id).populate('user');
   }
 
   async updateById(id: string, payload: Partial<Message>): Promise<Message | null> {
-    return super.model.findByIdAndUpdate(id, payload).populate('user');
+    return this.model.findByIdAndUpdate(id, payload, { new: true }).populate('user');
+  }
+
+  async findById(id: string): Promise<Message | null> {
+    return this.model.findById(id).populate('user');
+  }
+
+  async findByIdAndUserId(id: string, userId: string): Promise<Message | null> {
+    return this.model.findOne({ _id: id, user: userId }).populate('user');
   }
 
 }

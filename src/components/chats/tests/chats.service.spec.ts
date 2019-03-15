@@ -6,9 +6,9 @@ import { mockRepository } from '../../../helpers/test-helpers/mock-repository';
 import { Chat } from '../chat.entity';
 import { ChatsService } from '../chats.service';
 import { UsersService } from '../../users/users.service';
-import { FindChatsListDto } from '../dto/http/find-chats-list.dto';
-import { CreateChatDto } from '../dto/http/create-chat.dto';
-import { UpdateChatDto } from '../dto/http/update-chat.dto';
+import { FindChatsListDto } from '../dto/find-chats-list.dto';
+import { CreateChatDto } from '../dto/create-chat.dto';
+import { UpdateChatDto } from '../dto/update-chat.dto';
 import { User } from '../../users/user.entity';
 
 const mockUsersService = {

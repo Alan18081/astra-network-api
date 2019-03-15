@@ -1,5 +1,5 @@
 type Chat {
-    _id: String!
+    _id: ID!
     name: String!
     users: [User!]
 }
@@ -10,17 +10,17 @@ type Query {
 }
 
 type Mutation {
-        createChat(input: CreateChatInput): Chat!
+    createChat(input: CreateChatInput): Chat!
     updateChat(input: CreateChatInput): Chat!
-    deleteChat(id: String!): Chat
+    deleteChat(id: ID!): Chat
 }
 
 type Subscription {
-    userAddedToChat(chatId: String!): User!
-    userRemovedFromChat(chatId: String!): ID!
-    messageAdded(chatId: String!): Message!
-    messageEdited(chatId: String!): Message!
-    messageRemoved(chatId: String!): ID!
+    userAddedToChat(chatId: ID!): User!
+    userRemovedFromChat(chatId: ID!): ID!
+    messageAdded(chatId: ID!): Message
+    messageEdited(chatId: ID!): Message!
+    messageRemoved(chatId: ID!): MessageInfo!
 }
 
 input FindManyChatsInput {

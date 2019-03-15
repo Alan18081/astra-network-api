@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { uniqBy } from 'lodash';
-import { CreateChatDto } from './dto/http/create-chat.dto';
-import { UpdateChatDto } from './dto/http/update-chat.dto';
-import { FindOneChatDto } from './dto/http/find-one-chat.dto';
-import { FindChatsListDto } from './dto/http/find-chats-list.dto';
+import { CreateChatDto } from './dto/create-chat.dto';
+import { UpdateChatDto } from './dto/update-chat.dto';
+import { FindOneChatDto } from './dto/find-one-chat.dto';
+import { FindChatsListDto } from './dto/find-chats-list.dto';
 import {WsException} from '@nestjs/websockets';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {UsersService} from '../users/users.service';

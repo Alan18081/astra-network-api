@@ -1,5 +1,5 @@
 import { IsString, MinLength } from 'class-validator';
-import {PASSWORD_LENGTH} from '../../../config/index';
+import {PASSWORD_LENGTH} from '../../../config';
 
 export class ChangePasswordDto {
   @IsString()

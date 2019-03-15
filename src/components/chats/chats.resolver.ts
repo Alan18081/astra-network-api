@@ -1,22 +1,23 @@
-import { Resolver, Query, Mutation, Args, Subscription } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Subscription, Root } from '@nestjs/graphql';
 import { ChatsService } from './chats.service';
 import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ReqUser } from '../../helpers/decorators/user.decorator';
 import { User } from '../users/user.interface';
-import { FindOneChatDto } from './dto/http/find-one-chat.dto';
+import { FindOneChatDto } from './dto/find-one-chat.dto';
 import { Chat } from './chat.interface';
-import { FindChatsListDto } from './dto/http/find-chats-list.dto';
-import { CreateChatDto } from './dto/http/create-chat.dto';
-import { UpdateChatDto } from './dto/http/update-chat.dto';
+import { FindChatsListDto } from './dto/find-chats-list.dto';
+import { CreateChatDto } from './dto/create-chat.dto';
+import { UpdateChatDto } from './dto/update-chat.dto';
 import { PublisherService } from '../core/services/publisher.service';
 import { idEqualsFilter } from '../../helpers/handlers/id-equals.filter';
 import { Events } from '../../helpers/enums/events.enum';
-import { ResolverFn } from 'graphql-subscriptions';
 import { GqlAuthGuard } from '../../helpers/guards/auth.guard';
+import { withFilter } from 'graphql-subscriptions';
+import { Message } from '../messages/message.interface';
+import { MessageInfo } from '../messages/interfaces/message-info.interface';
 
 @Resolver('Chat')
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 export class ChatsResolver {
 
   constructor(
@@ -60,17 +61,36 @@ export class ChatsResolver {
   }
 
   @Subscription('messageAdded')
-  onMessageAddedToChat(@Args('id') id: string): ResolverFn {
-    return idEqualsFilter(id,() => this.publisherService.asyncIterator(Events.CHATS_MESSAGE_ADDED));
+  messageAdded() {
+    return {
+      subscribe: withFilter(
+        () => this.publisherService.asyncIterator(Events.CHATS_MESSAGE_ADDED),
+        (payload: { messageAdded: Message }, { chatId }) =>{
+          console.log(payload);
+          return payload.messageAdded.chat.toString() === chatId
+        })
+    }
   }
 
   @Subscription('messageEdited')
-  onMessageEditedToChat(@Args('id') id: string): ResolverFn {
-    return idEqualsFilter(id,() => this.publisherService.asyncIterator(Events.CHATS_MESSAGE_EDITED));
+  onMessageEditedToChat() {
+    return {
+      subscribe: withFilter(
+        () => this.publisherService.asyncIterator(Events.CHATS_MESSAGE_EDITED),
+        (payload: { messageEdited: Message }, { chatId }) =>{
+          return payload.messageEdited.chat.toString() === chatId
+        })
+    }
   }
 
   @Subscription('messageRemoved')
-  onMessageRemovedFromChat(@Args('id') id: string): ResolverFn {
-    return idEqualsFilter(id,() => this.publisherService.asyncIterator(Events.CHATS_MESSAGE_REMOVED));
+  onMessageRemovedFromChat(@Args('chatId') id: string) {
+    return {
+      subscribe: withFilter(
+        () => this.publisherService.asyncIterator(Events.CHATS_MESSAGE_REMOVED),
+        (payload: { messageRemoved: MessageInfo }, { chatId }) =>{
+          return payload.messageRemoved.chatId.toString() === chatId
+        })
+    }
   }
 }
