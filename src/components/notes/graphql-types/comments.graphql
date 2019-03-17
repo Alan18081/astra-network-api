@@ -1,0 +1,20 @@
+type Comment {
+    _id: String!
+    text: String!
+    createdAt: Date!
+    author: User!
+    answers: [Answer!]!
+}
+
+type Answer {
+    _id: String!
+    text: String!
+    createdAt: Date!
+    author: User!
+}
+
+type Mutation {
+    addComment(input: AddCommentInput): Note!
+    removeComment(id: ID!): Boolean
+    addAnswerToComment(input: AddCommentAnswerInput): Comment!
+}

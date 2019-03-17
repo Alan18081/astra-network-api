@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ChatsService } from './chats.service';
-import { MessagesModule } from '../messages/messages.module';
 import {UsersModule} from '../users/users.module';
 import {AuthModule} from '../auth/auth.module';
 import {CoreModule} from '../core/core.module';
@@ -11,7 +10,6 @@ import { ChatSchema } from './chat.schema';
 
 @Module({
   imports: [
-    MessagesModule,
     UsersModule,
     AuthModule,
     CoreModule,
@@ -22,5 +20,6 @@ import { ChatSchema } from './chat.schema';
     ChatsRepository,
     ChatsResolver,
   ],
+  exports: [ChatsService]
 })
 export class ChatsModule {}

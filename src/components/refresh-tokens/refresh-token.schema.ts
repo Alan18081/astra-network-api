@@ -2,7 +2,7 @@ import { Schema } from 'mongoose';
 
 const RefreshTokenSchema = new Schema({
   token: String,
-  userId: { type: Schema.Types.ObjectId, ref: 'User' }
+  user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 RefreshTokenSchema.index({ token: 1 });

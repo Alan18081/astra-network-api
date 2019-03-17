@@ -10,8 +10,8 @@ export class PublisherService {
     this.emitter = new PubSub();
   }
 
-  async publish(event: string, key: string, payload: any): Promise<void> {
-    return this.emitter.publish(event, { [key]: payload });
+  async publish(event: string, payload: any): Promise<void> {
+    return this.emitter.publish(event, payload);
   }
 
   asyncIterator(event: string) {

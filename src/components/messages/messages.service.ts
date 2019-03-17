@@ -9,11 +9,13 @@ import { Messages } from '../../helpers/enums/messages.enum';
 import { User } from '../users/user.interface';
 import { isUser } from '../../helpers/helpers';
 import { useAsPath } from 'tslint/lib/configuration';
+import {ChatsService} from '../chats/chats.service';
 
 @Injectable()
 export class MessagesService {
   constructor(
     private readonly messagesRepository: MessagesRepository,
+    private readonly chatsService: ChatsService
   ) {}
 
   async isMessageOwner(id: string, userId: string): Promise<Message> {
@@ -56,6 +58,15 @@ export class MessagesService {
       _id: message._id,
       chatId: message.chat as string,
     }
+  }
+
+  async filterMessages(message: Message, chatId: string, userId: string): Promise<boolean> {
+    if(message.chat !== chatId) {
+      return false;
+    }
+
+    const chat = await this.chatsService.findOneByIdAndUserId(chatId, userId);
+    return !!chat;
   }
 
 }

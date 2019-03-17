@@ -5,16 +5,16 @@ export declare const UPDATE_MESSAGE = "UPDATE_MESSAGE";
 export declare const REMOVE_MESSAGE = "REMOVE_MESSAGE";
 export declare class AddMessage implements WsResponse {
     data: Message;
-    readonly event: string;
+    readonly event = "ADD_MESSAGE";
     constructor(data: Message);
 }
 export declare class UpdateMessage implements WsResponse {
     data: Message | undefined;
-    readonly event: string;
+    readonly event = "UPDATE_MESSAGE";
     constructor(data: Message | undefined);
 }
 export declare class RemoveMessage implements WsResponse {
     data: number;
-    readonly event: string;
+    readonly event = "REMOVE_MESSAGE";
     constructor(data: number);
 }

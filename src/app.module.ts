@@ -8,7 +8,6 @@ import { MessagesModule } from './components/messages/messages.module';
 import { ChatsModule } from './components/chats/chats.module';
 import { NotesModule } from './components/notes/notes.module';
 import { RefreshTokensModule } from './components/refresh-tokens/refresh-tokens.module';
-import { AppGateway } from './app.gateway';
 import { FriendshipRequestsModule } from './components/friendship-requests/friendship-requests.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DB_URL } from './config';
@@ -25,34 +24,46 @@ import { Events } from './helpers/enums/events.enum';
       useFactory: (publisherService: PublisherService, authService: AuthService, jwtService: JwtService) => {
         return {
           typePaths: ['./**/*.graphql'],
-          context: ({ req }) => ({ req }),
+          context: ({ req, connection }) => {
+            if(connection) {
+              return connection.context;
+            }
+
+            return {
+              req
+            };
+          },
           installSubscriptionHandlers: true,
           subscriptions: {
             async onConnect(connectionParams, webSocket) {
-              // const { Authorization } = connectionParams as { Authorization: string };
-              //
-              // if(!Authorization) {
-              //   throw new UnauthorizedException(Messages.INVALID_TOKEN);
-              // }
-              //
-              // const token = Authorization.split(' ')[1];
-              //
-              // if(!token) {
-              //   throw new UnauthorizedException(Messages.INVALID_TOKEN);
-              // }
-              //
-              // const payload = jwtService.verify(token);
-              //
-              // if(!payload) {
-              //   throw new UnauthorizedException(Messages.INVALID_TOKEN);
-              // }
-              //
-              // const user = await authService.validateUser(payload);
-              // if(!user) {
-              //   throw new NotFoundException(Messages.USER_NOT_FOUND);
-              // }
-              //
-              // await publisherService.publish(Events.USER_STATUS_CHANGED, 'userStatusChanged', user);
+              const { Authorization } = connectionParams as { Authorization: string };
+
+              if(!Authorization) {
+                throw new UnauthorizedException(Messages.INVALID_TOKEN);
+              }
+
+              const token = Authorization.split(' ')[1];
+
+              if(!token) {
+                throw new UnauthorizedException(Messages.INVALID_TOKEN);
+              }
+
+              const payload = jwtService.verify(token);
+
+              if(!payload) {
+                throw new UnauthorizedException(Messages.INVALID_TOKEN);
+              }
+
+              const user = await authService.validateUser(payload);
+              if(!user) {
+                throw new NotFoundException(Messages.USER_NOT_FOUND);
+              }
+
+              await publisherService.publish(Events.USER_STATUS_CHANGED, user);
+              console.log('Auth user', user);
+              return {
+                user
+              };
             }
           }
         };
@@ -69,10 +80,6 @@ import { Events } from './helpers/enums/events.enum';
     NotesModule,
     RefreshTokensModule,
     FriendshipRequestsModule
-  ],
-  controllers: [],
-  providers: [
-    AppGateway,
   ],
 })
 export class AppModule {}

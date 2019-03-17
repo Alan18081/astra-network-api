@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -21,10 +18,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
-const user_hash_entity_1 = require("./user-hash.entity");
-const typeorm_2 = require("typeorm");
 const hash_service_1 = require("../core/services/hash.service");
+const user_hashes_repository_1 = require("./user-hashes.repository");
 let UserHashesService = class UserHashesService {
     constructor(userHashesRepository, hashService) {
         this.userHashesRepository = userHashesRepository;
@@ -32,12 +27,12 @@ let UserHashesService = class UserHashesService {
     }
     findOneByHash(hash) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.userHashesRepository.findOne({ hash });
+            return yield this.userHashesRepository.findOneByHash(hash);
         });
     }
     createOne(userId, type) {
         return __awaiter(this, void 0, void 0, function* () {
-            const userHash = new user_hash_entity_1.UserHash();
+            const userHash = {};
             userHash.hash = yield this.hashService.generateHash(JSON.stringify({ userId, type }));
             userHash.userId = userId;
             return yield this.userHashesRepository.save(userHash);
@@ -45,14 +40,13 @@ let UserHashesService = class UserHashesService {
     }
     deleteOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.userHashesRepository.delete({ id });
+            yield this.userHashesRepository.deleteById(id);
         });
     }
 };
 UserHashesService = __decorate([
     common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(user_hash_entity_1.UserHash)),
-    __metadata("design:paramtypes", [typeorm_2.Repository,
+    __metadata("design:paramtypes", [user_hashes_repository_1.UserHashesRepository,
         hash_service_1.HashService])
 ], UserHashesService);
 exports.UserHashesService = UserHashesService;

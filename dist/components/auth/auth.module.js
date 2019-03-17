@@ -11,16 +11,14 @@ const users_module_1 = require("../users/users.module");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
 const config_1 = require("../../config");
-const auth_controller_1 = require("./auth.controller");
 const auth_service_1 = require("./auth.service");
-const jwt_strategy_1 = require("./strategies/jwt.strategy");
-const google_strategy_1 = require("./strategies/google.strategy");
 const core_module_1 = require("../core/core.module");
-const user_hashes_module_1 = require("../user-hashes/user-hashes.module");
 const refresh_tokens_module_1 = require("../refresh-tokens/refresh-tokens.module");
+const auth_resolver_1 = require("./auth.resolver");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
+    common_1.Global(),
     common_1.Module({
         imports: [
             passport_1.PassportModule.register({ defaultStrategy: 'jwt' }),
@@ -32,12 +30,13 @@ AuthModule = __decorate([
             }),
             users_module_1.UsersModule,
             core_module_1.CoreModule,
-            user_hashes_module_1.UserHashesModule,
             refresh_tokens_module_1.RefreshTokensModule,
         ],
         exports: [auth_service_1.AuthService, jwt_1.JwtModule],
-        controllers: [auth_controller_1.AuthController],
-        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy, google_strategy_1.GoogleStrategy],
+        providers: [
+            auth_service_1.AuthService,
+            auth_resolver_1.AuthResolver,
+        ],
     })
 ], AuthModule);
 exports.AuthModule = AuthModule;

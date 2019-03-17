@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -21,11 +18,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const user_entity_1 = require("./user.entity");
-const typeorm_1 = require("@nestjs/typeorm");
-const typeorm_2 = require("typeorm");
 const hash_service_1 = require("../core/services/hash.service");
 const messages_enum_1 = require("../../helpers/enums/messages.enum");
+const users_repository_1 = require("./users.repository");
 let UsersService = class UsersService {
     constructor(usersRepository, hashService) {
         this.usersRepository = usersRepository;
@@ -33,36 +28,27 @@ let UsersService = class UsersService {
     }
     findMany(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            const queryBuilder = this.prepareBuilder(this.usersRepository.createQueryBuilder('user'), payload);
-            return yield queryBuilder.getMany();
+            return this.usersRepository.findMany({});
         });
     }
-    prepareBuilder(queryBuilder, query) {
-        if (query.ageFrom) {
-            queryBuilder.where('age > :ageFrom', { ageFrom: query.ageFrom });
-        }
-        if (query.ageTo) {
-            queryBuilder.where('age < :ageTo', { ageTo: query.ageTo });
-        }
-        return queryBuilder;
+    findManyByIds(ids) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.usersRepository.findManyByIds(ids);
+        });
+    }
+    findUserFriends(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.usersRepository.findUserFriends(userId);
+        });
     }
     findManyWithPagination(query) {
         return __awaiter(this, void 0, void 0, function* () {
-            const skip = (query.page - 1) * query.limit;
-            const queryBuilder = this.prepareBuilder(this.usersRepository.createQueryBuilder('user'), query);
-            const totalCount = yield queryBuilder.getCount();
-            const data = yield queryBuilder.skip(skip).take(query.limit).getMany();
-            return {
-                page: query.page,
-                itemsPerPage: query.limit,
-                totalCount,
-                data,
-            };
+            return this.usersRepository.findManyWithPagination(query, { page: query.page, limit: query.limit });
         });
     }
     findOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.usersRepository.findOne(id);
+            const user = yield this.usersRepository.findById(id);
             if (!user) {
                 throw new common_1.NotFoundException(messages_enum_1.Messages.USER_NOT_FOUND);
             }
@@ -71,85 +57,76 @@ let UsersService = class UsersService {
     }
     findOneByEmail(email) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.usersRepository.findOne({
-                email
-            });
+            return this.usersRepository.findOneByEmail(email);
         });
     }
     findOneByGoogleId(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.usersRepository.findOne({ googleId: id });
+            return this.usersRepository.findOneByGoogleId(id);
         });
     }
     createOne(payload) {
         return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.usersRepository.findOneByEmail(payload.email);
+            if (user) {
+                throw new common_1.BadRequestException(messages_enum_1.Messages.USER_ALREADY_EXISTS);
+            }
             const passwordHash = yield this.hashService.generateHash(payload.password);
-            const newUser = Object.assign({}, new user_entity_1.User(), payload, { password: passwordHash, createdAt: new Date() });
+            const newUser = Object.assign({}, payload, { password: passwordHash, createdAt: new Date() });
             return yield this.usersRepository.save(newUser);
         });
     }
     createByGoogle(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            const newUser = Object.assign({}, new user_entity_1.User(), payload);
+            const newUser = Object.assign({}, payload);
             return yield this.usersRepository.save(newUser);
         });
     }
-    updateOne(id, payload) {
+    updateById(id, payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.usersRepository.update({ id }, payload);
-            return yield this.usersRepository.findOne(id);
+            return this.usersRepository.updateById(id, payload);
         });
     }
-    deleteOne(id) {
+    changePassword(user, { oldPassword, newPassword }) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.usersRepository.delete({ id });
+            if (!(yield this.hashService.compareHash(oldPassword, user.password))) {
+                throw new common_1.ForbiddenException(messages_enum_1.Messages.INVALID_PASSWORD);
+            }
+            const newEncryptedPassword = yield this.hashService.generateHash(newPassword);
+            return this.usersRepository.updateById(user._id, { password: newEncryptedPassword });
+        });
+    }
+    deleteById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.usersRepository.deleteById(id);
         });
     }
     setNewPassword(id, password) {
         return __awaiter(this, void 0, void 0, function* () {
             const passwordHash = yield this.hashService.generateHash(password);
-            yield this.updateOne(id, { password: passwordHash });
+            yield this.updateById(id, { password: passwordHash });
         });
     }
     addFriend(userId, friendId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.usersRepository
-                .createQueryBuilder()
-                .relation(user_entity_1.User, 'friends')
-                .of(userId)
-                .add(friendId);
-            return yield this.findOne(userId);
+            return this.usersRepository.addFriend(userId, friendId);
         });
     }
     removeFriend(userId, friendId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.usersRepository
-                .createQueryBuilder()
-                .relation(user_entity_1.User, 'friends')
-                .of(userId)
-                .remove(friendId);
-            return yield this.findOne(userId);
+            return this.usersRepository.removeFriend(userId, friendId);
         });
     }
-    isFriend(userId, friendId) {
+    checkIsFriend(userId, friendId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const friend = yield this.usersRepository.findOne({
-                where: {
-                    id: friendId,
-                    friends: {
-                        id: friendId
-                    }
-                }
-            });
-            console.log('Some friend', friend);
-            return !!friend;
+            const user = yield this.usersRepository.findUserWithFriend(userId, friendId);
+            return !!user;
         });
     }
 };
 UsersService = __decorate([
     common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(user_entity_1.User)),
-    __metadata("design:paramtypes", [typeorm_2.Repository,
+    __metadata("design:paramtypes", [users_repository_1.UsersRepository,
         hash_service_1.HashService])
 ], UsersService);
 exports.UsersService = UsersService;

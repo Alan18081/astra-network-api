@@ -18,6 +18,12 @@ type Mutation {
     deleteMessage(id: ID!): MessageInfo!
 }
 
+type Subscription {
+    messageAdded(chatId: ID!): Message!
+    messageEdited(chatId: ID!): Message!
+    messageRemoved(chatId: ID!): MessageInfo!
+}
+
 input AddMessageInput {
     text: String!
     chatId: ID!

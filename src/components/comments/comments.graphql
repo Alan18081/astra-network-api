@@ -1,8 +1,0 @@
-scalar Date
-
-type Comment {
-    _id: String
-    text: String
-    createdAt: Date
-    user: User
-}

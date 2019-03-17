@@ -22,22 +22,34 @@ const jwt_1 = require("@nestjs/jwt");
 const users_service_1 = require("../users/users.service");
 const config_1 = require("../../config");
 const messages_enum_1 = require("../../helpers/enums/messages.enum");
-const user_hashes_service_1 = require("../user-hashes/user-hashes.service");
-const hash_types_enum_1 = require("../../helpers/enums/hash-types.enum");
 const email_sending_service_1 = require("../core/services/email-sending.service");
 const email_templates_service_1 = require("../core/services/email-templates.service");
-const template_types_enum_1 = require("../../helpers/enums/template-types.enum");
-const email_titles_enum_1 = require("../../helpers/enums/email-titles.enum");
-const config_2 = require("../../config");
 const refresh_tokens_service_1 = require("../refresh-tokens/refresh-tokens.service");
+const hash_service_1 = require("../core/services/hash.service");
 let AuthService = class AuthService {
-    constructor(usersService, jwtService, userHashesService, emailSendingService, emailTemplatesService, refreshTokensService) {
+    constructor(usersService, jwtService, hashService, emailSendingService, emailTemplatesService, refreshTokensService) {
         this.usersService = usersService;
         this.jwtService = jwtService;
-        this.userHashesService = userHashesService;
+        this.hashService = hashService;
         this.emailSendingService = emailSendingService;
         this.emailTemplatesService = emailTemplatesService;
         this.refreshTokensService = refreshTokensService;
+    }
+    login(loginDto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.usersService.findOneByEmail(loginDto.email);
+            if (!user) {
+                throw new common_1.UnauthorizedException(messages_enum_1.Messages.USER_NOT_FOUND);
+            }
+            if (!user.password) {
+                throw new common_1.BadRequestException(messages_enum_1.Messages.USER_DOESNT_HAVE_PASSWORD);
+            }
+            const isValidPassword = yield this.hashService.compareHash(loginDto.password, user.password);
+            if (!isValidPassword) {
+                throw new common_1.UnauthorizedException(messages_enum_1.Messages.INVALID_PASSWORD);
+            }
+            return this.signIn(user);
+        });
     }
     signIn(user) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -64,7 +76,7 @@ let AuthService = class AuthService {
     }
     validateUser(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.usersService.findOneByEmail(payload.email);
+            return this.usersService.findOneByEmail(payload.email);
         });
     }
     exchangeToken(token) {
@@ -73,31 +85,11 @@ let AuthService = class AuthService {
             if (!tokenRecord) {
                 throw new common_1.NotFoundException(messages_enum_1.Messages.REFRESH_TOKEN_NOT_FOUND);
             }
-            yield this.refreshTokensService.deleteOne(tokenRecord.id);
-            return yield this.signIn(tokenRecord.user);
-        });
-    }
-    verifyEmail({ firstName, lastName, email, id }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const emailHash = yield this.userHashesService.createOne(id, hash_types_enum_1.HashTypes.EMAIL_VERIFICATION);
-            const content = this.emailTemplatesService.getTemplate(template_types_enum_1.TemplateTypes.EMAIL_VERIFICATION, {
-                firstName,
-                lastName,
-                url: `http://${config_2.HOST}:${config_2.PORT}/auth/verifyEmail/hash/${emailHash.hash}`,
-            });
-            yield this.emailSendingService.sendSystemEmail(email, this.emailTemplatesService.createSubject(email_titles_enum_1.EmailTitles.EMAIL_VERIFICATION), content);
-        });
-    }
-    verifyEmailHash(hash) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const userHash = yield this.userHashesService.findOneByHash(hash);
-            if (!userHash) {
-                throw new common_1.NotFoundException(messages_enum_1.Messages.EMAIL_VERIFICATION_HASH_NOT_FOUND);
-            }
-            yield Promise.all([
-                this.usersService.updateOne(userHash.userId, { emailVerified: true }),
-                this.userHashesService.deleteOne(userHash.id)
+            const [user] = yield Promise.all([
+                this.usersService.findOne(tokenRecord.user),
+                this.refreshTokensService.deleteOne(tokenRecord.id),
             ]);
+            return yield this.signIn(user);
         });
     }
     decodeToken(token) {
@@ -109,35 +101,12 @@ let AuthService = class AuthService {
         delete res.exp;
         return res;
     }
-    resetPassword({ firstName, lastName, email, id }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const resetPasswordHash = yield this.userHashesService.createOne(id, hash_types_enum_1.HashTypes.RESET_PASSWORD);
-            const content = this.emailTemplatesService.getTemplate(template_types_enum_1.TemplateTypes.RESET_PASSWORD, {
-                firstName,
-                lastName,
-                url: `http://${config_2.HOST}:${config_2.PORT}/auth/resetPassword/hash/${resetPasswordHash.hash}`,
-            });
-            yield this.emailSendingService.sendSystemEmail(email, this.emailTemplatesService.createSubject(email_titles_enum_1.EmailTitles.RESET_PASSWORD), content);
-        });
-    }
-    setNewPassword({ hash, password }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const userHash = yield this.userHashesService.findOneByHash(hash);
-            if (!userHash) {
-                throw new common_1.NotFoundException(messages_enum_1.Messages.RESET_PASSWORD_HASH_NOT_FOUND);
-            }
-            yield Promise.all([
-                this.usersService.setNewPassword(userHash.userId, password),
-                this.userHashesService.deleteOne(userHash.id)
-            ]);
-        });
-    }
 };
 AuthService = __decorate([
     common_1.Injectable(),
     __metadata("design:paramtypes", [users_service_1.UsersService,
         jwt_1.JwtService,
-        user_hashes_service_1.UserHashesService,
+        hash_service_1.HashService,
         email_sending_service_1.EmailSendingService,
         email_templates_service_1.EmailTemplatesService,
         refresh_tokens_service_1.RefreshTokensService])

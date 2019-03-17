@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -21,10 +18,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
 const jwt_1 = require("@nestjs/jwt");
-const refresh_token_entity_1 = require("./refresh-token.entity");
-const typeorm_2 = require("typeorm");
+const refresh_tokens_repository_1 = require("./refresh-tokens.repository");
 let RefreshTokensService = class RefreshTokensService {
     constructor(refreshTokensRepository, jwtService) {
         this.refreshTokensRepository = refreshTokensRepository;
@@ -32,34 +27,33 @@ let RefreshTokensService = class RefreshTokensService {
     }
     findOneByUserId(userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.refreshTokensRepository.findOne({ userId });
+            return yield this.refreshTokensRepository.findOneByUserId(userId);
         });
     }
     findOneByToken(token) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.refreshTokensRepository.findOne({ token }, { relations: ['user'] });
+            return yield this.refreshTokensRepository.findOneByToken(token);
         });
     }
     createOne(payload) {
         return __awaiter(this, void 0, void 0, function* () {
             const { accessToken, userId } = payload;
             const token = this.jwtService.sign({ accessToken, userId });
-            const refreshToken = new refresh_token_entity_1.RefreshToken();
+            const refreshToken = {};
             refreshToken.token = token;
-            refreshToken.userId = userId;
+            refreshToken.user = userId;
             return yield this.refreshTokensRepository.save(refreshToken);
         });
     }
     deleteOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.refreshTokensRepository.delete({ id });
+            yield this.refreshTokensRepository.deleteById(id);
         });
     }
 };
 RefreshTokensService = __decorate([
     common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(refresh_token_entity_1.RefreshToken)),
-    __metadata("design:paramtypes", [typeorm_2.Repository,
+    __metadata("design:paramtypes", [refresh_tokens_repository_1.RefreshTokensRepository,
         jwt_1.JwtService])
 ], RefreshTokensService);
 exports.RefreshTokensService = RefreshTokensService;

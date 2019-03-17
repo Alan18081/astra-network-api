@@ -4,7 +4,7 @@ export declare class ClientsStoreService {
     private userIdsToSocketIds;
     private socketIdsToUserIds;
     getSocketById(socketId: string): Socket | undefined;
-    getSocketByUserId(userId: number): Socket | undefined;
+    getSocketByUserId(userId: string): Socket | undefined;
     addSocket(socket: Socket): void;
     removeSocket(socketId: string): void;
 }

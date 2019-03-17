@@ -7,23 +7,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
 const files_service_1 = require("./files.service");
-const file_entity_1 = require("./file.entity");
-const files_controller_1 = require("./files.controller");
+const mongoose_1 = require("@nestjs/mongoose");
+const file_schema_1 = require("./file.schema");
+const files_resolver_1 = require("./files.resolver");
+const files_repository_1 = require("./files.repository");
 let FilesModule = class FilesModule {
 };
 FilesModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([file_entity_1.File]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'File', schema: file_schema_1.FileSchema }]),
             common_1.MulterModule.register({
                 dest: './upload',
             }),
         ],
         exports: [files_service_1.FilesService, common_1.MulterModule],
-        controllers: [files_controller_1.FilesController],
-        providers: [files_service_1.FilesService],
+        providers: [files_service_1.FilesService, files_resolver_1.FilesResolver, files_repository_1.FilesRepository],
     })
 ], FilesModule);
 exports.FilesModule = FilesModule;

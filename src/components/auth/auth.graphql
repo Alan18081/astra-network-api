@@ -6,16 +6,10 @@ type JwtResponse {
 
 type Mutation {
     login(input: LoginInput!): JwtResponse!
-    changePassword(input: ChangePasswordInput!): User!
-
+    exchangeToken(refreshToken: String!): JwtResponse!
 }
 
 input LoginInput {
     email: String!
     password: String!
-}
-
-input ChangePasswordInput {
-    oldPassword: String!
-    newPassword: String!
 }

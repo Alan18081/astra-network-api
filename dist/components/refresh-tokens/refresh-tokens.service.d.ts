@@ -1,13 +1,13 @@
 import { JwtService } from '@nestjs/jwt';
-import { RefreshToken } from './refresh-token.entity';
-import { Repository } from 'typeorm';
 import { CreateRefreshTokenInterface } from './interfaces/create-refresh-token.interface';
+import { RefreshTokensRepository } from './refresh-tokens.repository';
+import { RefreshToken } from './refresh-token.interface';
 export declare class RefreshTokensService {
     private readonly refreshTokensRepository;
     private readonly jwtService;
-    constructor(refreshTokensRepository: Repository<RefreshToken>, jwtService: JwtService);
-    findOneByUserId(userId: number): Promise<RefreshToken | undefined>;
-    findOneByToken(token: string): Promise<RefreshToken | undefined>;
+    constructor(refreshTokensRepository: RefreshTokensRepository, jwtService: JwtService);
+    findOneByUserId(userId: string): Promise<RefreshToken | null>;
+    findOneByToken(token: string): Promise<RefreshToken | null>;
     createOne(payload: CreateRefreshTokenInterface): Promise<RefreshToken>;
-    deleteOne(id: number): Promise<void>;
+    deleteOne(id: string): Promise<void>;
 }

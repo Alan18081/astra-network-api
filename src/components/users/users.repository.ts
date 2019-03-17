@@ -11,6 +11,10 @@ export class UsersRepository extends BaseRepository<User> {
     super(userModel);
   }
 
+  async findManyByIds(ids: string[]): Promise<User[]> {
+    return this.model.find({ _id: { $in: ids } });
+  }
+
   async findById(id: string): Promise<User | null> {
     return this.model.findById(id);
   }

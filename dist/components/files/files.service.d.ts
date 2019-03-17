@@ -1,11 +1,11 @@
-import { Repository } from 'typeorm';
-import { File } from './file.entity';
+import { File } from './file.interface';
+import { FilesRepository } from './files.repository';
 export declare class FilesService {
     private readonly filesRepository;
     private readonly cloudinary;
-    constructor(filesRepository: Repository<File>);
-    findOne(id: number): Promise<File | undefined>;
+    constructor(filesRepository: FilesRepository);
+    findOne(id: string): Promise<File | null>;
     uploadFile(file: any): Promise<File>;
     uploadFilesList(files: any[]): Promise<File[]>;
-    deleteOne(id: number): Promise<void>;
+    deleteOne(id: string): Promise<void>;
 }

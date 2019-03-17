@@ -13,37 +13,27 @@ export class ChatsRepository extends BaseRepository<Chat> {
         super(chatModel);
     }
 
-    async findManyByIds(ids: string[], { includeUsers, includeMessages }: FindChatsListDto): Promise<Chat[]> {
-        let cursor = this.model.find({ _id: { $in: ids } });
-        if(includeUsers) {
-            cursor = cursor.populate('users');
-        }
-
-        if(includeMessages) {
-            cursor = cursor.populate('messages');
-        }
-
-        return cursor.exec();
+    async findManyByIds(ids: string[]): Promise<Chat[]> {
+        return this.model.find({ _id: { $in: ids } }).exec();
     }
 
-    async findChatById(id: string, { includeUsers, includeMessages }: Relations): Promise<Chat | null> {
-        let query = this.model.findById(id);
-        if(includeMessages) {
-            query = query.populate('users');
-        }
-
-        if(includeMessages) {
-            query = query.populate('messages');
-        }
-
-        return query.exec();
+    async findChatById(id: string): Promise<Chat | null> {
+        return this.model.findById(id);
     }
 
     async addUserToChat(chatId: string, userId: string): Promise<Chat | null> {
-        return this.model.findByIdAndUpdate(chatId, { $addToSet: { users: userId } });
+        return this.model.findByIdAndUpdate(chatId, { $addToSet: { users: userId } }, { new: true });
     }
 
     async removeUserFromChat(chatId: string, userId: string): Promise<Chat | null> {
-        return this.model.findByIdAndUpdate(chatId, { $pull: { users: userId } });
+        return this.model.findByIdAndUpdate(chatId, { $pull: { users: userId } }, { new: true });
+    }
+
+    async findOneByIdAndUserId(chatId: string, userId: string): Promise<Chat | null> {
+        return this.model.findOne({ _id: chatId, users:  userId });
+    }
+
+    async findOneByIdAndAdminId(chatId: string, adminId: string): Promise<Chat | null> {
+        return this.model.findOne({ _id: chatId, admin: adminId });
     }
 }

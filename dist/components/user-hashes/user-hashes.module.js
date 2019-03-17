@@ -7,19 +7,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
+const mongoose_1 = require("@nestjs/mongoose");
 const core_module_1 = require("../core/core.module");
 const user_hashes_service_1 = require("./user-hashes.service");
-const user_hash_entity_1 = require("./user-hash.entity");
+const user_hash_schema_1 = require("./user-hash.schema");
+const user_hashes_repository_1 = require("./user-hashes.repository");
 let UserHashesModule = class UserHashesModule {
 };
 UserHashesModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([user_hash_entity_1.UserHash]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'UserHash', schema: user_hash_schema_1.UserHashSchema }]),
             core_module_1.CoreModule,
         ],
-        providers: [user_hashes_service_1.UserHashesService],
+        providers: [user_hashes_service_1.UserHashesService, user_hashes_repository_1.UserHashesRepository],
         exports: [user_hashes_service_1.UserHashesService],
     })
 ], UserHashesModule);

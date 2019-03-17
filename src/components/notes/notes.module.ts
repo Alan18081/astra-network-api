@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { NoteSchema } from './note.schema';
+import { NoteSchema } from './schemas/note.schema';
 import { NotesService } from './notes.service';
-import {NotesGateway} from './notes.gateway';
 import {CoreModule} from '../core/core.module';
 import {AuthModule} from '../auth/auth.module';
-import { NotesResolver } from './notes.resolver';
+import { NotesResolver } from './resolvers/notes.resolver';
 import { NotesRepository } from './notes.repository';
+import {CommentsResolver} from './resolvers/comments.resolver';
+import {AnswersResolver} from './resolvers/answers.resolver';
 
 @Module({
   imports: [
@@ -15,6 +16,12 @@ import { NotesRepository } from './notes.repository';
     AuthModule,
   ],
   exports: [],
-  providers: [NotesGateway, NotesService, NotesResolver, NotesRepository],
+  providers: [
+      NotesService,
+      NotesResolver,
+      CommentsResolver,
+      AnswersResolver,
+      NotesRepository
+  ],
 })
 export class NotesModule {}

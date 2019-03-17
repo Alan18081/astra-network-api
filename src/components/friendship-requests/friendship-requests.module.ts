@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from '../users/users.module';
-// import { FriendshipRequestsGateway } from './friendship-requests.gateway';
 import { FriendshipRequestsService } from './friendship-requests.service';
 import { CoreModule } from '../core/core.module';
 import { FriendshipRequestSchema } from './friendship-request.schema';
 import { FriendshipRequestsRepository } from './friendship-requests.repository';
+import {FriendshipRequestsResolver} from './friendship-requests.resolver';
 
 @Module({
   imports: [
@@ -13,6 +13,10 @@ import { FriendshipRequestsRepository } from './friendship-requests.repository';
     UsersModule,
     CoreModule,
   ],
-  providers: [FriendshipRequestsService, FriendshipRequestsRepository]
+  providers: [
+      FriendshipRequestsService,
+      FriendshipRequestsRepository,
+      FriendshipRequestsResolver
+  ]
 })
 export class FriendshipRequestsModule {}

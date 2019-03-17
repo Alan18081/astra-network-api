@@ -1,41 +1,48 @@
+scalar Date
+
 type Chat {
     _id: ID!
+    admin: User!
     name: String!
+    createdAt: Date
     users: [User!]
 }
 
 type Query {
-    findManyByUser(input: FindManyChatsInput): [Chat!]!
-    findChatById(input: FindOneChatInput): Chat
+    chatsList(input: FindManyChatsInput): [Chat!]!
+    chat(id: ID!): Chat
 }
 
 type Mutation {
     createChat(input: CreateChatInput): Chat!
-    updateChat(input: CreateChatInput): Chat!
-    deleteChat(id: ID!): Chat
+    updateChat(id: ID!, input: CreateChatInput): Chat!
+    deleteChat(id: ID!): Boolean
+    addUserToChat(input: AddUserToChatInput): Chat!
+    removeUserFromChat(input: RemoveUserFromChatInput): Chat!
+    attendChat(chatId: ID!): Chat!
+    leaveChat(chatId: ID!): Boolean!
 }
 
 type Subscription {
     userAddedToChat(chatId: ID!): User!
     userRemovedFromChat(chatId: ID!): ID!
-    messageAdded(chatId: ID!): Message
-    messageEdited(chatId: ID!): Message!
-    messageRemoved(chatId: ID!): MessageInfo!
 }
 
 input FindManyChatsInput {
-    ids: [String!]
-    includeMessages: Boolean
-    includeUsers: Boolean
-}
-
-input FindOneChatInput {
-    id: String!
-    includeMessages: Boolean
-    includeUsers: Boolean
+    ids: [ID!]
 }
 
 input CreateChatInput {
     name: String!
-    userIds: [String!]
+    userIds: [ID!]
+}
+
+input AddUserToChatInput {
+    chatId: ID!
+    userId: ID!
+}
+
+input RemoveUserFromChatInput {
+    chatId: ID!
+    userId: ID!
 }

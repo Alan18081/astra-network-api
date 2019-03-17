@@ -26,7 +26,7 @@ export class RefreshTokensService {
 
     const refreshToken: Partial<RefreshToken> = {};
     refreshToken.token = token;
-    refreshToken.userId = userId;
+    refreshToken.user = userId;
 
     return await this.refreshTokensRepository.save(refreshToken);
   }

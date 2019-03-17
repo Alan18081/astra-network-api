@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -21,74 +18,77 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
-const friendship_request_entity_1 = require("./friendship-request.entity");
-const typeorm_2 = require("typeorm");
 const friendship_requests_type_enum_1 = require("./friendship-requests-type.enum");
+const friendship_requests_repository_1 = require("./friendship-requests.repository");
+const messages_enum_1 = require("../../helpers/enums/messages.enum");
+const users_service_1 = require("../users/users.service");
 let FriendshipRequestsService = class FriendshipRequestsService {
-    constructor(friendshipRequestsRepository) {
+    constructor(friendshipRequestsRepository, usersService) {
         this.friendshipRequestsRepository = friendshipRequestsRepository;
+        this.usersService = usersService;
+    }
+    checkIsValidOwner(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const request = yield this.friendshipRequestsRepository.findByIdAndSenderId(id, userId);
+            if (!request) {
+                throw new common_1.ForbiddenException(messages_enum_1.Messages.PROVIDED_USER_IS_NOT_SENDER);
+            }
+        });
     }
     findMany(userId, type) {
         return __awaiter(this, void 0, void 0, function* () {
-            const field = type === friendship_requests_type_enum_1.FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
-            return yield this.friendshipRequestsRepository.find({
-                where: {
-                    [field]: userId
-                },
-                relations: [type === friendship_requests_type_enum_1.FriendshipRequestsType.INCOMING ? 'sender' : 'receiver']
-            });
-        });
-    }
-    findManyWithPagination(userId, { page, limit }, type) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const field = type === friendship_requests_type_enum_1.FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
-            const [requests, totalCount] = yield this.friendshipRequestsRepository.findAndCount({
-                where: {
-                    [field]: userId
-                },
-                skip: (page - 1) * limit,
-                take: limit,
-                relations: [type === friendship_requests_type_enum_1.FriendshipRequestsType.INCOMING ? 'receiver' : 'sender']
-            });
-            return {
-                data: requests,
-                page,
-                totalCount,
-                itemsPerPage: limit
-            };
+            const field = type === friendship_requests_type_enum_1.FriendshipRequestsType.INCOMING ? 'receiver' : 'sender';
+            return this.friendshipRequestsRepository.findMany({ [field]: userId });
         });
     }
     findOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.friendshipRequestsRepository.findOne(id);
+            return yield this.friendshipRequestsRepository.findById(id);
         });
     }
     findOneBySenderId(senderId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.friendshipRequestsRepository.findOne({ senderId });
+            return this.friendshipRequestsRepository.findOneBySenderId(senderId);
         });
     }
-    createOne(senderId, receiverId, message) {
+    createOne(senderId, dto) {
         return __awaiter(this, void 0, void 0, function* () {
-            const friendRequest = new friendship_request_entity_1.FriendshipRequest({
-                senderId,
-                receiverId,
-                message
-            });
-            return yield this.friendshipRequestsRepository.save(friendRequest);
+            const friendRequest = {
+                sender: senderId,
+                receiver: dto.receiverId,
+                message: dto.message,
+            };
+            return this.friendshipRequestsRepository.save(friendRequest);
         });
     }
-    deleteOne(id) {
+    deleteOne(id, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.friendshipRequestsRepository.delete({ id });
+            yield this.checkIsValidOwner(id, userId);
+            return this.friendshipRequestsRepository.deleteById(id);
+        });
+    }
+    acceptOne(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const request = yield this.friendshipRequestsRepository.findByIdAndReceiverId(id, userId);
+            if (!request) {
+                throw new common_1.NotFoundException(messages_enum_1.Messages.FRIENDSHIP_REQUEST_NOT_FOUND);
+            }
+            const [friend] = yield Promise.all([
+                this.usersService.addFriend(userId, request.sender),
+                this.usersService.addFriend(request.sender, userId),
+                this.friendshipRequestsRepository.deleteById(request._id),
+            ]);
+            if (!friend) {
+                throw new common_1.NotFoundException(messages_enum_1.Messages.FRIENDSHIP_REQUESTS_SENDER_IS_NOT_FOUND);
+            }
+            return friend;
         });
     }
 };
 FriendshipRequestsService = __decorate([
     common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(friendship_request_entity_1.FriendshipRequest)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [friendship_requests_repository_1.FriendshipRequestsRepository,
+        users_service_1.UsersService])
 ], FriendshipRequestsService);
 exports.FriendshipRequestsService = FriendshipRequestsService;
 //# sourceMappingURL=friendship-requests.service.js.map

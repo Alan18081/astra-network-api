@@ -13,8 +13,8 @@ const class_validator_1 = require("class-validator");
 class AcceptRequestDto {
 }
 __decorate([
-    class_validator_1.IsInt(),
-    __metadata("design:type", Number)
+    class_validator_1.IsMongoId(),
+    __metadata("design:type", String)
 ], AcceptRequestDto.prototype, "id", void 0);
 exports.AcceptRequestDto = AcceptRequestDto;
 //# sourceMappingURL=accept-request.dto.js.map

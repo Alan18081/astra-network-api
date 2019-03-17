@@ -14,7 +14,6 @@ let ClientsStoreService = class ClientsStoreService {
         this.socketIdsToUserIds = new Map();
     }
     getSocketById(socketId) {
-        console.log(socketId);
         const userId = this.socketIdsToUserIds.get(socketId);
         if (userId) {
             return this.sockets.get(JSON.stringify({ userId, socketId }));
@@ -28,8 +27,8 @@ let ClientsStoreService = class ClientsStoreService {
     }
     addSocket(socket) {
         console.log(socket.id, socket.user.id);
-        this.userIdsToSocketIds.set(socket.user.id, socket.id);
-        this.socketIdsToUserIds.set(socket.id, socket.user.id);
+        this.userIdsToSocketIds.set(socket.user.id.toString(), socket.id);
+        this.socketIdsToUserIds.set(socket.id, socket.user.id.toString());
         this.sockets.set(JSON.stringify({ userId: socket.user.id, socketId: socket.id }), socket);
     }
     removeSocket(socketId) {

@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -21,58 +18,73 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
-const message_entity_1 = require("./message.entity");
-const typeorm_2 = require("typeorm");
+const messages_repository_1 = require("./messages.repository");
+const messages_enum_1 = require("../../helpers/enums/messages.enum");
+const chats_service_1 = require("../chats/chats.service");
 let MessagesService = class MessagesService {
-    constructor(messagesRepository) {
+    constructor(messagesRepository, chatsService) {
         this.messagesRepository = messagesRepository;
+        this.chatsService = chatsService;
     }
-    getRelations(query) {
-        const relations = [];
-        if (query.includeUser) {
-            relations.push('user');
-        }
-        return relations;
-    }
-    findOne(id, query) {
+    isMessageOwner(id, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const relations = this.getRelations(query);
-            return yield this.messagesRepository.findOne({
-                where: {
-                    id
-                },
-                relations
-            });
+            const message = yield this.messagesRepository.findByIdAndUserId(id, userId);
+            if (!message) {
+                throw new common_1.ForbiddenException(messages_enum_1.Messages.MESSAGE_NOT_FOUND_OR_WRONG_PERMISSIONS);
+            }
+            return message;
         });
     }
-    createOne(userId, chatId, text) {
+    findById(id, query) {
         return __awaiter(this, void 0, void 0, function* () {
-            const newMessage = Object.assign({}, new message_entity_1.Message(), { text, user: { id: userId }, userId, chat: { id: chatId }, createdAt: new Date().toISOString() });
-            yield this.messagesRepository.save(newMessage);
-            return yield this.findOne(newMessage.id, { includeUser: true });
+            if (query.includeUser) {
+                return this.messagesRepository.findByIdWithMessages(id);
+            }
+            return this.messagesRepository.findById(id);
         });
     }
-    updateOne(payload) {
+    createOne(userId, { text, chatId }) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.messagesRepository.update({
-                id: payload.messageId,
-            }, {
-                text: payload.text,
-            });
-            return yield this.findOne(payload.messageId, { includeUser: true });
+            const newMessage = {
+                text,
+                user: userId,
+                chat: chatId,
+                createdAt: new Date(),
+            };
+            const { _id } = yield this.messagesRepository.save(newMessage);
+            return this.messagesRepository.findById(_id);
         });
     }
-    deleteOne(id) {
+    updateById(id, payload, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.messagesRepository.delete({ id });
+            yield this.isMessageOwner(id, userId);
+            return this.messagesRepository.updateById(id, payload);
+        });
+    }
+    deleteById(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const message = yield this.isMessageOwner(id, userId);
+            yield this.messagesRepository.deleteById(id);
+            return {
+                _id: message._id,
+                chatId: message.chat,
+            };
+        });
+    }
+    filterMessages(message, chatId, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (message.chat !== chatId) {
+                return false;
+            }
+            const chat = yield this.chatsService.findOneByIdAndUserId(chatId, userId);
+            return !!chat;
         });
     }
 };
 MessagesService = __decorate([
     common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(message_entity_1.Message)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [messages_repository_1.MessagesRepository,
+        chats_service_1.ChatsService])
 ], MessagesService);
 exports.MessagesService = MessagesService;
 //# sourceMappingURL=messages.service.js.map

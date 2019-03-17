@@ -15,4 +15,9 @@ export class AuthResolver {
     return this.authService.login(loginDto);
   }
 
+  @Mutation('exchangeToken')
+  async exchangeToken(@Args('refreshToken') token: string): Promise<JwtResponse> {
+    return this.authService.exchangeToken(token);
+  }
+
 }

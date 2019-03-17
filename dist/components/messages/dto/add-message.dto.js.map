@@ -1,1 +1,1 @@
-{"version":3,"file":"add-message.dto.js","sourceRoot":"","sources":["../../../../src/components/messages/dto/add-message.dto.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,qDAAmD;AAEnD,MAAa,aAAa;CAGzB;AAFa;IAAX,0BAAQ,EAAE;;2CAAc;AACb;IAAX,0BAAQ,EAAE;;6CAAgB;AAF7B,sCAGC"}
+{"version":3,"file":"add-message.dto.js","sourceRoot":"","sources":["../../../../src/components/messages/dto/add-message.dto.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,qDAAsD;AAEtD,MAAa,aAAa;CAMzB;AAJC;IADC,0BAAQ,EAAE;;2CACE;AAGb;IADC,2BAAS,EAAE;;6CACG;AALjB,sCAMC"}

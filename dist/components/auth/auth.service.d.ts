@@ -1,29 +1,26 @@
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
-import { User } from '../users/user.entity';
+import { User } from '../users/user.interface';
 import { UsersService } from '../users/users.service';
 import { JwtResponse } from './interfaces/jwt-response';
-import { UserHashesService } from '../user-hashes/user-hashes.service';
 import { EmailSendingService } from '../core/services/email-sending.service';
 import { EmailTemplatesService } from '../core/services/email-templates.service';
-import { SetNewPasswordDto } from './dto/set-new-password.dto';
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
+import { LoginDto } from './dto/login.dto';
+import { HashService } from '../core/services/hash.service';
 export declare class AuthService {
     private readonly usersService;
     private readonly jwtService;
-    private readonly userHashesService;
+    private readonly hashService;
     private readonly emailSendingService;
     private readonly emailTemplatesService;
     private readonly refreshTokensService;
-    constructor(usersService: UsersService, jwtService: JwtService, userHashesService: UserHashesService, emailSendingService: EmailSendingService, emailTemplatesService: EmailTemplatesService, refreshTokensService: RefreshTokensService);
+    constructor(usersService: UsersService, jwtService: JwtService, hashService: HashService, emailSendingService: EmailSendingService, emailTemplatesService: EmailTemplatesService, refreshTokensService: RefreshTokensService);
+    login(loginDto: LoginDto): Promise<JwtResponse>;
     signIn(user: User): Promise<JwtResponse>;
-    validateUser(payload: JwtPayload): Promise<User | undefined>;
+    validateUser(payload: JwtPayload): Promise<User | null>;
     exchangeToken(token: string): Promise<JwtResponse>;
-    verifyEmail({ firstName, lastName, email, id }: User): Promise<void>;
-    verifyEmailHash(hash: string): Promise<void>;
     decodeToken(token: string): string | {
         [key: string]: any;
     } | null;
-    resetPassword({ firstName, lastName, email, id }: User): Promise<void>;
-    setNewPassword({ hash, password }: SetNewPasswordDto): Promise<void>;
 }

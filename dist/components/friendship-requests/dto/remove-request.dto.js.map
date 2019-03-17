@@ -1,1 +1,1 @@
-{"version":3,"file":"remove-request.dto.js","sourceRoot":"","sources":["../../../../src/components/friendship-requests/dto/remove-request.dto.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,qDAAwC;AAExC,MAAa,gBAAgB;CAQ5B;AALC;IADC,uBAAK,EAAE;;4CACG;AAGX;IADC,uBAAK,EAAE;;oDACW;AANrB,4CAQC"}
+{"version":3,"file":"remove-request.dto.js","sourceRoot":"","sources":["../../../../src/components/friendship-requests/dto/remove-request.dto.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,qDAA4C;AAE5C,MAAa,gBAAgB;CAQ5B;AALC;IADC,2BAAS,EAAE;;4CACD;AAGX;IADC,2BAAS,EAAE;;oDACO;AANrB,4CAQC"}

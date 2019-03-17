@@ -1,5 +1,4 @@
-import { Resolver, Mutation, Args, Query, Subscription } from "@nestjs/graphql";
-import { withFilter } from 'graphql-subscriptions';
+import {Resolver, Mutation, Args, Query, Subscription } from '@nestjs/graphql';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { ReqUser } from '../../helpers/decorators/user.decorator';
@@ -10,6 +9,7 @@ import { GqlAuthGuard } from "../../helpers/guards/auth.guard";
 import { PublisherService } from '../core/services/publisher.service';
 import { Events } from '../../helpers/enums/events.enum';
 import { idEqualsFilter } from '../../helpers/handlers/id-equals.filter';
+import {ChangePasswordDto} from './dto/change-password.dto';
 
 @Resolver()
 export class UsersResolver {
@@ -18,6 +18,12 @@ export class UsersResolver {
     private readonly usersService: UsersService,
     private readonly publisherService: PublisherService,
   ) {}
+
+  @Query('user')
+  @UseGuards(GqlAuthGuard)
+  async findOneById(@Args('id') id: string): Promise<User | null> {
+      return this.usersService.findOne(id);
+  }
 
   @Query('profile')
   @UseGuards(GqlAuthGuard)
@@ -36,23 +42,23 @@ export class UsersResolver {
     return this.usersService.createOne(userDto);
   }
 
-  @Mutation('updateUser')
+  @Mutation('updateProfile')
   @UseGuards(GqlAuthGuard)
-  async updateUser(@Args('id') id: string, @Args('input') userDto: UpdateUserDto): Promise<User | null> {
-    return this.usersService.updateById(id, userDto);
+  async updateUser(@ReqUser() user: User, @Args('input') userDto: UpdateUserDto): Promise<User | null> {
+    return this.usersService.updateById(user._id, userDto);
+  }
+
+  @Mutation('changePassword')
+  @UseGuards(GqlAuthGuard)
+  async changePassword(@ReqUser() user: User, @Args('input') dto: ChangePasswordDto): Promise<boolean> {
+    await this.usersService.changePassword(user, dto);
+    return true;
   }
 
   @Mutation('deleteUser')
   @UseGuards(GqlAuthGuard)
   async deleteUser(@Args('id') id: string): Promise<void> {
     return this.usersService.deleteById(id);
-  }
-
-  @Mutation('addFriend')
-  @UseGuards(GqlAuthGuard)
-  async addFriend(@ReqUser() user: User, @Args('friendId') friendId: string): Promise<boolean> {
-    await this.usersService.addFriend(user._id, friendId);
-    return true;
   }
 
   @Mutation('removeFriend')

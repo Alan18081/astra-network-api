@@ -16,7 +16,9 @@ var Messages;
     Messages["RESET_PASSWORD_HASH_NOT_FOUND"] = "Reset password hash found";
     Messages["CHAT_NOT_FOUND"] = "Chat not found";
     Messages["AUTH_TOKEN_NOT_FOUND"] = "Authorization token not found";
+    Messages["FRIENDSHIP_REQUESTS_SENDER_IS_NOT_FOUND"] = "Sender of friendship request is not found";
     Messages["MESSAGE_NOT_FOUND"] = "Message not found";
+    Messages["MESSAGE_NOT_FOUND_OR_WRONG_PERMISSIONS"] = "Message not found or you do not have permissions to fetch it";
     Messages["INVALID_RIGHTS_TO_UPDATE_MESSAGE"] = "You don't have rights to update this message";
     Messages["INVALID_RIGHTS_TO_DELETE_MESSAGE"] = "You don't have rights to delete this message";
     Messages["ALREADY_FRIEND"] = "That person is already your friend";
@@ -25,5 +27,7 @@ var Messages;
     Messages["PROVIDED_USER_IS_NOT_RECEIVER"] = "Provided user is not an receiver of friendship request";
     Messages["PROVIDED_USER_IS_NOT_SENDER"] = "Provided user is not an sender of friendship request";
     Messages["SOCKET_NOT_FOUND"] = "Socket is not connected";
+    Messages["NOTES_NOTE_IS_NOT_FOUND"] = "Note is not found";
+    Messages["NOTES_NOTE_WITH_PROVIDED_COMMENT_IS_NOT_FOUND"] = "Note with provided comment is not found";
 })(Messages = exports.Messages || (exports.Messages = {}));
 //# sourceMappingURL=messages.enum.js.map

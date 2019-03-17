@@ -1,0 +1,29 @@
+type FriendshipRequest {
+    _id: ID!
+    sender: User!
+    receiver: User!
+    message: String
+}
+
+type Query {
+    findManyIncomingFriendshipRequests: [FriendshipRequest!]!
+    findManyOutgoingFriendshipRequests: [FriendshipRequest!]!
+    findOneFriendshipRequest(id: ID!): FriendshipRequest
+}
+
+type Mutation {
+    createFriendshipRequest(input: CreateRequest): FriendshipRequest!
+    deleteFriendshipRequest(id: ID!): Boolean
+    acceptFriendshipRequest(id: ID!): Boolean
+    declineFriendshipRequest(id: ID!): Boolean
+}
+
+type Subscription {
+    requestSended: FriendshipRequest!
+    requestAccepted: User!
+}
+
+input CreateRequest {
+    senderId: ID!
+    receiverId: ID!
+}

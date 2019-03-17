@@ -7,17 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
+const mongoose_1 = require("@nestjs/mongoose");
 const jwt_1 = require("@nestjs/jwt");
 const refresh_tokens_service_1 = require("./refresh-tokens.service");
-const refresh_token_entity_1 = require("./refresh-token.entity");
 const config_1 = require("../../config");
+const refresh_token_schema_1 = require("./refresh-token.schema");
+const refresh_tokens_repository_1 = require("./refresh-tokens.repository");
 let RefreshTokensModule = class RefreshTokensModule {
 };
 RefreshTokensModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([refresh_token_entity_1.RefreshToken]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'RefreshToken', schema: refresh_token_schema_1.RefreshTokenSchema }]),
             jwt_1.JwtModule.register({
                 secretOrPrivateKey: config_1.JWT_SECRET,
                 signOptions: {
@@ -27,7 +28,7 @@ RefreshTokensModule = __decorate([
         ],
         controllers: [],
         exports: [refresh_tokens_service_1.RefreshTokensService],
-        providers: [refresh_tokens_service_1.RefreshTokensService]
+        providers: [refresh_tokens_service_1.RefreshTokensService, refresh_tokens_repository_1.RefreshTokensRepository]
     })
 ], RefreshTokensModule);
 exports.RefreshTokensModule = RefreshTokensModule;

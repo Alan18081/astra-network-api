@@ -14,6 +14,8 @@ export enum Messages {
   CHAT_NOT_FOUND = 'Chat not found',
   AUTH_TOKEN_NOT_FOUND = 'Authorization token not found',
 
+  FRIENDSHIP_REQUESTS_SENDER_IS_NOT_FOUND = 'Sender of friendship request is not found',
+
   MESSAGE_NOT_FOUND = 'Message not found',
   MESSAGE_NOT_FOUND_OR_WRONG_PERMISSIONS = 'Message not found or you do not have permissions to fetch it',
   INVALID_RIGHTS_TO_UPDATE_MESSAGE = 'You don\'t have rights to update this message',
@@ -25,6 +27,9 @@ export enum Messages {
   PROVIDED_USER_IS_NOT_RECEIVER = 'Provided user is not an receiver of friendship request',
   PROVIDED_USER_IS_NOT_SENDER = 'Provided user is not an sender of friendship request',
 
-  SOCKET_NOT_FOUND = 'Socket is not connected'
+  SOCKET_NOT_FOUND = 'Socket is not connected',
+
+  NOTES_NOTE_IS_NOT_FOUND = 'Note is not found',
+  NOTES_NOTE_WITH_PROVIDED_COMMENT_IS_NOT_FOUND = 'Note with provided comment is not found'
 }
 

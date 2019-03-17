@@ -6,14 +6,8 @@ import { UsersService } from '../users/users.service';
 import { JwtResponse } from './interfaces/jwt-response';
 import { JWT_EXPIRES } from '../../config';
 import { Messages } from '../../helpers/enums/messages.enum';
-import { UserHashesService } from '../user-hashes/user-hashes.service';
-import { HashTypes } from '../../helpers/enums/hash-types.enum';
 import { EmailSendingService } from '../core/services/email-sending.service';
 import { EmailTemplatesService } from '../core/services/email-templates.service';
-import { TemplateTypes } from '../../helpers/enums/template-types.enum';
-import { EmailTitles } from '../../helpers/enums/email-titles.enum';
-import {HOST, PORT} from '../../config';
-import { SetNewPasswordDto } from './dto/set-new-password.dto';
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
 import { LoginDto } from './dto/login.dto';
 import { HashService } from '../core/services/hash.service';
@@ -24,7 +18,6 @@ export class AuthService {
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
     private readonly hashService: HashService,
-    // private readonly userHashesService: UserHashesService,
     private readonly emailSendingService: EmailSendingService,
     private readonly emailTemplatesService: EmailTemplatesService,
     private readonly refreshTokensService: RefreshTokensService,
@@ -80,43 +73,20 @@ export class AuthService {
     return this.usersService.findOneByEmail(payload.email);
   }
 
-  // async exchangeToken(token: string): Promise<JwtResponse> {
-  //   const tokenRecord = await this.refreshTokensService.findOneByToken(token);
-  //
-  //   if (!tokenRecord) {
-  //     throw new NotFoundException(Messages.REFRESH_TOKEN_NOT_FOUND);
-  //   }
-  //
-  //   await this.refreshTokensService.deleteOne(tokenRecord.id);
-  //
-  //   return await this.signIn(tokenRecord.user);
-  // }
-  //
-  // async verifyEmail({ firstName, lastName, email, id }: User): Promise<void> {
-  //   const emailHash = await this.userHashesService.createOne(id, HashTypes.EMAIL_VERIFICATION);
-  //   const content = this.emailTemplatesService.getTemplate(TemplateTypes.EMAIL_VERIFICATION, {
-  //     firstName,
-  //     lastName,
-  //     url: `http://${HOST}:${PORT}/auth/verifyEmail/hash/${emailHash.hash}`,
-  //   });
-  //   await this.emailSendingService.sendSystemEmail(
-  //     email,
-  //     this.emailTemplatesService.createSubject(EmailTitles.EMAIL_VERIFICATION),
-  //     content,
-  //   );
-  // }
-  //
-  // async verifyEmailHash(hash: string): Promise<void> {
-  //   const userHash = await this.userHashesService.findOneByHash(hash);
-  //   if(!userHash) {
-  //     throw new NotFoundException(Messages.EMAIL_VERIFICATION_HASH_NOT_FOUND);
-  //   }
-  //
-  //   await Promise.all([
-  //     this.usersService.updateById(userHash.userId, { emailVerified: true }),
-  //     this.userHashesService.deleteOne(userHash.id)
-  //   ]);
-  // }
+  async exchangeToken(token: string): Promise<JwtResponse> {
+    const tokenRecord = await this.refreshTokensService.findOneByToken(token);
+
+    if (!tokenRecord) {
+      throw new NotFoundException(Messages.REFRESH_TOKEN_NOT_FOUND);
+    }
+
+    const [user] = await Promise.all([
+        this.usersService.findOne(tokenRecord.user),
+        this.refreshTokensService.deleteOne(tokenRecord.id),
+    ]);
+
+    return await this.signIn(user);
+  }
 
   decodeToken(token: string): string | { [key: string]: any } | null {
     const res = this.jwtService.decode(token, {});
@@ -129,31 +99,4 @@ export class AuthService {
 
     return res;
   }
-
-  // async resetPassword({ firstName, lastName, email, id }: User): Promise<void> {
-  //   const resetPasswordHash = await this.userHashesService.createOne(id, HashTypes.RESET_PASSWORD);
-  //   const content = this.emailTemplatesService.getTemplate(TemplateTypes.RESET_PASSWORD, {
-  //     firstName,
-  //     lastName,
-  //     url: `http://${HOST}:${PORT}/auth/resetPassword/hash/${resetPasswordHash.hash}`,
-  //   });
-  //   await this.emailSendingService.sendSystemEmail(
-  //     email,
-  //     this.emailTemplatesService.createSubject(EmailTitles.RESET_PASSWORD),
-  //     content
-  //   );
-  // }
-  //
-  // async setNewPassword({ hash, password }: SetNewPasswordDto): Promise<void> {
-  //   const userHash = await this.userHashesService.findOneByHash(hash);
-  //
-  //   if(!userHash) {
-  //     throw new NotFoundException(Messages.RESET_PASSWORD_HASH_NOT_FOUND);
-  //   }
-  //
-  //   await Promise.all([
-  //     this.usersService.setNewPassword(userHash.userId, password),
-  //     this.userHashesService.deleteOne(userHash.id)
-  //   ]);
-  // }
 }

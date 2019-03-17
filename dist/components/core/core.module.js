@@ -8,14 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const hash_service_1 = require("./services/hash.service");
+const graphql_subscriptions_1 = require("graphql-subscriptions");
 const email_sending_service_1 = require("./services/email-sending.service");
 const email_templates_service_1 = require("./services/email-templates.service");
 const clients_store_service_1 = require("./services/clients-store.service");
+const date_scalar_1 = require("./scalars/date.scalar");
+const publisher_service_1 = require("./services/publisher.service");
+const providers_enum_1 = require("../../helpers/providers.enum");
+const pubsubProvider = {
+    provide: providers_enum_1.Providers.PUBLISHER_SERVICE,
+    useValue: new graphql_subscriptions_1.PubSub()
+};
 const exportedProviders = [
     hash_service_1.HashService,
     email_sending_service_1.EmailSendingService,
     email_templates_service_1.EmailTemplatesService,
     clients_store_service_1.ClientsStoreService,
+    date_scalar_1.DateScalar,
+    publisher_service_1.PublisherService
 ];
 let CoreModule = class CoreModule {
 };

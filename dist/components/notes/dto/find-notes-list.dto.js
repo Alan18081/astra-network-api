@@ -16,17 +16,8 @@ class FindNotesListDto extends pagination_dto_1.PaginationDto {
 __decorate([
     class_validator_1.IsOptional(),
     class_validator_1.ArrayNotEmpty(),
+    class_validator_1.IsMongoId({ each: true }),
     __metadata("design:type", Array)
 ], FindNotesListDto.prototype, "ids", void 0);
-__decorate([
-    class_validator_1.IsBooleanString(),
-    class_validator_1.IsOptional(),
-    __metadata("design:type", Boolean)
-], FindNotesListDto.prototype, "includeFiles", void 0);
-__decorate([
-    class_validator_1.IsOptional(),
-    class_validator_1.IsNumberString(),
-    __metadata("design:type", Boolean)
-], FindNotesListDto.prototype, "userId", void 0);
 exports.FindNotesListDto = FindNotesListDto;
 //# sourceMappingURL=find-notes-list.dto.js.map

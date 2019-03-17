@@ -5,12 +5,12 @@ export interface User extends Document{
   lastName: string,
   age?: number,
   email: string,
-  password?: string,
+  password: string,
   googleId?: string,
   emailVerified: boolean,
   phoneVerified: boolean,
-  // chats: Chat[],
+  chats: string[],
   online: boolean,
-  // notes: Note[],
+  notes: string[];
   friends: User[],
 }

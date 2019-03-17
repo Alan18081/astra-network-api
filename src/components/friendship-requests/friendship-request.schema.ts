@@ -1,8 +1,7 @@
 import { Schema } from 'mongoose';
-import { User } from '../users/user.interface';
 
 export const FriendshipRequestSchema = new Schema({
-  receiver: { type: Schema.Types.ObjectId, ref: 'Receiver' },
-  sender: { type: Schema.Types.ObjectId, ref: 'Sender' },
+  receiver: { type: Schema.Types.ObjectId, ref: 'User' },
+  sender: { type: Schema.Types.ObjectId, ref: 'User' },
   message: { type: String, default: ''},
 });

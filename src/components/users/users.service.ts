@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {BadRequestException, ForbiddenException, Injectable, NotFoundException} from '@nestjs/common';
 import {CreateUserDto} from './dto/create-user.dto';
 import {HashService} from '../core/services/hash.service';
 import {FindUsersListDto} from './dto/find-users-list.dto';
@@ -8,6 +8,7 @@ import { PaginatedResult } from '../../helpers/interfaces/paginated-result.inter
 import { PaginationDto } from '../core/dto/pagination.dto';
 import { UsersRepository } from './users.repository';
 import { User } from './user.interface';
+import {ChangePasswordDto} from './dto/change-password.dto';
 
 @Injectable()
 export class UsersService {
@@ -18,6 +19,10 @@ export class UsersService {
 
   async findMany(payload: FindUsersListDto): Promise<User[]> {
     return this.usersRepository.findMany({});
+  }
+
+  async findManyByIds(ids: string[]): Promise<User[]> {
+    return this.usersRepository.findManyByIds(ids);
   }
 
   async findUserFriends(userId: string): Promise<User[]> {
@@ -71,9 +76,17 @@ export class UsersService {
   }
 
   async updateById(id: string, payload: Partial<User>): Promise<User | null> {
-    await this.usersRepository.updateById(id, payload);
+    return this.usersRepository.updateById(id, payload);
+  }
 
-    return await this.usersRepository.findById(id);
+  async changePassword(user: User, { oldPassword, newPassword }: ChangePasswordDto): Promise<User | null> {
+    if(!(await this.hashService.compareHash(oldPassword, user.password))) {
+      throw new ForbiddenException(Messages.INVALID_PASSWORD);
+    }
+
+    const newEncryptedPassword = await this.hashService.generateHash(newPassword);
+
+    return this.usersRepository.updateById(user._id, { password: newEncryptedPassword });
   }
 
   async deleteById(id: string): Promise<void> {

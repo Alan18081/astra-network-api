@@ -15,7 +15,7 @@ export class BaseRepository<T extends Document> {
   }
 
   async findById(id: string): Promise<T | null> {
-    return this.model.findOne({_id: new Schema.Types.ObjectId(id)});
+    return this.model.findById(id);
   }
 
   async findManyWithPagination(query: Partial<T>, {page, limit}: Required<PaginationDto>): Promise<PaginatedResult<T>> {
@@ -36,7 +36,7 @@ export class BaseRepository<T extends Document> {
   }
 
   async updateById(id: string, payload: Partial<T>): Promise<T | null> {
-    return this.model.findByIdAndUpdate(id, { $set: payload });
+    return this.model.findByIdAndUpdate(id, { $set: payload }, { new: true });
   }
 
   async deleteById(id: string): Promise<void> {

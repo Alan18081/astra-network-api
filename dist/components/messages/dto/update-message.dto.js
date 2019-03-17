@@ -13,14 +13,6 @@ const class_validator_1 = require("class-validator");
 class UpdateMessageDto {
 }
 __decorate([
-    class_validator_1.IsNumber(),
-    __metadata("design:type", Number)
-], UpdateMessageDto.prototype, "messageId", void 0);
-__decorate([
-    class_validator_1.IsNumber(),
-    __metadata("design:type", Number)
-], UpdateMessageDto.prototype, "chatId", void 0);
-__decorate([
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], UpdateMessageDto.prototype, "text", void 0);
