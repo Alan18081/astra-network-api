@@ -2,58 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d9b76ef-6374-485e-a8fa-a509f25f71bc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/entity-resolvers.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/answers.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/comments.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/enums/gender.enum.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/auth.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/auth.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/auth.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chat.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chat.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chat.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chat.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/chats.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/base.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/core/base.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/dto/pagination.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/dto/pagination.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/core/dto/pagination.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/files.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/files.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/files.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.actions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/messages.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/messages.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/messages.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/messages.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/messages.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/dto/find-notes-list.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/dto/find-notes-list.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/graphql-types/comments.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/comments.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/graphql-types/notes.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/notes.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/resolvers/answers.resolver.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/resolvers/comments.resolver.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/resolvers/notes.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/notes.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/schemas/comment.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/schemas/comment.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/dto/create-user.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/dto/find-users-list.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/dto/find-users-list.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/users.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-queries/users.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/test-queries/users.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/dto/change-password.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/dto/change-password.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/enums/events.enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/enums/events.enum.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/email-verification.pug" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/reset-password.pug" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -80,68 +35,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/chats/chats.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-              <folding>
-                <element signature="e#0#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/files/files.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/chats/chats.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="952">
-              <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/notes/notes.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="12" column="15" lean-forward="true" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="15" selection-start-column="15" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts">
+        <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="746">
-              <caret line="35" column="4" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+            <state relative-caret-position="254">
+              <caret line="68" column="55" selection-start-line="68" selection-start-column="55" selection-end-line="68" selection-end-column="55" />
               <folding>
                 <element signature="e#0#103#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/helpers/enums/events.enum.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="9" column="38" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="644">
+              <caret line="23" column="29" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -180,10 +99,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/auth/auth.controller.ts" />
-        <option value="$PROJECT_DIR$/src/components/auth/auth.resolver.ts" />
-        <option value="$PROJECT_DIR$/src/components/users/dto/change-password.dto.ts" />
-        <option value="$PROJECT_DIR$/src/components/users/user.interface.ts" />
         <option value="$PROJECT_DIR$/src/components/auth/auth.service.ts" />
         <option value="$PROJECT_DIR$/src/components/auth/auth.graphql" />
         <option value="$PROJECT_DIR$/src/components/users/user.schema.ts" />
@@ -231,6 +146,10 @@
         <option value="$PROJECT_DIR$/src/app.module.ts" />
         <option value="$PROJECT_DIR$/src/components/chats/chats.repository.ts" />
         <option value="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts" />
+        <option value="$PROJECT_DIR$/src/components/users/dto/change-password.dto.ts" />
+        <option value="$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql" />
+        <option value="$PROJECT_DIR$/src/helpers/enums/events.enum.ts" />
+        <option value="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts" />
       </list>
     </option>
   </component>
@@ -290,7 +209,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="entity-resolvers" type="462c0819:PsiDirectoryNode" />
-              <item name="resolvers" type="462c0819:PsiDirectoryNode" />
+              <item name="types" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -435,7 +354,7 @@
       <workItem from="1552835090988" duration="603000" />
       <workItem from="1552837470162" duration="9014000" />
       <workItem from="1552896410956" duration="16269000" />
-      <workItem from="1552920864568" duration="2196000" />
+      <workItem from="1552920864568" duration="3554000" />
     </task>
     <servers />
   </component>
@@ -448,13 +367,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="319814000" />
+    <option name="totallyTimeSpent" value="321172000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1919" y="-11" width="1922" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2950907" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2950907" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2497332" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -558,15 +477,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/messages/messages.actions.ts" />
-    <entry file="file://$PROJECT_DIR$/src/components/core/dto/pagination.dto.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" column="2" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/core/dto/pagination.dto.js" />
     <entry file="file://$PROJECT_DIR$/src/components/notes/notes.repository.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
@@ -685,23 +595,6 @@
           <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
           <folding>
             <element signature="e#0#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="21" column="17" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="e#0#89#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -854,27 +747,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/files/files.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="15" selection-start-column="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/chats/chats.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -884,16 +760,6 @@
           <caret line="11" column="47" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="47" />
           <folding>
             <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/chats/chats.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -944,8 +810,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="746">
+        <state relative-caret-position="74">
           <caret line="35" column="4" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/chats/chats.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/dto/change-password.dto.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/dto/update-user.dto.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/files/files.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/chats/chats.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/enums/events.enum.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="68" column="55" selection-start-line="68" selection-start-column="55" selection-end-line="68" selection-end-column="55" />
           <folding>
             <element signature="e#0#103#0" expanded="true" />
           </folding>

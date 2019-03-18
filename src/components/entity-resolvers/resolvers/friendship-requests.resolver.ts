@@ -1,4 +1,4 @@
-import {Args, Mutation, Query, Resolver, ResolveProperty, Parent} from '@nestjs/graphql';
+import {Args, Mutation, Query, Resolver, ResolveProperty, Parent, Subscription} from '@nestjs/graphql';
 import {FriendshipRequestsService} from '../../friendship-requests/friendship-requests.service';
 import {FriendshipRequest} from '../../friendship-requests/friendship-request.interface';
 import {UseGuards} from '@nestjs/common';
@@ -10,6 +10,7 @@ import {CreateRequestDto} from '../../friendship-requests/dto/create-request.dto
 import {PublisherService} from '../../core/services/publisher.service';
 import {Events} from '../../../helpers/enums/events.enum';
 import { UsersService } from '../../users/users.service';
+import { withFilter } from 'graphql-subscriptions';
 
 @Resolver('FriendshipRequest')
 @UseGuards(GqlAuthGuard)
@@ -58,6 +59,42 @@ export class FriendshipRequestsResolver {
         return true;
     }
 
-    // @Subscription()
+    @Subscription('friendshipRequestSent')
+    onSentOne() {
+        return {
+            resolve: payload => payload,
+            subscribe: withFilter(
+              () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_SENT_REQUEST),
+              (payload: FriendshipRequest, { user  }) => {
+                  return payload.receiver === user._id;
+              }
+            )
+        }
+    }
 
+    @Subscription('friendshipRequestAccepted')
+    onAcceptedOne() {
+        return {
+            resolve: payload => payload,
+            subscribe: withFilter(
+              () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST),
+              (payload: FriendshipRequest, { user }) => {
+                  return payload.sender === user._id;
+              }
+            )
+        }
+    }
+
+    @Subscription('friendshipRequestDeclined')
+    onDeclinedOne() {
+        return {
+            resolve: payload => payload,
+            subscribe: withFilter(
+              () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_DECLINED_REQUEST),
+              (payload: FriendshipRequest, { user }) => {
+                  return payload.sender === user._id;
+              }
+            )
+        }
+    }
 }

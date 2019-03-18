@@ -33,7 +33,7 @@ export class ChatsResolver {
     if(chat.lastMessage) {
       return this.messagesService.findById(chat.lastMessage);
     }
-    
+
     return null;
   }
 

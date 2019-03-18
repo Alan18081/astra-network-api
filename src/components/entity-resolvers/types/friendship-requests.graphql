@@ -19,8 +19,9 @@ type Mutation {
 }
 
 type Subscription {
-    requestSended: FriendshipRequest!
-    requestAccepted: User!
+    friendshipRequestSent: FriendshipRequest!
+    friendshipRequestAccepted: User!
+    friendshipRequestDeclined: User!
 }
 
 input CreateRequest {
