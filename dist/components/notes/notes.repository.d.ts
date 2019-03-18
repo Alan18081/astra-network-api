@@ -4,7 +4,7 @@ import { Note } from './interfaces/note.interface';
 import { Comment } from './interfaces/comment.interface';
 export declare class NotesRepository extends BaseRepository<Note> {
     constructor(noteModel: Model<Note>);
-    findByIds(ids: string[]): Promise<Note[]>;
+    findByIds(ids: string[], skip?: number, limit?: number): Promise<Note[]>;
     findOneByIdAndCommentId(noteId: string, commentId: string): Promise<Note | null>;
     addComment(noteId: string, comment: Partial<Comment>): Promise<Note | null>;
     removeComment(noteId: string, commentId: string): Promise<Note | null>;

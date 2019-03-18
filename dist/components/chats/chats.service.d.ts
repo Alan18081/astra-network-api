@@ -6,11 +6,13 @@ import { ChatsRepository } from './chats.repository';
 import { Chat } from './chat.interface';
 import { AddUserToChatDto } from './dto/add-user-to-chat.dto';
 import { RemoveUserFromChatDto } from './dto/remove-user-from-chat.dto';
+import { Message } from '../messages/message.interface';
 export declare class ChatsService {
     private readonly chatsRepository;
     private readonly usersService;
     constructor(chatsRepository: ChatsRepository, usersService: UsersService);
     findMany(query: FindChatsListDto): Promise<Chat[]>;
+    setLastMessage(chatId: string, messageId: string): Promise<void>;
     addUserToChat(adderId: string, { chatId, userId }: AddUserToChatDto): Promise<Chat | null>;
     removeUserFromChat(adminId: string, { chatId, userId }: RemoveUserFromChatDto): Promise<Chat | null>;
     leaveChat(chatId: string, userId: string): Promise<Chat | null>;
@@ -19,4 +21,5 @@ export declare class ChatsService {
     updateById(id: string, payload: UpdateChatDto): Promise<Chat | null>;
     deleteById(id: string): Promise<void>;
     findOneByIdAndUserId(chatId: string, userId: string): Promise<Chat | null>;
+    filterMessages(message: Message, chatId: string, userId: string): Promise<boolean>;
 }

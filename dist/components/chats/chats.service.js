@@ -36,6 +36,11 @@ let ChatsService = class ChatsService {
             return this.chatsRepository.findMany({});
         });
     }
+    setLastMessage(chatId, messageId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.chatsRepository.setLastMessage(chatId, messageId);
+        });
+    }
     addUserToChat(adderId, { chatId, userId }) {
         return __awaiter(this, void 0, void 0, function* () {
             const [chat, user] = yield Promise.all([
@@ -105,6 +110,15 @@ let ChatsService = class ChatsService {
     findOneByIdAndUserId(chatId, userId) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.chatsRepository.findOneByIdAndUserId(chatId, userId);
+        });
+    }
+    filterMessages(message, chatId, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (message.chat !== chatId) {
+                return false;
+            }
+            const chat = yield this.findOneByIdAndUserId(chatId, userId);
+            return !!chat;
         });
     }
 };

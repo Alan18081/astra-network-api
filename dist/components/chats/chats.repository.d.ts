@@ -5,6 +5,7 @@ export declare class ChatsRepository extends BaseRepository<Chat> {
     constructor(chatModel: Model<Chat>);
     findManyByIds(ids: string[]): Promise<Chat[]>;
     findChatById(id: string): Promise<Chat | null>;
+    setLastMessage(chatId: string, messageId: string): Promise<void>;
     addUserToChat(chatId: string, userId: string): Promise<Chat | null>;
     removeUserFromChat(chatId: string, userId: string): Promise<Chat | null>;
     findOneByIdAndUserId(chatId: string, userId: string): Promise<Chat | null>;

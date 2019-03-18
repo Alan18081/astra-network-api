@@ -3,17 +3,13 @@ scalar Date
 type Message {
     _id: ID!
     text: String!
-    user: User!
+    author: User!
     createdAt: Date!
 }
 
 type MessageInfo {
     _id: ID!
     chatId: ID!
-}
-
-type Query {
-    messages(chatId: ID!, skip: Int, limit: Int): [Message!]!
 }
 
 type Mutation {

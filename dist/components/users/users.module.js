@@ -12,7 +12,6 @@ const users_service_1 = require("./users.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const user_schema_1 = require("./user.schema");
 const users_repository_1 = require("./users.repository");
-const users_resolver_1 = require("./users.resolver");
 let UsersModule = class UsersModule {
 };
 UsersModule = __decorate([
@@ -22,7 +21,7 @@ UsersModule = __decorate([
             mongoose_1.MongooseModule.forFeature([{ name: 'User', schema: user_schema_1.UserSchema }]),
         ],
         exports: [users_service_1.UsersService],
-        providers: [users_service_1.UsersService, users_repository_1.UsersRepository, users_resolver_1.UsersResolver],
+        providers: [users_service_1.UsersService, users_repository_1.UsersRepository],
     })
 ], UsersModule);
 exports.UsersModule = UsersModule;

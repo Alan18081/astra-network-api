@@ -5,4 +5,6 @@ export interface Chat extends Document {
     createdAt: Date;
     admin: string;
     users: string[];
+    messages: string[];
+    lastMessage?: string;
 }

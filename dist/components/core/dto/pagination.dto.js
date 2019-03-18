@@ -14,12 +14,12 @@ class PaginationDto {
 }
 __decorate([
     class_validator_1.IsOptional(),
-    class_validator_1.IsNumberString(),
+    class_validator_1.IsNumber(),
     __metadata("design:type", Number)
-], PaginationDto.prototype, "page", void 0);
+], PaginationDto.prototype, "skip", void 0);
 __decorate([
     class_validator_1.IsOptional(),
-    class_validator_1.IsNumberString(),
+    class_validator_1.IsNumber(),
     __metadata("design:type", Number)
 ], PaginationDto.prototype, "limit", void 0);
 exports.PaginationDto = PaginationDto;

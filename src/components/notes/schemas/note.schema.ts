@@ -8,8 +8,8 @@ export const NoteSchema = new Schema({
   comments: [CommentSchema],
   likes: { type: Number, default: 0, min: 0 },
   dislikes: { type: Number, default: 0, min: 0 },
-  likedUsers: { type: Schema.Types.ObjectId, ref: 'User' },
-  dislikedUsers: { type: Schema.Types.ObjectId, ref: 'User' },
+  likedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  dislikedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   author: { type: Schema.Types.ObjectId, ref: 'User', default: null },
   group: { type: Schema.Types.ObjectId, ref: 'Group', default: null },
 });

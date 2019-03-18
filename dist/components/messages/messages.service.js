@@ -20,11 +20,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const messages_repository_1 = require("./messages.repository");
 const messages_enum_1 = require("../../helpers/enums/messages.enum");
-const chats_service_1 = require("../chats/chats.service");
 let MessagesService = class MessagesService {
-    constructor(messagesRepository, chatsService) {
+    constructor(messagesRepository) {
         this.messagesRepository = messagesRepository;
-        this.chatsService = chatsService;
     }
     isMessageOwner(id, userId) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -35,11 +33,18 @@ let MessagesService = class MessagesService {
             return message;
         });
     }
-    findById(id, query) {
+    findManyByChatId(chatId, skip, limit) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (query.includeUser) {
-                return this.messagesRepository.findByIdWithMessages(id);
-            }
+            return this.messagesRepository.findManyByChatId(chatId, skip, limit);
+        });
+    }
+    findManyByIds(ids, skip = 0, limit = 10) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.messagesRepository.findManyByIds(ids, skip, limit);
+        });
+    }
+    findById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
             return this.messagesRepository.findById(id);
         });
     }
@@ -51,8 +56,7 @@ let MessagesService = class MessagesService {
                 chat: chatId,
                 createdAt: new Date(),
             };
-            const { _id } = yield this.messagesRepository.save(newMessage);
-            return this.messagesRepository.findById(_id);
+            return this.messagesRepository.save(newMessage);
         });
     }
     updateById(id, payload, userId) {
@@ -71,20 +75,10 @@ let MessagesService = class MessagesService {
             };
         });
     }
-    filterMessages(message, chatId, userId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (message.chat !== chatId) {
-                return false;
-            }
-            const chat = yield this.chatsService.findOneByIdAndUserId(chatId, userId);
-            return !!chat;
-        });
-    }
 };
 MessagesService = __decorate([
     common_1.Injectable(),
-    __metadata("design:paramtypes", [messages_repository_1.MessagesRepository,
-        chats_service_1.ChatsService])
+    __metadata("design:paramtypes", [messages_repository_1.MessagesRepository])
 ], MessagesService);
 exports.MessagesService = MessagesService;
 //# sourceMappingURL=messages.service.js.map

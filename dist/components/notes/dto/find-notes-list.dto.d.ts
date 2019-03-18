@@ -1,4 +1,3 @@
-import { PaginationDto } from '../../core/dto/pagination.dto';
-export declare class FindNotesListDto extends PaginationDto {
+export declare class FindNotesListDto {
     ids?: string[];
 }

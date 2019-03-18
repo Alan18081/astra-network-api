@@ -14,7 +14,6 @@ const config_1 = require("../../config");
 const auth_service_1 = require("./auth.service");
 const core_module_1 = require("../core/core.module");
 const refresh_tokens_module_1 = require("../refresh-tokens/refresh-tokens.module");
-const auth_resolver_1 = require("./auth.resolver");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
@@ -35,7 +34,6 @@ AuthModule = __decorate([
         exports: [auth_service_1.AuthService, jwt_1.JwtModule],
         providers: [
             auth_service_1.AuthService,
-            auth_resolver_1.AuthResolver,
         ],
     })
 ], AuthModule);

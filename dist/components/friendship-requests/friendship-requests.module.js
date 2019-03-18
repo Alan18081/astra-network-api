@@ -13,7 +13,7 @@ const friendship_requests_service_1 = require("./friendship-requests.service");
 const core_module_1 = require("../core/core.module");
 const friendship_request_schema_1 = require("./friendship-request.schema");
 const friendship_requests_repository_1 = require("./friendship-requests.repository");
-const friendship_requests_resolver_1 = require("./friendship-requests.resolver");
+const friendship_requests_resolver_1 = require("../entity-resolvers/resolvers/friendship-requests.resolver");
 let FriendshipRequestsModule = class FriendshipRequestsModule {
 };
 FriendshipRequestsModule = __decorate([
@@ -27,6 +27,9 @@ FriendshipRequestsModule = __decorate([
             friendship_requests_service_1.FriendshipRequestsService,
             friendship_requests_repository_1.FriendshipRequestsRepository,
             friendship_requests_resolver_1.FriendshipRequestsResolver
+        ],
+        exports: [
+            friendship_requests_service_1.FriendshipRequestsService
         ]
     })
 ], FriendshipRequestsModule);

@@ -41,11 +41,6 @@ let UsersService = class UsersService {
             return this.usersRepository.findUserFriends(userId);
         });
     }
-    findManyWithPagination(query) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.usersRepository.findManyWithPagination(query, { page: query.page, limit: query.limit });
-        });
-    }
     findOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield this.usersRepository.findById(id);

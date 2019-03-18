@@ -10,8 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
-const pagination_dto_1 = require("../../core/dto/pagination.dto");
-class FindNotesListDto extends pagination_dto_1.PaginationDto {
+class FindNotesListDto {
 }
 __decorate([
     class_validator_1.IsOptional(),

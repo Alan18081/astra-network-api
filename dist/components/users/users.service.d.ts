@@ -1,20 +1,17 @@
 import { CreateUserDto } from './dto/create-user.dto';
 import { HashService } from '../core/services/hash.service';
-import { FindUsersListDto } from './dto/find-users-list.dto';
 import { GoogleUserData } from './interfaces/google-user-data.interface';
-import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
-import { PaginationDto } from '../core/dto/pagination.dto';
 import { UsersRepository } from './users.repository';
 import { User } from './user.interface';
 import { ChangePasswordDto } from './dto/change-password.dto';
+import { FindManyUsersListDto } from './dto/find-many-users-list.dto';
 export declare class UsersService {
     private readonly usersRepository;
     private readonly hashService;
     constructor(usersRepository: UsersRepository, hashService: HashService);
-    findMany(payload: FindUsersListDto): Promise<User[]>;
+    findMany(payload: FindManyUsersListDto): Promise<User[]>;
     findManyByIds(ids: string[]): Promise<User[]>;
     findUserFriends(userId: string): Promise<User[]>;
-    findManyWithPagination(query: Partial<User> & Required<PaginationDto>): Promise<PaginatedResult<User>>;
     findOne(id: string): Promise<User>;
     findOneByEmail(email: string): Promise<User | null>;
     findOneByGoogleId(id: string): Promise<User | null>;

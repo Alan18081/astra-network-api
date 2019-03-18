@@ -38,6 +38,11 @@ let ChatsRepository = class ChatsRepository extends base_repository_1.BaseReposi
             return this.model.findById(id);
         });
     }
+    setLastMessage(chatId, messageId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.model.updateOne({ _id: chatId }, { lastMessage: messageId });
+        });
+    }
     addUserToChat(chatId, userId) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.findByIdAndUpdate(chatId, { $addToSet: { users: userId } }, { new: true });

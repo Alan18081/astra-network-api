@@ -13,7 +13,6 @@ import { UsersService } from '../../users/users.service';
 import { withFilter } from 'graphql-subscriptions';
 
 @Resolver('FriendshipRequest')
-@UseGuards(GqlAuthGuard)
 export class FriendshipRequestsResolver {
 
     constructor(
@@ -24,6 +23,7 @@ export class FriendshipRequestsResolver {
 
     @ResolveProperty('sender')
     async sender(@Parent() { sender }: FriendshipRequest): Promise<User | null> {
+        console.log(sender);
         return this.usersService.findOne(sender);
     }
 
@@ -33,26 +33,33 @@ export class FriendshipRequestsResolver {
     }
 
     @Query('incomingFriendshipRequestsList')
+    @UseGuards(GqlAuthGuard)
     async findManyIncomingRequests(@ReqUser() user: User): Promise<FriendshipRequest[]> {
         return this.friendshipRequestsService.findMany(user._id, FriendshipRequestsType.INCOMING);
     }
 
     @Query('outgoingFriendshipRequestsList')
+    @UseGuards(GqlAuthGuard)
     async findManyOutgoingRequests(@ReqUser() user: User): Promise<FriendshipRequest[]> {
         return this.friendshipRequestsService.findMany(user._id, FriendshipRequestsType.OUTGOING);
     }
 
     @Mutation('sendFriendshipRequest')
+    @UseGuards(GqlAuthGuard)
     async sendOne(@ReqUser() user: User, @Args('input') dto: CreateRequestDto): Promise<FriendshipRequest> {
-        return this.friendshipRequestsService.createOne(user._id, dto);
+        const request = await this.friendshipRequestsService.createOne(user._id, dto);
+        await this.publisherService.publish(Events.FRIENDSHIP_REQUESTS_SENT_REQUEST, request);
+        return request;
     }
 
     @Mutation('deleteFriendshipRequest')
+    @UseGuards(GqlAuthGuard)
     async deleteOne(@ReqUser() user: User, @Args('id') id: string): Promise<void> {
         return this.friendshipRequestsService.deleteOne(id, user._id);
     }
 
     @Mutation('acceptFriendshipRequest')
+    @UseGuards(GqlAuthGuard)
     async acceptOne(@ReqUser() user: User, @Args('id') id: string): Promise<boolean> {
         const friend = await this.friendshipRequestsService.acceptOne(id, user._id);
         await this.publisherService.publish(Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST, friend);
@@ -62,11 +69,11 @@ export class FriendshipRequestsResolver {
     @Subscription('friendshipRequestSent')
     onSentOne() {
         return {
-            resolve: payload => payload,
+            resolve: payload =>  payload,
             subscribe: withFilter(
               () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_SENT_REQUEST),
-              (payload: FriendshipRequest, { user  }) => {
-                  return payload.receiver === user._id;
+              (payload: FriendshipRequest, args, { user }) => {
+                  return payload.receiver.toString() === user._id.toString();
               }
             )
         }
@@ -78,7 +85,7 @@ export class FriendshipRequestsResolver {
             resolve: payload => payload,
             subscribe: withFilter(
               () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST),
-              (payload: FriendshipRequest, { user }) => {
+              (payload: FriendshipRequest, args, { user }) => {
                   return payload.sender === user._id;
               }
             )

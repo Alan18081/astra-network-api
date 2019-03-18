@@ -18,7 +18,6 @@ import { MessagesService } from '../../messages/messages.service';
 import { Message } from '../../messages/message.interface';
 
 @Resolver('Chat')
-@UseGuards(GqlAuthGuard)
 export class ChatsResolver {
 
   constructor(
@@ -27,6 +26,15 @@ export class ChatsResolver {
     private readonly usersService: UsersService,
     private readonly messagesService: MessagesService
   ) {}
+
+  @ResolveProperty('messages')
+  async messages(
+      @Parent() chat: Chat,
+      @Args('skip') skip: number,
+      @Args('limit') limit: number
+  ): Promise<Message[]> {
+      return this.messagesService.findManyByChatId(chat._id, skip, limit);
+  }
 
   @ResolveProperty('lastMessage')
   async lastMessage(@Parent() chat: Chat): Promise<Message | null> {
@@ -48,47 +56,56 @@ export class ChatsResolver {
   }
 
   @Query('chatsList')
+  @UseGuards(GqlAuthGuard)
   async findManyChatsByUser(@Args('input') dto: FindChatsListDto): Promise<Chat[]> {
     return this.chatsService.findMany(dto);
   }
 
   @Query('chat')
+  @UseGuards(GqlAuthGuard)
   async findChatById(@Args('id') id: string): Promise<Chat | null> {
     return this.chatsService.findOne(id);
   }
 
   @Mutation('createChat')
+  @UseGuards(GqlAuthGuard)
   async createChat(@ReqUser() user: User, @Args('input') chatDto: CreateChatDto): Promise<Chat> {
     return this.chatsService.createOne(user._id, chatDto);
   }
 
   @Mutation('updateChat')
+  @UseGuards(GqlAuthGuard)
   async updateChat(@Args('id') id: string, @Args('input') chatDto: UpdateChatDto): Promise<Chat | null> {
     return this.chatsService.updateById(id, chatDto);
   }
 
   @Mutation('deleteChat')
+  @UseGuards(GqlAuthGuard)
   async deleteChat(@Args('id') id: string): Promise<boolean> {
     await this.chatsService.deleteById(id);
     return true;
   }
 
   @Mutation('addUserToChat')
+  @UseGuards(GqlAuthGuard)
   async addUserToChat(@ReqUser() user: User, @Args('input') dto: AddUserToChatDto): Promise<Chat | null> {
     return this.chatsService.addUserToChat(user._id, dto);
   }
 
   @Mutation('removeUserFromChat')
+  @UseGuards(GqlAuthGuard)
   async removeUserFromChat(@ReqUser() user: User, @Args('input') dto: RemoveUserFromChatDto): Promise<Chat | null> {
       return this.chatsService.removeUserFromChat(user._id, dto);
   }
 
   @Mutation('attendChat')
+  @UseGuards(GqlAuthGuard)
   async attendChat(@ReqUser() user: User, @Args('chatId') chatId: string): Promise<Chat | null> {
     return this.chatsService.addUserToChat(chatId, user._id);
   }
 
   @Mutation('leaveChat')
+  @UseGuards(GqlAuthGuard)
   async leaveChat(@ReqUser() user: User, @Args('chatId') chatId: string): Promise<boolean> {
       await this.chatsService.leaveChat(chatId, user._id);
       await this.publisherService.publish(Events.CHATS_USER_REMOVED, { chatId, userId: user._id });

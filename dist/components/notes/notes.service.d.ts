@@ -10,7 +10,7 @@ export declare class NotesService {
     private readonly notesRepository;
     constructor(notesRepository: NotesRepository);
     private checkIsNoteExists;
-    findMany(query: FindNotesListDto): Promise<Note[]>;
+    findMany({ ids }: FindNotesListDto, skip: number, limit: number): Promise<Note[]>;
     findOne(id: string): Promise<Note | null>;
     createOne({ title, description }: CreateNoteDto, userId: string): Promise<Note>;
     updateById(id: string, payload: UpdateNoteDto): Promise<Note | null>;

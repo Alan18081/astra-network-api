@@ -11,7 +11,7 @@ const messages_service_1 = require("./messages.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const message_schema_1 = require("./message.schema");
 const messages_repository_1 = require("./messages.repository");
-const messages_resolver_1 = require("./messages.resolver");
+const messages_resolver_1 = require("../entity-resolvers/resolvers/messages.resolver");
 const core_module_1 = require("../core/core.module");
 const chats_module_1 = require("../chats/chats.module");
 let MessagesModule = class MessagesModule {
@@ -20,8 +20,8 @@ MessagesModule = __decorate([
     common_1.Module({
         imports: [
             core_module_1.CoreModule,
-            chats_module_1.ChatsModule,
             mongoose_1.MongooseModule.forFeature([{ name: 'Message', schema: message_schema_1.MessageSchema }]),
+            chats_module_1.ChatsModule
         ],
         controllers: [],
         exports: [messages_service_1.MessagesService],

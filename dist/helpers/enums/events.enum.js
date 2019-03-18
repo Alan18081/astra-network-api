@@ -9,6 +9,8 @@ var Events;
     Events["CHATS_MESSAGE_EDITED"] = "[Chats] Message Edited";
     Events["CHATS_MESSAGE_REMOVED"] = "[Chats] Message Removed";
     Events["FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST"] = "[Friendship requests] Accepted request";
+    Events["FRIENDSHIP_REQUESTS_DECLINED_REQUEST"] = "[Friendship requests] Declined request";
+    Events["FRIENDSHIP_REQUESTS_SENT_REQUEST"] = "[Friendship requests] Sent request";
     Events["NOTES_NOTE_ADDED"] = "[Notes] Note added";
 })(Events = exports.Events || (exports.Events = {}));
 //# sourceMappingURL=events.enum.js.map

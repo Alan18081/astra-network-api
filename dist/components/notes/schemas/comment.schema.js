@@ -6,6 +6,6 @@ exports.CommentSchema = new mongoose_1.Schema({
     text: String,
     createdAt: Date,
     author: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User' },
-    comments: [answer_schema_1.AnswerSchema]
+    answers: [answer_schema_1.AnswerSchema]
 });
 //# sourceMappingURL=comment.schema.js.map

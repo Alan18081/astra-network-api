@@ -12,10 +12,7 @@ const note_schema_1 = require("./schemas/note.schema");
 const notes_service_1 = require("./notes.service");
 const core_module_1 = require("../core/core.module");
 const auth_module_1 = require("../auth/auth.module");
-const notes_resolver_1 = require("./resolvers/notes.resolver");
 const notes_repository_1 = require("./notes.repository");
-const comments_resolver_1 = require("./resolvers/comments.resolver");
-const answers_resolver_1 = require("./resolvers/answers.resolver");
 let NotesModule = class NotesModule {
 };
 NotesModule = __decorate([
@@ -25,12 +22,9 @@ NotesModule = __decorate([
             core_module_1.CoreModule,
             auth_module_1.AuthModule,
         ],
-        exports: [],
+        exports: [notes_service_1.NotesService],
         providers: [
             notes_service_1.NotesService,
-            notes_resolver_1.NotesResolver,
-            comments_resolver_1.CommentsResolver,
-            answers_resolver_1.AnswersResolver,
             notes_repository_1.NotesRepository
         ],
     })

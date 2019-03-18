@@ -32,13 +32,12 @@ let NotesService = class NotesService {
             }
         });
     }
-    findMany(query) {
+    findMany({ ids }, skip, limit) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (query.ids) {
-                return this.notesRepository.findByIds(query.ids);
+            if (ids) {
+                return this.notesRepository.findByIds(ids, skip, limit);
             }
-            const data = yield this.notesRepository.findMany({});
-            return data;
+            return this.notesRepository.findMany({}, skip, limit);
         });
     }
     findOne(id) {

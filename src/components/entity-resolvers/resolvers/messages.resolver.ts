@@ -1,4 +1,4 @@
-import {Resolver, Mutation, Args, Query, Subscription} from '@nestjs/graphql';
+import {Resolver, Mutation, Args, Query, Subscription, ResolveProperty, Parent} from '@nestjs/graphql';
 import { MessagesService } from '../../messages/messages.service';
 import { AddMessageDto } from '../../messages/dto/add-message.dto';
 import { Message } from '../../messages/message.interface';
@@ -12,27 +12,25 @@ import { UpdateMessageDto } from '../../messages/dto/update-message.dto';
 import { MessageInfo } from '../../messages/interfaces/message-info.interface';
 import {withFilter} from 'graphql-subscriptions';
 import { ChatsService } from '../../chats/chats.service';
+import {UsersService} from '../../users/users.service';
 
 @Resolver('Message')
-@UseGuards(GqlAuthGuard)
 export class MessagesResolver {
 
   constructor(
     private readonly messagesService: MessagesService,
+    private readonly usersService: UsersService,
     private readonly publisherService: PublisherService,
     private readonly chatsService: ChatsService
   ) {}
 
-  @Query('messages')
-  async messages(
-    @Args('chatId') chatId: string,
-    @Args('skip') skip: number,
-    @Args('limit') limit: number
-  ): Promise<Message[]> {
-    return this.messagesService.findManyByChatId(chatId, skip, limit);
+  @ResolveProperty('author')
+  async author(@Parent() message: Message): Promise<User | null> {
+    return this.usersService.findOne(message.author);
   }
 
   @Mutation('sendMessage')
+  @UseGuards(GqlAuthGuard)
   async sendMessage(@ReqUser() user: User, @Args('input') dto: AddMessageDto): Promise<Message> {
     const message = await this.messagesService.createOne(user._id, dto);
     await this.chatsService.setLastMessage(dto.chatId, message._id);
@@ -41,6 +39,7 @@ export class MessagesResolver {
   }
 
   @Mutation('editMessage')
+  @UseGuards(GqlAuthGuard)
   async editMessage(@ReqUser() user: User, @Args('id') id: string,  @Args('input') dto: UpdateMessageDto): Promise<Message | null> {
     const message = await this.messagesService.updateById(id, dto, user._id);
     await this.publisherService.publish(Events.CHATS_MESSAGE_EDITED, message);
@@ -48,6 +47,7 @@ export class MessagesResolver {
   }
 
   @Mutation('deleteMessage')
+  @UseGuards(GqlAuthGuard)
   async deleteMessage(@ReqUser() user: User, @Args('id') id: string): Promise<MessageInfo> {
     const message = await this.messagesService.deleteById(id, user._id);
     await this.publisherService.publish(Events.CHATS_MESSAGE_REMOVED, message);

@@ -10,7 +10,6 @@ const common_1 = require("@nestjs/common");
 const files_service_1 = require("./files.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const file_schema_1 = require("./file.schema");
-const files_resolver_1 = require("./files.resolver");
 const files_repository_1 = require("./files.repository");
 let FilesModule = class FilesModule {
 };
@@ -23,7 +22,7 @@ FilesModule = __decorate([
             }),
         ],
         exports: [files_service_1.FilesService, common_1.MulterModule],
-        providers: [files_service_1.FilesService, files_resolver_1.FilesResolver, files_repository_1.FilesRepository],
+        providers: [files_service_1.FilesService, files_repository_1.FilesRepository],
     })
 ], FilesModule);
 exports.FilesModule = FilesModule;

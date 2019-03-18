@@ -28,9 +28,9 @@ let NotesRepository = class NotesRepository extends base_repository_1.BaseReposi
     constructor(noteModel) {
         super(noteModel);
     }
-    findByIds(ids) {
+    findByIds(ids, skip = 1, limit = 10) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.find({ _id: { $in: ids } });
+            return this.model.find({ _id: { $in: ids } }).skip(skip).limit(limit);
         });
     }
     findOneByIdAndCommentId(noteId, commentId) {
@@ -50,27 +50,31 @@ let NotesRepository = class NotesRepository extends base_repository_1.BaseReposi
     }
     addAnswerToComment(noteId, commentId, answer) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.findOneAndUpdate({ _id: noteId, 'comments._id': commentId }, { $push: { 'comments.$.answers': answer } });
+            return this.model.findOneAndUpdate({ _id: noteId, 'comments._id': commentId }, { $push: { 'comments.$.answers': answer } }, { new: true });
         });
     }
     addLikeToNote(noteId, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.findOneAndUpdate({ _id: noteId, likedUsers: { $ne: userId } }, { $inc: { likes: 1 }, $push: { likedUsers: userId } }, { new: true });
+            yield this.model.updateOne({ _id: noteId, likedUsers: { $ne: userId } }, { $inc: { likes: 1 }, $push: { likedUsers: userId } });
+            return this.findById(noteId);
         });
     }
     removeLikeFromNote(noteId, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.findOneAndUpdate({ _id: noteId, likedUsers: userId }, { $inc: { likes: -1 }, $pull: { likedUsers: userId } }, { new: true });
+            yield this.model.updateOne({ _id: noteId, likedUsers: userId }, { $inc: { likes: -1 }, $pull: { likedUsers: userId } });
+            return this.findById(noteId);
         });
     }
     addDislikeToNote(noteId, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.findOneAndUpdate({ _id: noteId, dislikedUsers: { $ne: userId } }, { $inc: { dislikes: 1 }, $push: { dislikedUsers: userId } }, { new: true });
+            yield this.model.updateOne({ _id: noteId, dislikedUsers: { $ne: userId } }, { $inc: { dislikes: 1 }, $push: { dislikedUsers: userId } }, { new: true });
+            return this.findById(noteId);
         });
     }
     removeDislikeFromNote(noteId, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.findOneAndUpdate({ _id: noteId, dislikedUsers: userId }, { $inc: { dislikes: -1 }, $pull: { dislikedUsers: userId } }, { new: true });
+            yield this.model.updateOne({ _id: noteId, dislikedUsers: userId }, { $inc: { dislikes: -1 }, $pull: { dislikedUsers: userId } });
+            return this.findById(noteId);
         });
     }
 };

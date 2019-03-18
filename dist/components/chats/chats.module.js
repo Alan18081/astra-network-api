@@ -12,7 +12,6 @@ const users_module_1 = require("../users/users.module");
 const auth_module_1 = require("../auth/auth.module");
 const core_module_1 = require("../core/core.module");
 const chats_repository_1 = require("./chats.repository");
-const chats_resolver_1 = require("./chats.resolver");
 const mongoose_1 = require("@nestjs/mongoose");
 const chat_schema_1 = require("./chat.schema");
 let ChatsModule = class ChatsModule {
@@ -23,12 +22,11 @@ ChatsModule = __decorate([
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
             core_module_1.CoreModule,
-            mongoose_1.MongooseModule.forFeature([{ name: 'Chat', schema: chat_schema_1.ChatSchema }])
+            mongoose_1.MongooseModule.forFeature([{ name: 'Chat', schema: chat_schema_1.ChatSchema }]),
         ],
         providers: [
             chats_service_1.ChatsService,
             chats_repository_1.ChatsRepository,
-            chats_resolver_1.ChatsResolver,
         ],
         exports: [chats_service_1.ChatsService]
     })

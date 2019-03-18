@@ -12,30 +12,14 @@ class BaseRepository {
     constructor(model) {
         this.model = model;
     }
-    findMany(query) {
+    findMany(query, skip = 0, limit = 10) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.find(query).exec();
+            return this.model.find(query).skip(skip).limit(limit).exec();
         });
     }
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.findById(id);
-        });
-    }
-    findManyWithPagination(query, { page, limit }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const skip = (page - 1) * limit;
-            const cursor = this.model.find(query);
-            const [data, totalCount] = yield Promise.all([
-                cursor.skip(skip).limit(limit).exec(),
-                cursor.count(),
-            ]);
-            return {
-                page,
-                itemsPerPage: limit,
-                totalCount,
-                data,
-            };
         });
     }
     updateById(id, payload) {
