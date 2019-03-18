@@ -1,11 +1,11 @@
 import { Resolver, Mutation } from '@nestjs/graphql';
 import { FileInterceptor, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
-import { File } from './file.interface';
-import { FilesService } from './files.service';
-import { AuthGuard } from '@nestjs/passport';
+import { File } from '../../files/file.interface';
+import { FilesService } from '../../files/files.service';
+import { GqlAuthGuard } from '../../../helpers/guards/auth.guard';
 
 @Resolver('File')
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(GqlAuthGuard)
 export class FilesResolver {
 
   constructor(

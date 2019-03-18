@@ -11,20 +11,24 @@ export class MessagesRepository extends BaseRepository<Message> {
     super(messagesModel);
   }
 
-  async findByIdWithMessages(id: string): Promise<Message | null> {
-    return this.model.findById(id).populate('user');
+  async findManyByChatId(chatId: string, skip: number, limit: number): Promise<Message[]> {
+    return this.model.find({ chat: chatId }).sort({ createdAt: -1 }).skip(skip).limit(limit).exec();
+  }
+
+  async findManyByIds(ids: string[], skip: number, limit: number): Promise<Message[]> {
+    return this.model.find({ _id: { $in: ids } }).sort({ createdAt: -1 }).skip(skip).limit(limit).exec();
   }
 
   async updateById(id: string, payload: Partial<Message>): Promise<Message | null> {
-    return this.model.findByIdAndUpdate(id, payload, { new: true }).populate('user');
+    return this.model.findByIdAndUpdate(id, payload, { new: true });
   }
 
   async findById(id: string): Promise<Message | null> {
-    return this.model.findById(id).populate('user');
+    return this.model.findById(id);
   }
 
   async findByIdAndUserId(id: string, userId: string): Promise<Message | null> {
-    return this.model.findOne({ _id: id, user: userId }).populate('user');
+    return this.model.findOne({ _id: id, user: userId });
   }
 
 }

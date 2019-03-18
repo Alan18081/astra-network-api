@@ -1,19 +1,21 @@
 import {Resolver, Query, Mutation, Args, Subscription, ResolveProperty, Parent} from '@nestjs/graphql';
-import { ChatsService } from './chats.service';
+import { ChatsService } from '../../chats/chats.service';
 import { UseGuards } from '@nestjs/common';
-import { ReqUser } from '../../helpers/decorators/user.decorator';
-import { User } from '../users/user.interface';
-import { Chat } from './chat.interface';
-import { FindChatsListDto } from './dto/find-chats-list.dto';
-import { CreateChatDto } from './dto/create-chat.dto';
-import { UpdateChatDto } from './dto/update-chat.dto';
-import { PublisherService } from '../core/services/publisher.service';
-import { idEqualsFilter } from '../../helpers/handlers/id-equals.filter';
-import { Events } from '../../helpers/enums/events.enum';
-import { GqlAuthGuard } from '../../helpers/guards/auth.guard';
-import {AddUserToChatDto} from './dto/add-user-to-chat.dto';
-import {RemoveUserFromChatDto} from './dto/remove-user-from-chat.dto';
-import {UsersService} from '../users/users.service';
+import { ReqUser } from '../../../helpers/decorators/user.decorator';
+import { User } from '../../users/user.interface';
+import { Chat } from '../../chats/chat.interface';
+import { FindChatsListDto } from '../../chats/dto/find-chats-list.dto';
+import { CreateChatDto } from '../../chats/dto/create-chat.dto';
+import { UpdateChatDto } from '../../chats/dto/update-chat.dto';
+import { PublisherService } from '../../core/services/publisher.service';
+import { idEqualsFilter } from '../../../helpers/handlers/id-equals.filter';
+import { Events } from '../../../helpers/enums/events.enum';
+import { GqlAuthGuard } from '../../../helpers/guards/auth.guard';
+import {AddUserToChatDto} from '../../chats/dto/add-user-to-chat.dto';
+import {RemoveUserFromChatDto} from '../../chats/dto/remove-user-from-chat.dto';
+import {UsersService} from '../../users/users.service';
+import { MessagesService } from '../../messages/messages.service';
+import { Message } from '../../messages/message.interface';
 
 @Resolver('Chat')
 @UseGuards(GqlAuthGuard)
@@ -22,8 +24,18 @@ export class ChatsResolver {
   constructor(
     private readonly chatsService: ChatsService,
     private readonly publisherService: PublisherService,
-    private readonly usersService: UsersService
+    private readonly usersService: UsersService,
+    private readonly messagesService: MessagesService
   ) {}
+
+  @ResolveProperty('lastMessage')
+  async lastMessage(@Parent() chat: Chat): Promise<Message | null> {
+    if(chat.lastMessage) {
+      return this.messagesService.findById(chat.lastMessage);
+    }
+    
+    return null;
+  }
 
   @ResolveProperty('admin')
   async admin(@Parent() chat: Chat): Promise<User | null> {
@@ -90,8 +102,7 @@ export class ChatsResolver {
 
   @Subscription('userRemovedFromChat')
   onUserRemovedFromChat(@Args('id') id: string) {
-    return idEqualsFilter(id,() => this.publisherService.asyncIterator(Events.CHATS_USER_REMOVED));
+    return idEqualsFilter(id, () => this.publisherService.asyncIterator(Events.CHATS_USER_REMOVED));
   }
-
 
 }

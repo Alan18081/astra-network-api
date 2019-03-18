@@ -2,7 +2,6 @@ import { Module, MulterModule } from '@nestjs/common';
 import {FilesService} from './files.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FileSchema } from './file.schema';
-import { FilesResolver } from './files.resolver';
 import { FilesRepository } from './files.repository';
 
 @Module({
@@ -13,6 +12,6 @@ import { FilesRepository } from './files.repository';
     }),
   ],
   exports: [FilesService, MulterModule],
-  providers: [FilesService, FilesResolver, FilesRepository],
+  providers: [FilesService, FilesRepository],
 })
 export class FilesModule {}

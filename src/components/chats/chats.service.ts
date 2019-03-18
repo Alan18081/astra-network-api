@@ -10,6 +10,7 @@ import {ChatsRepository} from './chats.repository';
 import {Chat} from './chat.interface';
 import {AddUserToChatDto} from './dto/add-user-to-chat.dto';
 import {RemoveUserFromChatDto} from './dto/remove-user-from-chat.dto';
+import { Message } from '../messages/message.interface';
 
 @Injectable()
 export class ChatsService {
@@ -24,6 +25,10 @@ export class ChatsService {
       return this.chatsRepository.findManyByIds(query.ids);
     }
     return this.chatsRepository.findMany({ });
+  }
+
+  async setLastMessage(chatId: string, messageId: string): Promise<void> {
+    await this.chatsRepository.setLastMessage(chatId, messageId);
   }
 
   async addUserToChat(adderId: string, { chatId, userId }: AddUserToChatDto): Promise<Chat | null> {
@@ -96,5 +101,14 @@ export class ChatsService {
 
   async findOneByIdAndUserId(chatId: string, userId: string): Promise<Chat | null> {
     return this.chatsRepository.findOneByIdAndUserId(chatId, userId);
+  }
+
+  async filterMessages(message: Message, chatId: string, userId: string): Promise<boolean> {
+    if(message.chat !== chatId) {
+      return false;
+    }
+
+    const chat = await this.findOneByIdAndUserId(chatId, userId);
+    return !!chat;
   }
 }

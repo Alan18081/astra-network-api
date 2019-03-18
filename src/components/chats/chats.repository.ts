@@ -3,8 +3,6 @@ import {Chat} from './chat.interface';
 import {Injectable} from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
-import {FindChatsListDto} from './dto/find-chats-list.dto';
-import {Relations} from './interfaces/relations.interface';
 
 @Injectable()
 export class ChatsRepository extends BaseRepository<Chat> {
@@ -19,6 +17,10 @@ export class ChatsRepository extends BaseRepository<Chat> {
 
     async findChatById(id: string): Promise<Chat | null> {
         return this.model.findById(id);
+    }
+
+    async setLastMessage(chatId: string, messageId: string): Promise<void> {
+        await this.model.updateOne({ _id: chatId }, { lastMessage: messageId });
     }
 
     async addUserToChat(chatId: string, userId: string): Promise<Chat | null> {

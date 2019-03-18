@@ -3,15 +3,15 @@ import {MessagesService} from './messages.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MessageSchema } from './message.schema';
 import { MessagesRepository } from './messages.repository';
-import { MessagesResolver } from './messages.resolver';
+import { MessagesResolver } from '../entity-resolvers/resolvers/messages.resolver';
 import { CoreModule } from '../core/core.module';
-import {ChatsModule} from '../chats/chats.module';
+import { ChatsModule } from '../chats/chats.module';
 
 @Module({
   imports: [
     CoreModule,
-    ChatsModule,
     MongooseModule.forFeature([{name: 'Message', schema: MessageSchema}]),
+    ChatsModule
   ],
   controllers: [],
   exports: [MessagesService],

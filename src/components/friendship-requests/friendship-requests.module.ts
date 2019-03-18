@@ -5,7 +5,7 @@ import { FriendshipRequestsService } from './friendship-requests.service';
 import { CoreModule } from '../core/core.module';
 import { FriendshipRequestSchema } from './friendship-request.schema';
 import { FriendshipRequestsRepository } from './friendship-requests.repository';
-import {FriendshipRequestsResolver} from './friendship-requests.resolver';
+import {FriendshipRequestsResolver} from '../entity-resolvers/resolvers/friendship-requests.resolver';
 
 @Module({
   imports: [
@@ -14,9 +14,12 @@ import {FriendshipRequestsResolver} from './friendship-requests.resolver';
     CoreModule,
   ],
   providers: [
-      FriendshipRequestsService,
-      FriendshipRequestsRepository,
-      FriendshipRequestsResolver
+    FriendshipRequestsService,
+    FriendshipRequestsRepository,
+    FriendshipRequestsResolver
+  ],
+  exports: [
+    FriendshipRequestsService
   ]
 })
 export class FriendshipRequestsModule {}

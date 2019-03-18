@@ -1,15 +1,16 @@
 import {Resolver, Mutation, Args, Query, Subscription } from '@nestjs/graphql';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UsersService } from './users.service';
-import { ReqUser } from '../../helpers/decorators/user.decorator';
-import { User } from './user.interface';
+import { CreateUserDto } from '../../users/dto/create-user.dto';
+import { UsersService } from '../../users/users.service';
+import { ReqUser } from '../../../helpers/decorators/user.decorator';
+import { User } from '../../users/user.interface';
 import { UseGuards } from '@nestjs/common';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { GqlAuthGuard } from "../../helpers/guards/auth.guard";
-import { PublisherService } from '../core/services/publisher.service';
-import { Events } from '../../helpers/enums/events.enum';
-import { idEqualsFilter } from '../../helpers/handlers/id-equals.filter';
-import {ChangePasswordDto} from './dto/change-password.dto';
+import { UpdateUserDto } from '../../users/dto/update-user.dto';
+import { GqlAuthGuard } from "../../../helpers/guards/auth.guard";
+import { PublisherService } from '../../core/services/publisher.service';
+import { Events } from '../../../helpers/enums/events.enum';
+import { idEqualsFilter } from '../../../helpers/handlers/id-equals.filter';
+import {ChangePasswordDto} from '../../users/dto/change-password.dto';
+import { FindManyUsersListDto } from '../../users/dto/find-many-users-list.dto';
 
 @Resolver()
 export class UsersResolver {
@@ -18,6 +19,12 @@ export class UsersResolver {
     private readonly usersService: UsersService,
     private readonly publisherService: PublisherService,
   ) {}
+
+  @Query('usersList')
+  @UseGuards(GqlAuthGuard)
+  async findMany(@Args('input') dto: FindManyUsersListDto): Promise<User[]> {
+    return this.usersService.findMany(dto);
+  }
 
   @Query('user')
   @UseGuards(GqlAuthGuard)

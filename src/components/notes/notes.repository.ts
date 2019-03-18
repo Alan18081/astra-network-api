@@ -12,8 +12,8 @@ export class NotesRepository extends BaseRepository<Note> {
     super(noteModel);
   }
 
-  async findByIds(ids: string[]): Promise<Note[]> {
-    return this.model.find({ _id: { $in: ids } });
+  async findByIds(ids: string[], skip: number = 1, limit: number = 10): Promise<Note[]> {
+    return this.model.find({ _id: { $in: ids } }).skip(skip).limit(limit);
   }
 
   async findOneByIdAndCommentId(noteId: string, commentId: string): Promise<Note | null> {
@@ -31,39 +31,45 @@ export class NotesRepository extends BaseRepository<Note> {
   async addAnswerToComment(noteId: string, commentId: string, answer: Partial<Comment>): Promise<Note | null> {
     return this.model.findOneAndUpdate(
         { _id: noteId, 'comments._id': commentId },
-        { $push: { 'comments.$.answers': answer } }
+        { $push: { 'comments.$.answers': answer } },
+      { new: true }
     );
   }
 
   async addLikeToNote(noteId: string, userId: string): Promise<Note | null> {
-    return this.model.findOneAndUpdate(
-        {_id: noteId, likedUsers: { $ne: userId } },
-        { $inc: { likes: 1 }, $push: { likedUsers: userId } },
-        { new: true }
+    await this.model.updateOne(
+      {_id: noteId, likedUsers: { $ne: userId } },
+      { $inc: { likes: 1 }, $push: { likedUsers: userId } },
     );
+
+    return this.findById(noteId);
   }
 
   async removeLikeFromNote(noteId: string, userId: string): Promise<Note | null> {
-    return this.model.findOneAndUpdate(
+    await this.model.updateOne(
         {_id: noteId, likedUsers: userId },
         { $inc: { likes: -1 }, $pull: { likedUsers: userId } },
-        { new: true }
     );
+
+    return this.findById(noteId);
   }
 
   async addDislikeToNote(noteId: string, userId: string): Promise<Note | null> {
-      return this.model.findOneAndUpdate(
-          {_id: noteId, dislikedUsers: { $ne: userId } },
-          { $inc: { dislikes: 1 }, $push: { dislikedUsers: userId } },
-          { new: true }
-      );
+    await this.model.updateOne(
+        {_id: noteId, dislikedUsers: { $ne: userId } },
+        { $inc: { dislikes: 1 }, $push: { dislikedUsers: userId } },
+        { new: true }
+    );
+
+    return this.findById(noteId);
   }
 
   async removeDislikeFromNote(noteId: string, userId: string): Promise<Note | null> {
-      return this.model.findOneAndUpdate(
-          {_id: noteId, dislikedUsers: userId  },
-          { $inc: { dislikes: -1 }, $pull: { dislikedUsers: userId } },
-          { new: true }
+    await this.model.updateOne(
+        {_id: noteId, dislikedUsers: userId  },
+        { $inc: { dislikes: -1 }, $pull: { dislikedUsers: userId } },
       );
+
+    return this.findById(noteId);
   }
 }

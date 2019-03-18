@@ -16,5 +16,5 @@ type Answer {
 type Mutation {
     addComment(input: AddCommentInput): Note!
     removeComment(id: ID!): Boolean
-    addAnswerToComment(input: AddCommentAnswerInput): Comment!
+    addAnswerToComment(input: AddCommentAnswerInput): Note!
 }

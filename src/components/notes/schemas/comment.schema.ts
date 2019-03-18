@@ -6,6 +6,6 @@ export const CommentSchema = new Schema({
     text: String,
     createdAt: Date,
     author: { type: Schema.Types.ObjectId, ref: 'User' },
-    comments: [AnswerSchema]
+    answers: [AnswerSchema]
 });
 

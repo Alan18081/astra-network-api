@@ -4,10 +4,7 @@ import { NoteSchema } from './schemas/note.schema';
 import { NotesService } from './notes.service';
 import {CoreModule} from '../core/core.module';
 import {AuthModule} from '../auth/auth.module';
-import { NotesResolver } from './resolvers/notes.resolver';
 import { NotesRepository } from './notes.repository';
-import {CommentsResolver} from './resolvers/comments.resolver';
-import {AnswersResolver} from './resolvers/answers.resolver';
 
 @Module({
   imports: [
@@ -15,12 +12,9 @@ import {AnswersResolver} from './resolvers/answers.resolver';
     CoreModule,
     AuthModule,
   ],
-  exports: [],
+  exports: [NotesService],
   providers: [
       NotesService,
-      NotesResolver,
-      CommentsResolver,
-      AnswersResolver,
       NotesRepository
   ],
 })

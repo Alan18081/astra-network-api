@@ -4,7 +4,6 @@ import {UsersModule} from '../users/users.module';
 import {AuthModule} from '../auth/auth.module';
 import {CoreModule} from '../core/core.module';
 import { ChatsRepository } from './chats.repository';
-import { ChatsResolver } from './chats.resolver';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ChatSchema } from './chat.schema';
 
@@ -13,12 +12,11 @@ import { ChatSchema } from './chat.schema';
     UsersModule,
     AuthModule,
     CoreModule,
-    MongooseModule.forFeature([{ name: 'Chat', schema: ChatSchema }])
+    MongooseModule.forFeature([{ name: 'Chat', schema: ChatSchema }]),
   ],
   providers: [
     ChatsService,
     ChatsRepository,
-    ChatsResolver,
   ],
   exports: [ChatsService]
 })

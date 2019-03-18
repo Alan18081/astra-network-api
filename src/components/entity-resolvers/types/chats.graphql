@@ -6,6 +6,7 @@ type Chat {
     name: String!
     createdAt: Date
     users: [User!]
+    lastMessage: Message
 }
 
 type Query {

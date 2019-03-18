@@ -1,14 +1,12 @@
 import {BadRequestException, ForbiddenException, Injectable, NotFoundException} from '@nestjs/common';
 import {CreateUserDto} from './dto/create-user.dto';
 import {HashService} from '../core/services/hash.service';
-import {FindUsersListDto} from './dto/find-users-list.dto';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {GoogleUserData} from './interfaces/google-user-data.interface';
-import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
-import { PaginationDto } from '../core/dto/pagination.dto';
 import { UsersRepository } from './users.repository';
 import { User } from './user.interface';
 import {ChangePasswordDto} from './dto/change-password.dto';
+import { FindManyUsersListDto } from './dto/find-many-users-list.dto';
 
 @Injectable()
 export class UsersService {
@@ -17,7 +15,7 @@ export class UsersService {
     private readonly hashService: HashService,
   ) {}
 
-  async findMany(payload: FindUsersListDto): Promise<User[]> {
+  async findMany(payload: FindManyUsersListDto): Promise<User[]> {
     return this.usersRepository.findMany({});
   }
 
@@ -27,10 +25,6 @@ export class UsersService {
 
   async findUserFriends(userId: string): Promise<User[]> {
     return this.usersRepository.findUserFriends(userId);
-  }
-
-  async findManyWithPagination(query: Partial<User> & Required<PaginationDto>): Promise<PaginatedResult<User>> {
-    return this.usersRepository.findManyWithPagination(query, { page: query.page, limit: query.limit });
   }
 
   async findOne(id: string): Promise<User> {

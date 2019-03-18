@@ -6,13 +6,13 @@ type FriendshipRequest {
 }
 
 type Query {
-    findManyIncomingFriendshipRequests: [FriendshipRequest!]!
-    findManyOutgoingFriendshipRequests: [FriendshipRequest!]!
-    findOneFriendshipRequest(id: ID!): FriendshipRequest
+    incomingFriendshipRequestsList: [FriendshipRequest!]!
+    outgoingFriendshipRequestsList: [FriendshipRequest!]!
+    friendshipRequest(id: ID!): FriendshipRequest
 }
 
 type Mutation {
-    createFriendshipRequest(input: CreateRequest): FriendshipRequest!
+    sendFriendshipRequest(input: CreateRequest): FriendshipRequest!
     deleteFriendshipRequest(id: ID!): Boolean
     acceptFriendshipRequest(id: ID!): Boolean
     declineFriendshipRequest(id: ID!): Boolean
@@ -24,6 +24,6 @@ type Subscription {
 }
 
 input CreateRequest {
-    senderId: ID!
     receiverId: ID!
+    message: String
 }

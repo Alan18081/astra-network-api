@@ -1,5 +1,5 @@
 mutation Login {
-    login(input: { email: "markus4315@gmail.com", password: "123456" }) {
+    login(input: { email: "elon123@gmail.com", password: "123456" }) {
         accessToken
     }
 }

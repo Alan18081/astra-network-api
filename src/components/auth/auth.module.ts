@@ -6,7 +6,6 @@ import {JWT_EXPIRES, JWT_SECRET} from '../../config';
 import {AuthService} from './auth.service';
 import { CoreModule } from '../core/core.module';
 import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
-import { AuthResolver } from './auth.resolver';
 // import {UserHashesModule} from '../user-hashes/user-hashes.module';
 
 @Global()
@@ -27,7 +26,6 @@ import { AuthResolver } from './auth.resolver';
   exports: [AuthService, JwtModule],
   providers: [
     AuthService,
-    AuthResolver,
   ],
 })
 export class AuthModule {}

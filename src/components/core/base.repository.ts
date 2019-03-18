@@ -10,29 +10,12 @@ export class BaseRepository<T extends Document> {
     this.model = model;
   }
 
-  async findMany(query: Partial<T>): Promise<T[]> {
-    return this.model.find(query).exec();
+  async findMany(query: Partial<T>, skip: number = 0, limit: number = 10): Promise<T[]> {
+    return this.model.find(query).skip(skip).limit(limit).exec();
   }
 
   async findById(id: string): Promise<T | null> {
     return this.model.findById(id);
-  }
-
-  async findManyWithPagination(query: Partial<T>, {page, limit}: Required<PaginationDto>): Promise<PaginatedResult<T>> {
-    const skip = (page - 1) * limit;
-    const cursor = this.model.find(query);
-
-    const [data, totalCount] = await Promise.all([
-      cursor.skip(skip).limit(limit).exec(),
-      cursor.count(),
-    ]);
-
-    return {
-      page,
-      itemsPerPage: limit,
-      totalCount,
-      data,
-    };
   }
 
   async updateById(id: string, payload: Partial<T>): Promise<T | null> {

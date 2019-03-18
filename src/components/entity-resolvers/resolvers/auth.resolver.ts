@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Args } from '@nestjs/graphql';
-import { AuthService } from './auth.service';
-import { JwtResponse } from './interfaces/jwt-response';
-import { LoginDto } from './dto/login.dto';
+import { AuthService } from '../../auth/auth.service';
+import { JwtResponse } from '../../auth/interfaces/jwt-response';
+import { LoginDto } from '../../auth/dto/login.dto';
 
 @Resolver()
 export class AuthResolver {

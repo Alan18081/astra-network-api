@@ -4,7 +4,7 @@ type Message {
     _id: ID!
     text: String!
     user: User!
-    createdAt: Date
+    createdAt: Date!
 }
 
 type MessageInfo {
@@ -12,9 +12,13 @@ type MessageInfo {
     chatId: ID!
 }
 
+type Query {
+    messages(chatId: ID!, skip: Int, limit: Int): [Message!]!
+}
+
 type Mutation {
     sendMessage(input: AddMessageInput!): Message!
-    editMessage(id: ID!, input: MessageInput): Message!
+    editMessage(id: ID!, input: MessageInput!): Message!
     deleteMessage(id: ID!): MessageInfo!
 }
 

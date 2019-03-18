@@ -24,12 +24,11 @@ export class NotesService {
     }
   }
 
-  async findMany(query: FindNotesListDto): Promise<Note[]> {
-    if(query.ids) {
-      return this.notesRepository.findByIds(query.ids);
+  async findMany({ ids }: FindNotesListDto, skip: number, limit: number): Promise<Note[]> {
+    if(ids) {
+      return this.notesRepository.findByIds(ids, skip, limit);
     }
-    const data = await this.notesRepository.findMany({});
-    return data;
+    return this.notesRepository.findMany({}, skip, limit);
   }
 
   async findOne(id: string): Promise<Note | null> {

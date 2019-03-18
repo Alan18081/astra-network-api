@@ -12,7 +12,7 @@ type User {
 }
 
 type Query {
-    usersList: [User!]!
+    usersList(input: FindManyUsersInput!): [User!]!
     user(id: ID!): User
     profile: User!
     friends(userId: String!): [User!]!
@@ -31,6 +31,13 @@ type Subscription {
     userStatusChanged(id: ID!): User!
 }
 
+input FindManyUsersInput {
+    query: String
+    ageFrom: Int
+    ageTo: Int
+    gender: Gender
+}
+
 input CreateUserInput {
     firstName: String!
     lastName: String!
@@ -47,4 +54,9 @@ input UpdateUserInput {
 input ChangePasswordInput {
     oldPassword: String!
     newPassword: String!
+}
+
+enum Gender {
+    MALE
+    FEMALE
 }

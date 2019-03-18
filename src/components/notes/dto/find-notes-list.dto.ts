@@ -1,7 +1,6 @@
-import {ArrayNotEmpty, IsMongoId, IsOptional} from 'class-validator';
-import { PaginationDto } from '../../core/dto/pagination.dto';
+import { ArrayNotEmpty, IsMongoId, IsOptional } from 'class-validator';
 
-export class FindNotesListDto extends PaginationDto {
+export class FindNotesListDto {
 
   @IsOptional()
   @ArrayNotEmpty()

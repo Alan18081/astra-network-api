@@ -1,16 +1,19 @@
 import {Resolver, Args, Mutation, ResolveProperty, Parent, Subscription, Query} from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
-import { Note } from '../interfaces/note.interface';
-import { NotesService } from '../notes.service';
-import { FindNotesListDto } from '../dto/find-notes-list.dto';
+import { Note } from '../../notes/interfaces/note.interface';
+import { NotesService } from '../../notes/notes.service';
+import { FindNotesListDto } from '../../notes/dto/find-notes-list.dto';
 import { User } from '../../users/user.interface';
-import { CreateNoteDto } from '../dto/create-note.dto';
+import { CreateNoteDto } from '../../notes/dto/create-note.dto';
 import { ReqUser } from '../../../helpers/decorators/user.decorator';
-import { UpdateNoteDto } from '../dto/update-note.dto';
+import { UpdateNoteDto } from '../../notes/dto/update-note.dto';
 import {GqlAuthGuard} from '../../../helpers/guards/auth.guard';
 import {UsersService} from '../../users/users.service';
 import {Events} from '../../../helpers/enums/events.enum';
 import {PublisherService} from '../../core/services/publisher.service';
+import { AddCommentDto } from '../../notes/dto/add-comment.dto';
+import { RemoveCommentDto } from '../../notes/dto/remove-comment.dto';
+import { AddAnswerDto } from '../../notes/dto/add-answer.dto';
 
 @Resolver('Note')
 @UseGuards(GqlAuthGuard)
@@ -28,8 +31,12 @@ export class NotesResolver {
   }
 
   @Query('notesList')
-  async notesList(@Args('input') dto: FindNotesListDto): Promise<Note[]> {
-    return this.notesService.findMany(dto);
+  async notesList(
+    @Args('input') dto: FindNotesListDto,
+    @Args('skip') skip: number = 0,
+    @Args('limit') limit: number = 10
+  ): Promise<Note[]> {
+    return this.notesService.findMany(dto, skip, limit);
   }
 
   @Query('note')
@@ -74,8 +81,23 @@ export class NotesResolver {
       return this.notesService.removeDislike(id, user._id);
   }
 
+  @Mutation('addComment')
+  async addComment(@ReqUser() user: User, @Args('input') dto: AddCommentDto): Promise<Note | null> {
+    return this.notesService.addComment(user._id, dto);
+  }
+
+  @Mutation('removeComment')
+  async removeComment(@ReqUser() user: User, @Args('input') dto: RemoveCommentDto): Promise<Note | null> {
+    return this.notesService.removeComment(user._id, dto);
+  }
+
+  @Mutation('addAnswerToComment')
+  async addAnswerToComment(@ReqUser() user: User, @Args('input') dto: AddAnswerDto): Promise<Note | null> {
+    return this.notesService.addAnswerToComment(user._id, dto);
+  }
+
   @Subscription('noteAdded')
-  async noteAdded() {
+  noteAdded() {
     return {
           resolve(payload) {
               return payload;

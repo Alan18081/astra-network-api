@@ -30,6 +30,8 @@ type Subscription {
 
 input FindManyNotesInput {
     ids: [ID!]
+    skip: Int
+    limit: Int
 }
 
 input AddCommentInput {
@@ -38,6 +40,7 @@ input AddCommentInput {
 }
 
 input AddCommentAnswerInput {
+    noteId: ID!
     commentId: ID!
     text: String!
 }
