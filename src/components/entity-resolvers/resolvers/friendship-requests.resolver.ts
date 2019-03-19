@@ -23,7 +23,6 @@ export class FriendshipRequestsResolver {
 
     @ResolveProperty('sender')
     async sender(@Parent() { sender }: FriendshipRequest): Promise<User | null> {
-        console.log(sender);
         return this.usersService.findOne(sender);
     }
 
@@ -86,7 +85,7 @@ export class FriendshipRequestsResolver {
             subscribe: withFilter(
               () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST),
               (payload: FriendshipRequest, args, { user }) => {
-                  return payload.sender === user._id;
+                  return payload.sender.toString() === user._id.toString();
               }
             )
         }
@@ -99,7 +98,7 @@ export class FriendshipRequestsResolver {
             subscribe: withFilter(
               () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_DECLINED_REQUEST),
               (payload: FriendshipRequest, { user }) => {
-                  return payload.sender === user._id;
+                  return payload.sender.toString() === user._id.toString();
               }
             )
         }

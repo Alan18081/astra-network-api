@@ -1,4 +1,10 @@
-import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { User } from '../users/user.interface';
@@ -11,6 +17,8 @@ import { EmailTemplatesService } from '../core/services/email-templates.service'
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
 import { LoginDto } from './dto/login.dto';
 import { HashService } from '../core/services/hash.service';
+import { PhoneVerificationService } from '../core/services/phone-verification.service';
+import { SendPhoneVerificationCodeDto } from './dto/send-phone-verification-code.dto';
 
 @Injectable()
 export class AuthService {
@@ -21,6 +29,7 @@ export class AuthService {
     private readonly emailSendingService: EmailSendingService,
     private readonly emailTemplatesService: EmailTemplatesService,
     private readonly refreshTokensService: RefreshTokensService,
+    private readonly phoneVerificationService: PhoneVerificationService,
   ) {}
 
   async login(loginDto: LoginDto): Promise<JwtResponse> {
@@ -88,15 +97,40 @@ export class AuthService {
     return await this.signIn(user);
   }
 
-  decodeToken(token: string): string | { [key: string]: any } | null {
-    const res = this.jwtService.decode(token, {});
-
-    if(!res || typeof res !== 'object') {
-      return null;
+  async sendPhoneVerificationCode(user: User, {countryCode, phone}: SendPhoneVerificationCodeDto): Promise<User | null> {
+    if(user.phoneVerified) {
+      throw new ConflictException(Messages.PHONE_HAVE_ALREADY_BEEN_VERIFIED);
     }
-    delete res.iat;
-    delete res.exp;
 
-    return res;
+    if(!user.authyId) {
+      const authyId = await this.phoneVerificationService.registerAuthyUser(user.email, countryCode, phone);
+      const updatedUser = await this.usersService.setAuthyId(user._id, authyId);
+      if(updatedUser) {
+        await this.phoneVerificationService.sendVerificationSMS(authyId);
+      }
+      return updatedUser;
+    }
+
+    await this.phoneVerificationService.sendVerificationSMS(user.authyId);
+    return user;
+
+  }
+
+  async verifyPhoneVerificationCode(user: User, code: string): Promise<User | null> {
+    if(user.phoneVerified) {
+      throw new ConflictException(Messages.PHONE_HAVE_ALREADY_BEEN_VERIFIED);
+    }
+
+    if(!user.authyId) {
+      throw new BadRequestException(Messages.REQUIRES_TO_SEND_VERIFICATION_CODE_FIRST);
+    }
+
+    const isVerified = await this.phoneVerificationService.verifyPhoneCode(user.authyId, code);
+
+    if(!isVerified) {
+      throw new BadRequestException(Messages.INVALID_PHONE_VERIFICATION_CODE);
+    }
+
+    return this.usersService.setPhoneVerified(user._id);
   }
 }

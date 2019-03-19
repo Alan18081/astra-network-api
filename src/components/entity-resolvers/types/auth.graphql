@@ -7,9 +7,21 @@ type JwtResponse {
 type Mutation {
     login(input: LoginInput!): JwtResponse!
     exchangeToken(refreshToken: String!): JwtResponse!
+    sendPhoneVerificationCode(input: SendPhoneVerificationCodeInput!): User
+    verifyPhoneVerificationCode(input: VerifyPhoneVerificationCodeInput!): User
+
 }
 
 input LoginInput {
     email: String!
     password: String!
+}
+
+input SendPhoneVerificationCodeInput {
+    countryCode: String!
+    phone: String!
+}
+
+input VerifyPhoneVerificationCodeInput {
+    code: String!
 }

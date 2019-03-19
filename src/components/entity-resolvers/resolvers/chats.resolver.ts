@@ -16,6 +16,8 @@ import {RemoveUserFromChatDto} from '../../chats/dto/remove-user-from-chat.dto';
 import {UsersService} from '../../users/users.service';
 import { MessagesService } from '../../messages/messages.service';
 import { Message } from '../../messages/message.interface';
+import { withFilter } from 'graphql-subscriptions';
+import { ChatUserInfoInterface } from '../../chats/interfaces/chat-user-info.interface';
 
 @Resolver('Chat')
 export class ChatsResolver {
@@ -88,38 +90,60 @@ export class ChatsResolver {
 
   @Mutation('addUserToChat')
   @UseGuards(GqlAuthGuard)
-  async addUserToChat(@ReqUser() user: User, @Args('input') dto: AddUserToChatDto): Promise<Chat | null> {
-    return this.chatsService.addUserToChat(user._id, dto);
+  async addUserToChat(@ReqUser() reqUser: User, @Args('input') dto: AddUserToChatDto): Promise<Chat | null> {
+    const { chat, user } = await this.chatsService.addUserToChat(reqUser._id, dto);
+    await this.publisherService.publish(Events.CHATS_USER_ADDED, { chatId: dto.chatId, user });
+    return chat;
   }
 
   @Mutation('removeUserFromChat')
   @UseGuards(GqlAuthGuard)
-  async removeUserFromChat(@ReqUser() user: User, @Args('input') dto: RemoveUserFromChatDto): Promise<Chat | null> {
-      return this.chatsService.removeUserFromChat(user._id, dto);
+  async removeUserFromChat(@ReqUser() reqUser: User, @Args('input') dto: RemoveUserFromChatDto): Promise<Chat | null> {
+      const { chat, user } = await this.chatsService.removeUserFromChat(reqUser._id, dto);
+      await this.publisherService.publish(Events.CHATS_USER_REMOVED, { chatId: dto.chatId, user });
+      return chat;
   }
 
   @Mutation('attendChat')
   @UseGuards(GqlAuthGuard)
-  async attendChat(@ReqUser() user: User, @Args('chatId') chatId: string): Promise<Chat | null> {
-    return this.chatsService.addUserToChat(chatId, user._id);
+  async attendChat(@ReqUser() reqUser: User, @Args('chatId') chatId: string): Promise<Chat | null> {
+    const { chat, user } = await this.chatsService.addUserToChat(chatId, reqUser._id);
+    await this.publisherService.publish(Events.CHATS_USER_ADDED, { chatId, user });
+    return chat;
   }
 
   @Mutation('leaveChat')
   @UseGuards(GqlAuthGuard)
   async leaveChat(@ReqUser() user: User, @Args('chatId') chatId: string): Promise<boolean> {
-      await this.chatsService.leaveChat(chatId, user._id);
-      await this.publisherService.publish(Events.CHATS_USER_REMOVED, { chatId, userId: user._id });
-      return true;
+    await this.chatsService.leaveChat(chatId, user._id);
+    await this.publisherService.publish(Events.CHATS_USER_REMOVED, { chatId, user: user });
+    return true;
   }
 
   @Subscription('userAddedToChat')
   onUserAddedToChat(@Args('id') id: string) {
-    return idEqualsFilter(id,() => this.publisherService.asyncIterator(Events.CHATS_USER_ADDED));
+    return {
+      resolve: (payload: ChatUserInfoInterface) => payload.user,
+      subscribe: withFilter(
+        () => this.publisherService.asyncIterator(Events.CHATS_USER_ADDED),
+        (payload: ChatUserInfoInterface, { chatId }) => {
+          console.log(payload.chatId, chatId);
+          console.log(payload.chatId === chatId);
+          return payload.chatId === chatId;
+        })
+    };
   }
 
   @Subscription('userRemovedFromChat')
   onUserRemovedFromChat(@Args('id') id: string) {
-    return idEqualsFilter(id, () => this.publisherService.asyncIterator(Events.CHATS_USER_REMOVED));
+    return {
+      resolve: (payload: ChatUserInfoInterface) => payload.user,
+      subscribe: withFilter(
+        () => this.publisherService.asyncIterator(Events.CHATS_USER_REMOVED),
+        (payload: ChatUserInfoInterface, { chatId }) => {
+          return payload.chatId === chatId;
+        })
+    };
   }
 
 }

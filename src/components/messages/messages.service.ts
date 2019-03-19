@@ -26,10 +26,6 @@ export class MessagesService {
     return this.messagesRepository.findManyByChatId(chatId, skip, limit);
   }
 
-  async findManyByIds(ids: string[], skip: number = 0, limit: number = 10): Promise<Message[]> {
-    return this.messagesRepository.findManyByIds(ids, skip, limit);
-  }
-
   async findById(id: string): Promise<Message | null> {
     return this.messagesRepository.findById(id);
   }
@@ -37,7 +33,7 @@ export class MessagesService {
   async createOne(userId: string, { text, chatId }: AddMessageDto): Promise<Message> {
     const newMessage: Partial<Message> = {
       text,
-      user: userId,
+      author: userId,
       chat: chatId,
       createdAt: new Date(),
     };

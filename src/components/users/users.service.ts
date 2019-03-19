@@ -105,4 +105,12 @@ export class UsersService {
     const user = await this.usersRepository.findUserWithFriend(userId, friendId);
     return !!user;
   }
+
+  async setAuthyId(id: string, authyId: string): Promise<User | null> {
+    return this.usersRepository.updateById(id, { authyId });
+  }
+
+  async setPhoneVerified(id: string): Promise<User | null> {
+    return this.usersRepository.updateById(id, { phoneVerified: true });
+  }
 }

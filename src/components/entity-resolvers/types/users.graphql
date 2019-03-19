@@ -4,8 +4,6 @@ type User {
     lastName: String!
     email: String!
     age: Int
-    googleId: String
-    emailVerified: Boolean
     phoneVerified: Boolean
     online: Boolean
     friends: [User!]!

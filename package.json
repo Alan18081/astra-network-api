@@ -47,6 +47,8 @@
     "apollo-server-express": "^2.4.8",
     "apollo-server-testing": "^2.4.8",
     "apollo-utilities": "^1.2.1",
+    "authy": "^1.4.0",
+    "authy-client": "^1.1.2",
     "bcrypt": "^3.0.2",
     "card-validator": "^6.0.0",
     "class-transformer": "^0.2.0",

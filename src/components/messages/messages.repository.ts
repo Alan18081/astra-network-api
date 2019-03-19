@@ -15,10 +15,6 @@ export class MessagesRepository extends BaseRepository<Message> {
     return this.model.find({ chat: chatId }).sort({ createdAt: -1 }).skip(skip).limit(limit).exec();
   }
 
-  async findManyByIds(ids: string[], skip: number, limit: number): Promise<Message[]> {
-    return this.model.find({ _id: { $in: ids } }).sort({ createdAt: -1 }).skip(skip).limit(limit).exec();
-  }
-
   async updateById(id: string, payload: Partial<Message>): Promise<Message | null> {
     return this.model.findByIdAndUpdate(id, payload, { new: true });
   }

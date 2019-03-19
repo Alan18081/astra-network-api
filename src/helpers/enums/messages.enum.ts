@@ -6,7 +6,6 @@ export enum Messages {
   INVALID_TOKEN = 'Invalid access token',
   INVALID_PASSWORD = 'Invalid password',
   REFRESH_TOKEN_NOT_FOUND = 'Refresh token not found',
-  FAILED_GOOGLE_AUTH = 'Failed to login by google',
   FILE_NOT_FOUND = 'File is not found',
   INVALID_RIGHTS_TO_DELETE_COMMENT = 'Only owner of product can remove comments',
   EMAIL_VERIFICATION_HASH_NOT_FOUND = 'Email verification hash not found',
@@ -30,6 +29,10 @@ export enum Messages {
   SOCKET_NOT_FOUND = 'Socket is not connected',
 
   NOTES_NOTE_IS_NOT_FOUND = 'Note is not found',
-  NOTES_NOTE_WITH_PROVIDED_COMMENT_IS_NOT_FOUND = 'Note with provided comment is not found'
+  NOTES_NOTE_WITH_PROVIDED_COMMENT_IS_NOT_FOUND = 'Note with provided comment is not found',
+
+  PHONE_HAVE_ALREADY_BEEN_VERIFIED = 'You have already verified phone number',
+  REQUIRES_TO_SEND_VERIFICATION_CODE_FIRST = 'You have to send your phone number to receive verification code',
+  INVALID_PHONE_VERIFICATION_CODE = 'Invalid phone verification code',
 }
 
