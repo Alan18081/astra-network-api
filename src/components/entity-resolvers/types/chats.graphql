@@ -27,7 +27,7 @@ type Mutation {
 
 type Subscription {
     userAddedToChat(chatId: ID!): User!
-    userRemovedFromChat(chatId: ID!): ID!
+    userRemovedFromChat(chatId: ID!): User!
 }
 
 input FindManyChatsInput {

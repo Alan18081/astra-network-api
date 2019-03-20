@@ -38,9 +38,9 @@ export class MessagesResolver {
     return message;
   }
 
-  @Mutation('editMessage')
+  @Mutation('updateMessage')
   @UseGuards(GqlAuthGuard)
-  async editMessage(@ReqUser() user: User, @Args('id') id: string,  @Args('input') dto: UpdateMessageDto): Promise<Message | null> {
+  async updateMessage(@ReqUser() user: User, @Args('id') id: string,  @Args('input') dto: UpdateMessageDto): Promise<Message | null> {
     const message = await this.messagesService.updateById(id, dto, user._id);
     await this.publisherService.publish(Events.CHATS_MESSAGE_EDITED, message);
     return message;
@@ -53,7 +53,6 @@ export class MessagesResolver {
     await this.publisherService.publish(Events.CHATS_MESSAGE_REMOVED, message);
     return message;
   }
-
 
   @Subscription('messageAdded')
   messageAdded() {
@@ -70,7 +69,7 @@ export class MessagesResolver {
     }
   }
 
-  @Subscription('messageEdited')
+  @Subscription('messageUpdated')
   onMessageEditedToChat() {
     return {
       resolve(payload) {
@@ -78,22 +77,22 @@ export class MessagesResolver {
       },
       subscribe: withFilter(
         () => this.publisherService.asyncIterator(Events.CHATS_MESSAGE_EDITED),
-        (payload: Message, { chatId }) =>{
-          return payload.chat.toString() === chatId
+        (payload: Message, { chatId }, { user }) =>{
+          return this.chatsService.filterMessages(payload, chatId, user._id);
         })
     }
   }
 
-  @Subscription('messageRemoved')
-  onMessageRemovedFromChat(@Args('chatId') id: string) {
+  @Subscription('messageDeleted')
+  onMessageRemovedFromChat() {
     return {
       resolve(payload) {
         return payload;
       },
       subscribe: withFilter(
         () => this.publisherService.asyncIterator(Events.CHATS_MESSAGE_REMOVED),
-        (payload: Message, { chatId }) =>{
-          return payload.chat.toString() === chatId
+        (payload: Message, { chatId }, { user }) =>{
+          return this.chatsService.filterMessages(payload, chatId, user._id);
         })
     }
   }

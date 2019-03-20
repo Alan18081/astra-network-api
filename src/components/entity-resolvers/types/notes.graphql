@@ -26,6 +26,8 @@ type Mutation {
 
 type Subscription {
     noteAdded: Note!
+    noteUpdated(id: ID!): Note
+    noteDeleted(id: ID!): ID
 }
 
 input FindManyNotesInput {

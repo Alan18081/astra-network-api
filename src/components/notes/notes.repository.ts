@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { Note } from './interfaces/note.interface';
 import {Comment} from './interfaces/comment.interface';
+import { FindNotesListDto } from './dto/find-notes-list.dto';
 
 @Injectable()
 export class NotesRepository extends BaseRepository<Note> {
@@ -12,7 +13,15 @@ export class NotesRepository extends BaseRepository<Note> {
     super(noteModel);
   }
 
-  async findByIds(ids: string[], skip: number = 1, limit: number = 10): Promise<Note[]> {
+  async findManyWithFilter({ query, dateTo, dateFrom }: FindNotesListDto, skip: number = 0, limit: number = 10): Promise<Note[]> {
+    const filter = {
+      $text: query ? { $search: query } : null,
+      createdAt: { $gte: dateFrom, $lte: dateTo }
+    };
+    return this.model.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit);
+  }
+
+  async findByIds(ids: string[], skip: number = 0, limit: number = 10): Promise<Note[]> {
     return this.model.find({ _id: { $in: ids } }).skip(skip).limit(limit);
   }
 

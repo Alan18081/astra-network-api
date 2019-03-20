@@ -12,8 +12,6 @@ import { UsersService } from '../users/users.service';
 import { JwtResponse } from './interfaces/jwt-response';
 import { JWT_EXPIRES } from '../../config';
 import { Messages } from '../../helpers/enums/messages.enum';
-import { EmailSendingService } from '../core/services/email-sending.service';
-import { EmailTemplatesService } from '../core/services/email-templates.service';
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
 import { LoginDto } from './dto/login.dto';
 import { HashService } from '../core/services/hash.service';
@@ -26,8 +24,6 @@ export class AuthService {
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
     private readonly hashService: HashService,
-    private readonly emailSendingService: EmailSendingService,
-    private readonly emailTemplatesService: EmailTemplatesService,
     private readonly refreshTokensService: RefreshTokensService,
     private readonly phoneVerificationService: PhoneVerificationService,
   ) {}

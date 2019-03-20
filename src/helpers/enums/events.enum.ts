@@ -11,4 +11,6 @@ export enum Events {
   FRIENDSHIP_REQUESTS_SENT_REQUEST = '[Friendship requests] Sent request',
 
   NOTES_NOTE_ADDED = '[Notes] Note added',
+  NOTES_NOTE_UPDATED = '[Notes] Note updated',
+  NOTES_NOTE_DELETED = '[Notes] Note deleted',
 }

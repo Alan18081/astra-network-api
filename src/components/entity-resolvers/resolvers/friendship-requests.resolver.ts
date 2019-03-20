@@ -11,6 +11,7 @@ import {PublisherService} from '../../core/services/publisher.service';
 import {Events} from '../../../helpers/enums/events.enum';
 import { UsersService } from '../../users/users.service';
 import { withFilter } from 'graphql-subscriptions';
+import { FriendshipRequestInfo } from '../../friendship-requests/interfaces/friendship-request-info.interface';
 
 @Resolver('FriendshipRequest')
 export class FriendshipRequestsResolver {
@@ -59,10 +60,23 @@ export class FriendshipRequestsResolver {
 
     @Mutation('acceptFriendshipRequest')
     @UseGuards(GqlAuthGuard)
-    async acceptOne(@ReqUser() user: User, @Args('id') id: string): Promise<boolean> {
+    async acceptOne(@ReqUser() user: User, @Args('id') id: string): Promise<User> {
         const friend = await this.friendshipRequestsService.acceptOne(id, user._id);
-        await this.publisherService.publish(Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST, friend);
-        return true;
+        await this.publisherService.publish(
+          Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST,
+          { senderId: friend._id, user }
+        );
+        return friend;
+    }
+
+    @Mutation('declineFriendshipRequest')
+    @UseGuards(GqlAuthGuard)
+    async declineOne(@ReqUser() user: User, @Args('id') id: string): Promise<void> {
+        const senderId = await this.friendshipRequestsService.declineOne(id, user._id);
+        await this.publisherService.publish(
+          Events.FRIENDSHIP_REQUESTS_DECLINED_REQUEST,
+          { senderId, user }
+        );
     }
 
     @Subscription('friendshipRequestSent')
@@ -71,8 +85,8 @@ export class FriendshipRequestsResolver {
             resolve: payload =>  payload,
             subscribe: withFilter(
               () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_SENT_REQUEST),
-              (payload: FriendshipRequest, args, { user }) => {
-                  return payload.receiver.toString() === user._id.toString();
+              (payload: FriendshipRequestInfo, args, { user }) => {
+                  return payload.senderId.toString() === user._id.toString();
               }
             )
         }
@@ -81,11 +95,13 @@ export class FriendshipRequestsResolver {
     @Subscription('friendshipRequestAccepted')
     onAcceptedOne() {
         return {
-            resolve: payload => payload,
+            resolve: (payload: FriendshipRequestInfo) => payload.user,
             subscribe: withFilter(
               () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST),
-              (payload: FriendshipRequest, args, { user }) => {
-                  return payload.sender.toString() === user._id.toString();
+              (payload: FriendshipRequestInfo, args, { user }) => {
+                  console.log(payload.senderId, user._id);
+                  console.log(payload.senderId === user._id);
+                  return payload.senderId.toString() === user._id.toString();
               }
             )
         }
@@ -94,11 +110,11 @@ export class FriendshipRequestsResolver {
     @Subscription('friendshipRequestDeclined')
     onDeclinedOne() {
         return {
-            resolve: payload => payload,
+            resolve: (payload: FriendshipRequestInfo) => payload.user,
             subscribe: withFilter(
               () => this.publisherService.asyncIterator(Events.FRIENDSHIP_REQUESTS_DECLINED_REQUEST),
-              (payload: FriendshipRequest, { user }) => {
-                  return payload.sender.toString() === user._id.toString();
+              (payload: FriendshipRequestInfo, args, { user }) => {
+                  return payload.senderId.toString() === user._id.toString();
               }
             )
         }

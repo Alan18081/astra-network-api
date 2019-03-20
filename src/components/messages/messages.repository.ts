@@ -24,7 +24,7 @@ export class MessagesRepository extends BaseRepository<Message> {
   }
 
   async findByIdAndUserId(id: string, userId: string): Promise<Message | null> {
-    return this.model.findOne({ _id: id, user: userId });
+    return this.model.findOne({ _id: id, author: userId });
   }
 
 }

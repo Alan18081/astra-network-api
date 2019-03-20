@@ -14,10 +14,10 @@ export class FindManyUsersListDto extends PaginationDto {
 
   @IsEnum(Gender)
   @IsOptional()
-  gender: Gender;
+  gender?: Gender;
 
   @IsOptional()
   @IsString()
-  query: string;
+  query?: string;
 
 }

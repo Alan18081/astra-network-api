@@ -9,16 +9,12 @@ export class FriendshipRequestsRepository  extends BaseRepository<FriendshipRequ
     super(model);
   }
 
-  async findOneBySenderId(senderId: string): Promise<FriendshipRequest | null> {
-    return super.model.findOne({ sender: senderId });
-  }
-
   async findByIdAndSenderId(id: string, senderId: string): Promise<FriendshipRequest | null> {
-    return super.model.findOne({ _id: id, sender: senderId });
+    return this.model.findOne({ _id: id, sender: senderId });
   }
 
   async findByIdAndReceiverId(id: string, receiverId: string): Promise<FriendshipRequest | null> {
-    return super.model.findOne({ _id: id, receiver: receiverId });
+    return this.model.findOne({ _id: id, receiver: receiverId });
   }
 
 }

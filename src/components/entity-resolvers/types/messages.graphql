@@ -14,14 +14,14 @@ type MessageInfo {
 
 type Mutation {
     sendMessage(input: AddMessageInput!): Message!
-    editMessage(id: ID!, input: MessageInput!): Message!
+    updateMessage(id: ID!, input: MessageInput!): Message!
     deleteMessage(id: ID!): MessageInfo!
 }
 
 type Subscription {
     messageAdded(chatId: ID!): Message!
-    messageEdited(chatId: ID!): Message!
-    messageRemoved(chatId: ID!): MessageInfo!
+    messageUpdated(chatId: ID!): Message!
+    messageDeleted(chatId: ID!): MessageInfo!
 }
 
 input AddMessageInput {

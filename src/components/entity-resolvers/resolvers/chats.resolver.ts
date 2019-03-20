@@ -43,7 +43,7 @@ export class ChatsResolver {
     if(chat.lastMessage) {
       return this.messagesService.findById(chat.lastMessage);
     }
-
+    console.log('Hello');
     return null;
   }
 
@@ -65,9 +65,14 @@ export class ChatsResolver {
 
   @Query('chat')
   @UseGuards(GqlAuthGuard)
-  async findChatById(@Args('id') id: string): Promise<Chat | null> {
-    return this.chatsService.findOne(id);
+  async findChatById(@ReqUser() user: User, @Args('id') id: string): Promise<Chat | null> {
+    return this.chatsService.findOneByIdAndUserId(id, user._id);
   }
+
+
+
+
+
 
   @Mutation('createChat')
   @UseGuards(GqlAuthGuard)
@@ -121,21 +126,19 @@ export class ChatsResolver {
   }
 
   @Subscription('userAddedToChat')
-  onUserAddedToChat(@Args('id') id: string) {
+  onUserAddedToChat() {
     return {
       resolve: (payload: ChatUserInfoInterface) => payload.user,
       subscribe: withFilter(
         () => this.publisherService.asyncIterator(Events.CHATS_USER_ADDED),
         (payload: ChatUserInfoInterface, { chatId }) => {
-          console.log(payload.chatId, chatId);
-          console.log(payload.chatId === chatId);
           return payload.chatId === chatId;
         })
     };
   }
 
   @Subscription('userRemovedFromChat')
-  onUserRemovedFromChat(@Args('id') id: string) {
+  onUserRemovedFromChat() {
     return {
       resolve: (payload: ChatUserInfoInterface) => payload.user,
       subscribe: withFilter(

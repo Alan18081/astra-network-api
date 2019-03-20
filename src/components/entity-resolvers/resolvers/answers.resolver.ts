@@ -12,7 +12,7 @@ export class AnswersResolver {
 
     @ResolveProperty('author')
     async author(@Parent() answer: Answer): Promise<User | null> {
-        return this.usersService.findOne(answer._id);
+        return this.usersService.findOne(answer.author);
     }
 
 }

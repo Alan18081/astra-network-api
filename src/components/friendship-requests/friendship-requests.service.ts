@@ -1,11 +1,11 @@
-import {ForbiddenException, Injectable, NotFoundException} from '@nestjs/common';
+import { ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
 import { FriendshipRequestsRepository } from './friendship-requests.repository';
 import {FriendshipRequest} from './friendship-request.interface';
 import {CreateRequestDto} from './dto/create-request.dto';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {UsersService} from '../users/users.service';
-import {User} from '../users/user.interface';
+import { User } from '../users/user.interface';
 
 @Injectable()
 export class FriendshipRequestsService {
@@ -31,11 +31,13 @@ export class FriendshipRequestsService {
     return await this.friendshipRequestsRepository.findById(id);
   }
 
-  async findOneBySenderId(senderId: string): Promise<FriendshipRequest | null> {
-    return this.friendshipRequestsRepository.findOneBySenderId(senderId);
-  }
-
   async createOne(senderId: string, dto: CreateRequestDto): Promise<FriendshipRequest> {
+    const user = await this.usersService.findByIdAndFriendId(senderId, dto.receiverId);
+
+    if(user) {
+      throw new ConflictException(Messages.ALREADY_FRIEND);
+    }
+
     const friendRequest: Partial<FriendshipRequest> = {
       sender: senderId,
       receiver: dto.receiverId,
@@ -57,8 +59,8 @@ export class FriendshipRequestsService {
       }
 
       const [friend] = await Promise.all([
-          this.usersService.addFriend(userId, request.sender as string),
-          this.usersService.addFriend(request.sender as string, userId),
+        this.usersService.addFriend(request.sender, userId),
+        this.usersService.addFriend(userId, request.sender),
           this.friendshipRequestsRepository.deleteById(request._id),
       ]);
 
@@ -67,5 +69,16 @@ export class FriendshipRequestsService {
       }
 
       return friend;
+  }
+
+  async declineOne(id: string, userId: string): Promise<string> {
+    const request = await this.friendshipRequestsRepository.findByIdAndReceiverId(id, userId);
+    if(!request) {
+      throw new NotFoundException(Messages.FRIENDSHIP_REQUEST_NOT_FOUND);
+    }
+
+    await this.friendshipRequestsRepository.deleteById(request.id);
+
+    return request.sender;
   }
 }

@@ -1,4 +1,4 @@
-import {Resolver, Mutation, Args, Query, Subscription } from '@nestjs/graphql';
+import {Resolver, Mutation, Args, Query, Subscription, Parent, ResolveProperty } from '@nestjs/graphql';
 import { CreateUserDto } from '../../users/dto/create-user.dto';
 import { UsersService } from '../../users/users.service';
 import { ReqUser } from '../../../helpers/decorators/user.decorator';
@@ -12,13 +12,18 @@ import { idEqualsFilter } from '../../../helpers/handlers/id-equals.filter';
 import {ChangePasswordDto} from '../../users/dto/change-password.dto';
 import { FindManyUsersListDto } from '../../users/dto/find-many-users-list.dto';
 
-@Resolver()
+@Resolver('User')
 export class UsersResolver {
 
   constructor(
     private readonly usersService: UsersService,
     private readonly publisherService: PublisherService,
   ) {}
+
+  @ResolveProperty('friends')
+  async friends(@Parent() user: User): Promise<User[]> {
+    return this.usersService.findUserFriends(user._id);
+  }
 
   @Query('usersList')
   @UseGuards(GqlAuthGuard)
@@ -36,12 +41,6 @@ export class UsersResolver {
   @UseGuards(GqlAuthGuard)
   async getProfile(@ReqUser() user: User): Promise<User> {
     return user;
-  }
-
-  @Query('friends')
-  @UseGuards(GqlAuthGuard)
-  async getFriends(@Args('userId') userId: string): Promise<User[]> {
-    return this.usersService.findUserFriends(userId);
   }
 
   @Mutation('createUser')
@@ -62,16 +61,13 @@ export class UsersResolver {
     return true;
   }
 
-  @Mutation('deleteUser')
+  @Mutation('deleteFriend')
   @UseGuards(GqlAuthGuard)
-  async deleteUser(@Args('id') id: string): Promise<void> {
-    return this.usersService.deleteById(id);
-  }
-
-  @Mutation('removeFriend')
-  @UseGuards(GqlAuthGuard)
-  async removeFriend(@ReqUser() user: User, @Args('friendId') friendId: string): Promise<boolean> {
-    await this.usersService.removeFriend(user._id, friendId);
+  async deleteFriend(@ReqUser() user: User, @Args('friendId') friendId: string): Promise<boolean> {
+    await Promise.all([
+      this.usersService.removeFriend(user._id, friendId),
+      this.usersService.removeFriend(friendId, user._id)
+    ]);
     return true;
   }
 

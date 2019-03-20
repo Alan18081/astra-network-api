@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose';
 import {CommentSchema} from './comment.schema';
 
-export const NoteSchema = new Schema({
+const NoteSchema = new Schema({
   title: String,
   description: { type: String, default: '' },
   files: [{ type: Schema.Types.ObjectId, ref: 'File' }],
@@ -13,3 +13,7 @@ export const NoteSchema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User', default: null },
   group: { type: Schema.Types.ObjectId, ref: 'Group', default: null },
 });
+
+NoteSchema.index({ title: 'text', description: 'text' });
+
+export { NoteSchema };

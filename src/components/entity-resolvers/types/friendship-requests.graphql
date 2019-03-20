@@ -14,7 +14,7 @@ type Query {
 type Mutation {
     sendFriendshipRequest(input: CreateRequest): FriendshipRequest!
     deleteFriendshipRequest(id: ID!): Boolean
-    acceptFriendshipRequest(id: ID!): Boolean
+    acceptFriendshipRequest(id: ID!): User!
     declineFriendshipRequest(id: ID!): Boolean
 }
 

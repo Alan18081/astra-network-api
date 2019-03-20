@@ -13,15 +13,13 @@ type Query {
     usersList(input: FindManyUsersInput!): [User!]!
     user(id: ID!): User
     profile: User!
-    friends(userId: String!): [User!]!
 }
 
 type Mutation {
     createUser(input: CreateUserInput!): User!
     updateProfile(input: UpdateUserInput!): User!
     changePassword(input: ChangePasswordInput!): Boolean
-    deleteUser(id: String!): Boolean
-    removeFriend(friendId: String!): Boolean
+    deleteFriend(friendId: String!): Boolean
     checkIsFriend(friendId: String!): Boolean
 }
 

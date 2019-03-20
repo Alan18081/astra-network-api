@@ -112,7 +112,7 @@ export class ChatsService {
   }
 
   async filterMessages(message: Message, chatId: string, userId: string): Promise<boolean> {
-    if(message.chat !== chatId) {
+    if(message.chat.toString() !== chatId) {
       return false;
     }
 

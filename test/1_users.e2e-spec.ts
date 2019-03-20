@@ -2,15 +2,9 @@ import gql from 'graphql-tag';
 import {createClient} from './apollo-client';
 import ApolloClient from 'apollo-client/ApolloClient';
 import { NormalizedCacheObject} from 'apollo-cache-inmemory';
-
+import { commons } from './commons';
 
 describe('Users', () => {
-    const user = {
-        firstName: 'Alex',
-        lastName: 'Markus',
-        email: 'markus4315@gmail.com',
-        password: '123456'
-    };
     let token;
     let client: ApolloClient<NormalizedCacheObject>;
     let authClient: ApolloClient<NormalizedCacheObject>;
@@ -22,6 +16,7 @@ describe('Users', () => {
     });
 
     it('should create user', async () => {
+        const { user } = commons;
         const result = await client.mutate({
             mutation: gql`
                 mutation {

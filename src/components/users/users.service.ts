@@ -16,7 +16,7 @@ export class UsersService {
   ) {}
 
   async findMany(payload: FindManyUsersListDto): Promise<User[]> {
-    return this.usersRepository.findMany({});
+    return this.usersRepository.findManyWithFilter(payload);
   }
 
   async findManyByIds(ids: string[]): Promise<User[]> {
@@ -36,12 +36,12 @@ export class UsersService {
     return user;
   }
 
-  async findOneByEmail(email: string): Promise<User | null> {
-    return this.usersRepository.findOneByEmail(email);
+  async findByIdAndFriendId(id: string, friendId: string): Promise<User | null> {
+    return this.usersRepository.findByIdAndFriendId(id, friendId);
   }
 
-  async findOneByGoogleId(id: string): Promise<User | null> {
-    return this.usersRepository.findOneByGoogleId(id);
+  async findOneByEmail(email: string): Promise<User | null> {
+    return this.usersRepository.findOneByEmail(email);
   }
 
   async createOne(payload: CreateUserDto): Promise<User> {
@@ -56,14 +56,6 @@ export class UsersService {
       ...payload,
       password: passwordHash,
       createdAt: new Date()
-    };
-
-    return await this.usersRepository.save(newUser);
-  }
-
-  async createByGoogle(payload: GoogleUserData): Promise<User> {
-    const newUser = {
-      ...payload,
     };
 
     return await this.usersRepository.save(newUser);

@@ -3,12 +3,25 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './user.interface';
 import { BaseRepository } from '../core/base.repository';
+import { FindManyUsersListDto } from './dto/find-many-users-list.dto';
 
 @Injectable()
 export class UsersRepository extends BaseRepository<User> {
 
   constructor(@InjectModel('User') userModel: Model<User>) {
     super(userModel);
+  }
+
+  async findManyWithFilter({ query, ageTo, ageFrom, gender }: FindManyUsersListDto): Promise<User[]> {
+    const filter = {
+      $text: query ? {$search: query} : null,
+      age: {
+        $gte: ageFrom ? ageFrom : null,
+        $lte: ageTo ? ageTo : null,
+      },
+      gender
+    };
+    return this.model.find(filter);
   }
 
   async findManyByIds(ids: string[]): Promise<User[]> {
@@ -19,16 +32,16 @@ export class UsersRepository extends BaseRepository<User> {
     return this.model.findById(id);
   }
 
+  async findByIdAndFriendId(id: string, friendId: string): Promise<User | null> {
+    return this.model.findOne({ _id: id, friends: friendId });
+  }
+
   async findOneByEmail(email: string): Promise<User | null> {
     return this.model.findOne({ email });
   }
 
-  async findOneByGoogleId(googleId: string): Promise<User | null> {
-    return this.model.findOne({ googleId });
-  }
-
   async findUserFriends(userId: string): Promise<User[]> {
-    return this.model.find({ friends: { $contains: userId } });
+    return this.model.find({ friends: userId });
   }
 
   async addFriend(userId: string, friendId: string): Promise<User | null> {
@@ -36,7 +49,7 @@ export class UsersRepository extends BaseRepository<User> {
   }
 
   async removeFriend(userId: string, friendId: string): Promise<User | null> {
-    return this.model.findByIdAndUpdate(userId, { pull: { friends: friendId }});
+    return this.model.findByIdAndUpdate(userId, { $pull: { friends: friendId }});
   }
 
   async findUserWithFriend(userId: string, friendId: string): Promise<User | null> {
