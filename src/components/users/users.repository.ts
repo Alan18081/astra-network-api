@@ -13,14 +13,28 @@ export class UsersRepository extends BaseRepository<User> {
   }
 
   async findManyWithFilter({ query, ageTo, ageFrom, gender }: FindManyUsersListDto): Promise<User[]> {
-    const filter = {
-      $text: query ? {$search: query} : null,
-      age: {
-        $gte: ageFrom ? ageFrom : null,
-        $lte: ageTo ? ageTo : null,
-      },
+    const filter: any = {
       gender
     };
+
+    if(ageFrom || ageTo) {
+      filter.age = {};
+    }
+
+    if(ageFrom) {
+      filter.age.$gte = ageFrom;
+    }
+
+    if(ageTo) {
+      filter.age.$lte = ageTo;
+    }
+
+    if(query) {
+      filter.$text = { $search: query }
+    }
+
+    console.log(filter);
+
     return this.model.find(filter);
   }
 

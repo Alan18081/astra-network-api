@@ -38,6 +38,7 @@ input CreateUserInput {
     firstName: String!
     lastName: String!
     email: String!
+    age: Int
     password: String!
 }
 

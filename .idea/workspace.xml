@@ -6,68 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d9b76ef-6374-485e-a8fa-a509f25f71bc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile.prod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/local.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/core/services/config.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/interfaces/friendship-request-info.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/commons.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile.dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodemon-debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodemon-debug.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/interfaces/socket.interface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/interfaces/socket.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/tests/chats.repository.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/base-note.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/base.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/core/core.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/services/clients-store.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/services/email-sending.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/services/email-templates.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/answers.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/answers.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/messages.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/messages.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/notes.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/notes.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/users.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/users.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/types/chats.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/chats.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/types/messages.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/messages.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/types/notes.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/notes.graphql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/messages.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/dto/find-notes-list.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/dto/find-notes-list.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/schemas/note.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/schemas/note.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/tests/notes.repository.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/users/user.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/user.schema.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/users/users.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/card-validators/card-cvv.validator.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/card-validators/card-expires-in.validator.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/enums/events.enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/enums/events.enum.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/helpers.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/interfaces/base-service.interface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/interfaces/base-service.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/providers.enum.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/test-helpers/mock-repository.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/ws/ws-errors.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/1_users.e2e-spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/1_users.e2e-spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/2_chats.e2e-spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/2_chats.e2e-spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/data.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -97,17 +40,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/users/users.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+            <state relative-caret-position="107">
+              <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.ts">
+        <entry file="file://$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="420">
+              <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#61#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/users/users.repository.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="23" column="35" lean-forward="true" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+            <state relative-caret-position="97">
+              <caret line="35" column="24" lean-forward="true" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -124,74 +70,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/users/user.schema.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+            <state relative-caret-position="476">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/notes/schemas/note.schema.ts">
+        <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/notes/notes.repository.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="15" column="26" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/notes/notes.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/local.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="20" column="95" lean-forward="true" selection-start-line="20" selection-start-column="95" selection-end-line="20" selection-end-column="95" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="152">
+              <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -230,7 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/config/twillio.config.ts" />
         <option value="$PROJECT_DIR$/src/components/users/user.interface.ts" />
         <option value="$PROJECT_DIR$/src/components/chats/interfaces/chat-user-info.interface.ts" />
         <option value="$PROJECT_DIR$/src/components/auth/dto/verify-phone-number.dto.ts" />
@@ -252,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/answers.resolver.ts" />
         <option value="$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.repository.ts" />
-        <option value="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" />
         <option value="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/users.resolver.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/interfaces/friend-and-request-info.interface.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/interfaces/friend-and-sender-info.interface.ts" />
@@ -272,8 +162,6 @@
         <option value="$PROJECT_DIR$/src/components/core/services/config.service.ts" />
         <option value="$PROJECT_DIR$/Dockerfile.dev" />
         <option value="$PROJECT_DIR$/src/components/users/users.service.ts" />
-        <option value="$PROJECT_DIR$/src/components/users/users.repository.ts" />
-        <option value="$PROJECT_DIR$/src/components/users/user.schema.ts" />
         <option value="$PROJECT_DIR$/src/components/notes/schemas/note.schema.ts" />
         <option value="$PROJECT_DIR$/src/components/notes/dto/find-notes-list.dto.ts" />
         <option value="$PROJECT_DIR$/src/components/notes/notes.repository.ts" />
@@ -281,6 +169,10 @@
         <option value="$PROJECT_DIR$/src/app.module.ts" />
         <option value="$PROJECT_DIR$/local.env" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts" />
+        <option value="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" />
+        <option value="$PROJECT_DIR$/src/components/users/users.repository.ts" />
+        <option value="$PROJECT_DIR$/src/components/users/user.schema.ts" />
       </list>
     </option>
   </component>
@@ -296,7 +188,7 @@
     </layout>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1919" />
+    <option name="x" value="-1" />
     <option name="y" value="-11" />
     <option name="width" value="1922" />
     <option name="height" value="1092" />
@@ -321,6 +213,19 @@
               <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
               <item name="astra-store" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
+              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
+              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -482,6 +387,7 @@
       <workItem from="1552920864568" duration="3554000" />
       <workItem from="1553064528943" duration="21345000" />
       <workItem from="1553088175244" duration="7510000" />
+      <workItem from="1553161922022" duration="6626000" />
     </task>
     <servers />
   </component>
@@ -494,13 +400,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="365428000" />
+    <option name="totallyTimeSpent" value="372054000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1919" y="-11" width="1922" height="1092" extended-state="6" />
+    <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30469584" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30843115" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2497332" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -514,7 +420,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" weight="0.32979852" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="10" weight="0.583245" />
+      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="10" weight="0.6002121" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="GraphQL" order="13" weight="0.32767764" />
@@ -600,24 +506,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/chats/tests/chats.repository.ts" />
-    <entry file="file://$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts" />
-    <entry file="file://$PROJECT_DIR$/src/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/enums/events.enum.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/notes.graphql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
@@ -673,13 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
           <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="20" column="56" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -885,44 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/mongoose/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="3045" column="4" selection-start-line="3045" selection-start-column="4" selection-end-line="3045" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/users.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/users.repository.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="23" column="35" lean-forward="true" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/user.schema.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/notes/dto/find-notes-list.dto.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
@@ -930,20 +773,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/notes/schemas/note.schema.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/core/base.repository.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="12" column="89" lean-forward="true" selection-start-line="12" selection-start-column="89" selection-end-line="12" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="20" column="95" selection-start-line="20" selection-start-column="95" selection-end-line="20" selection-end-column="95" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="13" column="10" lean-forward="true" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/notes/notes.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -957,34 +821,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/notes/notes.service.ts">
+    <entry file="file://$PROJECT_DIR$/src/components/notes/schemas/note.schema.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="20" column="95" lean-forward="true" selection-start-line="20" selection-start-column="95" selection-end-line="20" selection-end-column="95" />
+        <state relative-caret-position="392">
+          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           <folding>
-            <element signature="e#0#40#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/local.env">
+    <entry file="file://$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="476">
+            <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="420">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/users.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/user.interface.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/mongoose/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3873">
+          <caret line="1752" column="21" selection-start-line="1752" selection-start-column="8" selection-end-line="1752" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/users.repository.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="35" column="24" lean-forward="true" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/user.schema.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
         </state>
       </provider>
     </entry>

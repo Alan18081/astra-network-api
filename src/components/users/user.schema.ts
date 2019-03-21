@@ -15,6 +15,7 @@ const UserSchema = new Schema({
   friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
 
-UserSchema.index({ email: 1, firstName: 'text', lastName: 'text' });
+UserSchema.index({ email: 1 });
+UserSchema.index({ firstName: 'text', lastName: 'text' });
 
 export { UserSchema };
