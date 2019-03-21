@@ -46,13 +46,12 @@ let FriendshipRequestsService = class FriendshipRequestsService {
             return yield this.friendshipRequestsRepository.findById(id);
         });
     }
-    findOneBySenderId(senderId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.friendshipRequestsRepository.findOneBySenderId(senderId);
-        });
-    }
     createOne(senderId, dto) {
         return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.usersService.findByIdAndFriendId(senderId, dto.receiverId);
+            if (user) {
+                throw new common_1.ConflictException(messages_enum_1.Messages.ALREADY_FRIEND);
+            }
             const friendRequest = {
                 sender: senderId,
                 receiver: dto.receiverId,
@@ -74,14 +73,24 @@ let FriendshipRequestsService = class FriendshipRequestsService {
                 throw new common_1.NotFoundException(messages_enum_1.Messages.FRIENDSHIP_REQUEST_NOT_FOUND);
             }
             const [friend] = yield Promise.all([
-                this.usersService.addFriend(userId, request.sender),
                 this.usersService.addFriend(request.sender, userId),
+                this.usersService.addFriend(userId, request.sender),
                 this.friendshipRequestsRepository.deleteById(request._id),
             ]);
             if (!friend) {
                 throw new common_1.NotFoundException(messages_enum_1.Messages.FRIENDSHIP_REQUESTS_SENDER_IS_NOT_FOUND);
             }
             return friend;
+        });
+    }
+    declineOne(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const request = yield this.friendshipRequestsRepository.findByIdAndReceiverId(id, userId);
+            if (!request) {
+                throw new common_1.NotFoundException(messages_enum_1.Messages.FRIENDSHIP_REQUEST_NOT_FOUND);
+            }
+            yield this.friendshipRequestsRepository.deleteById(request.id);
+            return request.sender;
         });
     }
 };

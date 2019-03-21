@@ -8,7 +8,6 @@ export declare class MessagesService {
     constructor(messagesRepository: MessagesRepository);
     isMessageOwner(id: string, userId: string): Promise<Message>;
     findManyByChatId(chatId: string, skip: number, limit: number): Promise<Message[]>;
-    findManyByIds(ids: string[], skip?: number, limit?: number): Promise<Message[]>;
     findById(id: string): Promise<Message | null>;
     createOne(userId: string, { text, chatId }: AddMessageDto): Promise<Message>;
     updateById(id: string, payload: UpdateMessageDto, userId: string): Promise<Message | null>;

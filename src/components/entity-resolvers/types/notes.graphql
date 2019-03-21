@@ -10,7 +10,7 @@ type Note {
 }
 
 type Query {
-    notesList(input: FindManyNotesInput!): [Note!]!
+    notesList(input: FindManyNotesInput!, skip: Int, limit: Int): [Note!]!
     note(id: ID!): Note
 }
 

@@ -3,6 +3,7 @@ import {split} from 'apollo-link';
 import {WebSocketLink} from 'apollo-link-ws';
 import {OperationDefinitionNode} from 'graphql';
 import {HttpLink} from 'apollo-link-http';
+import { createUploadLink } from 'apollo-upload-client';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import {getMainDefinition} from 'apollo-utilities';
 import ApolloClient from 'apollo-client/ApolloClient';
@@ -32,7 +33,7 @@ export const createClient = (headers) => {
     );
 
     return new ApolloClient({
-        link,
+        link: createUploadLink(),
         cache: new InMemoryCache()
     });
 };

@@ -27,28 +27,14 @@ let FriendshipRequestsRepository = class FriendshipRequestsRepository extends ba
     constructor(model) {
         super(model);
     }
-    findOneBySenderId(senderId) {
-        const _super = Object.create(null, {
-            model: { get: () => super.model }
-        });
-        return __awaiter(this, void 0, void 0, function* () {
-            return _super.model.findOne({ sender: senderId });
-        });
-    }
     findByIdAndSenderId(id, senderId) {
-        const _super = Object.create(null, {
-            model: { get: () => super.model }
-        });
         return __awaiter(this, void 0, void 0, function* () {
-            return _super.model.findOne({ _id: id, sender: senderId });
+            return this.model.findOne({ _id: id, sender: senderId });
         });
     }
     findByIdAndReceiverId(id, receiverId) {
-        const _super = Object.create(null, {
-            model: { get: () => super.model }
-        });
         return __awaiter(this, void 0, void 0, function* () {
-            return _super.model.findOne({ _id: id, receiver: receiverId });
+            return this.model.findOne({ _id: id, receiver: receiverId });
         });
     }
 };

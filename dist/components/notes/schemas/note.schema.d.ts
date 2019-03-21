@@ -1,2 +1,3 @@
 import { Schema } from 'mongoose';
-export declare const NoteSchema: Schema<any>;
+declare const NoteSchema: Schema<any>;
+export { NoteSchema };

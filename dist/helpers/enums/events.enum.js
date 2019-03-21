@@ -12,5 +12,7 @@ var Events;
     Events["FRIENDSHIP_REQUESTS_DECLINED_REQUEST"] = "[Friendship requests] Declined request";
     Events["FRIENDSHIP_REQUESTS_SENT_REQUEST"] = "[Friendship requests] Sent request";
     Events["NOTES_NOTE_ADDED"] = "[Notes] Note added";
+    Events["NOTES_NOTE_UPDATED"] = "[Notes] Note updated";
+    Events["NOTES_NOTE_DELETED"] = "[Notes] Note deleted";
 })(Events = exports.Events || (exports.Events = {}));
 //# sourceMappingURL=events.enum.js.map

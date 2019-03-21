@@ -14,6 +14,7 @@ async function bootstrap() {
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
 
+
   app.use(helmet());
   app.use(rateLimit({
     windowMs: 15 * 60 * 1000,

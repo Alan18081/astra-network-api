@@ -28,7 +28,7 @@ let UsersService = class UsersService {
     }
     findMany(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.usersRepository.findMany({});
+            return this.usersRepository.findManyWithFilter(payload);
         });
     }
     findManyByIds(ids) {
@@ -50,14 +50,14 @@ let UsersService = class UsersService {
             return user;
         });
     }
+    findByIdAndFriendId(id, friendId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.usersRepository.findByIdAndFriendId(id, friendId);
+        });
+    }
     findOneByEmail(email) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.usersRepository.findOneByEmail(email);
-        });
-    }
-    findOneByGoogleId(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.usersRepository.findOneByGoogleId(id);
         });
     }
     createOne(payload) {
@@ -68,12 +68,6 @@ let UsersService = class UsersService {
             }
             const passwordHash = yield this.hashService.generateHash(payload.password);
             const newUser = Object.assign({}, payload, { password: passwordHash, createdAt: new Date() });
-            return yield this.usersRepository.save(newUser);
-        });
-    }
-    createByGoogle(payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const newUser = Object.assign({}, payload);
             return yield this.usersRepository.save(newUser);
         });
     }
@@ -116,6 +110,16 @@ let UsersService = class UsersService {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield this.usersRepository.findUserWithFriend(userId, friendId);
             return !!user;
+        });
+    }
+    setAuthyId(id, authyId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.usersRepository.updateById(id, { authyId });
+        });
+    }
+    setPhoneVerified(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.usersRepository.updateById(id, { phoneVerified: true });
         });
     }
 };

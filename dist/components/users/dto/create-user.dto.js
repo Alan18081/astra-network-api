@@ -24,6 +24,12 @@ __decorate([
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "lastName", void 0);
 __decorate([
+    class_validator_1.IsInt(),
+    class_validator_1.IsOptional(),
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Number)
+], CreateUserDto.prototype, "age", void 0);
+__decorate([
     class_validator_1.IsEmail(),
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)

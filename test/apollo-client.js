@@ -4,6 +4,7 @@ var subscriptions_transport_ws_1 = require("subscriptions-transport-ws");
 var apollo_link_1 = require("apollo-link");
 var apollo_link_ws_1 = require("apollo-link-ws");
 var apollo_link_http_1 = require("apollo-link-http");
+var apollo_upload_client_1 = require("apollo-upload-client");
 var apollo_cache_inmemory_1 = require("apollo-cache-inmemory");
 var apollo_utilities_1 = require("apollo-utilities");
 var ApolloClient_1 = require("apollo-client/ApolloClient");
@@ -25,7 +26,7 @@ exports.createClient = function (headers) {
         return kind === 'OperationDefinition' && operation === 'subscription';
     }, wsLink, httpLink);
     return new ApolloClient_1.default({
-        link: link,
+        link: apollo_upload_client_1.createUploadLink(),
         cache: new apollo_cache_inmemory_1.InMemoryCache()
     });
 };

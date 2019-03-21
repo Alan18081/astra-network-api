@@ -24,41 +24,56 @@ const graphql_1 = require("@nestjs/graphql");
 const common_1 = require("@nestjs/common");
 const files_service_1 = require("../../files/files.service");
 const auth_guard_1 = require("../../../helpers/guards/auth.guard");
+const users_service_1 = require("../../users/users.service");
+const user_decorator_1 = require("../../../helpers/decorators/user.decorator");
 let FilesResolver = class FilesResolver {
-    constructor(filesService) {
+    constructor(filesService, usersService) {
         this.filesService = filesService;
+        this.usersService = usersService;
     }
-    uploadFile(file) {
+    user(file) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.filesService.uploadFile(file);
+            return this.usersService.findOne(file.user);
         });
     }
-    uploadFilesList(files) {
+    uploadFile(user, someFile) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.filesService.uploadFilesList(files);
+            return this.filesService.uploadFile(someFile, user._id);
+        });
+    }
+    uploadFilesList(user, files) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.filesService.uploadFilesList(files, user._id);
         });
     }
 };
 __decorate([
-    graphql_1.Mutation('uploadFile'),
-    common_1.UseInterceptors(common_1.FileInterceptor('file')),
-    __param(0, common_1.UploadedFile()),
+    graphql_1.ResolveProperty('user'),
+    __param(0, graphql_1.Parent()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], FilesResolver.prototype, "user", null);
+__decorate([
+    graphql_1.Mutation('uploadFile'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
+    __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('file')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], FilesResolver.prototype, "uploadFile", null);
 __decorate([
     graphql_1.Mutation('uploadFilesList'),
-    common_1.UseInterceptors(common_1.FileInterceptor('files')),
-    __param(0, common_1.UploadedFile()),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
+    __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('files')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Array]),
+    __metadata("design:paramtypes", [Object, Array]),
     __metadata("design:returntype", Promise)
 ], FilesResolver.prototype, "uploadFilesList", null);
 FilesResolver = __decorate([
     graphql_1.Resolver('File'),
-    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
-    __metadata("design:paramtypes", [files_service_1.FilesService])
+    __metadata("design:paramtypes", [files_service_1.FilesService,
+        users_service_1.UsersService])
 ], FilesResolver);
 exports.FilesResolver = FilesResolver;
 //# sourceMappingURL=files.resolver.js.map

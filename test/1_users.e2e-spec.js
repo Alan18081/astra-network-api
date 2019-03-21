@@ -43,12 +43,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var graphql_tag_1 = require("graphql-tag");
 var apollo_client_1 = require("./apollo-client");
 describe('Users', function () {
-    var user = {
-        firstName: 'Alex',
-        lastName: 'Markus',
-        email: 'markus4315@gmail.com',
-        password: '123456'
-    };
     var token;
     var client;
     var authClient;
@@ -58,124 +52,20 @@ describe('Users', function () {
         process['data'] = { hello: 'Time' };
     });
     it('should create user', function () { return __awaiter(_this, void 0, void 0, function () {
-        var result, data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, client.mutate({
-                        mutation: graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n                mutation {\n                  createUser(input: {\n                    firstName: \"", "\",\n                    lastName: \"", "\",\n                    email: \"", "\",\n                    password: \"", "\"\n                  }) {\n                    _id,\n                    firstName,\n                    lastName,\n                    email,\n                  }\n                }\n              "], ["\n                mutation {\n                  createUser(input: {\n                    firstName: \"", "\",\n                    lastName: \"", "\",\n                    email: \"", "\",\n                    password: \"", "\"\n                  }) {\n                    _id,\n                    firstName,\n                    lastName,\n                    email,\n                  }\n                }\n              "])), user.firstName, user.lastName, user.email, user.password)
-                    })];
-                case 1:
-                    result = _a.sent();
-                    data = result.data;
-                    expect(data.createUser).toBeDefined();
-                    expect(typeof data.createUser._id).toBe('string');
-                    expect(data.createUser.firstName).toEqual(user.firstName);
-                    expect(data.createUser.lastName).toEqual(user.lastName);
-                    expect(data.createUser.email).toEqual(user.email);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('should login user', function () { return __awaiter(_this, void 0, void 0, function () {
-        var res, data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, client.mutate({
-                        mutation: graphql_tag_1.default(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n              mutation {\n                  login(input: {\n                      email: \"", "\",\n                      password: \"", "\"\n                  }) {\n                      accessToken,\n                      refreshToken,\n                      expiresIn\n                  }\n              }\n            "], ["\n              mutation {\n                  login(input: {\n                      email: \"", "\",\n                      password: \"", "\"\n                  }) {\n                      accessToken,\n                      refreshToken,\n                      expiresIn\n                  }\n              }\n            "])), user.email, user.password)
-                    })];
-                case 1:
-                    res = _a.sent();
-                    data = res.data;
-                    expect(data.login).toBeDefined();
-                    expect(typeof data.login.accessToken).toBe('string');
-                    expect(typeof data.login.refreshToken).toBe('string');
-                    expect(typeof data.login.expiresIn).toBe('number');
-                    token = data.login.accessToken;
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('should get user profile', function () { return __awaiter(_this, void 0, void 0, function () {
-        var res, data;
+        var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    authClient = apollo_client_1.createClient({
-                        Authorization: "Bearer " + token
-                    });
-                    return [4 /*yield*/, authClient.query({
-                            query: graphql_tag_1.default(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n                query {\n                    profile {\n                        _id\n                        firstName\n                        lastName\n                        email\n                    }\n                }\n            "], ["\n                query {\n                    profile {\n                        _id\n                        firstName\n                        lastName\n                        email\n                    }\n                }\n            "]))),
-                        })];
-                case 1:
-                    res = _a.sent();
-                    data = res.data;
-                    expect(data.profile).toBeDefined();
-                    expect(typeof data.profile._id).toBe('string');
-                    expect(data.profile.firstName).toEqual(user.firstName);
-                    expect(data.profile.lastName).toEqual(user.lastName);
-                    expect(data.profile.email).toEqual(user.email);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('should return user by id', function () { return __awaiter(_this, void 0, void 0, function () {
-        var mockUser, res, id, userInfo, data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    mockUser = {
-                        firstName: 'Mark',
-                        lastName: 'Cuper',
-                        age: 28,
-                        email: 'cuper123@gmail.com',
-                        password: '123456'
-                    };
+                    file.name = 'bar.txt';
                     return [4 /*yield*/, client.mutate({
-                            mutation: graphql_tag_1.default(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n                mutation {\n                    createUser(input: {\n                        firstName: \"", "\",\n                        lastName: \"", "\",\n                        email: \"", "\",\n                        password: \"", "\",\n                    }) {\n                        _id,\n                        firstName,\n                        lastName,\n                        email,\n                    }\n                }\n            "], ["\n                mutation {\n                    createUser(input: {\n                        firstName: \"", "\",\n                        lastName: \"", "\",\n                        email: \"", "\",\n                        password: \"", "\",\n                    }) {\n                        _id,\n                        firstName,\n                        lastName,\n                        email,\n                    }\n                }\n            "])), mockUser.firstName, mockUser.lastName, mockUser.email, mockUser.password),
-                        })];
-                case 1:
-                    res = _a.sent();
-                    id = res.data.createUser._id;
-                    return [4 /*yield*/, authClient.query({
-                            query: graphql_tag_1.default(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n                query {\n                    user(id: \"", "\") {\n                        _id\n                        firstName\n                        lastName\n                        email\n                        age\n                    }\n                }\n            "], ["\n                query {\n                    user(id: \"", "\") {\n                        _id\n                        firstName\n                        lastName\n                        email\n                        age\n                    }\n                }\n            "])), id),
-                        })];
-                case 2:
-                    userInfo = _a.sent();
-                    data = userInfo.data;
-                    expect(data.user).toBeDefined();
-                    expect(typeof data.user._id).toBe('string');
-                    expect(data.user.firstName).toEqual(mockUser.firstName);
-                    expect(data.user.lastName).toEqual(mockUser.lastName);
-                    expect(data.user.email).toEqual(mockUser.email);
-                    friendId = data.user._id;
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('should update user profile', function () { return __awaiter(_this, void 0, void 0, function () {
-        var userData, result, data;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    userData = {
-                        firstName: 'Vladimir',
-                        lastName: 'Mocscow',
-                        age: 30,
-                    };
-                    return [4 /*yield*/, authClient.mutate({
-                            mutation: graphql_tag_1.default(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n                mutation {\n                    updateProfile(input: {\n                        firstName: \"", "\",\n                        lastName: \"", "\",\n                        age: ", "\n                    }) {\n                        _id,\n                        firstName,\n                        lastName,\n                        age\n                    }\n                }\n            "], ["\n                mutation {\n                    updateProfile(input: {\n                        firstName: \"", "\",\n                        lastName: \"", "\",\n                        age: ", "\n                    }) {\n                        _id,\n                        firstName,\n                        lastName,\n                        age\n                    }\n                }\n            "])), userData.firstName, userData.lastName, userData.age)
+                            mutation: graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n                mutation($file: Upload!) {\n                    uploadFile(file: $file) {\n                    _id,\n                  }\n                }\n              "], ["\n                mutation($file: Upload!) {\n                    uploadFile(file: $file) {\n                    _id,\n                  }\n                }\n              "]))),
+                            variables: { file: file }
                         })];
                 case 1:
                     result = _a.sent();
-                    data = result.data;
-                    expect(data.updateProfile).toBeDefined();
-                    expect(typeof data.updateProfile._id).toBe('string');
-                    expect(data.updateProfile.firstName).toEqual(userData.firstName);
-                    expect(data.updateProfile.lastName).toEqual(userData.lastName);
-                    expect(data.updateProfile.age).toEqual(userData.age);
                     return [2 /*return*/];
             }
         });
     }); });
 });
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
+var templateObject_1;

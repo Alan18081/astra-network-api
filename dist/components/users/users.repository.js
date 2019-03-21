@@ -28,6 +28,27 @@ let UsersRepository = class UsersRepository extends base_repository_1.BaseReposi
     constructor(userModel) {
         super(userModel);
     }
+    findManyWithFilter({ query, ageTo, ageFrom, gender }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const filter = {
+                gender
+            };
+            if (ageFrom || ageTo) {
+                filter.age = {};
+            }
+            if (ageFrom) {
+                filter.age.$gte = ageFrom;
+            }
+            if (ageTo) {
+                filter.age.$lte = ageTo;
+            }
+            if (query) {
+                filter.$text = { $search: query };
+            }
+            console.log(filter);
+            return this.model.find(filter);
+        });
+    }
     findManyByIds(ids) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.find({ _id: { $in: ids } });
@@ -38,19 +59,19 @@ let UsersRepository = class UsersRepository extends base_repository_1.BaseReposi
             return this.model.findById(id);
         });
     }
+    findByIdAndFriendId(id, friendId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.findOne({ _id: id, friends: friendId });
+        });
+    }
     findOneByEmail(email) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.findOne({ email });
         });
     }
-    findOneByGoogleId(googleId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.model.findOne({ googleId });
-        });
-    }
     findUserFriends(userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.find({ friends: { $contains: userId } });
+            return this.model.find({ friends: userId });
         });
     }
     addFriend(userId, friendId) {
@@ -60,7 +81,7 @@ let UsersRepository = class UsersRepository extends base_repository_1.BaseReposi
     }
     removeFriend(userId, friendId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.findByIdAndUpdate(userId, { pull: { friends: friendId } });
+            return this.model.findByIdAndUpdate(userId, { $pull: { friends: friendId } });
         });
     }
     findUserWithFriend(userId, friendId) {

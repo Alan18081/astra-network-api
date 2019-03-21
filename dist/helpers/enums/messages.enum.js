@@ -9,7 +9,6 @@ var Messages;
     Messages["INVALID_TOKEN"] = "Invalid access token";
     Messages["INVALID_PASSWORD"] = "Invalid password";
     Messages["REFRESH_TOKEN_NOT_FOUND"] = "Refresh token not found";
-    Messages["FAILED_GOOGLE_AUTH"] = "Failed to login by google";
     Messages["FILE_NOT_FOUND"] = "File is not found";
     Messages["INVALID_RIGHTS_TO_DELETE_COMMENT"] = "Only owner of product can remove comments";
     Messages["EMAIL_VERIFICATION_HASH_NOT_FOUND"] = "Email verification hash not found";
@@ -29,5 +28,8 @@ var Messages;
     Messages["SOCKET_NOT_FOUND"] = "Socket is not connected";
     Messages["NOTES_NOTE_IS_NOT_FOUND"] = "Note is not found";
     Messages["NOTES_NOTE_WITH_PROVIDED_COMMENT_IS_NOT_FOUND"] = "Note with provided comment is not found";
+    Messages["PHONE_HAVE_ALREADY_BEEN_VERIFIED"] = "You have already verified phone number";
+    Messages["REQUIRES_TO_SEND_VERIFICATION_CODE_FIRST"] = "You have to send your phone number to receive verification code";
+    Messages["INVALID_PHONE_VERIFICATION_CODE"] = "Invalid phone verification code";
 })(Messages = exports.Messages || (exports.Messages = {}));
 //# sourceMappingURL=messages.enum.js.map

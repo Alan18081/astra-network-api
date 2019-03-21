@@ -22,18 +22,16 @@ const jwt_1 = require("@nestjs/jwt");
 const users_service_1 = require("../users/users.service");
 const config_1 = require("../../config");
 const messages_enum_1 = require("../../helpers/enums/messages.enum");
-const email_sending_service_1 = require("../core/services/email-sending.service");
-const email_templates_service_1 = require("../core/services/email-templates.service");
 const refresh_tokens_service_1 = require("../refresh-tokens/refresh-tokens.service");
 const hash_service_1 = require("../core/services/hash.service");
+const phone_verification_service_1 = require("../core/services/phone-verification.service");
 let AuthService = class AuthService {
-    constructor(usersService, jwtService, hashService, emailSendingService, emailTemplatesService, refreshTokensService) {
+    constructor(usersService, jwtService, hashService, refreshTokensService, phoneVerificationService) {
         this.usersService = usersService;
         this.jwtService = jwtService;
         this.hashService = hashService;
-        this.emailSendingService = emailSendingService;
-        this.emailTemplatesService = emailTemplatesService;
         this.refreshTokensService = refreshTokensService;
+        this.phoneVerificationService = phoneVerificationService;
     }
     login(loginDto) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -92,14 +90,37 @@ let AuthService = class AuthService {
             return yield this.signIn(user);
         });
     }
-    decodeToken(token) {
-        const res = this.jwtService.decode(token, {});
-        if (!res || typeof res !== 'object') {
-            return null;
-        }
-        delete res.iat;
-        delete res.exp;
-        return res;
+    sendPhoneVerificationCode(user, { countryCode, phone }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (user.phoneVerified) {
+                throw new common_1.ConflictException(messages_enum_1.Messages.PHONE_HAVE_ALREADY_BEEN_VERIFIED);
+            }
+            if (!user.authyId) {
+                const authyId = yield this.phoneVerificationService.registerAuthyUser(user.email, countryCode, phone);
+                const updatedUser = yield this.usersService.setAuthyId(user._id, authyId);
+                if (updatedUser) {
+                    yield this.phoneVerificationService.sendVerificationSMS(authyId);
+                }
+                return updatedUser;
+            }
+            yield this.phoneVerificationService.sendVerificationSMS(user.authyId);
+            return user;
+        });
+    }
+    verifyPhoneVerificationCode(user, code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (user.phoneVerified) {
+                throw new common_1.ConflictException(messages_enum_1.Messages.PHONE_HAVE_ALREADY_BEEN_VERIFIED);
+            }
+            if (!user.authyId) {
+                throw new common_1.BadRequestException(messages_enum_1.Messages.REQUIRES_TO_SEND_VERIFICATION_CODE_FIRST);
+            }
+            const isVerified = yield this.phoneVerificationService.verifyPhoneCode(user.authyId, code);
+            if (!isVerified) {
+                throw new common_1.BadRequestException(messages_enum_1.Messages.INVALID_PHONE_VERIFICATION_CODE);
+            }
+            return this.usersService.setPhoneVerified(user._id);
+        });
     }
 };
 AuthService = __decorate([
@@ -107,9 +128,8 @@ AuthService = __decorate([
     __metadata("design:paramtypes", [users_service_1.UsersService,
         jwt_1.JwtService,
         hash_service_1.HashService,
-        email_sending_service_1.EmailSendingService,
-        email_templates_service_1.EmailTemplatesService,
-        refresh_tokens_service_1.RefreshTokensService])
+        refresh_tokens_service_1.RefreshTokensService,
+        phone_verification_service_1.PhoneVerificationService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

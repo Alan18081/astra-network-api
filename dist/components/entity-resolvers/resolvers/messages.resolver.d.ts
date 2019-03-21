@@ -15,7 +15,7 @@ export declare class MessagesResolver {
     constructor(messagesService: MessagesService, usersService: UsersService, publisherService: PublisherService, chatsService: ChatsService);
     author(message: Message): Promise<User | null>;
     sendMessage(user: User, dto: AddMessageDto): Promise<Message>;
-    editMessage(user: User, id: string, dto: UpdateMessageDto): Promise<Message | null>;
+    updateMessage(user: User, id: string, dto: UpdateMessageDto): Promise<Message | null>;
     deleteMessage(user: User, id: string): Promise<MessageInfo>;
     messageAdded(): {
         resolve(payload: any): any;
@@ -25,7 +25,7 @@ export declare class MessagesResolver {
         resolve(payload: any): any;
         subscribe: import("graphql-subscriptions").ResolverFn;
     };
-    onMessageRemovedFromChat(id: string): {
+    onMessageRemovedFromChat(): {
         resolve(payload: any): any;
         subscribe: import("graphql-subscriptions").ResolverFn;
     };

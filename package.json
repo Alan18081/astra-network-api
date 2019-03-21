@@ -17,7 +17,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:e2e": "mongo < ./test/clear_mongo.js && jest --runInBand --config ./test/jest-e2e.json"
+    "test:e2e": "jest --runInBand --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^5.4.0",
@@ -46,6 +46,7 @@
     "apollo-link-ws": "^1.0.17",
     "apollo-server-express": "^2.4.8",
     "apollo-server-testing": "^2.4.8",
+    "apollo-upload-client": "^10.0.0",
     "apollo-utilities": "^1.2.1",
     "authy": "^1.4.0",
     "authy-client": "^1.1.2",
@@ -65,6 +66,7 @@
     "graphql-tester": "^0.0.5",
     "graphql-tools": "^4.0.4",
     "graphql-type-json": "^0.2.1",
+    "graphql-upload": "^8.0.4",
     "helmet": "^3.15.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.18",

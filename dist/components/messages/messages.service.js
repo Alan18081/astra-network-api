@@ -38,11 +38,6 @@ let MessagesService = class MessagesService {
             return this.messagesRepository.findManyByChatId(chatId, skip, limit);
         });
     }
-    findManyByIds(ids, skip = 0, limit = 10) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.messagesRepository.findManyByIds(ids, skip, limit);
-        });
-    }
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.messagesRepository.findById(id);
@@ -52,7 +47,7 @@ let MessagesService = class MessagesService {
         return __awaiter(this, void 0, void 0, function* () {
             const newMessage = {
                 text,
-                user: userId,
+                author: userId,
                 chat: chatId,
                 createdAt: new Date(),
             };

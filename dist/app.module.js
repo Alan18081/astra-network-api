@@ -16,15 +16,18 @@ const notes_module_1 = require("./components/notes/notes.module");
 const refresh_tokens_module_1 = require("./components/refresh-tokens/refresh-tokens.module");
 const friendship_requests_module_1 = require("./components/friendship-requests/friendship-requests.module");
 const mongoose_1 = require("@nestjs/mongoose");
-const config_1 = require("./config");
 const core_module_1 = require("./components/core/core.module");
 const entity_resolvers_module_1 = require("./components/entity-resolvers/entity-resolvers.module");
+const config_service_1 = require("./components/core/services/config.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
         imports: [
-            mongoose_1.MongooseModule.forRoot(config_1.DB_URL),
+            mongoose_1.MongooseModule.forRootAsync({
+                useFactory: (config) => ({ uri: config.get('DB_URL'), useMongoClient: true }),
+                inject: [config_service_1.ConfigService]
+            }),
             entity_resolvers_module_1.EntityResolversModule,
             users_module_1.UsersModule,
             auth_module_1.AuthModule,

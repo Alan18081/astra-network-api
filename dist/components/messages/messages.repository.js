@@ -33,11 +33,6 @@ let MessagesRepository = class MessagesRepository extends base_repository_1.Base
             return this.model.find({ chat: chatId }).sort({ createdAt: -1 }).skip(skip).limit(limit).exec();
         });
     }
-    findManyByIds(ids, skip, limit) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.model.find({ _id: { $in: ids } }).sort({ createdAt: -1 }).skip(skip).limit(limit).exec();
-        });
-    }
     updateById(id, payload) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.findByIdAndUpdate(id, payload, { new: true });
@@ -50,7 +45,7 @@ let MessagesRepository = class MessagesRepository extends base_repository_1.Base
     }
     findByIdAndUserId(id, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.findOne({ _id: id, user: userId });
+            return this.model.findOne({ _id: id, author: userId });
         });
     }
 };

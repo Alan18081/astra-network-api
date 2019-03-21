@@ -31,4 +31,12 @@ export declare class NotesResolver {
         resolve(payload: any): any;
         subscribe: () => AsyncIterator<{}>;
     };
+    noteUpdated(): {
+        resolve(payload: any): any;
+        subscribe: import("graphql-subscriptions").ResolverFn;
+    };
+    noteDeleted(): {
+        resolve(payload: any): any;
+        subscribe: import("graphql-subscriptions").ResolverFn;
+    };
 }

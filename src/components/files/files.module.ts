@@ -1,17 +1,16 @@
-import { Module, MulterModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import {FilesService} from './files.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FileSchema } from './file.schema';
 import { FilesRepository } from './files.repository';
+import {UsersModule} from '../users/users.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'File', schema: FileSchema }]),
-    MulterModule.register({
-      dest: './upload',
-    }),
+    UsersModule
   ],
-  exports: [FilesService, MulterModule],
+  exports: [FilesService],
   providers: [FilesService, FilesRepository],
 })
 export class FilesModule {}

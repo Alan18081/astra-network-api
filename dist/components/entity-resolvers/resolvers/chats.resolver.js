@@ -28,13 +28,13 @@ const find_chats_list_dto_1 = require("../../chats/dto/find-chats-list.dto");
 const create_chat_dto_1 = require("../../chats/dto/create-chat.dto");
 const update_chat_dto_1 = require("../../chats/dto/update-chat.dto");
 const publisher_service_1 = require("../../core/services/publisher.service");
-const id_equals_filter_1 = require("../../../helpers/handlers/id-equals.filter");
 const events_enum_1 = require("../../../helpers/enums/events.enum");
 const auth_guard_1 = require("../../../helpers/guards/auth.guard");
 const add_user_to_chat_dto_1 = require("../../chats/dto/add-user-to-chat.dto");
 const remove_user_from_chat_dto_1 = require("../../chats/dto/remove-user-from-chat.dto");
 const users_service_1 = require("../../users/users.service");
 const messages_service_1 = require("../../messages/messages.service");
+const graphql_subscriptions_1 = require("graphql-subscriptions");
 let ChatsResolver = class ChatsResolver {
     constructor(chatsService, publisherService, usersService, messagesService) {
         this.chatsService = chatsService;
@@ -52,6 +52,7 @@ let ChatsResolver = class ChatsResolver {
             if (chat.lastMessage) {
                 return this.messagesService.findById(chat.lastMessage);
             }
+            console.log('Hello');
             return null;
         });
     }
@@ -70,9 +71,9 @@ let ChatsResolver = class ChatsResolver {
             return this.chatsService.findMany(dto);
         });
     }
-    findChatById(id) {
+    findChatById(user, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.chatsService.findOne(id);
+            return this.chatsService.findOneByIdAndUserId(id, user._id);
         });
     }
     createChat(user, chatDto) {
@@ -91,33 +92,49 @@ let ChatsResolver = class ChatsResolver {
             return true;
         });
     }
-    addUserToChat(user, dto) {
+    addUserToChat(reqUser, dto) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.chatsService.addUserToChat(user._id, dto);
+            const { chat, user } = yield this.chatsService.addUserToChat(reqUser._id, dto);
+            yield this.publisherService.publish(events_enum_1.Events.CHATS_USER_ADDED, { chatId: dto.chatId, user });
+            return chat;
         });
     }
-    removeUserFromChat(user, dto) {
+    removeUserFromChat(reqUser, dto) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.chatsService.removeUserFromChat(user._id, dto);
+            const { chat, user } = yield this.chatsService.removeUserFromChat(reqUser._id, dto);
+            yield this.publisherService.publish(events_enum_1.Events.CHATS_USER_REMOVED, { chatId: dto.chatId, user });
+            return chat;
         });
     }
-    attendChat(user, chatId) {
+    attendChat(reqUser, chatId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.chatsService.addUserToChat(chatId, user._id);
+            const { chat, user } = yield this.chatsService.addUserToChat(chatId, reqUser._id);
+            yield this.publisherService.publish(events_enum_1.Events.CHATS_USER_ADDED, { chatId, user });
+            return chat;
         });
     }
     leaveChat(user, chatId) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.chatsService.leaveChat(chatId, user._id);
-            yield this.publisherService.publish(events_enum_1.Events.CHATS_USER_REMOVED, { chatId, userId: user._id });
+            yield this.publisherService.publish(events_enum_1.Events.CHATS_USER_REMOVED, { chatId, user: user });
             return true;
         });
     }
-    onUserAddedToChat(id) {
-        return id_equals_filter_1.idEqualsFilter(id, () => this.publisherService.asyncIterator(events_enum_1.Events.CHATS_USER_ADDED));
+    onUserAddedToChat() {
+        return {
+            resolve: (payload) => payload.user,
+            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.CHATS_USER_ADDED), (payload, { chatId }) => {
+                return payload.chatId === chatId;
+            })
+        };
     }
-    onUserRemovedFromChat(id) {
-        return id_equals_filter_1.idEqualsFilter(id, () => this.publisherService.asyncIterator(events_enum_1.Events.CHATS_USER_REMOVED));
+    onUserRemovedFromChat() {
+        return {
+            resolve: (payload) => payload.user,
+            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.CHATS_USER_REMOVED), (payload, { chatId }) => {
+                return payload.chatId === chatId;
+            })
+        };
     }
 };
 __decorate([
@@ -161,9 +178,9 @@ __decorate([
 __decorate([
     graphql_1.Query('chat'),
     common_1.UseGuards(auth_guard_1.GqlAuthGuard),
-    __param(0, graphql_1.Args('id')),
+    __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
 ], ChatsResolver.prototype, "findChatById", null);
 __decorate([
@@ -224,16 +241,14 @@ __decorate([
 ], ChatsResolver.prototype, "leaveChat", null);
 __decorate([
     graphql_1.Subscription('userAddedToChat'),
-    __param(0, graphql_1.Args('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ChatsResolver.prototype, "onUserAddedToChat", null);
 __decorate([
     graphql_1.Subscription('userRemovedFromChat'),
-    __param(0, graphql_1.Args('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ChatsResolver.prototype, "onUserRemovedFromChat", null);
 ChatsResolver = __decorate([

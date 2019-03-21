@@ -3,6 +3,7 @@ type User {
     firstName: String!
     lastName: String!
     email: String!
+    avatar: File
     age: Int
     phoneVerified: Boolean
     online: Boolean

@@ -4,9 +4,10 @@ export interface User extends Document {
     lastName: string;
     age?: number;
     email: string;
+    countryCode?: string;
+    authyId?: string;
+    phone?: string;
     password: string;
-    googleId?: string;
-    emailVerified: boolean;
     phoneVerified: boolean;
     chats: string[];
     online: boolean;

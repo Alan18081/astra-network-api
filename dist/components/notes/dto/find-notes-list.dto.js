@@ -18,5 +18,20 @@ __decorate([
     class_validator_1.IsMongoId({ each: true }),
     __metadata("design:type", Array)
 ], FindNotesListDto.prototype, "ids", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsString(),
+    __metadata("design:type", String)
+], FindNotesListDto.prototype, "query", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsDateString(),
+    __metadata("design:type", String)
+], FindNotesListDto.prototype, "dateFrom", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsDateString(),
+    __metadata("design:type", String)
+], FindNotesListDto.prototype, "dateTo", void 0);
 exports.FindNotesListDto = FindNotesListDto;
 //# sourceMappingURL=find-notes-list.dto.js.map

@@ -7,3 +7,4 @@ export * from './jwt.config';
 export * from './stripe.config';
 export * from './orm.config';
 export * from './google.config';
+export * from './twillio.config';

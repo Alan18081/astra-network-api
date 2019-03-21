@@ -3,6 +3,7 @@ import { Schema } from 'mongoose';
 const UserSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
+  avatar: { type: Schema.Types.ObjectId, ref: 'File' },
   countryCode: String,
   phone: String,
   authyId: String,

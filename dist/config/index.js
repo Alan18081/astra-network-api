@@ -12,4 +12,5 @@ __export(require("./jwt.config"));
 __export(require("./stripe.config"));
 __export(require("./orm.config"));
 __export(require("./google.config"));
+__export(require("./twillio.config"));
 //# sourceMappingURL=index.js.map

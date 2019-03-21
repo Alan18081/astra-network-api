@@ -19,7 +19,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const lodash_1 = require("lodash");
-const websockets_1 = require("@nestjs/websockets");
 const messages_enum_1 = require("../../helpers/enums/messages.enum");
 const users_service_1 = require("../users/users.service");
 const chats_repository_1 = require("./chats.repository");
@@ -48,12 +47,16 @@ let ChatsService = class ChatsService {
                 this.usersService.findOne(userId),
             ]);
             if (!user) {
-                throw new websockets_1.WsException(messages_enum_1.Messages.USER_NOT_FOUND);
+                throw new common_1.NotFoundException(messages_enum_1.Messages.USER_NOT_FOUND);
             }
             if (!chat) {
-                throw new websockets_1.WsException(messages_enum_1.Messages.CHAT_NOT_FOUND);
+                throw new common_1.NotFoundException(messages_enum_1.Messages.CHAT_NOT_FOUND);
             }
-            return this.chatsRepository.addUserToChat(chat._id, user._id);
+            const updatedChat = yield this.chatsRepository.addUserToChat(chat._id, user._id);
+            return {
+                chat: updatedChat,
+                user
+            };
         });
     }
     removeUserFromChat(adminId, { chatId, userId }) {
@@ -63,19 +66,23 @@ let ChatsService = class ChatsService {
                 this.usersService.findOne(userId),
             ]);
             if (!user) {
-                throw new websockets_1.WsException(messages_enum_1.Messages.USER_NOT_FOUND);
+                throw new common_1.NotFoundException(messages_enum_1.Messages.USER_NOT_FOUND);
             }
             if (!chat) {
-                throw new websockets_1.WsException(messages_enum_1.Messages.CHAT_NOT_FOUND);
+                throw new common_1.NotFoundException(messages_enum_1.Messages.CHAT_NOT_FOUND);
             }
-            return this.chatsRepository.removeUserFromChat(chat._id, user._id);
+            const updatedChat = yield this.chatsRepository.removeUserFromChat(chat._id, user._id);
+            return {
+                chat: updatedChat,
+                user
+            };
         });
     }
     leaveChat(chatId, userId) {
         return __awaiter(this, void 0, void 0, function* () {
             const chat = yield this.findOne(chatId);
             if (!chat) {
-                throw new websockets_1.WsException(messages_enum_1.Messages.CHAT_NOT_FOUND);
+                throw new common_1.NotFoundException(messages_enum_1.Messages.CHAT_NOT_FOUND);
             }
             return this.chatsRepository.removeUserFromChat(chatId, userId);
         });
@@ -114,7 +121,7 @@ let ChatsService = class ChatsService {
     }
     filterMessages(message, chatId, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (message.chat !== chatId) {
+            if (message.chat.toString() !== chatId) {
                 return false;
             }
             const chat = yield this.findOneByIdAndUserId(chatId, userId);

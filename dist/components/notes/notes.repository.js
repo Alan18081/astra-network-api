@@ -28,7 +28,21 @@ let NotesRepository = class NotesRepository extends base_repository_1.BaseReposi
     constructor(noteModel) {
         super(noteModel);
     }
-    findByIds(ids, skip = 1, limit = 10) {
+    findManyWithFilter({ query, dateTo, dateFrom }, skip = 0, limit = 10) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const filter = {};
+            if (query)
+                filter.$text = { $search: query };
+            if (dateFrom || dateTo)
+                filter.createdAt = {};
+            if (dateFrom)
+                filter.createdAt.$gte = dateFrom;
+            if (dateTo)
+                filter.createdAt.$lte = dateTo;
+            return this.model.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit);
+        });
+    }
+    findByIds(ids, skip = 0, limit = 10) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.find({ _id: { $in: ids } }).skip(skip).limit(limit);
         });

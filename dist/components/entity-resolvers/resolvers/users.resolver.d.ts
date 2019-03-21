@@ -9,15 +9,14 @@ export declare class UsersResolver {
     private readonly usersService;
     private readonly publisherService;
     constructor(usersService: UsersService, publisherService: PublisherService);
+    friends(user: User): Promise<User[]>;
     findMany(dto: FindManyUsersListDto): Promise<User[]>;
     findOneById(id: string): Promise<User | null>;
     getProfile(user: User): Promise<User>;
-    getFriends(userId: string): Promise<User[]>;
     createUser(userDto: CreateUserDto): Promise<User>;
     updateUser(user: User, userDto: UpdateUserDto): Promise<User | null>;
     changePassword(user: User, dto: ChangePasswordDto): Promise<boolean>;
-    deleteUser(id: string): Promise<void>;
-    removeFriend(user: User, friendId: string): Promise<boolean>;
+    deleteFriend(user: User, friendId: string): Promise<boolean>;
     checkIsFriend(user: User, friendId: string): Promise<boolean>;
     onUserStatusChanged(id: string): import("graphql-subscriptions").ResolverFn;
 }

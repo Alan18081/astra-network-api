@@ -39,7 +39,6 @@ let FriendshipRequestsResolver = class FriendshipRequestsResolver {
     }
     sender({ sender }) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(sender);
             return this.usersService.findOne(sender);
         });
     }
@@ -73,31 +72,39 @@ let FriendshipRequestsResolver = class FriendshipRequestsResolver {
     acceptOne(user, id) {
         return __awaiter(this, void 0, void 0, function* () {
             const friend = yield this.friendshipRequestsService.acceptOne(id, user._id);
-            yield this.publisherService.publish(events_enum_1.Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST, friend);
-            return true;
+            yield this.publisherService.publish(events_enum_1.Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST, { senderId: friend._id, user });
+            return friend;
+        });
+    }
+    declineOne(user, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const senderId = yield this.friendshipRequestsService.declineOne(id, user._id);
+            yield this.publisherService.publish(events_enum_1.Events.FRIENDSHIP_REQUESTS_DECLINED_REQUEST, { senderId, user });
         });
     }
     onSentOne() {
         return {
             resolve: payload => payload,
             subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.FRIENDSHIP_REQUESTS_SENT_REQUEST), (payload, args, { user }) => {
-                return payload.receiver.toString() === user._id.toString();
+                return payload.senderId.toString() === user._id.toString();
             })
         };
     }
     onAcceptedOne() {
         return {
-            resolve: payload => payload,
+            resolve: (payload) => payload.user,
             subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.FRIENDSHIP_REQUESTS_ACCEPTED_REQUEST), (payload, args, { user }) => {
-                return payload.sender === user._id;
+                console.log(payload.senderId, user._id);
+                console.log(payload.senderId === user._id);
+                return payload.senderId.toString() === user._id.toString();
             })
         };
     }
     onDeclinedOne() {
         return {
-            resolve: payload => payload,
-            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.FRIENDSHIP_REQUESTS_DECLINED_REQUEST), (payload, { user }) => {
-                return payload.sender === user._id;
+            resolve: (payload) => payload.user,
+            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.FRIENDSHIP_REQUESTS_DECLINED_REQUEST), (payload, args, { user }) => {
+                return payload.senderId.toString() === user._id.toString();
             })
         };
     }
@@ -156,6 +163,14 @@ __decorate([
     __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
 ], FriendshipRequestsResolver.prototype, "acceptOne", null);
+__decorate([
+    graphql_1.Mutation('declineFriendshipRequest'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
+    __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], FriendshipRequestsResolver.prototype, "declineOne", null);
 __decorate([
     graphql_1.Subscription('friendshipRequestSent'),
     __metadata("design:type", Function),

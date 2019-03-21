@@ -28,7 +28,7 @@ let AnswersResolver = class AnswersResolver {
     }
     author(answer) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.usersService.findOne(answer._id);
+            return this.usersService.findOne(answer.author);
         });
     }
 };

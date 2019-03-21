@@ -11,17 +11,16 @@ const files_service_1 = require("./files.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const file_schema_1 = require("./file.schema");
 const files_repository_1 = require("./files.repository");
+const users_module_1 = require("../users/users.module");
 let FilesModule = class FilesModule {
 };
 FilesModule = __decorate([
     common_1.Module({
         imports: [
             mongoose_1.MongooseModule.forFeature([{ name: 'File', schema: file_schema_1.FileSchema }]),
-            common_1.MulterModule.register({
-                dest: './upload',
-            }),
+            users_module_1.UsersModule
         ],
-        exports: [files_service_1.FilesService, common_1.MulterModule],
+        exports: [files_service_1.FilesService],
         providers: [files_service_1.FilesService, files_repository_1.FilesRepository],
     })
 ], FilesModule);

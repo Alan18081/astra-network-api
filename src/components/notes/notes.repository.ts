@@ -14,10 +14,16 @@ export class NotesRepository extends BaseRepository<Note> {
   }
 
   async findManyWithFilter({ query, dateTo, dateFrom }: FindNotesListDto, skip: number = 0, limit: number = 10): Promise<Note[]> {
-    const filter = {
-      $text: query ? { $search: query } : null,
-      createdAt: { $gte: dateFrom, $lte: dateTo }
-    };
+    const filter: any = {};
+
+    if(query) filter.$text = { $search: query };
+
+    if(dateFrom || dateTo) filter.createdAt = {};
+
+    if(dateFrom) filter.createdAt.$gte = dateFrom;
+
+    if(dateTo) filter.createdAt.$lte = dateTo;
+
     return this.model.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit);
   }
 

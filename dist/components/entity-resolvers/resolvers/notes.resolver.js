@@ -34,6 +34,7 @@ const publisher_service_1 = require("../../core/services/publisher.service");
 const add_comment_dto_1 = require("../../notes/dto/add-comment.dto");
 const remove_comment_dto_1 = require("../../notes/dto/remove-comment.dto");
 const add_answer_dto_1 = require("../../notes/dto/add-answer.dto");
+const graphql_subscriptions_1 = require("graphql-subscriptions");
 let NotesResolver = class NotesResolver {
     constructor(notesService, usersService, publisherService) {
         this.notesService = notesService;
@@ -64,12 +65,17 @@ let NotesResolver = class NotesResolver {
     }
     updateNote(id, noteDto) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.notesService.updateById(id, noteDto);
+            const note = yield this.notesService.updateById(id, noteDto);
+            if (note) {
+                yield this.publisherService.publish(events_enum_1.Events.NOTES_NOTE_UPDATED, note);
+            }
+            return note;
         });
     }
     deleteNote(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.notesService.deleteById(id);
+            yield this.notesService.deleteById(id);
+            yield this.publisherService.publish(events_enum_1.Events.NOTES_NOTE_DELETED, id);
         });
     }
     addLikePost(user, id) {
@@ -115,6 +121,26 @@ let NotesResolver = class NotesResolver {
             subscribe: () => this.publisherService.asyncIterator(events_enum_1.Events.NOTES_NOTE_ADDED),
         };
     }
+    noteUpdated() {
+        return {
+            resolve(payload) {
+                return payload;
+            },
+            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.NOTES_NOTE_UPDATED), (payload, { id }) => {
+                return payload._id.toString() === id;
+            })
+        };
+    }
+    noteDeleted() {
+        return {
+            resolve(payload) {
+                return payload;
+            },
+            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.NOTES_NOTE_DELETED), (payload, { id }) => {
+                return payload === id;
+            })
+        };
+    }
 };
 __decorate([
     graphql_1.ResolveProperty('author'),
@@ -125,6 +151,7 @@ __decorate([
 ], NotesResolver.prototype, "author", null);
 __decorate([
     graphql_1.Query('notesList'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, graphql_1.Args('input')),
     __param(1, graphql_1.Args('skip')),
     __param(2, graphql_1.Args('limit')),
@@ -134,6 +161,7 @@ __decorate([
 ], NotesResolver.prototype, "notesList", null);
 __decorate([
     graphql_1.Query('note'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, graphql_1.Args('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -141,6 +169,7 @@ __decorate([
 ], NotesResolver.prototype, "findNoteById", null);
 __decorate([
     graphql_1.Mutation('createNote'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, create_note_dto_1.CreateNoteDto]),
@@ -148,6 +177,7 @@ __decorate([
 ], NotesResolver.prototype, "createNote", null);
 __decorate([
     graphql_1.Mutation('updateNote'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, graphql_1.Args('id')), __param(1, graphql_1.Args('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_note_dto_1.UpdateNoteDto]),
@@ -155,6 +185,7 @@ __decorate([
 ], NotesResolver.prototype, "updateNote", null);
 __decorate([
     graphql_1.Mutation('deleteNote'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, graphql_1.Args('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -162,6 +193,7 @@ __decorate([
 ], NotesResolver.prototype, "deleteNote", null);
 __decorate([
     graphql_1.Mutation('addLikeToNote'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String]),
@@ -169,6 +201,7 @@ __decorate([
 ], NotesResolver.prototype, "addLikePost", null);
 __decorate([
     graphql_1.Mutation('removeLikeFromNote'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String]),
@@ -176,6 +209,7 @@ __decorate([
 ], NotesResolver.prototype, "removeLikePost", null);
 __decorate([
     graphql_1.Mutation('addDislikeToNote'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String]),
@@ -183,6 +217,7 @@ __decorate([
 ], NotesResolver.prototype, "addDislikePost", null);
 __decorate([
     graphql_1.Mutation('removeDislikeFromNote'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String]),
@@ -190,6 +225,7 @@ __decorate([
 ], NotesResolver.prototype, "removeDislikePost", null);
 __decorate([
     graphql_1.Mutation('addComment'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, add_comment_dto_1.AddCommentDto]),
@@ -197,6 +233,7 @@ __decorate([
 ], NotesResolver.prototype, "addComment", null);
 __decorate([
     graphql_1.Mutation('removeComment'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, remove_comment_dto_1.RemoveCommentDto]),
@@ -204,6 +241,7 @@ __decorate([
 ], NotesResolver.prototype, "removeComment", null);
 __decorate([
     graphql_1.Mutation('addAnswerToComment'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, add_answer_dto_1.AddAnswerDto]),
@@ -215,9 +253,20 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], NotesResolver.prototype, "noteAdded", null);
+__decorate([
+    graphql_1.Subscription('noteUpdated'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], NotesResolver.prototype, "noteUpdated", null);
+__decorate([
+    graphql_1.Subscription('noteDeleted'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], NotesResolver.prototype, "noteDeleted", null);
 NotesResolver = __decorate([
     graphql_1.Resolver('Note'),
-    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __metadata("design:paramtypes", [notes_service_1.NotesService,
         users_service_1.UsersService,
         publisher_service_1.PublisherService])

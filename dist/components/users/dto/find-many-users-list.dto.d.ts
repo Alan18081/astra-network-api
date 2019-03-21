@@ -3,6 +3,6 @@ import { Gender } from '../../../helpers/enums/gender.enum';
 export declare class FindManyUsersListDto extends PaginationDto {
     ageFrom?: number;
     ageTo?: number;
-    gender: Gender;
-    query: string;
+    gender?: Gender;
+    query?: string;
 }

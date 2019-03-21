@@ -37,6 +37,11 @@ let UsersResolver = class UsersResolver {
         this.usersService = usersService;
         this.publisherService = publisherService;
     }
+    friends(user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.usersService.findUserFriends(user._id);
+        });
+    }
     findMany(dto) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.usersService.findMany(dto);
@@ -50,11 +55,6 @@ let UsersResolver = class UsersResolver {
     getProfile(user) {
         return __awaiter(this, void 0, void 0, function* () {
             return user;
-        });
-    }
-    getFriends(userId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.usersService.findUserFriends(userId);
         });
     }
     createUser(userDto) {
@@ -73,14 +73,12 @@ let UsersResolver = class UsersResolver {
             return true;
         });
     }
-    deleteUser(id) {
+    deleteFriend(user, friendId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.usersService.deleteById(id);
-        });
-    }
-    removeFriend(user, friendId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.usersService.removeFriend(user._id, friendId);
+            yield Promise.all([
+                this.usersService.removeFriend(user._id, friendId),
+                this.usersService.removeFriend(friendId, user._id)
+            ]);
             return true;
         });
     }
@@ -93,6 +91,13 @@ let UsersResolver = class UsersResolver {
         return id_equals_filter_1.idEqualsFilter(id, () => this.publisherService.asyncIterator(events_enum_1.Events.USER_STATUS_CHANGED));
     }
 };
+__decorate([
+    graphql_1.ResolveProperty('friends'),
+    __param(0, graphql_1.Parent()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersResolver.prototype, "friends", null);
 __decorate([
     graphql_1.Query('usersList'),
     common_1.UseGuards(auth_guard_1.GqlAuthGuard),
@@ -118,14 +123,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersResolver.prototype, "getProfile", null);
 __decorate([
-    graphql_1.Query('friends'),
-    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
-    __param(0, graphql_1.Args('userId')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], UsersResolver.prototype, "getFriends", null);
-__decorate([
     graphql_1.Mutation('createUser'),
     __param(0, graphql_1.Args('input')),
     __metadata("design:type", Function),
@@ -149,21 +146,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersResolver.prototype, "changePassword", null);
 __decorate([
-    graphql_1.Mutation('deleteUser'),
-    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
-    __param(0, graphql_1.Args('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], UsersResolver.prototype, "deleteUser", null);
-__decorate([
-    graphql_1.Mutation('removeFriend'),
+    graphql_1.Mutation('deleteFriend'),
     common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('friendId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
-], UsersResolver.prototype, "removeFriend", null);
+], UsersResolver.prototype, "deleteFriend", null);
 __decorate([
     graphql_1.Mutation('checkIsFriend'),
     common_1.UseGuards(auth_guard_1.GqlAuthGuard),
@@ -180,7 +169,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersResolver.prototype, "onUserStatusChanged", null);
 UsersResolver = __decorate([
-    graphql_1.Resolver(),
+    graphql_1.Resolver('User'),
     __metadata("design:paramtypes", [users_service_1.UsersService,
         publisher_service_1.PublisherService])
 ], UsersResolver);

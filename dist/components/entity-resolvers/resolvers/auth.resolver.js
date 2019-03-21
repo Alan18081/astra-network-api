@@ -23,6 +23,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("@nestjs/graphql");
 const auth_service_1 = require("../../auth/auth.service");
 const login_dto_1 = require("../../auth/dto/login.dto");
+const common_1 = require("@nestjs/common");
+const auth_guard_1 = require("../../../helpers/guards/auth.guard");
+const user_decorator_1 = require("../../../helpers/decorators/user.decorator");
+const send_phone_verification_code_dto_1 = require("../../auth/dto/send-phone-verification-code.dto");
+const verify_phone_verification_code_dto_1 = require("../../auth/dto/verify-phone-verification-code.dto");
 let AuthResolver = class AuthResolver {
     constructor(authService) {
         this.authService = authService;
@@ -35,6 +40,16 @@ let AuthResolver = class AuthResolver {
     exchangeToken(token) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.authService.exchangeToken(token);
+        });
+    }
+    sendPhoneVerificationCode(user, dto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.authService.sendPhoneVerificationCode(user, dto);
+        });
+    }
+    verifyPhoneVerificationCode(user, dto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.authService.verifyPhoneVerificationCode(user, dto.code);
         });
     }
 };
@@ -52,6 +67,22 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], AuthResolver.prototype, "exchangeToken", null);
+__decorate([
+    graphql_1.Mutation('sendPhoneVerificationCode'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
+    __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('input')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, send_phone_verification_code_dto_1.SendPhoneVerificationCodeDto]),
+    __metadata("design:returntype", Promise)
+], AuthResolver.prototype, "sendPhoneVerificationCode", null);
+__decorate([
+    graphql_1.Mutation('verifyPhoneVerificationCode'),
+    common_1.UseGuards(auth_guard_1.GqlAuthGuard),
+    __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('input')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, verify_phone_verification_code_dto_1.VerifyPhoneVerificationCodeDto]),
+    __metadata("design:returntype", Promise)
+], AuthResolver.prototype, "verifyPhoneVerificationCode", null);
 AuthResolver = __decorate([
     graphql_1.Resolver(),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

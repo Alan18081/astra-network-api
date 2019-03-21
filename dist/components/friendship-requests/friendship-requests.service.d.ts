@@ -11,8 +11,8 @@ export declare class FriendshipRequestsService {
     private checkIsValidOwner;
     findMany(userId: number, type: FriendshipRequestsType): Promise<FriendshipRequest[]>;
     findOne(id: string): Promise<FriendshipRequest | null>;
-    findOneBySenderId(senderId: string): Promise<FriendshipRequest | null>;
     createOne(senderId: string, dto: CreateRequestDto): Promise<FriendshipRequest>;
     deleteOne(id: string, userId: string): Promise<void>;
     acceptOne(id: string, userId: string): Promise<User>;
+    declineOne(id: string, userId: string): Promise<string>;
 }

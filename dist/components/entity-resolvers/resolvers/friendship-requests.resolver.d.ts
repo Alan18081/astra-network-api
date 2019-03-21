@@ -4,6 +4,7 @@ import { User } from '../../users/user.interface';
 import { CreateRequestDto } from '../../friendship-requests/dto/create-request.dto';
 import { PublisherService } from '../../core/services/publisher.service';
 import { UsersService } from '../../users/users.service';
+import { FriendshipRequestInfo } from '../../friendship-requests/interfaces/friendship-request-info.interface';
 export declare class FriendshipRequestsResolver {
     private readonly friendshipRequestsService;
     private readonly publisherService;
@@ -15,17 +16,18 @@ export declare class FriendshipRequestsResolver {
     findManyOutgoingRequests(user: User): Promise<FriendshipRequest[]>;
     sendOne(user: User, dto: CreateRequestDto): Promise<FriendshipRequest>;
     deleteOne(user: User, id: string): Promise<void>;
-    acceptOne(user: User, id: string): Promise<boolean>;
+    acceptOne(user: User, id: string): Promise<User>;
+    declineOne(user: User, id: string): Promise<void>;
     onSentOne(): {
         resolve: (payload: any) => any;
         subscribe: import("graphql-subscriptions").ResolverFn;
     };
     onAcceptedOne(): {
-        resolve: (payload: any) => any;
+        resolve: (payload: FriendshipRequestInfo) => User;
         subscribe: import("graphql-subscriptions").ResolverFn;
     };
     onDeclinedOne(): {
-        resolve: (payload: any) => any;
+        resolve: (payload: FriendshipRequestInfo) => User;
         subscribe: import("graphql-subscriptions").ResolverFn;
     };
 }

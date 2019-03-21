@@ -10,6 +10,7 @@ import { RemoveUserFromChatDto } from '../../chats/dto/remove-user-from-chat.dto
 import { UsersService } from '../../users/users.service';
 import { MessagesService } from '../../messages/messages.service';
 import { Message } from '../../messages/message.interface';
+import { ChatUserInfoInterface } from '../../chats/interfaces/chat-user-info.interface';
 export declare class ChatsResolver {
     private readonly chatsService;
     private readonly publisherService;
@@ -21,14 +22,20 @@ export declare class ChatsResolver {
     admin(chat: Chat): Promise<User | null>;
     users(chat: Chat): Promise<User[]>;
     findManyChatsByUser(dto: FindChatsListDto): Promise<Chat[]>;
-    findChatById(id: string): Promise<Chat | null>;
+    findChatById(user: User, id: string): Promise<Chat | null>;
     createChat(user: User, chatDto: CreateChatDto): Promise<Chat>;
     updateChat(id: string, chatDto: UpdateChatDto): Promise<Chat | null>;
     deleteChat(id: string): Promise<boolean>;
-    addUserToChat(user: User, dto: AddUserToChatDto): Promise<Chat | null>;
-    removeUserFromChat(user: User, dto: RemoveUserFromChatDto): Promise<Chat | null>;
-    attendChat(user: User, chatId: string): Promise<Chat | null>;
+    addUserToChat(reqUser: User, dto: AddUserToChatDto): Promise<Chat | null>;
+    removeUserFromChat(reqUser: User, dto: RemoveUserFromChatDto): Promise<Chat | null>;
+    attendChat(reqUser: User, chatId: string): Promise<Chat | null>;
     leaveChat(user: User, chatId: string): Promise<boolean>;
-    onUserAddedToChat(id: string): import("graphql-subscriptions").ResolverFn;
-    onUserRemovedFromChat(id: string): import("graphql-subscriptions").ResolverFn;
+    onUserAddedToChat(): {
+        resolve: (payload: ChatUserInfoInterface) => User;
+        subscribe: import("graphql-subscriptions").ResolverFn;
+    };
+    onUserRemovedFromChat(): {
+        resolve: (payload: ChatUserInfoInterface) => User;
+        subscribe: import("graphql-subscriptions").ResolverFn;
+    };
 }

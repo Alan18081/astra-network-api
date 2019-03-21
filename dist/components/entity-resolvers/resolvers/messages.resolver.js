@@ -52,7 +52,7 @@ let MessagesResolver = class MessagesResolver {
             return message;
         });
     }
-    editMessage(user, id, dto) {
+    updateMessage(user, id, dto) {
         return __awaiter(this, void 0, void 0, function* () {
             const message = yield this.messagesService.updateById(id, dto, user._id);
             yield this.publisherService.publish(events_enum_1.Events.CHATS_MESSAGE_EDITED, message);
@@ -81,18 +81,18 @@ let MessagesResolver = class MessagesResolver {
             resolve(payload) {
                 return payload;
             },
-            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.CHATS_MESSAGE_EDITED), (payload, { chatId }) => {
-                return payload.chat.toString() === chatId;
+            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.CHATS_MESSAGE_EDITED), (payload, { chatId }, { user }) => {
+                return this.chatsService.filterMessages(payload, chatId, user._id);
             })
         };
     }
-    onMessageRemovedFromChat(id) {
+    onMessageRemovedFromChat() {
         return {
             resolve(payload) {
                 return payload;
             },
-            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.CHATS_MESSAGE_REMOVED), (payload, { chatId }) => {
-                return payload.chat.toString() === chatId;
+            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.CHATS_MESSAGE_REMOVED), (payload, { chatId }, { user }) => {
+                return this.chatsService.filterMessages(payload, chatId, user._id);
             })
         };
     }
@@ -113,13 +113,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MessagesResolver.prototype, "sendMessage", null);
 __decorate([
-    graphql_1.Mutation('editMessage'),
+    graphql_1.Mutation('updateMessage'),
     common_1.UseGuards(auth_guard_1.GqlAuthGuard),
     __param(0, user_decorator_1.ReqUser()), __param(1, graphql_1.Args('id')), __param(2, graphql_1.Args('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, String, update_message_dto_1.UpdateMessageDto]),
     __metadata("design:returntype", Promise)
-], MessagesResolver.prototype, "editMessage", null);
+], MessagesResolver.prototype, "updateMessage", null);
 __decorate([
     graphql_1.Mutation('deleteMessage'),
     common_1.UseGuards(auth_guard_1.GqlAuthGuard),
@@ -135,16 +135,15 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], MessagesResolver.prototype, "messageAdded", null);
 __decorate([
-    graphql_1.Subscription('messageEdited'),
+    graphql_1.Subscription('messageUpdated'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MessagesResolver.prototype, "onMessageEditedToChat", null);
 __decorate([
-    graphql_1.Subscription('messageRemoved'),
-    __param(0, graphql_1.Args('chatId')),
+    graphql_1.Subscription('messageDeleted'),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MessagesResolver.prototype, "onMessageRemovedFromChat", null);
 MessagesResolver = __decorate([

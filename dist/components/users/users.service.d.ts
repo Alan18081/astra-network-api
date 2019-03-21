@@ -1,6 +1,5 @@
 import { CreateUserDto } from './dto/create-user.dto';
 import { HashService } from '../core/services/hash.service';
-import { GoogleUserData } from './interfaces/google-user-data.interface';
 import { UsersRepository } from './users.repository';
 import { User } from './user.interface';
 import { ChangePasswordDto } from './dto/change-password.dto';
@@ -13,10 +12,9 @@ export declare class UsersService {
     findManyByIds(ids: string[]): Promise<User[]>;
     findUserFriends(userId: string): Promise<User[]>;
     findOne(id: string): Promise<User>;
+    findByIdAndFriendId(id: string, friendId: string): Promise<User | null>;
     findOneByEmail(email: string): Promise<User | null>;
-    findOneByGoogleId(id: string): Promise<User | null>;
     createOne(payload: CreateUserDto): Promise<User>;
-    createByGoogle(payload: GoogleUserData): Promise<User>;
     updateById(id: string, payload: Partial<User>): Promise<User | null>;
     changePassword(user: User, { oldPassword, newPassword }: ChangePasswordDto): Promise<User | null>;
     deleteById(id: string): Promise<void>;
@@ -24,4 +22,6 @@ export declare class UsersService {
     addFriend(userId: string, friendId: string): Promise<User | null>;
     removeFriend(userId: string, friendId: string): Promise<User | null>;
     checkIsFriend(userId: string, friendId: string): Promise<boolean>;
+    setAuthyId(id: string, authyId: string): Promise<User | null>;
+    setPhoneVerified(id: string): Promise<User | null>;
 }
