@@ -47,6 +47,7 @@ input UpdateUserInput {
     firstName: String
     lastName: String
     age: Int
+    avatar: ID
 }
 
 input ChangePasswordInput {

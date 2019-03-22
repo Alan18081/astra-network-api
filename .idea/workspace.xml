@@ -2,128 +2,20 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/src/components/users/user.schema.ts" line="10" />
-    <bookmark url="file://$PROJECT_DIR$/src/app.module.ts" line="18" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/src/app.module.ts" line="8" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d9b76ef-6374-485e-a8fa-a509f25f71bc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/files/interfaces/upload.interface.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/auth/auth.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/auth/auth.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/auth/auth.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/chats/chats.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/chats/chats.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/chats/chats.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/core.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/core/core.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/core.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/core/core.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/answers.resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/answers.resolver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/answers.resolver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/answers.resolver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/auth.resolver.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/auth.resolver.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/auth.resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/auth.resolver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/auth.resolver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/auth.resolver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/chats.resolver.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/chats.resolver.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/chats.resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/chats.resolver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/chats.resolver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/chats.resolver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/files.resolver.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/files.resolver.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/files.resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/files.resolver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/files.resolver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/files.resolver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/friendship-requests.resolver.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/friendship-requests.resolver.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/friendship-requests.resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/friendship-requests.resolver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/friendship-requests.resolver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/friendship-requests.resolver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/messages.resolver.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/messages.resolver.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/messages.resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/messages.resolver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/messages.resolver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/messages.resolver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/notes.resolver.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/notes.resolver.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/notes.resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/notes.resolver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/notes.resolver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/notes.resolver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/users.resolver.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/users.resolver.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/users.resolver.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/users.resolver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/users.resolver.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/entity-resolvers/resolvers/users.resolver.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/file.interface.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/files/file.interface.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/file.schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/files/file.schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/file.schema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/files/file.schema.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/files/files.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/files/files.module.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/files/files.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/files/files.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/files/files.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.repository.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.repository.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.repository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.repository.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.repository.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.repository.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/messages/messages.repository.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/messages/messages.repository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.repository.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/messages/messages.repository.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/messages/messages.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/messages/messages.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/messages/messages.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/find-notes-list.dto.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/dto/find-notes-list.dto.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/find-notes-list.dto.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/dto/find-notes-list.dto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/find-notes-list.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/dto/find-notes-list.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.repository.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/notes.repository.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/notes.repository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.repository.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/notes.repository.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/notes.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/notes.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/notes.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/schemas/note.schema.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/schemas/note.schema.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/schemas/note.schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/schemas/note.schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/schemas/note.schema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/notes/schemas/note.schema.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/create-user.dto.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/dto/create-user.dto.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/create-user.dto.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/dto/create-user.dto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/create-user.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/dto/create-user.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/find-many-users-list.dto.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/dto/find-many-users-list.dto.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/find-many-users-list.dto.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/dto/find-many-users-list.dto.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/user.interface.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/user.interface.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/user.schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/user.schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/user.schema.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/user.schema.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.repository.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/users.repository.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/users.repository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.repository.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/users.repository.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/users.service.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/users.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.service.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/components/users/users.service.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/config/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/config/index.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/events.enum.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/helpers/enums/events.enum.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/events.enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/helpers/enums/events.enum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/events.enum.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/helpers/enums/events.enum.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/messages.enum.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/helpers/enums/messages.enum.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/messages.enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/helpers/enums/messages.enum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/messages.enum.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/helpers/enums/messages.enum.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/files.resolver.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/files.resolver.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/types/files.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/files.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/types/notes.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/notes.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/file.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/file.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/file.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/file.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/files.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/files.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/user.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/user.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/users/dto/update-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/dto/update-user.dto.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/upload/28c19beb60fbec26976ca94c0fd5172b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/upload/b85b21bcaaee4e7977602ebce89c869b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/1_users.e2e-spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/1_users.e2e-spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/1_users.e2e-spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/1_users.e2e-spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/2_chats.e2e-spec.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/2_chats.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/apollo-client.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/apollo-client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/apollo-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/apollo-client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,20 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.repository.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/core/base.repository.ts">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="files.module.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/files/files.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="9" column="62" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
+            <state relative-caret-position="196">
+              <caret line="7" column="9" lean-forward="true" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -166,44 +49,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="file.schema.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/files/file.schema.ts">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/users/dto/update-user.dto.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="files.resolver.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/resolvers/files.resolver.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="783">
-              <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+            <state relative-caret-position="618">
+              <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
               <folding>
-                <element signature="e#0#82#0" expanded="true" />
+                <element signature="e#0#72#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="files.service.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/files/files.service.ts">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="76" column="36" selection-start-line="76" selection-start-column="36" selection-end-line="76" selection-end-column="36" />
+            <state relative-caret-position="92">
+              <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="files.graphql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/files.graphql">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="11" column="25" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="25" />
+            <state relative-caret-position="460">
+              <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -242,8 +116,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/2_chats.e2e-spec.ts" />
-        <option value="$PROJECT_DIR$/src/components/auth/auth.service.ts" />
         <option value="$PROJECT_DIR$/src/helpers/enums/events.enum.ts" />
         <option value="$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql" />
         <option value="$PROJECT_DIR$/src/components/entity-resolvers/types/messages.graphql" />
@@ -271,7 +143,6 @@
         <option value="$PROJECT_DIR$/src/components/notes/schemas/note.schema.ts" />
         <option value="$PROJECT_DIR$/src/components/notes/dto/find-notes-list.dto.ts" />
         <option value="$PROJECT_DIR$/src/components/notes/notes.service.ts" />
-        <option value="$PROJECT_DIR$/src/app.module.ts" />
         <option value="$PROJECT_DIR$/local.env" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts" />
@@ -281,7 +152,6 @@
         <option value="$PROJECT_DIR$/test/apollo-client.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/test/1_users.e2e-spec.ts" />
-        <option value="$PROJECT_DIR$/src/main.ts" />
         <option value="$PROJECT_DIR$/src/components/files/interfaces/upload.interface.ts" />
         <option value="$PROJECT_DIR$/src/helpers/stream-handler.ts" />
         <option value="$PROJECT_DIR$/src/components/files/file.schema.ts" />
@@ -289,34 +159,27 @@
         <option value="$PROJECT_DIR$/src/components/files/files.module.ts" />
         <option value="$PROJECT_DIR$/src/components/core/base.repository.ts" />
         <option value="$PROJECT_DIR$/src/components/entity-resolvers/types/files.graphql" />
-        <option value="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" />
         <option value="$PROJECT_DIR$/src/components/users/user.schema.ts" />
         <option value="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/files.resolver.ts" />
         <option value="$PROJECT_DIR$/src/components/files/files.service.ts" />
+        <option value="$PROJECT_DIR$/src/components/entity-resolvers/types/channels.graphql" />
+        <option value="$PROJECT_DIR$/src/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/main.ts" />
+        <option value="$PROJECT_DIR$/src/components/users/dto/update-user.dto.ts" />
+        <option value="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="JsbtTreeLayoutManager">
     <layout place="tools.popupGrunt">
       <scroll-view-position x="0" y="0" />
     </layout>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/package.json" />
-    </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="64" />
@@ -332,52 +195,44 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-network" type="462c0819:PsiDirectoryNode" />
+              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
+              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-network" type="462c0819:PsiDirectoryNode" />
+              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
+              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-network" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-network" type="462c0819:PsiDirectoryNode" />
+              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
+              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="entity-resolvers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-network" type="462c0819:PsiDirectoryNode" />
+              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
+              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="entity-resolvers" type="462c0819:PsiDirectoryNode" />
-              <item name="resolvers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="astra-network" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GraphQL Schemas" type="390a5855:JSGraphQLSchemaDirectoryNode" />
+              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
+              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="entity-resolvers" type="462c0819:PsiDirectoryNode" />
+              <item name="types" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -422,7 +277,13 @@
     </option>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yml.elastic: Compose Deployment">
-    <configuration name="Users" type="JavaScriptTestRunnerJest" factoryName="Jest" temporary="true" nameIsGenerated="true">
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration name="Users" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <working-dir value="$PROJECT_DIR$" />
@@ -432,9 +293,10 @@
       <test-names>
         <test-name value="Users" />
       </test-names>
+      <method v="2" />
     </configuration>
-    <configuration name="Unnamed" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="dist/main.js" working-dir="$PROJECT_DIR$">
-      <method>
+    <configuration name="Unnamed" type="NodeJSConfigurationType" path-to-js-file="dist/main.js" working-dir="$PROJECT_DIR$">
+      <method v="2">
         <option name="NpmBeforeRunTask" enabled="true">
           <package-json value="$PROJECT_DIR$/package.json" />
           <command value="run" />
@@ -446,12 +308,6 @@
         </option>
       </method>
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
     <configuration name="docker-compose.yml.elastic: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -461,24 +317,23 @@
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
-          <option name="startBrowserSettings">
-            <browser url="http://127.0.0.1" />
-          </option>
         </settings>
       </deployment>
+      <method v="2" />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+    <configuration default="true" type="js.build_tools.gulp">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
       <arguments />
       <envs />
+      <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.Unnamed" />
       <item itemvalue="Docker.docker-compose.yml.elastic: Compose Deployment" />
       <item itemvalue="Jest.Users" />
+      <item itemvalue="Node.js.Unnamed" />
     </list>
     <recent_temporary>
       <list>
@@ -534,6 +389,7 @@
       <workItem from="1553064528943" duration="21345000" />
       <workItem from="1553088175244" duration="7510000" />
       <workItem from="1553161922022" duration="6626000" />
+      <workItem from="1553258237116" duration="2599000" />
     </task>
     <servers />
   </component>
@@ -546,72 +402,58 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="379885000" />
+    <option name="totallyTimeSpent" value="381644000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31216648" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.2497332" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32979852" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39958376" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="GraphQL" order="13" weight="0.32765958" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" weight="0.32979852" />
+      <window_info anchor="bottom" id="TypeScript" order="9" />
+      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="10" weight="0.6002121" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32979852" />
-      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="10" weight="0.6556503" />
-      <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3018242" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32977587" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.2497332" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39958376" />
-      <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="8" weight="0.32979852" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30843115" />
       <window_info anchor="bottom" id="GraphQL" order="13" weight="0.32767764" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32979852" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.2497332" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" weight="0.32977587" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39958376" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="10" weight="0.6002121" />
-      <window_info id="Favorites" order="3" side_tool="true" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="8" weight="0.32979852" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30149412" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2497332" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32979852" />
-      <window_info anchor="bottom" id="GraphQL" order="13" weight="0.32767764" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39958376" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32977587" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="10" weight="0.6564157" />
+      <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32979852" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39958376" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" weight="0.32979852" />
+      <window_info anchor="bottom" id="TypeScript" order="9" />
+      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="10" weight="0.6564157" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="GraphQL" order="13" weight="0.32767764" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32977587" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,20 +509,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/nodemon-debug.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/start.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" column="2" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2660">
@@ -719,16 +547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="20" column="95" selection-start-line="20" selection-start-column="95" selection-end-line="20" selection-end-column="95" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
@@ -761,20 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/users.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/users/user.interface.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
@@ -786,16 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3873">
           <caret line="1752" column="21" selection-start-line="1752" selection-start-column="8" selection-end-line="1752" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/users.repository.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="35" column="24" lean-forward="true" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -855,11 +649,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/apollo-upload-client/lib/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-336" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/apollo-upload-client/lib/index.js" />
     <entry file="file://$PROJECT_DIR$/test/apollo-client.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="644">
@@ -897,13 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/notes.graphql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -937,13 +720,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/helpers/stream-handler.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helpers/stream-handler.ts" />
     <entry file="file://$PROJECT_DIR$/src/components/files/interfaces/upload.interface.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -1012,15 +789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/users/user.schema.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        <state relative-caret-position="504">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1057,6 +827,74 @@
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/users.repository.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/users.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/channels.graphql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="7" column="9" lean-forward="true" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/dto/update-user.dto.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
         </state>
       </provider>
     </entry>
