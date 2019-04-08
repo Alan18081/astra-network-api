@@ -1,7 +1,0 @@
-mutation CreateNote {
-    createNote(input: { title: "Hello", description: "Markus" }) {
-        _id
-        title
-        description
-    }
-}

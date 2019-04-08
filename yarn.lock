@@ -93,7 +93,7 @@
 
 "@nestjs/jwt@^0.2.0":
   version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/jwt/-/jwt-0.2.1.tgz#9e54fb15e41c8570c2b0e91a0955ebe0ed8af19a"
+  resolved "https://registry.yarnpkg.com/@nestjs/custom-jwt/-/custom-jwt-0.2.1.tgz#9e54fb15e41c8570c2b0e91a0955ebe0ed8af19a"
   integrity sha512-P8Wfd0ccMlvtQKHp22Vzik1rL7ImPMNp8o+n1HFFr1t0OVqYLBrzJO0Wov2m53P9SePBtpqMLeJgN5rPS6jGIw==
   dependencies:
     "@types/jsonwebtoken" "^7.2.7"
@@ -6241,7 +6241,7 @@ passport-http-bearer@^1.0.1:
 
 passport-jwt@^4.0.0:
   version "4.0.0"
-  resolved "https://registry.yarnpkg.com/passport-jwt/-/passport-jwt-4.0.0.tgz#7f0be7ba942e28b9f5d22c2ebbb8ce96ef7cf065"
+  resolved "https://registry.yarnpkg.com/passport-custom-jwt/-/passport-custom-jwt-4.0.0.tgz#7f0be7ba942e28b9f5d22c2ebbb8ce96ef7cf065"
   integrity sha512-BwC0n2GP/1hMVjR4QpnvqA61TxenUMlmfNjYNgK0ZAs0HK4SOQkHcSv4L328blNTLtHq7DbmvyNJiH+bn6C5Mg==
   dependencies:
     jsonwebtoken "^8.2.0"

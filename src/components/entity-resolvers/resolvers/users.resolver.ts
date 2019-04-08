@@ -11,6 +11,8 @@ import { Events } from '../../../helpers/enums/events.enum';
 import { idEqualsFilter } from '../../../helpers/handlers/id-equals.filter';
 import {ChangePasswordDto} from '../../users/dto/change-password.dto';
 import { FindManyUsersListDto } from '../../users/dto/find-many-users-list.dto';
+import {withFilter} from "graphql-subscriptions";
+import {ChatUserInfoInterface} from "../../chats/interfaces/chat-user-info.interface";
 
 @Resolver('User')
 export class UsersResolver {
@@ -78,8 +80,13 @@ export class UsersResolver {
   }
 
   @Subscription('userStatusChanged')
-  onUserStatusChanged(@Args('id') id: string) {
-    return idEqualsFilter(id,() => this.publisherService.asyncIterator(Events.USER_STATUS_CHANGED));
+  onUserStatusChanged() {
+    return {
+      subscribe: withFilter(
+          () => this.publisherService.asyncIterator(Events.USER_STATUS_CHANGED),
+          (payload: User, { id }) => payload._id === id
+      )
+    };
   }
 
 

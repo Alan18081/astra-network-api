@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
 import { readFileSync } from 'fs';
+import {resolve} from "path";
 
 export class ConfigService {
 
@@ -11,6 +12,10 @@ export class ConfigService {
 
   get(key: string): string {
     return this.envConfig[key];
+  }
+
+  getFilesFolder(): string {
+     return resolve(__dirname, '../../upload');
   }
 
 }

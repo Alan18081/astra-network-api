@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { Client } from 'authy-client';
-import { AUTHY_PRODUCTION_KEY } from '../../../config';
+import {ConfigService} from "./config.service";
 
 @Injectable()
 export class PhoneVerificationService {
 
   authy: Client;
 
-  constructor() {
-    this.authy = new Client({ key: AUTHY_PRODUCTION_KEY });
+  constructor(private readonly configService: ConfigService) {
+    this.authy = new Client({ key: configService.get('AUTHY_PRODUCTION_KEY') });
   }
 
   async sendVerificationSMS(authyId: string) {

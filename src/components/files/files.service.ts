@@ -2,12 +2,6 @@ import * as cloudinary from 'cloudinary';
 import { join } from 'path';
 import { promisify } from 'util';
 import * as fs from 'fs';
-import {
-  CLOUDINARY_API_KEY,
-  CLOUDINARY_API_SECRET,
-  CLOUDINARY_CLOUD_NAME,
-  FILES_UPLOAD_FOLDER,
-} from '../../config';
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {Messages} from '../../helpers/enums/messages.enum';
 import { File } from './file.interface';
@@ -16,6 +10,7 @@ import {Upload} from './interfaces/upload.interface';
 import ReadableStream = NodeJS.ReadableStream;
 import {createWriteStream} from 'fs';
 import WritableStream = NodeJS.WritableStream;
+import {ConfigService} from "../core/services/config.service";
 
 cloudinary.v2.uploader.upload = promisify(cloudinary.v2.uploader.upload);
 
@@ -28,11 +23,12 @@ export class FilesService {
 
   constructor(
     private readonly filesRepository: FilesRepository,
+    private readonly configService: ConfigService,
   ) {
     this.cloudinary.config({
-      cloud_name: CLOUDINARY_CLOUD_NAME,
-      api_key: CLOUDINARY_API_KEY,
-      api_secret: CLOUDINARY_API_SECRET,
+      cloud_name: configService.get('CLOUDINARY_CLOUD_NAME'),
+      api_key: configService.get('CLOUDINARY_API_KEY'),
+      api_secret: configService.get('CLOUDINARY_API_SECRET'),
     });
   }
 
@@ -42,7 +38,7 @@ export class FilesService {
 
   async saveFile(filename: string, stream: ReadableStream): Promise<string> {
       return new Promise((resolve, reject) => {
-        const path = join(FILES_UPLOAD_FOLDER, filename);
+        const path = join(this.configService.getFilesFolder(), filename);
           const writeStream: WritableStream = createWriteStream(path);
           stream.pipe(writeStream);
           stream.on('end', () => {

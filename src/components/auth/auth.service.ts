@@ -10,13 +10,13 @@ import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { User } from '../users/user.interface';
 import { UsersService } from '../users/users.service';
 import { JwtResponse } from './interfaces/jwt-response';
-import { JWT_EXPIRES } from '../../config';
 import { Messages } from '../../helpers/enums/messages.enum';
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
 import { LoginDto } from './dto/login.dto';
 import { HashService } from '../core/services/hash.service';
 import { PhoneVerificationService } from '../core/services/phone-verification.service';
 import { SendPhoneVerificationCodeDto } from './dto/send-phone-verification-code.dto';
+import {ConfigService} from "../core/services/config.service";
 
 @Injectable()
 export class AuthService {
@@ -26,6 +26,7 @@ export class AuthService {
     private readonly hashService: HashService,
     private readonly refreshTokensService: RefreshTokensService,
     private readonly phoneVerificationService: PhoneVerificationService,
+    private readonly configService: ConfigService,
   ) {}
 
   async login(loginDto: LoginDto): Promise<JwtResponse> {
@@ -58,7 +59,7 @@ export class AuthService {
       return {
         accessToken,
         refreshToken: refreshTokenRecord.token,
-        expiresIn: JWT_EXPIRES,
+        expiresIn: +this.configService.get('JWT_EXPIRES'),
       };
     }
 
@@ -70,11 +71,12 @@ export class AuthService {
     return {
       accessToken,
       refreshToken: newRefreshTokenRecord.token,
-      expiresIn: JWT_EXPIRES,
+      expiresIn: +this.configService.get('JWT_EXPIRES'),
     };
   }
 
   async validateUser(payload: JwtPayload): Promise<User | null> {
+    console.log('Jwt payload', payload);
     return this.usersService.findOneByEmail(payload.email);
   }
 

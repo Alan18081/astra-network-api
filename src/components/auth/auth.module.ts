@@ -1,29 +1,21 @@
 import { Global, Module } from '@nestjs/common';
 import {UsersModule} from '../users/users.module';
 import {PassportModule} from '@nestjs/passport';
-import {JwtModule} from '@nestjs/jwt';
-import {JWT_EXPIRES, JWT_SECRET} from '../../config';
 import {AuthService} from './auth.service';
 import { CoreModule } from '../core/core.module';
 import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
-// import {UserHashesModule} from '../user-hashes/user-hashes.module';
+import {CustomJwtModule} from "../custom-jwt/custom-jwt.module";
 
 @Global()
 @Module({
   imports: [
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({
-      secretOrPrivateKey: JWT_SECRET,
-      signOptions: {
-        expiresIn: JWT_EXPIRES,
-      },
-    }),
+    PassportModule.register({ defaultStrategy: 'custom-jwt' }),
+    CustomJwtModule,
     UsersModule,
     CoreModule,
-    // UserHashesModule,
     RefreshTokensModule,
   ],
-  exports: [AuthService, JwtModule],
+  exports: [AuthService, CustomJwtModule],
   providers: [
     AuthService,
   ],

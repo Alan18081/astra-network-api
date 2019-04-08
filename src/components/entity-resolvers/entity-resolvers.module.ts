@@ -43,7 +43,7 @@ import { GraphQLModule } from '@nestjs/graphql';
           subscriptions: {
             async onConnect(connectionParams, webSocket) {
               const { Authorization } = connectionParams as { Authorization: string };
-
+              console.log('User is connecting');
               if(!Authorization) {
                 throw new UnauthorizedException(Messages.INVALID_TOKEN);
               }
