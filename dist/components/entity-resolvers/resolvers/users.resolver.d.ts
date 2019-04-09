@@ -18,5 +18,7 @@ export declare class UsersResolver {
     changePassword(user: User, dto: ChangePasswordDto): Promise<boolean>;
     deleteFriend(user: User, friendId: string): Promise<boolean>;
     checkIsFriend(user: User, friendId: string): Promise<boolean>;
-    onUserStatusChanged(id: string): import("graphql-subscriptions").ResolverFn;
+    onUserStatusChanged(): {
+        subscribe: import("graphql-subscriptions").ResolverFn;
+    };
 }

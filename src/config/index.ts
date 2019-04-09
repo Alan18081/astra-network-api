@@ -1,19 +1,7 @@
-export * from './common.config';
+export const PASSWORD_LENGTH = 6;
 
-export * from './coludinary.config';
+export const HOST = 'localhost';
 
-export * from './emails.config';
+export const APP_NAME = 'Astra-Network';
 
-export * from './database.config';
-
-export * from './coludinary.config';
-
-export * from './jwt.config';
-
-export * from './stripe.config';
-
-export * from './orm.config';
-
-export * from './google.config';
-
-export * from './twillio.config';
+export const PORT = 4000;

@@ -7,24 +7,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const files_service_1 = require("./files.service");
-const mongoose_1 = require("@nestjs/mongoose");
-const file_schema_1 = require("./file.schema");
-const files_repository_1 = require("./files.repository");
-const users_module_1 = require("../users/users.module");
+const jwt_1 = require("@nestjs/jwt");
+const config_service_1 = require("../core/services/config.service");
 const core_module_1 = require("../core/core.module");
-let FilesModule = class FilesModule {
+let CustomJwtModule = class CustomJwtModule {
 };
-FilesModule = __decorate([
+CustomJwtModule = __decorate([
     common_1.Module({
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: 'File', schema: file_schema_1.FileSchema }]),
-            users_module_1.UsersModule,
             core_module_1.CoreModule,
+            jwt_1.JwtModule.registerAsync({
+                useFactory: (configService) => ({
+                    secretOrPrivateKey: configService.get('JWT_SECRET'),
+                    signOptions: {
+                        expiresIn: +configService.get('JWT_EXPIRES'),
+                    },
+                }),
+                inject: [config_service_1.ConfigService]
+            }),
         ],
-        exports: [files_service_1.FilesService],
-        providers: [files_service_1.FilesService, files_repository_1.FilesRepository],
+        exports: [jwt_1.JwtModule]
     })
-], FilesModule);
-exports.FilesModule = FilesModule;
-//# sourceMappingURL=files.module.js.map
+], CustomJwtModule);
+exports.CustomJwtModule = CustomJwtModule;
+//# sourceMappingURL=custom-jwt.module.js.map

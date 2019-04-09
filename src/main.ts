@@ -22,10 +22,10 @@ async function bootstrap() {
   }));
 
   const options = new DocumentBuilder()
-    .setTitle('Astra-store')
-    .setDescription('Platform for selling and buying products online')
+    .setTitle('Astra-network')
+    .setDescription('Social network')
     .setVersion('0.1.0')
-    .addTag('Sales')
+    .addTag('social')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
@@ -33,10 +33,5 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(PORT);
-
-  if (module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => app.close());
-  }
 }
 bootstrap();

@@ -21,21 +21,22 @@ const cloudinary = require("cloudinary");
 const path_1 = require("path");
 const util_1 = require("util");
 const fs = require("fs");
-const config_1 = require("../../config");
 const common_1 = require("@nestjs/common");
 const messages_enum_1 = require("../../helpers/enums/messages.enum");
 const files_repository_1 = require("./files.repository");
 const fs_1 = require("fs");
+const config_service_1 = require("../core/services/config.service");
 cloudinary.v2.uploader.upload = util_1.promisify(cloudinary.v2.uploader.upload);
 const unlink = util_1.promisify(fs.unlink);
 let FilesService = class FilesService {
-    constructor(filesRepository) {
+    constructor(filesRepository, configService) {
         this.filesRepository = filesRepository;
+        this.configService = configService;
         this.cloudinary = cloudinary;
         this.cloudinary.config({
-            cloud_name: config_1.CLOUDINARY_CLOUD_NAME,
-            api_key: config_1.CLOUDINARY_API_KEY,
-            api_secret: config_1.CLOUDINARY_API_SECRET,
+            cloud_name: configService.get('CLOUDINARY_CLOUD_NAME'),
+            api_key: configService.get('CLOUDINARY_API_KEY'),
+            api_secret: configService.get('CLOUDINARY_API_SECRET'),
         });
     }
     findOne(id) {
@@ -46,7 +47,7 @@ let FilesService = class FilesService {
     saveFile(filename, stream) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
-                const path = path_1.join(config_1.FILES_UPLOAD_FOLDER, filename);
+                const path = path_1.join(this.configService.getFilesFolder(), filename);
                 const writeStream = fs_1.createWriteStream(path);
                 stream.pipe(writeStream);
                 stream.on('end', () => {
@@ -99,7 +100,8 @@ let FilesService = class FilesService {
 };
 FilesService = __decorate([
     common_1.Injectable(),
-    __metadata("design:paramtypes", [files_repository_1.FilesRepository])
+    __metadata("design:paramtypes", [files_repository_1.FilesRepository,
+        config_service_1.ConfigService])
 ], FilesService);
 exports.FilesService = FilesService;
 //# sourceMappingURL=files.service.js.map

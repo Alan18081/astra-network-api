@@ -61,6 +61,7 @@ EntityResolversModule = __decorate([
                             onConnect(connectionParams, webSocket) {
                                 return __awaiter(this, void 0, void 0, function* () {
                                     const { Authorization } = connectionParams;
+                                    console.log('User is connecting');
                                     if (!Authorization) {
                                         throw new common_1.UnauthorizedException(messages_enum_1.Messages.INVALID_TOKEN);
                                     }

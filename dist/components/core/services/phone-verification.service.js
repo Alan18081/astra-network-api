@@ -19,10 +19,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const authy_client_1 = require("authy-client");
-const config_1 = require("../../../config");
+const config_service_1 = require("./config.service");
 let PhoneVerificationService = class PhoneVerificationService {
-    constructor() {
-        this.authy = new authy_client_1.Client({ key: config_1.AUTHY_PRODUCTION_KEY });
+    constructor(configService) {
+        this.configService = configService;
+        this.authy = new authy_client_1.Client({ key: configService.get('AUTHY_PRODUCTION_KEY') });
     }
     sendVerificationSMS(authyId) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -52,7 +53,7 @@ let PhoneVerificationService = class PhoneVerificationService {
 };
 PhoneVerificationService = __decorate([
     common_1.Injectable(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [config_service_1.ConfigService])
 ], PhoneVerificationService);
 exports.PhoneVerificationService = PhoneVerificationService;
 //# sourceMappingURL=phone-verification.service.js.map

@@ -29,9 +29,9 @@ const update_user_dto_1 = require("../../users/dto/update-user.dto");
 const auth_guard_1 = require("../../../helpers/guards/auth.guard");
 const publisher_service_1 = require("../../core/services/publisher.service");
 const events_enum_1 = require("../../../helpers/enums/events.enum");
-const id_equals_filter_1 = require("../../../helpers/handlers/id-equals.filter");
 const change_password_dto_1 = require("../../users/dto/change-password.dto");
 const find_many_users_list_dto_1 = require("../../users/dto/find-many-users-list.dto");
+const graphql_subscriptions_1 = require("graphql-subscriptions");
 let UsersResolver = class UsersResolver {
     constructor(usersService, publisherService) {
         this.usersService = usersService;
@@ -87,8 +87,10 @@ let UsersResolver = class UsersResolver {
             return this.usersService.checkIsFriend(user._id, friendId);
         });
     }
-    onUserStatusChanged(id) {
-        return id_equals_filter_1.idEqualsFilter(id, () => this.publisherService.asyncIterator(events_enum_1.Events.USER_STATUS_CHANGED));
+    onUserStatusChanged() {
+        return {
+            subscribe: graphql_subscriptions_1.withFilter(() => this.publisherService.asyncIterator(events_enum_1.Events.USER_STATUS_CHANGED), (payload, { id }) => payload._id === id)
+        };
     }
 };
 __decorate([
@@ -163,9 +165,8 @@ __decorate([
 ], UsersResolver.prototype, "checkIsFriend", null);
 __decorate([
     graphql_1.Subscription('userStatusChanged'),
-    __param(0, graphql_1.Args('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersResolver.prototype, "onUserStatusChanged", null);
 UsersResolver = __decorate([
