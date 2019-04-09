@@ -20,18 +20,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
 const users_service_1 = require("../users/users.service");
-const config_1 = require("../../config");
 const messages_enum_1 = require("../../helpers/enums/messages.enum");
 const refresh_tokens_service_1 = require("../refresh-tokens/refresh-tokens.service");
 const hash_service_1 = require("../core/services/hash.service");
 const phone_verification_service_1 = require("../core/services/phone-verification.service");
+const config_service_1 = require("../core/services/config.service");
 let AuthService = class AuthService {
-    constructor(usersService, jwtService, hashService, refreshTokensService, phoneVerificationService) {
+    constructor(usersService, jwtService, hashService, refreshTokensService, phoneVerificationService, configService) {
         this.usersService = usersService;
         this.jwtService = jwtService;
         this.hashService = hashService;
         this.refreshTokensService = refreshTokensService;
         this.phoneVerificationService = phoneVerificationService;
+        this.configService = configService;
     }
     login(loginDto) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -58,7 +59,7 @@ let AuthService = class AuthService {
                 return {
                     accessToken,
                     refreshToken: refreshTokenRecord.token,
-                    expiresIn: config_1.JWT_EXPIRES,
+                    expiresIn: +this.configService.get('JWT_EXPIRES'),
                 };
             }
             const newRefreshTokenRecord = yield this.refreshTokensService.createOne({
@@ -68,12 +69,13 @@ let AuthService = class AuthService {
             return {
                 accessToken,
                 refreshToken: newRefreshTokenRecord.token,
-                expiresIn: config_1.JWT_EXPIRES,
+                expiresIn: +this.configService.get('JWT_EXPIRES'),
             };
         });
     }
     validateUser(payload) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log('Jwt payload', payload);
             return this.usersService.findOneByEmail(payload.email);
         });
     }
@@ -129,7 +131,8 @@ AuthService = __decorate([
         jwt_1.JwtService,
         hash_service_1.HashService,
         refresh_tokens_service_1.RefreshTokensService,
-        phone_verification_service_1.PhoneVerificationService])
+        phone_verification_service_1.PhoneVerificationService,
+        config_service_1.ConfigService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

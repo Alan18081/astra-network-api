@@ -9,11 +9,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const users_module_1 = require("../users/users.module");
 const passport_1 = require("@nestjs/passport");
-const jwt_1 = require("@nestjs/jwt");
-const config_1 = require("../../config");
 const auth_service_1 = require("./auth.service");
 const core_module_1 = require("../core/core.module");
 const refresh_tokens_module_1 = require("../refresh-tokens/refresh-tokens.module");
+const custom_jwt_module_1 = require("../custom-jwt/custom-jwt.module");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
@@ -21,17 +20,12 @@ AuthModule = __decorate([
     common_1.Module({
         imports: [
             passport_1.PassportModule.register({ defaultStrategy: 'jwt' }),
-            jwt_1.JwtModule.register({
-                secretOrPrivateKey: config_1.JWT_SECRET,
-                signOptions: {
-                    expiresIn: config_1.JWT_EXPIRES,
-                },
-            }),
+            custom_jwt_module_1.CustomJwtModule,
             users_module_1.UsersModule,
             core_module_1.CoreModule,
             refresh_tokens_module_1.RefreshTokensModule,
         ],
-        exports: [auth_service_1.AuthService, jwt_1.JwtModule],
+        exports: [auth_service_1.AuthService, custom_jwt_module_1.CustomJwtModule],
         providers: [
             auth_service_1.AuthService,
         ],

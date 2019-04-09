@@ -1,4 +1,4 @@
-import { Global, Module } from '@nestjs/common';
+import {Global, Module} from '@nestjs/common';
 import {UsersModule} from '../users/users.module';
 import {PassportModule} from '@nestjs/passport';
 import {AuthService} from './auth.service';
@@ -9,7 +9,7 @@ import {CustomJwtModule} from "../custom-jwt/custom-jwt.module";
 @Global()
 @Module({
   imports: [
-    PassportModule.register({ defaultStrategy: 'custom-jwt' }),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     CustomJwtModule,
     UsersModule,
     CoreModule,

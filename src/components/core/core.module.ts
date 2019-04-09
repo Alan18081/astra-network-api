@@ -1,4 +1,4 @@
-import {Module} from '@nestjs/common';
+import {Global, Module} from '@nestjs/common';
 import {HashService} from './services/hash.service';
 import { DateScalar } from './scalars/date.scalar';
 import { PublisherService } from './services/publisher.service';
@@ -16,6 +16,7 @@ const exportedProviders = [
   },
 ];
 
+@Global()
 @Module({
   imports: [],
   exports: [...exportedProviders],

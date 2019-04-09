@@ -2,11 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import {ValidationPipe} from '@nestjs/common';
-import { PORT } from './config';
+import { ConfigService } from './components/core/services/config.service';
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
 
-declare const module: any;
+const configService = new ConfigService(`${process.env.NODE_ENV}.env`);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -32,6 +32,6 @@ async function bootstrap() {
 
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(PORT);
+  await app.listen(+configService.get('PORT'));
 }
 bootstrap();

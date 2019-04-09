@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
+const config_service_1 = require("../../core/services/config.service");
+const configService = new config_service_1.ConfigService(`${process.env.NODE_ENV}.env`);
 class CreateUserDto {
 }
 __decorate([
@@ -36,7 +38,7 @@ __decorate([
 ], CreateUserDto.prototype, "email", void 0);
 __decorate([
     class_validator_1.IsString(),
-    class_validator_1.MinLength(6),
+    class_validator_1.MinLength(+configService.get('PASSWORD_LENGTH')),
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);

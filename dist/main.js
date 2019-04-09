@@ -12,9 +12,10 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
-const config_1 = require("./config");
+const config_service_1 = require("./components/core/services/config.service");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+const configService = new config_service_1.ConfigService(`${process.env.NODE_ENV}.env`);
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = yield core_1.NestFactory.create(app_module_1.AppModule);
@@ -26,18 +27,14 @@ function bootstrap() {
             max: 100
         }));
         const options = new swagger_1.DocumentBuilder()
-            .setTitle('Astra-store')
-            .setDescription('Platform for selling and buying products online')
+            .setTitle('Astra-network')
+            .setDescription('Social network')
             .setVersion('0.1.0')
-            .addTag('Sales')
+            .addTag('social')
             .build();
         const document = swagger_1.SwaggerModule.createDocument(app, options);
         swagger_1.SwaggerModule.setup('api', app, document);
-        yield app.listen(config_1.PORT);
-        if (module.hot) {
-            module.hot.accept();
-            module.hot.dispose(() => app.close());
-        }
+        yield app.listen(+configService.get('PORT'));
     });
 }
 bootstrap();

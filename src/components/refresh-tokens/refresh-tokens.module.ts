@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { RefreshTokensService } from './refresh-tokens.service';
 import { RefreshTokenSchema } from './refresh-token.schema';
 import { RefreshTokensRepository } from './refresh-tokens.repository';
-import {CustomJwtModule} from "../custom-jwt/custom-jwt.module";
+import {CustomJwtModule} from '../custom-jwt/custom-jwt.module';
 
 @Module({
   imports: [

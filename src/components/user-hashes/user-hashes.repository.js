@@ -1,7 +1,25 @@
 "use strict";
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -38,34 +56,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var graphql_tag_1 = require("graphql-tag");
-var apollo_client_1 = require("./apollo-client");
-describe('Users', function () {
-    var token;
-    var client;
-    var authClient;
-    var friendId;
-    beforeAll(function () {
-        client = apollo_client_1.createClient({});
-        process['data'] = { hello: 'Time' };
-    });
-    it('should create user', function () { return __awaiter(_this, void 0, void 0, function () {
-        var result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    file.name = 'bar.txt';
-                    return [4 /*yield*/, client.mutate({
-                            mutation: graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n                mutation($file: Upload!) {\n                    uploadFile(file: $file) {\n                    _id,\n                  }\n                }\n              "], ["\n                mutation($file: Upload!) {\n                    uploadFile(file: $file) {\n                    _id,\n                  }\n                }\n              "]))),
-                            variables: { file: file }
-                        })];
-                case 1:
-                    result = _a.sent();
-                    return [2 /*return*/];
-            }
+var base_repository_1 = require("../core/base.repository");
+var mongoose_1 = require("@nestjs/mongoose");
+var common_1 = require("@nestjs/common");
+var UserHashesRepository = /** @class */ (function (_super) {
+    __extends(UserHashesRepository, _super);
+    function UserHashesRepository(userHashModel) {
+        return _super.call(this, userHashModel) || this;
+    }
+    UserHashesRepository.prototype.findOneByHash = function (hash) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, _super.prototype.model.findOne({ hash: hash })];
+            });
         });
-    }); });
-});
-var templateObject_1;
+    };
+    UserHashesRepository = __decorate([
+        common_1.Injectable(),
+        __param(0, mongoose_1.InjectModel('UserHash'))
+    ], UserHashesRepository);
+    return UserHashesRepository;
+}(base_repository_1.BaseRepository));
+exports.UserHashesRepository = UserHashesRepository;

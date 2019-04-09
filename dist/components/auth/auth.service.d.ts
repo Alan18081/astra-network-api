@@ -8,13 +8,15 @@ import { LoginDto } from './dto/login.dto';
 import { HashService } from '../core/services/hash.service';
 import { PhoneVerificationService } from '../core/services/phone-verification.service';
 import { SendPhoneVerificationCodeDto } from './dto/send-phone-verification-code.dto';
+import { ConfigService } from "../core/services/config.service";
 export declare class AuthService {
     private readonly usersService;
     private readonly jwtService;
     private readonly hashService;
     private readonly refreshTokensService;
     private readonly phoneVerificationService;
-    constructor(usersService: UsersService, jwtService: JwtService, hashService: HashService, refreshTokensService: RefreshTokensService, phoneVerificationService: PhoneVerificationService);
+    private readonly configService;
+    constructor(usersService: UsersService, jwtService: JwtService, hashService: HashService, refreshTokensService: RefreshTokensService, phoneVerificationService: PhoneVerificationService, configService: ConfigService);
     login(loginDto: LoginDto): Promise<JwtResponse>;
     signIn(user: User): Promise<JwtResponse>;
     validateUser(payload: JwtPayload): Promise<User | null>;
