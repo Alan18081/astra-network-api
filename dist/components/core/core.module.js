@@ -8,18 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const hash_service_1 = require("./services/hash.service");
-const email_sending_service_1 = require("./services/email-sending.service");
-const email_templates_service_1 = require("./services/email-templates.service");
-const clients_store_service_1 = require("./services/clients-store.service");
+const date_scalar_1 = require("./scalars/date.scalar");
+const publisher_service_1 = require("./services/publisher.service");
+const phone_verification_service_1 = require("./services/phone-verification.service");
+const config_service_1 = require("./services/config.service");
 const exportedProviders = [
     hash_service_1.HashService,
-    email_sending_service_1.EmailSendingService,
-    email_templates_service_1.EmailTemplatesService,
-    clients_store_service_1.ClientsStoreService,
+    date_scalar_1.DateScalar,
+    publisher_service_1.PublisherService,
+    phone_verification_service_1.PhoneVerificationService,
+    {
+        provide: config_service_1.ConfigService,
+        useValue: new config_service_1.ConfigService(`${process.env.NODE_ENV}.env`),
+    },
 ];
 let CoreModule = class CoreModule {
 };
 CoreModule = __decorate([
+    common_1.Global(),
     common_1.Module({
         imports: [],
         exports: [...exportedProviders],

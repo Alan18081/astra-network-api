@@ -7,25 +7,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
-const note_entity_1 = require("./note.entity");
-const notes_controller_1 = require("./notes.controller");
+const mongoose_1 = require("@nestjs/mongoose");
+const note_schema_1 = require("./schemas/note.schema");
 const notes_service_1 = require("./notes.service");
-const notes_gateway_1 = require("./notes.gateway");
 const core_module_1 = require("../core/core.module");
 const auth_module_1 = require("../auth/auth.module");
+const notes_repository_1 = require("./notes.repository");
 let NotesModule = class NotesModule {
 };
 NotesModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([note_entity_1.Note]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'Note', schema: note_schema_1.NoteSchema }]),
             core_module_1.CoreModule,
             auth_module_1.AuthModule,
         ],
-        exports: [],
-        controllers: [notes_controller_1.NotesController],
-        providers: [notes_service_1.NotesService, notes_gateway_1.NotesGateway],
+        exports: [notes_service_1.NotesService],
+        providers: [
+            notes_service_1.NotesService,
+            notes_repository_1.NotesRepository
+        ],
     })
 ], NotesModule);
 exports.NotesModule = NotesModule;

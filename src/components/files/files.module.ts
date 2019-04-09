@@ -1,18 +1,18 @@
-import { Module, MulterModule } from '@nestjs/common';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { Module } from '@nestjs/common';
 import {FilesService} from './files.service';
-import { File } from './file.entity';
-import { FilesController } from './files.controller';
+import { MongooseModule } from '@nestjs/mongoose';
+import { FileSchema } from './file.schema';
+import { FilesRepository } from './files.repository';
+import {UsersModule} from '../users/users.module';
+import {CoreModule} from "../core/core.module";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([File]),
-    MulterModule.register({
-      dest: './upload',
-    }),
+    MongooseModule.forFeature([{ name: 'File', schema: FileSchema }]),
+    UsersModule,
+    CoreModule,
   ],
-  exports: [FilesService, MulterModule],
-  controllers: [FilesController],
-  providers: [FilesService],
+  exports: [FilesService],
+  providers: [FilesService, FilesRepository],
 })
 export class FilesModule {}

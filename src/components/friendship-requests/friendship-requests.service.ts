@@ -1,67 +1,84 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { FriendshipRequest } from './friendship-request.entity';
-import { Repository } from 'typeorm';
-import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
-import { PaginationDto } from '../core/dto/pagination.dto';
+import { ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { FriendshipRequestsType } from './friendship-requests-type.enum';
+import { FriendshipRequestsRepository } from './friendship-requests.repository';
+import {FriendshipRequest} from './friendship-request.interface';
+import {CreateRequestDto} from './dto/create-request.dto';
+import {Messages} from '../../helpers/enums/messages.enum';
+import {UsersService} from '../users/users.service';
+import { User } from '../users/user.interface';
 
 @Injectable()
 export class FriendshipRequestsService {
 
   constructor(
-    @InjectRepository(FriendshipRequest)
-    private readonly friendshipRequestsRepository: Repository<FriendshipRequest>,
+    private readonly friendshipRequestsRepository: FriendshipRequestsRepository,
+    private readonly usersService: UsersService
   ) {}
 
+  private async checkIsValidOwner(id: string, userId: string): Promise<void> {
+    const request = await this.friendshipRequestsRepository.findByIdAndSenderId(id, userId);
+    if(!request) {
+      throw new ForbiddenException(Messages.PROVIDED_USER_IS_NOT_SENDER);
+    }
+  }
+
   async findMany(userId: number, type: FriendshipRequestsType): Promise<FriendshipRequest[]> {
-    const field = type === FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
-    return await this.friendshipRequestsRepository.find({
-      where: {
-        [field]: userId
-      },
-      relations: [type === FriendshipRequestsType.INCOMING ? 'sender' : 'receiver']
-    });
+    const field = type === FriendshipRequestsType.INCOMING ? 'receiver' : 'sender';
+    return this.friendshipRequestsRepository.findMany({[field]: userId});
   }
 
-  async findManyWithPagination(userId: number, { page, limit }: Required<PaginationDto>, type: FriendshipRequestsType): Promise<PaginatedResult<FriendshipRequest>> {
-    const field = type === FriendshipRequestsType.INCOMING ? 'receiverId' : 'senderId';
-    const [requests, totalCount] = await this.friendshipRequestsRepository.findAndCount({
-      where: {
-        [field]: userId
-      },
-      skip: (page - 1) * limit,
-      take: limit,
-      relations: [type === FriendshipRequestsType.INCOMING ? 'receiver' : 'sender']
-    });
+  async findOne(id: string): Promise<FriendshipRequest | null> {
+    return await this.friendshipRequestsRepository.findById(id);
+  }
 
-    return {
-      data: requests,
-      page,
-      totalCount,
-      itemsPerPage: limit
+  async createOne(senderId: string, dto: CreateRequestDto): Promise<FriendshipRequest> {
+    const user = await this.usersService.findByIdAndFriendId(senderId, dto.receiverId);
+
+    if(user) {
+      throw new ConflictException(Messages.ALREADY_FRIEND);
+    }
+
+    const friendRequest: Partial<FriendshipRequest> = {
+      sender: senderId,
+      receiver: dto.receiverId,
+      message: dto.message,
     };
+
+    return this.friendshipRequestsRepository.save(friendRequest);
   }
 
-  async findOne(id: number): Promise<FriendshipRequest | undefined> {
-    return await this.friendshipRequestsRepository.findOne(id);
+  async deleteOne(id: string, userId: string): Promise<void> {
+    await this.checkIsValidOwner(id, userId);
+    return this.friendshipRequestsRepository.deleteById(id);
   }
 
-  async findOneBySenderId(senderId: number): Promise<FriendshipRequest | undefined> {
-    return await this.friendshipRequestsRepository.findOne({  senderId });
+  async acceptOne(id: string, userId: string): Promise<User> {
+      const request = await this.friendshipRequestsRepository.findByIdAndReceiverId(id, userId);
+      if(!request) {
+          throw new NotFoundException(Messages.FRIENDSHIP_REQUEST_NOT_FOUND);
+      }
+
+      const [friend] = await Promise.all([
+        this.usersService.addFriend(request.sender, userId),
+        this.usersService.addFriend(userId, request.sender),
+          this.friendshipRequestsRepository.deleteById(request._id),
+      ]);
+
+      if(!friend) {
+          throw new NotFoundException(Messages.FRIENDSHIP_REQUESTS_SENDER_IS_NOT_FOUND);
+      }
+
+      return friend;
   }
 
-  async createOne(senderId: number, receiverId: number, message?: string): Promise<FriendshipRequest> {
-    const friendRequest = new FriendshipRequest({
-      senderId,
-      receiverId,
-      message
-    });
+  async declineOne(id: string, userId: string): Promise<string> {
+    const request = await this.friendshipRequestsRepository.findByIdAndReceiverId(id, userId);
+    if(!request) {
+      throw new NotFoundException(Messages.FRIENDSHIP_REQUEST_NOT_FOUND);
+    }
 
-    return await this.friendshipRequestsRepository.save(friendRequest);
-  }
+    await this.friendshipRequestsRepository.deleteById(request.id);
 
-  async deleteOne(id: number): Promise<void> {
-    await this.friendshipRequestsRepository.delete({ id });
+    return request.sender;
   }
 }

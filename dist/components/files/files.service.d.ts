@@ -1,11 +1,17 @@
-import { Repository } from 'typeorm';
-import { File } from './file.entity';
+/// <reference types="node" />
+import { File } from './file.interface';
+import { FilesRepository } from './files.repository';
+import { Upload } from './interfaces/upload.interface';
+import ReadableStream = NodeJS.ReadableStream;
+import { ConfigService } from "../core/services/config.service";
 export declare class FilesService {
     private readonly filesRepository;
+    private readonly configService;
     private readonly cloudinary;
-    constructor(filesRepository: Repository<File>);
-    findOne(id: number): Promise<File | undefined>;
-    uploadFile(file: any): Promise<File>;
-    uploadFilesList(files: any[]): Promise<File[]>;
-    deleteOne(id: number): Promise<void>;
+    constructor(filesRepository: FilesRepository, configService: ConfigService);
+    findOne(id: string): Promise<File | null>;
+    saveFile(filename: string, stream: ReadableStream): Promise<string>;
+    uploadFile(file: Upload, userId: string): Promise<File>;
+    uploadFilesList(files: Upload[], userId: string): Promise<File[]>;
+    deleteOne(id: string): Promise<void>;
 }

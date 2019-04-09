@@ -1,22 +1,17 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { JwtModule } from '@nestjs/jwt';
+import { MongooseModule } from '@nestjs/mongoose';
 import { RefreshTokensService } from './refresh-tokens.service';
-import { RefreshToken } from './refresh-token.entity';
-import { JWT_EXPIRES, JWT_SECRET } from '../../config';
+import { RefreshTokenSchema } from './refresh-token.schema';
+import { RefreshTokensRepository } from './refresh-tokens.repository';
+import {CustomJwtModule} from '../custom-jwt/custom-jwt.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([RefreshToken]),
-    JwtModule.register({
-      secretOrPrivateKey: JWT_SECRET,
-      signOptions: {
-        expiresIn: JWT_EXPIRES,
-      },
-    }),
+    MongooseModule.forFeature([{ name: 'RefreshToken', schema: RefreshTokenSchema }]),
+    CustomJwtModule
   ],
   controllers: [],
   exports: [RefreshTokensService],
-  providers: [RefreshTokensService]
+  providers: [RefreshTokensService, RefreshTokensRepository]
 })
 export class RefreshTokensModule {}

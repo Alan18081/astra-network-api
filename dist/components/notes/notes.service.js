@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -19,104 +16,124 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
-const note_entity_1 = require("./note.entity");
-const typeorm_2 = require("typeorm");
+const notes_repository_1 = require("./notes.repository");
+const messages_enum_1 = require("../../helpers/enums/messages.enum");
 let NotesService = class NotesService {
     constructor(notesRepository) {
         this.notesRepository = notesRepository;
     }
-    findMany(query) {
+    checkIsNoteExists(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const options = {
-                where: {},
-                relations: ['user'],
-            };
-            if (query.userId) {
-                options.where = {
-                    userId: query.userId,
-                };
+            const note = yield this.findOne(id);
+            if (!note) {
+                throw new common_1.NotFoundException(messages_enum_1.Messages.NOTES_NOTE_IS_NOT_FOUND);
             }
-            options.relations = this.getRelations(query);
-            return yield this.notesRepository.find(options);
         });
     }
-    findManyByIds(query) {
+    findMany(_a, skip, limit) {
+        var { ids } = _a, rest = __rest(_a, ["ids"]);
         return __awaiter(this, void 0, void 0, function* () {
-            const relations = this.getRelations(query);
-            return yield this.notesRepository.findByIds(query.ids, { relations });
-        });
-    }
-    getRelations(query) {
-        const relations = ['user'];
-        if (query.includeFiles) {
-            relations.push('files');
-        }
-        return relations;
-    }
-    findManyWithPagination(query) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const options = {
-                where: {},
-                relations: [],
-                skip: (query.page - 1) * query.limit,
-                take: query.limit,
-            };
-            if (query.userId) {
-                options.where = {
-                    userId: query.userId,
-                };
+            if (ids) {
+                return this.notesRepository.findByIds(ids, skip, limit);
             }
-            options.relations = this.getRelations(query);
-            const [data, totalCount] = yield this.notesRepository.findAndCount(options);
-            return {
-                page: query.page,
-                itemsPerPage: query.limit,
-                totalCount,
-                data,
+            return this.notesRepository.findManyWithFilter(rest, skip, limit);
+        });
+    }
+    findOne(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.notesRepository.findById(id);
+        });
+    }
+    createOne({ title, description }, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const note = {
+                title,
+                description,
+                author: userId,
             };
+            return this.notesRepository.save(note);
         });
     }
-    findOne(id, query) {
+    updateById(id, payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            const relations = this.getRelations(query);
-            return yield this.notesRepository.findOne({
-                where: {
-                    id,
-                },
-                relations,
-            });
+            return this.notesRepository.updateById(id, payload);
         });
     }
-    createOne(payload, userId) {
+    deleteById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const note = new note_entity_1.Note();
-            note.title = payload.title;
-            note.description = payload.description;
-            note.createdAt = new Date();
-            note.user = { id: userId };
-            yield this.notesRepository.save(note);
-            return yield this.findOne(note.id, { includeFiles: true });
+            yield this.notesRepository.deleteById(id);
         });
     }
-    updateOne(id, payload) {
+    addComment(userId, { text, noteId }) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.notesRepository.update(id, payload);
-            return yield this.findOne(id, { includeFiles: true });
+            yield this.checkIsNoteExists(noteId);
+            const newComment = {
+                author: userId,
+                createdAt: new Date(),
+                text,
+                answers: []
+            };
+            return this.notesRepository.addComment(noteId, newComment);
         });
     }
-    deleteOne(id) {
+    removeComment(userId, { noteId, commentId }) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.notesRepository.delete(id);
+            return this.notesRepository.removeComment(noteId, commentId);
+        });
+    }
+    addAnswerToComment(userId, { text, noteId, commentId }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const noteWithComment = yield this.notesRepository.findOneByIdAndCommentId(noteId, commentId);
+            if (!noteWithComment) {
+                throw new common_1.NotFoundException(messages_enum_1.Messages.NOTES_NOTE_WITH_PROVIDED_COMMENT_IS_NOT_FOUND);
+            }
+            const newAnswer = {
+                author: userId,
+                createdAt: new Date(),
+                text
+            };
+            return this.notesRepository.addAnswerToComment(noteId, commentId, newAnswer);
+        });
+    }
+    addLike(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.checkIsNoteExists(id);
+            return this.notesRepository.addLikeToNote(id, userId);
+        });
+    }
+    removeLike(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.checkIsNoteExists(id);
+            return this.notesRepository.removeLikeFromNote(id, userId);
+        });
+    }
+    addDislike(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.checkIsNoteExists(id);
+            return this.notesRepository.addDislikeToNote(id, userId);
+        });
+    }
+    removeDislike(id, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.checkIsNoteExists(id);
+            return this.notesRepository.removeDislikeFromNote(id, userId);
         });
     }
 };
 NotesService = __decorate([
     common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(note_entity_1.Note)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [notes_repository_1.NotesRepository])
 ], NotesService);
 exports.NotesService = NotesService;
 //# sourceMappingURL=notes.service.js.map

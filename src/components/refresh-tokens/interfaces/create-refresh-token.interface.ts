@@ -1,4 +1,4 @@
 export interface CreateRefreshTokenInterface {
-  userId: number;
+  userId: string;
   accessToken: string;
 }

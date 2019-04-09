@@ -8,9 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -24,60 +21,87 @@ const cloudinary = require("cloudinary");
 const path_1 = require("path");
 const util_1 = require("util");
 const fs = require("fs");
-const config_1 = require("../../config");
-const typeorm_1 = require("@nestjs/typeorm");
-const typeorm_2 = require("typeorm");
-const file_entity_1 = require("./file.entity");
 const common_1 = require("@nestjs/common");
 const messages_enum_1 = require("../../helpers/enums/messages.enum");
+const files_repository_1 = require("./files.repository");
+const fs_1 = require("fs");
+const config_service_1 = require("../core/services/config.service");
 cloudinary.v2.uploader.upload = util_1.promisify(cloudinary.v2.uploader.upload);
 const unlink = util_1.promisify(fs.unlink);
 let FilesService = class FilesService {
-    constructor(filesRepository) {
+    constructor(filesRepository, configService) {
         this.filesRepository = filesRepository;
+        this.configService = configService;
         this.cloudinary = cloudinary;
         this.cloudinary.config({
-            cloud_name: config_1.CLOUDINARY_CLOUD_NAME,
-            api_key: config_1.CLOUDINARY_API_KEY,
-            api_secret: config_1.CLOUDINARY_API_SECRET,
+            cloud_name: configService.get('CLOUDINARY_CLOUD_NAME'),
+            api_key: configService.get('CLOUDINARY_API_KEY'),
+            api_secret: configService.get('CLOUDINARY_API_SECRET'),
         });
     }
     findOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.filesRepository.findOne(id);
+            return this.filesRepository.findById(id);
         });
     }
-    uploadFile(file) {
+    saveFile(filename, stream) {
         return __awaiter(this, void 0, void 0, function* () {
-            const path = path_1.join(config_1.FILES_UPLOAD_FOLDER, file.filename);
+            return new Promise((resolve, reject) => {
+                const path = path_1.join(this.configService.getFilesFolder(), filename);
+                const writeStream = fs_1.createWriteStream(path);
+                stream.pipe(writeStream);
+                stream.on('end', () => {
+                    resolve(path);
+                });
+                stream.on('error', err => {
+                    reject(err);
+                });
+            });
+        });
+    }
+    uploadFile(file, userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const path = yield this.saveFile(file.filename, file.createReadStream());
             const { url, public_id } = yield this.cloudinary.v2.uploader.upload(path);
             yield unlink(path);
-            const newFile = Object.assign({}, new file_entity_1.File(), { url, publicId: public_id });
-            return yield this.filesRepository.save(newFile);
+            const newFile = {
+                url,
+                publicId: public_id,
+                user: userId,
+            };
+            return this.filesRepository.save(newFile);
         });
     }
-    uploadFilesList(files) {
+    uploadFilesList(files, userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const uploadedFiles = yield Promise.all(files.map(file => this.cloudinary.v2.uploader.upload(path_1.join(config_1.FILES_UPLOAD_FOLDER, file.filename))));
-            return yield this.filesRepository.save(uploadedFiles.map(({ url, public_id }) => {
-                return Object.assign({}, new file_entity_1.File(), { url, publicId: public_id });
-            }));
+            const uploadedFiles = yield Promise.all(files.map((file) => __awaiter(this, void 0, void 0, function* () {
+                const path = yield this.saveFile(file.filename, file.createReadStream());
+                const { url, public_id } = yield this.cloudinary.v2.uploader.upload(path);
+                yield unlink(path);
+                return { url, public_id };
+            })));
+            return Promise.all(uploadedFiles.map(({ url, public_id }) => this.filesRepository.save({
+                url,
+                publicId: public_id,
+                user: userId,
+            })));
         });
     }
     deleteOne(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const file = yield this.filesRepository.findOne(id);
+            const file = yield this.filesRepository.findById(id);
             if (!file) {
                 throw new common_1.NotFoundException(messages_enum_1.Messages.FILE_NOT_FOUND);
             }
             yield this.cloudinary.v2.uploader.destroy(file.publicId);
-            yield this.filesRepository.delete({ id });
+            yield this.filesRepository.deleteById(id);
         });
     }
 };
 FilesService = __decorate([
-    __param(0, typeorm_1.InjectRepository(file_entity_1.File)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    common_1.Injectable(),
+    __metadata("design:paramtypes", [files_repository_1.FilesRepository,
+        config_service_1.ConfigService])
 ], FilesService);
 exports.FilesService = FilesService;
 //# sourceMappingURL=files.service.js.map

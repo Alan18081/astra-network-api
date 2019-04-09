@@ -1,111 +1,108 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Note } from './note.entity';
-import {FindManyOptions, Repository} from 'typeorm';
-import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
-import { User } from '../users/user.entity';
+import {Injectable, NotFoundException} from '@nestjs/common';
+import { Note } from './interfaces/note.interface';
+import { NotesRepository } from './notes.repository';
 import { FindNotesListDto } from './dto/find-notes-list.dto';
-import { FindOneNoteDto } from './dto/find-one-note.dto';
-import { UpdateNoteDto } from './dto/update-note.dto';
 import { CreateNoteDto } from './dto/create-note.dto';
-import { PaginationDto } from '../core/dto/pagination.dto';
+import { UpdateNoteDto } from './dto/update-note.dto';
+import {AddCommentDto} from './dto/add-comment.dto';
+import {Messages} from '../../helpers/enums/messages.enum';
+import {Comment} from './interfaces/comment.interface';
+import {AddAnswerDto} from './dto/add-answer.dto';
+import {Answer} from './interfaces/answer.interface';
+import {RemoveCommentDto} from './dto/remove-comment.dto';
 
 @Injectable()
 export class NotesService {
   constructor(
-    @InjectRepository(Note)
-    private readonly notesRepository: Repository<Note>,
+    private readonly notesRepository: NotesRepository,
   ) {}
 
-  async findMany(query: FindNotesListDto): Promise<Note[]> {
-    const options: FindManyOptions<Note> = {
-      where: {},
-      relations: ['user'],
+  private async checkIsNoteExists(id: string): Promise<void> {
+    const note = await this.findOne(id);
+    if(!note) {
+      throw new NotFoundException(Messages.NOTES_NOTE_IS_NOT_FOUND);
+    }
+  }
+
+  async findMany({ ids, ...rest }: FindNotesListDto, skip: number, limit: number): Promise<Note[]> {
+    if(ids) {
+      return this.notesRepository.findByIds(ids, skip, limit);
+    }
+    return this.notesRepository.findManyWithFilter(rest, skip, limit);
+  }
+
+  async findOne(id: string): Promise<Note | null> {
+    return this.notesRepository.findById(id);
+  }
+
+  async createOne({ title, description }: CreateNoteDto, userId: string): Promise<Note> {
+    const note: Partial<Note> = {
+        title,
+        description,
+        author: userId,
     };
 
-    if (query.userId) {
-      options.where = {
-        userId: query.userId,
-      };
-    }
-
-    options.relations = this.getRelations(query);
-    return await this.notesRepository.find(options);
+    return this.notesRepository.save(note);
   }
 
-  async findManyByIds(query: FindNotesListDto): Promise<Note[]> {
-    const relations = this.getRelations(query);
-    return await this.notesRepository.findByIds(query.ids, { relations });
+  async updateById(id: string, payload: UpdateNoteDto): Promise<Note | null> {
+    return this.notesRepository.updateById(id, payload);
   }
 
-  private getRelations(query: FindNotesListDto | FindOneNoteDto): string[] {
-    const relations: string[] = ['user'];
-
-    if (query.includeFiles) {
-      relations.push('files');
-    }
-
-    return relations;
+  async deleteById(id: string): Promise<void> {
+    await this.notesRepository.deleteById(id);
   }
 
-  async findManyWithPagination(query: FindNotesListDto & Required<PaginationDto>): Promise<PaginatedResult<Note>> {
-    const options: FindManyOptions<Note> = {
-      where: {},
-      relations: [],
-      skip: (query.page - 1) * query.limit,
-      take: query.limit,
+  async addComment(userId: string, { text, noteId }: AddCommentDto): Promise<Note | null> {
+    await this.checkIsNoteExists(noteId);
+
+    const newComment: Partial<Comment> = {
+      author: userId,
+      createdAt: new Date(),
+      text,
+      answers: []
     };
 
-    if (query.userId) {
-      options.where = {
-        userId: query.userId,
-      };
+    return this.notesRepository.addComment(noteId, newComment);
+  }
+
+  async removeComment(userId: string, { noteId, commentId }: RemoveCommentDto): Promise<Note | null> {
+    return this.notesRepository.removeComment(noteId, commentId);
+  }
+
+  async addAnswerToComment(userId: string, { text, noteId, commentId }: AddAnswerDto): Promise<Note | null> {
+    const noteWithComment = await this.notesRepository.findOneByIdAndCommentId(noteId, commentId);
+    if(!noteWithComment) {
+      throw new NotFoundException(Messages.NOTES_NOTE_WITH_PROVIDED_COMMENT_IS_NOT_FOUND);
     }
 
-    options.relations = this.getRelations(query);
-
-    const [data, totalCount] = await this.notesRepository.findAndCount(
-      options,
-    );
-
-    return {
-      page: query.page,
-      itemsPerPage: query.limit,
-      totalCount,
-      data,
+    const newAnswer: Partial<Answer> = {
+      author: userId,
+      createdAt: new Date(),
+      text
     };
+
+    return this.notesRepository.addAnswerToComment(noteId, commentId, newAnswer);
   }
 
-  async findOne(id: number, query: FindOneNoteDto): Promise<Note | undefined> {
-    const relations = this.getRelations(query);
-
-    return await this.notesRepository.findOne({
-      where: {
-        id,
-      },
-      relations,
-    });
+  async addLike(id: string, userId: string): Promise<Note | null> {
+     await this.checkIsNoteExists(id);
+     return this.notesRepository.addLikeToNote(id, userId);
   }
 
-  async createOne(payload: CreateNoteDto, userId: number): Promise<Note | undefined> {
-    const note = new Note();
-
-    note.title = payload.title;
-    note.description = payload.description;
-    note.createdAt = new Date();
-    note.user = { id: userId } as User;
-
-    await this.notesRepository.save(note);
-    return await this.findOne(note.id, { includeFiles: true });
+  async removeLike(id: string, userId: string): Promise<Note | null> {
+     await this.checkIsNoteExists(id);
+     return this.notesRepository.removeLikeFromNote(id, userId);
   }
 
-  async updateOne(id: number, payload: UpdateNoteDto): Promise<Note | undefined> {
-    await this.notesRepository.update(id, payload);
-
-    return await this.findOne(id, { includeFiles: true });
+  async addDislike(id: string, userId: string): Promise<Note | null> {
+    await this.checkIsNoteExists(id);
+    return this.notesRepository.addDislikeToNote(id, userId);
   }
 
-  async deleteOne(id: number): Promise<void> {
-    await this.notesRepository.delete(id);
+  async removeDislike(id: string, userId: string): Promise<Note | null> {
+    await this.checkIsNoteExists(id);
+    return this.notesRepository.removeDislikeFromNote(id, userId);
   }
+
 }

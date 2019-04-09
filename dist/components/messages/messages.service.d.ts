@@ -1,13 +1,15 @@
-import { Message } from './message.entity';
-import { Repository } from 'typeorm';
 import { UpdateMessageDto } from './dto/update-message.dto';
-import { FindOneMessageDto } from './dto/find-one-message.dto';
+import { MessagesRepository } from './messages.repository';
+import { Message } from './message.interface';
+import { AddMessageDto } from './dto/add-message.dto';
+import { MessageInfo } from './interfaces/message-info.interface';
 export declare class MessagesService {
     private readonly messagesRepository;
-    constructor(messagesRepository: Repository<Message>);
-    private getRelations;
-    findOne(id: number, query: FindOneMessageDto): Promise<Message | undefined>;
-    createOne(userId: number, chatId: number, text: string): Promise<Message | undefined>;
-    updateOne(payload: UpdateMessageDto): Promise<Message | undefined>;
-    deleteOne(id: number): Promise<void>;
+    constructor(messagesRepository: MessagesRepository);
+    isMessageOwner(id: string, userId: string): Promise<Message>;
+    findManyByChatId(chatId: string, skip: number, limit: number): Promise<Message[]>;
+    findById(id: string): Promise<Message | null>;
+    createOne(userId: string, { text, chatId }: AddMessageDto): Promise<Message>;
+    updateById(id: string, payload: UpdateMessageDto, userId: string): Promise<Message | null>;
+    deleteById(id: string, userId: string): Promise<MessageInfo>;
 }

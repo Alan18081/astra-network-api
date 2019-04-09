@@ -24,6 +24,7 @@ __decorate([
 __decorate([
     class_validator_1.ArrayNotEmpty(),
     class_validator_1.IsOptional(),
+    class_validator_1.IsMongoId({ each: true }),
     __metadata("design:type", Array)
 ], CreateNoteDto.prototype, "fileIds", void 0);
 exports.CreateNoteDto = CreateNoteDto;

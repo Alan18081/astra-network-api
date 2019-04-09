@@ -17,8 +17,8 @@ __decorate([
     __metadata("design:type", String)
 ], AddMessageDto.prototype, "text", void 0);
 __decorate([
-    class_validator_1.IsNumber(),
-    __metadata("design:type", Number)
+    class_validator_1.IsMongoId(),
+    __metadata("design:type", String)
 ], AddMessageDto.prototype, "chatId", void 0);
 exports.AddMessageDto = AddMessageDto;
 //# sourceMappingURL=add-message.dto.js.map

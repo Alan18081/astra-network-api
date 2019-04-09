@@ -12,11 +12,11 @@ var PaginationDto = /** @class */ (function () {
     }
     __decorate([
         class_validator_1.IsOptional(),
-        class_validator_1.IsNumberString()
-    ], PaginationDto.prototype, "page", void 0);
+        class_validator_1.IsNumber()
+    ], PaginationDto.prototype, "skip", void 0);
     __decorate([
         class_validator_1.IsOptional(),
-        class_validator_1.IsNumberString()
+        class_validator_1.IsNumber()
     ], PaginationDto.prototype, "limit", void 0);
     return PaginationDto;
 }());

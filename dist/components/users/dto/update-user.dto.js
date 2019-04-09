@@ -37,5 +37,11 @@ __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
 ], UpdateUserDto.prototype, "email", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsMongoId(),
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", String)
+], UpdateUserDto.prototype, "avatar", void 0);
 exports.UpdateUserDto = UpdateUserDto;
 //# sourceMappingURL=update-user.dto.js.map

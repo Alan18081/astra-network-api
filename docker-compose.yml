@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    container_name: astra_network_db
+    hostname: astra_network_db
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+  app:
+    container_name: astra_network_app
+    hostname: astra_network_app
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    env_file: "./local.env"
+    volumes:
+      - ./src:/var/www/astra_network/src
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+
+volumes:
+  astra_network:
+

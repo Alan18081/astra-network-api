@@ -10,23 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
-const pagination_dto_1 = require("../../core/dto/pagination.dto");
-class FindNotesListDto extends pagination_dto_1.PaginationDto {
+class FindNotesListDto {
 }
 __decorate([
     class_validator_1.IsOptional(),
     class_validator_1.ArrayNotEmpty(),
+    class_validator_1.IsMongoId({ each: true }),
     __metadata("design:type", Array)
 ], FindNotesListDto.prototype, "ids", void 0);
 __decorate([
-    class_validator_1.IsBooleanString(),
     class_validator_1.IsOptional(),
-    __metadata("design:type", Boolean)
-], FindNotesListDto.prototype, "includeFiles", void 0);
+    class_validator_1.IsString(),
+    __metadata("design:type", String)
+], FindNotesListDto.prototype, "query", void 0);
 __decorate([
     class_validator_1.IsOptional(),
-    class_validator_1.IsNumberString(),
-    __metadata("design:type", Boolean)
-], FindNotesListDto.prototype, "userId", void 0);
+    class_validator_1.IsDateString(),
+    __metadata("design:type", String)
+], FindNotesListDto.prototype, "dateFrom", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsDateString(),
+    __metadata("design:type", String)
+], FindNotesListDto.prototype, "dateTo", void 0);
 exports.FindNotesListDto = FindNotesListDto;
 //# sourceMappingURL=find-notes-list.dto.js.map

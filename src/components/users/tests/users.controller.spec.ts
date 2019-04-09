@@ -1,16 +1,12 @@
 import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { UsersController } from '../users.controller';
 import { UsersService } from '../users.service';
-import { User } from '../user.entity';
 import { CoreModule } from '../../core/core.module';
-import { Repository } from 'typeorm';
 import { PaginatedResult } from '../../../helpers/interfaces/paginated-result.interface';
 import { PaginationDto } from '../../core/dto/pagination.dto';
 import {CreateUserDto} from '../dto/create-user.dto';
 import {BadRequestException} from '@nestjs/common';
 import {Messages} from '../../../helpers/enums/messages.enum';
-import { UsersRepository } from './users.repository';
 
 describe('UsersController', () => {
   let usersController, usersService;

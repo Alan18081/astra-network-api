@@ -1,0 +1,34 @@
+scalar Date
+
+type Message {
+    _id: ID!
+    text: String!
+    author: User!
+    createdAt: Date!
+}
+
+type MessageInfo {
+    _id: ID!
+    chatId: ID!
+}
+
+type Mutation {
+    sendMessage(input: AddMessageInput!): Message!
+    updateMessage(id: ID!, input: MessageInput!): Message!
+    deleteMessage(id: ID!): MessageInfo!
+}
+
+type Subscription {
+    messageAdded(chatId: ID!): Message!
+    messageUpdated(chatId: ID!): Message!
+    messageDeleted(chatId: ID!): MessageInfo!
+}
+
+input AddMessageInput {
+    text: String!
+    chatId: ID!
+}
+
+input MessageInput {
+    text: String!
+}

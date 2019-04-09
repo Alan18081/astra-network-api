@@ -8,18 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const messages_service_1 = require("./messages.service");
-const typeorm_1 = require("@nestjs/typeorm");
-const message_entity_1 = require("./message.entity");
+const mongoose_1 = require("@nestjs/mongoose");
+const message_schema_1 = require("./message.schema");
+const messages_repository_1 = require("./messages.repository");
+const messages_resolver_1 = require("../entity-resolvers/resolvers/messages.resolver");
+const core_module_1 = require("../core/core.module");
+const chats_module_1 = require("../chats/chats.module");
 let MessagesModule = class MessagesModule {
 };
 MessagesModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([message_entity_1.Message]),
+            core_module_1.CoreModule,
+            mongoose_1.MongooseModule.forFeature([{ name: 'Message', schema: message_schema_1.MessageSchema }]),
+            chats_module_1.ChatsModule
         ],
         controllers: [],
         exports: [messages_service_1.MessagesService],
-        providers: [messages_service_1.MessagesService],
+        providers: [messages_service_1.MessagesService, messages_repository_1.MessagesRepository, messages_resolver_1.MessagesResolver],
     })
 ], MessagesModule);
 exports.MessagesModule = MessagesModule;

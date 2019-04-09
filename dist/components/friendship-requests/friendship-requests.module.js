@@ -7,22 +7,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
+const mongoose_1 = require("@nestjs/mongoose");
 const users_module_1 = require("../users/users.module");
-const friendship_requests_gateway_1 = require("./friendship-requests.gateway");
 const friendship_requests_service_1 = require("./friendship-requests.service");
-const friendship_request_entity_1 = require("./friendship-request.entity");
 const core_module_1 = require("../core/core.module");
+const friendship_request_schema_1 = require("./friendship-request.schema");
+const friendship_requests_repository_1 = require("./friendship-requests.repository");
+const friendship_requests_resolver_1 = require("../entity-resolvers/resolvers/friendship-requests.resolver");
 let FriendshipRequestsModule = class FriendshipRequestsModule {
 };
 FriendshipRequestsModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([friendship_request_entity_1.FriendshipRequest]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'FriendshipRequest', schema: friendship_request_schema_1.FriendshipRequestSchema }]),
             users_module_1.UsersModule,
             core_module_1.CoreModule,
         ],
-        providers: [friendship_requests_gateway_1.FriendshipRequestsGateway, friendship_requests_service_1.FriendshipRequestsService]
+        providers: [
+            friendship_requests_service_1.FriendshipRequestsService,
+            friendship_requests_repository_1.FriendshipRequestsRepository,
+            friendship_requests_resolver_1.FriendshipRequestsResolver
+        ],
+        exports: [
+            friendship_requests_service_1.FriendshipRequestsService
+        ]
     })
 ], FriendshipRequestsModule);
 exports.FriendshipRequestsModule = FriendshipRequestsModule;

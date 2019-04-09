@@ -1,0 +1,58 @@
+type Note {
+    _id: ID!
+    title: String!
+    description: String
+    files: [File!]
+    comments: [Comment]!
+    author: User!
+    likes: Int!
+    dislikes: Int!
+}
+
+type Query {
+    notesList(input: FindManyNotesInput!, skip: Int, limit: Int): [Note!]!
+    note(id: ID!): Note
+}
+
+type Mutation {
+    createNote(input: CreateNoteInput!): Note!
+    updateNote(id: ID!, input: UpdateNoteInput!): Note!
+    deleteNote(id: ID!): Boolean
+    addLikeToNote(id: ID!): Note!
+    removeLikeFromNote(id: ID!): Note!
+    addDislikeToNote(id: ID!): Note!
+    removeDislikeFromNote(id: ID!): Note!
+}
+
+type Subscription {
+    noteAdded: Note!
+    noteUpdated(id: ID!): Note
+    noteDeleted(id: ID!): ID
+}
+
+input FindManyNotesInput {
+    ids: [ID!]
+    skip: Int
+    limit: Int
+}
+
+input AddCommentInput {
+    noteId: ID!
+    text: ID!
+}
+
+input AddCommentAnswerInput {
+    noteId: ID!
+    commentId: ID!
+    text: String!
+}
+
+input CreateNoteInput {
+    title: String!
+    description: String
+}
+
+input UpdateNoteInput {
+    title: String
+    description: String
+}

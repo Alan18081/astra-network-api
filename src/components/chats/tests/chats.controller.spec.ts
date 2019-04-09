@@ -6,8 +6,8 @@ import { ChatsRepository } from './chats.repository';
 import { Chat } from '../chat.entity';
 import { ChatsService } from '../chats.service';
 import { ChatsController } from '../chats.controller';
-import { CreateChatDto } from '../dto/http/create-chat.dto';
-import { FindChatsListDto } from '../dto/http/find-chats-list.dto';
+import { CreateChatDto } from '../dto/create-chat.dto';
+import { FindChatsListDto } from '../dto/find-chats-list.dto';
 import { UsersService } from '../../users/users.service';
 import { User } from '../../users/user.entity';
 

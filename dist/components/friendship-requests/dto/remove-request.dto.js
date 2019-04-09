@@ -13,12 +13,12 @@ const class_validator_1 = require("class-validator");
 class RemoveRequestDto {
 }
 __decorate([
-    class_validator_1.IsInt(),
-    __metadata("design:type", Number)
+    class_validator_1.IsMongoId(),
+    __metadata("design:type", String)
 ], RemoveRequestDto.prototype, "id", void 0);
 __decorate([
-    class_validator_1.IsInt(),
-    __metadata("design:type", Number)
+    class_validator_1.IsMongoId(),
+    __metadata("design:type", String)
 ], RemoveRequestDto.prototype, "receiverId", void 0);
 exports.RemoveRequestDto = RemoveRequestDto;
 //# sourceMappingURL=remove-request.dto.js.map

@@ -1,8 +1,8 @@
-import { IsInt } from 'class-validator';
+import { IsMongoId } from 'class-validator';
 
 export class AcceptRequestDto {
 
-  @IsInt()
-  id: number;
+  @IsMongoId()
+  id: string;
 
 }
