@@ -6,568 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d9b76ef-6374-485e-a8fa-a509f25f71bc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile.dev" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/local.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/dto/exchangeToken.dto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/dto/login.dto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/dto/send-phone-verification-code.dto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/dto/send-phone-verification-code.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/dto/verify-phone-verification-code.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/tests/auth.controller.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/auth/tests/auth.service.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chats/chat.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chats/chat.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chats/chats.repository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chats/dto/add-user-to-chat.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chats/dto/create-chat.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chats/dto/find-chats-list.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chats/dto/remove-user-from-chat.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chats/interfaces/chat-user-info.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/chats/interfaces/relations.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/core/base.repository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/core/scalars/date.scalar.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/core/services/config.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/core/services/phone-verification.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/core/services/publisher.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/custom-jwt/custom-jwt.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/entity-resolvers.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/answers.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/auth.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/chats.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/comments.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/files.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/friendship-requests.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/messages.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/notes.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/users.resolver.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/auth.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/chats.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/comments.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/files.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/friendship-requests.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/messages.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/notes.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/entity-resolvers/types/users.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/files/file.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/files/file.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/files/files.repository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/files/interfaces/upload.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/dto/create-request.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.repository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/friendship-requests/interfaces/friendship-request-info.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/messages/interfaces/message-info.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/messages/message.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/messages/message.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/messages/messages.repository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/dto/add-answer.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/dto/add-comment.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/dto/remove-comment.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/interfaces/answer.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/interfaces/comment.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/interfaces/note.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/notes.repository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/schemas/answer.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/schemas/comment.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/notes/schemas/note.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-token.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-token.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.repository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/user-hashes/user-hash.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/user-hashes/user-hash.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/user-hashes/user-hashes.repository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/dto/change-password.dto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/dto/change-password.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/user.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/user.schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/users/users.repository.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/enums/events.enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/enums/gender.enum.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/enums/gender.enum.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/enums/hash-types.enum.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/enums/template-types.enum.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/guards/auth.guard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/handlers/id-equals.filter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/start.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.actions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.actions.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.gateway.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.gateway.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.gateway.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/auth.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/change-password.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/change-password.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/change-password.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/exchangeToken.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/exchangeToken.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/exchangeToken.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/login.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/login.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/login.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/reset-password.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/reset-password.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/reset-password.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/set-new-password.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/set-new-password.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/dto/set-new-password.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/interfaces/jwt-payload.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/interfaces/jwt-payload.interface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/interfaces/jwt-payload.interface.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/interfaces/jwt-response.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/interfaces/jwt-response.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/interfaces/jwt-response.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/strategies/google.strategy.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/strategies/google.strategy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/strategies/google.strategy.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/strategies/jwt.strategy.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/strategies/jwt.strategy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/auth/strategies/jwt.strategy.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chat.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chat.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chat.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.actions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.actions.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.gateway.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.gateway.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.gateway.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/chats.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/create-chat.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/create-chat.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/create-chat.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/find-chats-list.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/find-chats-list.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/find-chats-list.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/find-one-chat.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/find-one-chat.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/find-one-chat.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/update-chat.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/update-chat.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/http/update-chat.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/sockets/add-new-user.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/sockets/add-new-user.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/sockets/add-new-user.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/sockets/remove-user.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/sockets/remove-user.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/dto/sockets/remove-user.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/interfaces/socket.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/interfaces/socket.interface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/interfaces/socket.interface.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/tests/chats.repository.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/tests/chats.repository.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/chats/tests/chats.repository.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/comment.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/comment.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/comment.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/comments.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/comments.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/comments.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/comments.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/comments.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/comments.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/dto/create-comment.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/dto/create-comment.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/dto/create-comment.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/dto/update-comment.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/dto/update-comment.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/comments/dto/update-comment.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/base-note.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/base-note.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/base-note.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/base.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/base.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/base.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/core.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/core.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/core.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/dto/pagination.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/dto/pagination.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/dto/pagination.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/clients-store.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/clients-store.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/clients-store.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/email-sending.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/email-sending.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/email-sending.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/email-templates.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/email-templates.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/email-templates.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/hash.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/hash.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/core/services/hash.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/file.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/file.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/file.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/files/files.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/dto/accept-request.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/dto/accept-request.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/dto/accept-request.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/dto/remove-request.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/dto/remove-request.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/dto/remove-request.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/dto/send-request.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/dto/send-request.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/dto/send-request.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-request.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-request.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-request.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests-type.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests-type.enum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests-type.enum.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.actions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.actions.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.gateway.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.gateway.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.gateway.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/friendship-requests/friendship-requests.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/add-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/add-message.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/add-message.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/find-one-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/find-one-message.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/find-one-message.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/remove-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/remove-message.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/remove-message.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/update-message.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/update-message.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/dto/update-message.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/message.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/message.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/message.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.actions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.actions.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/messages/messages.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/create-note.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/create-note.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/create-note.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/find-notes-list.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/find-notes-list.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/find-notes-list.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/find-one-note.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/find-one-note.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/find-one-note.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/update-note.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/update-note.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/dto/update-note.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/note.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/note.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/note.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.actions.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.actions.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.gateway.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.gateway.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.gateway.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/notes.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/tests/notes.repository.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/tests/notes.repository.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/notes/tests/notes.repository.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/interfaces/create-refresh-token.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/interfaces/create-refresh-token.interface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/interfaces/create-refresh-token.interface.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/refresh-token.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/refresh-token.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/refresh-token.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/refresh-tokens.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/refresh-tokens.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/refresh-tokens.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/refresh-tokens.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/refresh-tokens.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/refresh-tokens/refresh-tokens.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/user-hashes/user-hash.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/user-hashes/user-hash.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/user-hashes/user-hash.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/user-hashes/user-hashes.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/user-hashes/user-hashes.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/user-hashes/user-hashes.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/user-hashes/user-hashes.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/user-hashes/user-hashes.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/user-hashes/user-hashes.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/create-user.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/create-user.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/create-user.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/find-users-list.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/find-users-list.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/find-users-list.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/update-user.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/update-user.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/dto/update-user.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/interfaces/google-user-data.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/interfaces/google-user-data.interface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/interfaces/google-user-data.interface.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/tests/users.repository.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/tests/users.repository.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/tests/users.repository.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/user.entity.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/user.entity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/user.entity.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/components/users/users.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/coludinary.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/coludinary.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/coludinary.config.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/common.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/common.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/common.config.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/database.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/database.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/database.config.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/emails.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/emails.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/emails.config.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/google.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/google.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/google.config.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/jwt.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/jwt.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/jwt.config.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/orm.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/orm.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/orm.config.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/stripe.config.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/stripe.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/config/stripe.config.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/card-validators/card-cvv.validator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/card-validators/card-cvv.validator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/card-validators/card-cvv.validator.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/card-validators/card-expires-in.validator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/card-validators/card-expires-in.validator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/card-validators/card-expires-in.validator.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/decorators/user.decorator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/decorators/user.decorator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/decorators/user.decorator.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/email-titles.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/email-titles.enum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/email-titles.enum.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/hash-types.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/hash-types.enum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/hash-types.enum.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/messages.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/messages.enum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/messages.enum.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/roles.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/roles.enum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/roles.enum.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/template-types.enum.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/template-types.enum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/enums/template-types.enum.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/functions/get-socket-id-with-namespace.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/functions/get-socket-id-with-namespace.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/functions/get-socket-id-with-namespace.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/guards/is-product-owner.guard.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/guards/is-product-owner.guard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/guards/is-product-owner.guard.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/interceptors/user.interceptor.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/interceptors/user.interceptor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/interceptors/user.interceptor.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/interfaces/base-service.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/interfaces/base-service.interface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/interfaces/base-service.interface.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/interfaces/paginated-result.interface.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/interfaces/paginated-result.interface.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/interfaces/paginated-result.interface.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/test-helpers/mock-repository.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/test-helpers/mock-repository.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/test-helpers/mock-repository.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/ws/ws-errors.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/ws/ws-errors.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/helpers/ws/ws-errors.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/elect" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodemon-debug.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodemon-debug.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodemon.json" beforeDir="false" afterPath="$PROJECT_DIR$/nodemon.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.actions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.gateway.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/auth.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/dto/change-password.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/dto/reset-password.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/dto/set-new-password.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/strategies/google.strategy.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/strategies/jwt.strategy.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chat.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.actions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.gateway.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/chats.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/chats.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/dto/http/create-chat.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/dto/http/find-chats-list.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/dto/http/find-one-chat.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/dto/find-one-chat.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/dto/http/update-chat.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/dto/update-chat.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/dto/sockets/add-new-user.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/dto/sockets/remove-user.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/interfaces/socket.interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/refresh-tokens/interfaces/create-refresh-token.interface.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/interfaces/socket.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/tests/chats.controller.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/tests/chats.controller.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/tests/chats.repository.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chats/tests/chats.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chats/tests/chats.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/comments/comment.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/comments/comments.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/comments/comments.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/comments/dto/create-comment.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/comments/dto/update-comment.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/base-note.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/base.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/core/core.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/dto/pagination.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/dto/pagination.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/core/dto/pagination.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/services/clients-store.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/services/email-sending.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/core/services/email-templates.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/file.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/files.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/files/files.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/files/files.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/dto/accept-request.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/dto/accept-request.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/dto/remove-request.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/dto/remove-request.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/dto/send-request.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/dto/send-request.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-request.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.actions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.gateway.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/dto/add-message.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/dto/add-message.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/dto/update-message.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/dto/update-message.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/message.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.actions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/messages.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/messages/messages.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/messages/messages.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/dto/create-note.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/dto/create-note.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/dto/find-notes-list.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/dto/find-notes-list.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/note.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.actions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.controller.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.gateway.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/notes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/notes/notes.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/notes/tests/notes.repository.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/refresh-tokens/interfaces/create-refresh-token.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/refresh-tokens/interfaces/create-refresh-token.interface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-token.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user-hashes/user-hash.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user-hashes/user-hashes.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-hashes/user-hashes.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/user-hashes/user-hashes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user-hashes/user-hashes.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/dto/create-user.dto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/dto/create-user.dto.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/dto/create-user.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/dto/find-users-list.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/dto/find-users-list.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/dto/update-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/dto/update-user.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/interfaces/google-user-data.interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/interfaces/jwt-response.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/interfaces/google-user-data.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/tests/users.controller.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/tests/users.controller.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/tests/users.repository.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/user.entity.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.resolver.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/users.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/coludinary.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/common.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/database.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/emails.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/google.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/jwt.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/orm.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/stripe.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/card-validators/card-cvv.validator.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/card-validators/card-expires-in.validator.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/decorators/user.decorator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/decorators/user.decorator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/enums/messages.enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/enums/messages.enum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/enums/messages.enum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/enums/messages.enum.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/guards/is-product-owner.guard.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/interceptors/user.interceptor.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/interfaces/base-service.interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/interfaces/jwt-payload.interface.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/interfaces/base-service.interface.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/test-helpers/mock-repository.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/ws/ws-errors.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/email-verification.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/templates/reset-password.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/upload/28c19beb60fbec26976ca94c0fd5172b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/upload/b85b21bcaaee4e7977602ebce89c869b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/chats.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/jest-e2e.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing-clients/client-1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing-clients/client-2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -595,16 +34,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="118">
+              <first_editor relative-caret-position="560">
                 <caret line="20" selection-start-line="20" selection-end-line="20" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".dockerignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.dockerignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="refresh-tokens.repository.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.repository.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.repository.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/users/users.repository.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="31" column="15" lean-forward="true" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -645,7 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/answers.resolver.ts" />
         <option value="$PROJECT_DIR$/src/components/users/dto/find-many-users-list.dto.ts" />
         <option value="$PROJECT_DIR$/src/components/friendship-requests/friendship-requests.repository.ts" />
         <option value="$PROJECT_DIR$/src/components/entity-resolvers/resolvers/users.resolver.ts" />
@@ -696,6 +178,7 @@
         <option value="$PROJECT_DIR$/src/components/auth/auth.module.ts" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/components/users/users.service.ts" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -750,33 +233,6 @@
               <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
               <item name="astra-store" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="custom-jwt" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="refresh-tokens" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="astra-store" type="b2602c69:ProjectViewProjectNode" />
-              <item name="astra-store" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -960,7 +416,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="392249000" />
+    <option name="totallyTimeSpent" value="392506000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
@@ -972,9 +428,9 @@
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32979852" />
-      <window_info active="true" anchor="bottom" auto_hide="true" id="Terminal" order="10" visible="true" weight="0.5981112" />
+      <window_info anchor="bottom" auto_hide="true" id="Terminal" order="10" weight="0.5981112" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.34631804" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.34631804" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" weight="0.32979852" />
       <window_info anchor="right" id="Database" order="3" weight="0.32977587" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32942432" />
@@ -1095,14 +551,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/ws/node_modules/@types/node/fs.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="1702" column="13" selection-start-line="1702" selection-start-column="13" selection-end-line="1702" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/common.config.ts" />
     <entry file="file://$PROJECT_DIR$/src/components/entity-resolvers/resolvers/notes.resolver.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-252" />
@@ -1257,16 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.dockerignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
@@ -1331,28 +769,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/users/users.repository.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/users/users.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="12" column="49" lean-forward="true" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
           <folding>
             <element signature="e#0#102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.repository.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1387,13 +809,54 @@
     <entry file="file://$PROJECT_DIR$/src/components/user-hashes/user-hash.schema.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/refresh-tokens/refresh-token.interface.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/refresh-tokens/refresh-tokens.repository.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/users/users.repository.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="31" column="15" lean-forward="true" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="118">
+          <first_editor relative-caret-position="560">
             <caret line="20" selection-start-line="20" selection-end-line="20" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.dockerignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
         </state>
       </provider>
     </entry>
