@@ -1,33 +1,17 @@
 import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
-import { UsersModule } from './components/users/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ORM_CONFIG } from './config';
-import { AuthModule } from './components/auth/auth.module';
-import { FilesModule } from './components/files/files.module';
-import { MessagesModule } from './components/messages/messages.module';
-import { ChatsModule } from './components/chats/chats.module';
-import { NotesModule } from './components/notes/notes.module';
-import { RefreshTokensModule } from './components/refresh-tokens/refresh-tokens.module';
-import { AppGateway } from './app.gateway';
-import { FriendshipRequestsModule } from './components/friendship-requests/friendship-requests.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CoreModule } from './components/core/core.module';
+import { EntityResolversModule } from './components/entity-resolvers/entity-resolvers.module';
+import { ConfigService } from './components/core/services/config.service';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({
-      typePaths: ['./**/*.graphql'],
+    MongooseModule.forRootAsync({
+      useFactory: (config: ConfigService) => ({  uri: config.get('DB_URL'), useMongoClient: true }),
+      inject: [ConfigService]
     }),
-    TypeOrmModule.forRoot(ORM_CONFIG),
-    UsersModule,
-    AuthModule,
-    FilesModule,
-    MessagesModule,
-    ChatsModule,
-    NotesModule,
-    RefreshTokensModule,
-    FriendshipRequestsModule
+    EntityResolversModule,
+    CoreModule,
   ],
-  controllers: [],
-  providers: [AppGateway],
 })
 export class AppModule {}

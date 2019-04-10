@@ -1,18 +1,22 @@
-import { ArrayNotEmpty, IsBooleanString, IsNumberString, IsOptional } from 'class-validator';
-import { PaginationDto } from '../../core/dto/pagination.dto';
+import { ArrayNotEmpty, IsMongoId, IsOptional, IsString, IsDateString } from 'class-validator';
 
-export class FindNotesListDto extends PaginationDto {
+export class FindNotesListDto {
 
   @IsOptional()
   @ArrayNotEmpty()
-  ids: number[];
-
-  @IsBooleanString()
-  @IsOptional()
-  includeFiles?: boolean;
+  @IsMongoId({ each: true })
+  ids?: string[];
 
   @IsOptional()
-  @IsNumberString()
-  userId?: boolean;
+  @IsString()
+  query: string;
+
+  @IsOptional()
+  @IsDateString()
+  dateFrom: string;
+
+  @IsOptional()
+  @IsDateString()
+  dateTo: string;
 
 }

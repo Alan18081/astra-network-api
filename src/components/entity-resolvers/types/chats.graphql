@@ -1,0 +1,50 @@
+scalar Date
+
+type Chat {
+    _id: ID!
+    admin: User!
+    name: String!
+    createdAt: Date
+    users: [User!]
+    lastMessage: Message
+    messages(skip: Int, limit: Int): [Message!]!
+}
+
+type Query {
+    chatsList(input: FindManyChatsInput): [Chat!]!
+    chat(id: ID!): Chat
+}
+
+type Mutation {
+    createChat(input: CreateChatInput): Chat!
+    updateChat(id: ID!, input: CreateChatInput): Chat!
+    deleteChat(id: ID!): Boolean
+    addUserToChat(input: AddUserToChatInput): Chat!
+    removeUserFromChat(input: RemoveUserFromChatInput): Chat!
+    attendChat(chatId: ID!): Chat!
+    leaveChat(chatId: ID!): Boolean!
+}
+
+type Subscription {
+    userAddedToChat(chatId: ID!): User!
+    userRemovedFromChat(chatId: ID!): User!
+}
+
+input FindManyChatsInput {
+    ids: [ID!]
+}
+
+input CreateChatInput {
+    name: String!
+    userIds: [ID!]
+}
+
+input AddUserToChatInput {
+    chatId: ID!
+    userId: ID!
+}
+
+input RemoveUserFromChatInput {
+    chatId: ID!
+    userId: ID!
+}

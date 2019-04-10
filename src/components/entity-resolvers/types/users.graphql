@@ -1,0 +1,61 @@
+type User {
+    _id: String!
+    firstName: String!
+    lastName: String!
+    email: String!
+    avatar: File
+    age: Int
+    phoneVerified: Boolean
+    online: Boolean
+    friends: [User!]!
+}
+
+type Query {
+    usersList(input: FindManyUsersInput!): [User!]!
+    user(id: ID!): User
+    profile: User!
+}
+
+type Mutation {
+    createUser(input: CreateUserInput!): User!
+    updateProfile(input: UpdateUserInput!): User!
+    changePassword(input: ChangePasswordInput!): Boolean
+    deleteFriend(friendId: String!): Boolean
+    checkIsFriend(friendId: String!): Boolean
+}
+
+type Subscription {
+    userStatusChanged(id: ID!): User!
+}
+
+input FindManyUsersInput {
+    query: String
+    ageFrom: Int
+    ageTo: Int
+    gender: Gender
+}
+
+input CreateUserInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    age: Int
+    password: String!
+}
+
+input UpdateUserInput {
+    firstName: String
+    lastName: String
+    age: Int
+    avatar: ID
+}
+
+input ChangePasswordInput {
+    oldPassword: String!
+    newPassword: String!
+}
+
+enum Gender {
+    MALE
+    FEMALE
+}

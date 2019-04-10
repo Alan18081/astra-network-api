@@ -1,70 +1,58 @@
-import {Injectable} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
-import {Message} from './message.entity';
-import { Repository } from 'typeorm';
-import {User} from '../users/user.entity';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import {UpdateMessageDto} from './dto/update-message.dto';
 import { FindOneMessageDto } from './dto/find-one-message.dto';
-import { Chat } from '../chats/chat.entity';
+import { MessagesRepository } from './messages.repository';
+import { Message } from './message.interface';
+import { AddMessageDto } from './dto/add-message.dto';
+import { MessageInfo } from './interfaces/message-info.interface';
+import { Messages } from '../../helpers/enums/messages.enum';
 
 @Injectable()
 export class MessagesService {
   constructor(
-    @InjectRepository(Message)
-    private readonly messagesRepository: Repository<Message>,
+    private readonly messagesRepository: MessagesRepository
   ) {}
 
-  private getRelations(query: FindOneMessageDto): string[] {
-    const relations: string[] = [];
-
-    if (query.includeUser) {
-      relations.push('user');
+  async isMessageOwner(id: string, userId: string): Promise<Message> {
+    const message = await this.messagesRepository.findByIdAndUserId(id, userId);
+    if(!message) {
+      throw new ForbiddenException(Messages.MESSAGE_NOT_FOUND_OR_WRONG_PERMISSIONS);
     }
 
-    return relations;
+    return message;
   }
 
-
-  async findOne(id: number, query: FindOneMessageDto): Promise<Message | undefined> {
-    const relations: string[] = this.getRelations(query);
-
-    return await this.messagesRepository.findOne({
-      where: {
-        id
-      },
-      relations
-    });
+  async findManyByChatId(chatId: string, skip: number, limit: number): Promise<Message[]> {
+    return this.messagesRepository.findManyByChatId(chatId, skip, limit);
   }
 
-  async createOne(userId: number, chatId: number, text: string): Promise<Message | undefined> {
-    const newMessage = {
-      ...new Message(),
+  async findById(id: string): Promise<Message | null> {
+    return this.messagesRepository.findById(id);
+  }
+
+  async createOne(userId: string, { text, chatId }: AddMessageDto): Promise<Message> {
+    const newMessage: Partial<Message> = {
       text,
-      user: { id: userId } as User,
-      userId,
-      chat: { id: chatId } as Chat,
-      createdAt: new Date().toISOString()
+      author: userId,
+      chat: chatId,
+      createdAt: new Date(),
     };
-    await this.messagesRepository.save(newMessage);
-
-    return await this.findOne(newMessage.id, { includeUser: true });
+    return this.messagesRepository.save(newMessage);
   }
 
-  async updateOne(payload: UpdateMessageDto): Promise<Message | undefined> {
-    await this.messagesRepository.update(
-      {
-        id: payload.messageId,
-      },
-      {
-        text: payload.text,
-      },
-    );
-
-    return await this.findOne(payload.messageId, { includeUser: true });
+  async updateById(id: string, payload: UpdateMessageDto, userId: string): Promise<Message | null> {
+    await this.isMessageOwner(id, userId);
+    return this.messagesRepository.updateById(id, payload);
   }
 
-  async deleteOne(id: number): Promise<void> {
-    await this.messagesRepository.delete({id});
+  async deleteById(id: string, userId: string): Promise<MessageInfo> {
+    const message = await this.isMessageOwner(id, userId);
+    await this.messagesRepository.deleteById(id);
+
+    return {
+      _id: message._id,
+      chatId: message.chat as string,
+    }
   }
 
 }

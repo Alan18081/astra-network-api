@@ -1,172 +1,122 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { uniqBy } from 'lodash';
-import { InjectRepository } from '@nestjs/typeorm';
-import {FindManyOptions, Repository} from 'typeorm';
-import { Chat } from './chat.entity';
-import { CreateChatDto } from './dto/http/create-chat.dto';
-import { UpdateChatDto } from './dto/http/update-chat.dto';
-import { PaginatedResult } from '../../helpers/interfaces/paginated-result.interface';
-import { User } from '../users/user.entity';
-import { FindOneChatDto } from './dto/http/find-one-chat.dto';
-import { FindChatsListDto } from './dto/http/find-chats-list.dto';
-import {WsException} from '@nestjs/websockets';
+import { CreateChatDto } from './dto/create-chat.dto';
+import { UpdateChatDto } from './dto/update-chat.dto';
+import { FindChatsListDto } from './dto/find-chats-list.dto';
 import {Messages} from '../../helpers/enums/messages.enum';
 import {UsersService} from '../users/users.service';
-import { PaginationDto } from '../core/dto/pagination.dto';
+import {ChatsRepository} from './chats.repository';
+import {Chat} from './chat.interface';
+import {AddUserToChatDto} from './dto/add-user-to-chat.dto';
+import {RemoveUserFromChatDto} from './dto/remove-user-from-chat.dto';
+import { Message } from '../messages/message.interface';
+import { User } from '../users/user.interface';
 
 @Injectable()
 export class ChatsService {
 
   constructor(
-    @InjectRepository(Chat)
-    private readonly chatsRepository: Repository<Chat>,
+    private readonly chatsRepository: ChatsRepository,
     private readonly usersService: UsersService,
   ) {}
 
   async findMany(query: FindChatsListDto): Promise<Chat[]> {
-    const options: FindManyOptions = {
-      where: {
-        id: query.userId,
-      },
-      relations: [],
-    };
-
-    options.relations = this.getRelations(query);
-    return await this.chatsRepository.find(options);
+    if(query.ids) {
+      return this.chatsRepository.findManyByIds(query.ids);
+    }
+    return this.chatsRepository.findMany({ });
   }
 
-  async findManyByIds(ids: number[], query: FindChatsListDto ): Promise<Chat[]> {
-    const relations = this.getRelations(query);
-    return await this.chatsRepository.findByIds(ids, { relations });
+  async setLastMessage(chatId: string, messageId: string): Promise<void> {
+    await this.chatsRepository.setLastMessage(chatId, messageId);
   }
 
-  async addNewUserToChat(chatId: number, userId: number): Promise<Chat> {
-
+  async addUserToChat(adderId: string, { chatId, userId }: AddUserToChatDto): Promise<{ chat: Chat | null, user: User }> {
     const [chat, user] = await Promise.all([
-      this.findOne(chatId, { includeUsers: true }),
+      this.findOneByIdAndUserId(chatId, adderId),
       this.usersService.findOne(userId),
     ]);
 
     if (!user) {
-      throw new WsException(Messages.USER_NOT_FOUND);
+      throw new NotFoundException(Messages.USER_NOT_FOUND);
     }
 
     if (!chat) {
-      throw new WsException(Messages.CHAT_NOT_FOUND);
+      throw new NotFoundException(Messages.CHAT_NOT_FOUND);
     }
 
-    const foundUser = chat.users.find(({ id }: User) => id === userId);
-    if (!foundUser) {
-      chat.users.push(user);
-    }
-
-    return await this.chatsRepository.save(chat);
-  }
-
-  async removeUserFromChat(chatId: number, userId: number): Promise<Chat> {
-    const [chat, user] = await Promise.all([
-      this.findOne(chatId, { includeUsers: true }),
-      this.usersService.findOne(userId),
-    ]);
-
-    if (!user) {
-      throw new WsException(Messages.USER_NOT_FOUND);
-    }
-
-    if (!chat) {
-      throw new WsException(Messages.CHAT_NOT_FOUND);
-    }
-
-    chat.users = chat.users.filter(({ id }: User) => id !== userId);
-
-    return await this.chatsRepository.save(chat);
-  }
-
-  private getRelations(query: FindChatsListDto | FindOneChatDto): string[] {
-    const relations: string[] = [];
-
-    if (query.includeMessages) {
-      relations.push('messages');
-    }
-
-    if (query.includeUsers) {
-      relations.push('users');
-    }
-
-    return relations;
-  }
-
-  async findManyWithPagination(query: FindChatsListDto & Required<PaginationDto>): Promise<PaginatedResult<Chat>> {
-    const options: FindManyOptions = {
-      where: {},
-      relations: [],
-      skip: (query.page - 1) * query.limit,
-      take: query.limit,
-    };
-
-    if (query.userId) {
-      options.where = {
-        users: {
-          id: query.userId,
-        },
-      };
-    }
-    options.relations = this.getRelations(query);
-
-    const [data, totalCount] = await this.chatsRepository.findAndCount(
-        options,
-      );
-
+    const updatedChat = await this.chatsRepository.addUserToChat(chat._id, user._id);
     return {
-      page: query.page,
-      itemsPerPage: query.limit,
-      totalCount,
-      data,
-    };
+      chat: updatedChat,
+      user
+    }
   }
 
-  async findOne(id: number, query: FindOneChatDto): Promise<Chat | undefined> {
-    const relations = this.getRelations(query);
+  async removeUserFromChat(adminId: string, { chatId, userId }: RemoveUserFromChatDto): Promise<{ chat: Chat | null, user: User }> {
+    const [chat, user] = await Promise.all([
+      this.chatsRepository.findOneByIdAndAdminId(chatId, adminId),
+      this.usersService.findOne(userId),
+    ]);
 
-    return await this.chatsRepository.findOne({
-      where: {
-        id,
-      },
-      relations,
-    });
-  }
-
-  async createOne(payload: CreateChatDto): Promise<Chat | undefined> {
-    const chat = new Chat();
-
-    chat.name = payload.name;
-    chat.createdAt = new Date();
-    chat.users = uniqBy(
-      payload.userIds.map(id => ({ id })) as User[],
-      ({ id }) => id,
-    );
-
-    await this.chatsRepository.save(chat);
-    return await this.findOne(chat.id, { includeUsers: true });
-  }
-
-  async updateOne(id: number, payload: UpdateChatDto): Promise<Chat | undefined> {
-    await this.chatsRepository.update(id, payload);
-
-    return await this.chatsRepository.findOne(id);
-  }
-
-  async deleteOne(id: number, userId: number): Promise<void> {
-    const chat = await this.chatsRepository.findOne(id, { relations: ['users'] });
-
-    if (chat) {
-      chat.users = chat.users.filter((user: User) => user.id !== userId);
-      if (chat.users.length === 0) {
-        await this.chatsRepository.delete({ id });
-      } else {
-        await this.chatsRepository.save(chat);
-      }
+    if (!user) {
+      throw new NotFoundException(Messages.USER_NOT_FOUND);
     }
 
+    if (!chat) {
+      throw new NotFoundException(Messages.CHAT_NOT_FOUND);
+    }
+
+    const updatedChat = await this.chatsRepository.removeUserFromChat(chat._id, user._id);
+    return {
+      chat: updatedChat,
+      user
+    }
+  }
+
+  async leaveChat(chatId: string, userId: string): Promise<Chat | null> {
+      const chat = await this.findOne(chatId);
+
+      if (!chat) {
+          throw new NotFoundException(Messages.CHAT_NOT_FOUND);
+      }
+
+      return this.chatsRepository.removeUserFromChat(chatId, userId);
+  }
+
+  async findOne(id: string): Promise<Chat | null> {
+    return this.chatsRepository.findChatById(id)
+  }
+
+  async createOne(userId: string, { name, userIds }: CreateChatDto): Promise<Chat> {
+    userIds.push(userId);
+    const chat: Partial<Chat> = {
+        name,
+        admin: userId,
+        createdAt: new Date(),
+        users: uniqBy(userIds, id => id),
+    };
+
+    return this.chatsRepository.save(chat);
+  }
+
+  async updateById(id: string, payload: UpdateChatDto): Promise<Chat | null> {
+    return this.chatsRepository.updateById(id, payload);
+  }
+
+  async deleteById(id: string): Promise<void> {
+    await this.chatsRepository.deleteById(id);
+  }
+
+  async findOneByIdAndUserId(chatId: string, userId: string): Promise<Chat | null> {
+    return this.chatsRepository.findOneByIdAndUserId(chatId, userId);
+  }
+
+  async filterMessages(message: Message, chatId: string, userId: string): Promise<boolean> {
+    if(message.chat.toString() !== chatId) {
+      return false;
+    }
+
+    const chat = await this.findOneByIdAndUserId(chatId, userId);
+    return !!chat;
   }
 }

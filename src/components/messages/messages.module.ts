@@ -1,14 +1,20 @@
 import {Module} from '@nestjs/common';
 import {MessagesService} from './messages.service';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import {Message} from './message.entity';
+import { MongooseModule } from '@nestjs/mongoose';
+import { MessageSchema } from './message.schema';
+import { MessagesRepository } from './messages.repository';
+import { MessagesResolver } from '../entity-resolvers/resolvers/messages.resolver';
+import { CoreModule } from '../core/core.module';
+import { ChatsModule } from '../chats/chats.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Message]),
+    CoreModule,
+    MongooseModule.forFeature([{name: 'Message', schema: MessageSchema}]),
+    ChatsModule
   ],
   controllers: [],
   exports: [MessagesService],
-  providers: [MessagesService],
+  providers: [MessagesService, MessagesRepository, MessagesResolver],
 })
 export class MessagesModule {}

@@ -2,17 +2,18 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import {ValidationPipe} from '@nestjs/common';
-import { PORT } from './config';
+import { ConfigService } from './components/core/services/config.service';
 import * as helmet from 'helmet';
 import * as rateLimit from 'express-rate-limit';
 
-declare const module: any;
+const configService = new ConfigService(`${process.env.NODE_ENV}.env`);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
+
 
   app.use(helmet());
   app.use(rateLimit({
@@ -21,21 +22,16 @@ async function bootstrap() {
   }));
 
   const options = new DocumentBuilder()
-    .setTitle('Astra-store')
-    .setDescription('Platform for selling and buying products online')
+    .setTitle('Astra-network')
+    .setDescription('Social network')
     .setVersion('0.1.0')
-    .addTag('Sales')
+    .addTag('social')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
 
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(PORT);
-
-  if (module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => app.close());
-  }
+  await app.listen(+configService.get('PORT'));
 }
 bootstrap();

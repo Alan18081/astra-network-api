@@ -8,6 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var class_validator_1 = require("class-validator");
 var swagger_1 = require("@nestjs/swagger");
+var config_service_1 = require("../../core/services/config.service");
+var configService = new config_service_1.ConfigService(process.env.NODE_ENV + ".env");
 var CreateUserDto = /** @class */ (function () {
     function CreateUserDto() {
     }
@@ -20,12 +22,17 @@ var CreateUserDto = /** @class */ (function () {
         swagger_1.ApiModelProperty()
     ], CreateUserDto.prototype, "lastName", void 0);
     __decorate([
+        class_validator_1.IsInt(),
+        class_validator_1.IsOptional(),
+        swagger_1.ApiModelProperty()
+    ], CreateUserDto.prototype, "age", void 0);
+    __decorate([
         class_validator_1.IsEmail(),
         swagger_1.ApiModelProperty()
     ], CreateUserDto.prototype, "email", void 0);
     __decorate([
         class_validator_1.IsString(),
-        class_validator_1.MinLength(6),
+        class_validator_1.MinLength(+configService.get('PASSWORD_LENGTH')),
         swagger_1.ApiModelProperty()
     ], CreateUserDto.prototype, "password", void 0);
     return CreateUserDto;

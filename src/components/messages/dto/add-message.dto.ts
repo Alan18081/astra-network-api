@@ -1,6 +1,9 @@
-import {IsNumber, IsString} from 'class-validator';
+import { IsMongoId, IsString } from 'class-validator';
 
 export class AddMessageDto {
-  @IsString() text: string;
-  @IsNumber() chatId: number;
+  @IsString()
+  text: string;
+
+  @IsMongoId()
+  chatId: string;
 }

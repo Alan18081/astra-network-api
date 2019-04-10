@@ -1,16 +1,22 @@
-import {Module} from '@nestjs/common';
+import {Global, Module} from '@nestjs/common';
 import {HashService} from './services/hash.service';
-import { EmailSendingService } from './services/email-sending.service';
-import { EmailTemplatesService } from './services/email-templates.service';
-import {ClientsStoreService} from './services/clients-store.service';
+import { DateScalar } from './scalars/date.scalar';
+import { PublisherService } from './services/publisher.service';
+import { PhoneVerificationService } from './services/phone-verification.service';
+import { ConfigService } from './services/config.service';
 
 const exportedProviders = [
   HashService,
-  EmailSendingService,
-  EmailTemplatesService,
-  ClientsStoreService,
+  DateScalar,
+  PublisherService,
+  PhoneVerificationService,
+  {
+    provide: ConfigService,
+    useValue: new ConfigService(`${process.env.NODE_ENV}.env`),
+  },
 ];
 
+@Global()
 @Module({
   imports: [],
   exports: [...exportedProviders],

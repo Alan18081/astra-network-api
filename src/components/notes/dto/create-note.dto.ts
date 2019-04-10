@@ -1,4 +1,4 @@
-import { ArrayNotEmpty, IsOptional, IsString } from 'class-validator';
+import { ArrayNotEmpty, IsMongoId, IsOptional, IsString } from 'class-validator';
 
 export class CreateNoteDto {
   @IsString()
@@ -10,6 +10,7 @@ export class CreateNoteDto {
 
   @ArrayNotEmpty()
   @IsOptional()
-  fileIds?: number[];
+  @IsMongoId({ each: true })
+  fileIds?: string[];
 
 }
